@@ -1,0 +1,16 @@
+{
+    "source": "content",
+    "output": "site",
+    "theme": "themes/one",
+    "permalink": "{{directory}}/{{filename}}.html",
+    "sitename": "JS101",
+    "github": "https://github.com/7anshuai/js101",
+    "google": "",
+    "footer": "JS101 was a series course and collections about JavaScript.",
+    "writers": [
+        "nico.PageWriter",
+        "nico.PostWriter",
+        "nico.FileWriter",
+        "nico.StaticWriter"
+    ]
+}
