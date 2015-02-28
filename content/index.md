@@ -1,4 +1,4 @@
-# JavaScript 101 课程
+# JavaScript 101 教程
 
 ------
 
@@ -6,6 +6,12 @@
 
 ## JavaScript 101
 
-JavaScript 101 来自 [jQuery 学习中心](http://learn.jquery.com) 的 JavaScript 初级教程，大部分初始内容来源于由 [Rebecca Murphey](http://www.rmurphey.com/) 写作的 [jQuery Fundamentals](http://jqfundamentals.com/legacy)。这份教程介绍了 JavaScript 语言的基础知识，以及开发者在初次进军 JavaScript 中容易陷入的常见陷阱。
+来自 [jQuery 学习中心](http://learn.jquery.com) 的 JavaScript 初级教程，大部分初始内容来源于由 [Rebecca Murphey](http://www.rmurphey.com/) 写作的 [jQuery Fundamentals](http://jqfundamentals.com/legacy)。这份教程介绍了 JavaScript 语言的基础知识，以及开发者在初次进军 JavaScript 中容易陷入的常见陷阱。
 
 [开始学习 JavaScript 101](/javascript-101/)
+
+## JS101
+
+基于 [ECMAScript5](http://zh.wikipedia.org/wiki/ECMAScript) 标准介绍了 JavaScript，涵盖了语言更深层次的方面。
+
+[开始学习 JS101](/js101/)

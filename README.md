@@ -1,2 +1,3 @@
-# js101
-JavaScript 101  collections
+# JS101
+
+JavaScript for beginners.

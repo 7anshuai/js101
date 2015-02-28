@@ -1,24 +1,24 @@
-# Getting Started
+# 入门
 
 ------
 
-## Anatomy of a Web Page
+## 网页的解剖学
 
-Before diving into JavaScript, it helps to understand how it aligns with the other web technologies.
+在深入 JavaScript 之前，对网页的解剖有助于理解 JavaScript 是如何与其他网络技术密切合作的。
 
-## HTML is for Content
+## HTML 是内容
 
-HTML is a markup language used to define and describe content. Whether it be a blog post, a search engine result, or an e-commerce site, the core content of a web page is written in HTML. A semantic markup, HTML is used to describe content in universal terms (headers, paragraphs, images, etc.)
+HTML 是用来定义和描述内容的标记语言。无论是博客文章，搜索引擎结果，或者电商网站，网页的核心内容都是用 HTML 编写的。语义标记是指 HTML 中用来描述内容的通用术语（头部，段落，图片等）。
 
-## CSS is for Presentation
+## CSS 是表现
 
-CSS is a supplemental language that applies style to HTML documents. CSS is all about making content look better by defining fonts, colors, and other visual aesthetics. The power of CSS comes from the fact that styling is not intermingled with content. This means you can apply different styles to the same piece of content, which is critical when building responsive websites that look good across a range of devices.
+CSS 是一个为 HTML 文档应用样式的附加语言。CSS 的全部都是关于如何通过定义字体，颜色等其他视觉美感，让内容更好看。CSS 的强大之处在于样式不再和内容夹杂，这意味着你可以将不同的样式应用到同一块内容，当构建良好跨设备响应式网站时，这是至关重要的。
 
-## JavaScript is for Interactivity
+## JavaScript 是交互
 
-In the browser, JavaScript adds interactivity and behavior to HTML content. Without JavaScript, web pages would be static and boring. JavaScript helps bring a web page to life.
+在浏览器中，JavaScript 为 HTML 内容添加交互性和行为能力。没有 JavaScript，网页将会是静态和无聊的。JavaScript 使网页富有生命力。
 
-Look at this simple HTML page that includes CSS and JavaScript to see how it all fits together:
+看下面这个包含了 CSS 和 JavaScript 的简单 HTML 页面，了解这一切是如何组织在一起的：
 
 ```
 <!doctype html>
@@ -53,27 +53,27 @@ Look at this simple HTML page that includes CSS and JavaScript to see how it all
 </html>
 ```
 
-In the example above, HTML is used to describe the content. The "Hello World" text is described as a heading with the `<h1>` tag and "Click Me!" is described as a button with the `<button>` tag. The `<style>` block contains CSS that changes the font size and color of the header text. The `<script>` block contains JavaScript that adds interactivity to the button. When a user clicks on the button, an alert message will appear that says "Hello!"
+在上面的例子中，HTML 是用来描述内容，“Hello World” 文本被 `h1` 标签描述为一个标题，“Click Me!”被 `button` 标签描述为一个按钮。`style` 代码块包含了改变标题颜色和字体大小的 CSS。`script` 代码块包含了给按钮添加交互的 JavaScript。当用户点击这个按钮，会弹出一个显示“Hello”的警告信息。
 
-## A Scripting Language for the Web
+## Web 的脚本语言
 
-JavaScript was originally designed to add interactivity to web pages, not to be a general programming language, which makes it a scripting language. [Scripting languages](http://en.wikipedia.org/wiki/Scripting_language) are regarded to be more productive than general languages because they are optimized for their specific domain (in this case, the web browser). However, recent advancements have brought JavaScript to the server-side (via [Node.js](http://nodejs.org/)) so it can now be used in place of languages like PHP, Ruby, or ASP. This guide will focus exclusively on JavaScript running in the browser with jQuery.
+JavaScript 最初设计为网页添加交互性，而不是成为一个通用语言，所以它被设计为脚本语言。[脚本语言](http://zh.wikipedia.org/wiki/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80) 被认为是比通用语言更高效，因为它们是为它们特定的领域（如 JavaScript 为网络浏览器）而优化。然而，最近的技术发展让 JavaScript 在服务器端大热（通过 [Node.js](http://nodejs.org/)），所以它现在也可以用于代替 PHP,Ruby 或者 ASP等语言。本指南将专注于在浏览器中运行的 JavaScript。
 
-The name "JavaScript" is a bit misleading. Despite the similarity in name, JavaScript has no relationship with [Java](http://en.wikipedia.org/wiki/Java_\(programming_language\), a general purpose language. JavaScript is based on an open web standard called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript). Standards-based languages are not controlled by any one entity or corporation – instead, developers work together to define the language, which is why JavaScript will run in *every* web browser regardless of the operating system or device.
+“JavaScript” 这个名字有点误导性。尽管有相似的名字，但是 JavaScript 与 [Java](https://zh.wikipedia.org/wiki/Java)（一种通用语言）没有任何关系。JavaScript 是基于开放式网络标准 ECMAScript。基于标准的语言不是任何一个实体或公司控制的－相反的，开发商们共同制定语言，这就是为什么 JavaScript 运行在每一个 Web 浏览器中，而无关操作系统或设备。
 
-## What You Need to Get Started with JavaScript and jQuery
+## 你需要什么来开始学习 JavaScript 和 jQuery
 
-1. Web Browser
-2. Text Editor
-3. Developer Tools (optional)
+1. Web 浏览器
+2. 文本编辑器
+3. 开发者工具 (可选项)
 
-One of JavaScript's greatest strengths is its simplicity. It can be written and run on any operating system, and the only requirements are a web browser and a text editor. There are also numerous tools that can make JavaScript development more productive, but they are completely optional.
+JavaScript 的最大优势之一是它的简单。它可以在任何操作系统上编写和运行，唯一的要求是一个网络浏览器和文本编辑器。也有许多工具可以让 JavaScript 开发更有效率，但它们是完全可选的。
 
-## Developer Tools
+## 开发者工具
 
-Commonly referred to as "developer tools," many browsers ship with built-in features that provide better insight into JavaScript and jQuery while they run in the browser. Although they aren't required, you may find developer tools helpful when it comes to debugging errors in your code. Check out these browsers' developer tools:
+许多浏览器附带的内置功能，通常被称为“开发者工具”，它提供了更好的视角来观察运行在浏览器里的 JavaScript 和 jQuery。虽然不是必须的，但当你调试代码错误时，你会发现开发者工具很有用。看看常见的浏览器开发者工具：
 
-- [Apple Safari](https://developer.apple.com/technologies/safari/developer-tools.html)
+- [Apple Safari](https://developer.apple.com/cn/technologies/safari/developer-tools.html)
 - [Google Chrome Developer Tools](https://developers.google.com/chrome-developer-tools/)
 - [Microsoft Internet Explorer](http://msdn.microsoft.com/en-us/library/ie/gg589507.aspx)
 - [Mozilla Firefox Developer Tools](https://developer.mozilla.org/en-US/docs/Tools)
