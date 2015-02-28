@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <title>Conditional Code</title>
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Conditional Code</h1>
+  <div class="entry-content" itemprop="articleBody"><p>Sometimes a block of code should only be run under certain conditions. Flow control – via <code>if</code> and <code>else</code> blocks – lets you run code if certain conditions have been met.</p>
+<pre>// Flow control
+
+var foo = true;
+var bar = false;
+
+if ( bar ) {
+    // This code will never run.
+    console.log( &quot;hello!&quot; );
+}
+
+if ( bar ) {
+
+    // This code won&#39;t run.
+
+} else {
+
+    if ( foo ) {
+        // This code will run.
+    } else {
+        // This code would run if foo and bar were both false.
+    }
+
+}</pre><p>While curly braces aren&#39;t strictly required around single-line <code>if</code> statements, using them consistently, even when they aren&#39;t strictly required, makes for vastly more readable code.</p>
+<p>Be mindful not to define functions with the same name multiple times within separate <code>if</code>/<code>else</code> blocks, as doing so may not have the expected result.</p>
+<h2 id="truthy-and-falsy-things">Truthy and Falsy Things</h2><p>In order to use flow control successfully, it&#39;s important to understand which kinds of values are &quot;truthy&quot; and which kinds of values are &quot;falsy.&quot; Sometimes, values that seem like they should evaluate one way actually evaluate another.</p>
+<pre>// Values that evaluate to false:
+false
+&quot;&quot; // An empty string.
+NaN // JavaScript&#39;s &quot;not-a-number&quot; variable.
+null
+undefined // Be careful -- undefined can be redefined!
+0 // The number zero.</pre><pre>// Everything else evaluates to true, some examples:
+&quot;0&quot;
+&quot;any string&quot;
+[] // An empty array.
+{} // An empty object.
+1 // Any non-zero number.</pre><h2 id="conditional-variable-assignment-with-the-ternary-operator">Conditional Variable Assignment with the Ternary Operator</h2><p>Sometimes a variable should be set depending on some condition. An <code>if</code>/<code>else</code> statement works, but in many cases the ternary operator is more convenient. The ternary operator tests a condition; if the condition is true, it returns a certain value, otherwise it returns a different value.</p>
+<p>The ternary operator:</p>
+<pre>// Set foo to 1 if bar is true; otherwise, set foo to 0:
+var foo = bar ? 1 : 0;</pre><p>While the ternary operator can be used without assigning the return value to a variable, this is generally discouraged.</p>
+<h2 id="switch-statements">Switch Statements</h2><p>Rather than using a series of <code>if</code>/<code>else</code> blocks, sometimes it can be useful to use a <code>switch</code> statement instead. <code>switch</code> statements look at the value of a variable or expression, and run different blocks of code depending on the value.</p>
+<pre>// A switch statement
+
+switch ( foo ) {
+
+    case &quot;bar&quot;:
+        alert( &quot;the value was bar -- yay!&quot; );
+        break;
+
+    case &quot;baz&quot;:
+        alert( &quot;boo baz :(&quot; );
+        break;
+
+    default:
+        alert( &quot;everything else is just ok&quot; );
+
+}</pre><p>Switch statements have somewhat fallen out of favor in JavaScript, because often the same behavior can be accomplished by creating an object that has more potential for reuse or testing. For example:</p>
+<pre>var stuffToDo = {
+
+    &quot;bar&quot;: function() {
+        alert( &quot;the value was bar -- yay!&quot; );
+    },
+
+    &quot;baz&quot;: function() {
+        alert( &quot;boo baz :(&quot; );
+    },
+
+    &quot;default&quot;: function() {
+        alert( &quot;everything else is just ok&quot; );
+    }
+
+};
+
+// Check if the property exists in the object.
+if ( stuffToDo[ foo ] ) {
+    // This code won&#39;t run.
+    stuffToDo[ foo ]();
+
+} else {
+    // This code will run.
+    stuffToDo[ &quot;default&quot; ]();
+
+}</pre><p>Objects are covered further in the <a href="/types/">Types</a> and <a href="/objects/">Objects</a> sections.</p>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <title>Testing Type</title>
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Testing Type</h1>
+  <div class="entry-content" itemprop="articleBody"><p>JavaScript offers a way to test the type of a variable. However, the result can be confusing – for example, the type of an array is <code>object</code>.</p>
+<p>It&#39;s common practice to use the <code>typeof</code> operator when trying to determining the type of a specific value.</p>
+<pre>// Testing the type of various variables.
+var myFunction = function() {
+    console.log( &quot;hello&quot; );
+};
+var myObject = {
+    foo: &quot;bar&quot;
+};
+var myArray = [ &quot;a&quot;, &quot;b&quot;, &quot;c&quot; ];
+var myString = &quot;hello&quot;;
+var myNumber = 3;
+var myRegExp = /(\w+)\s(\w+)/;
+
+typeof myFunction; // &quot;function&quot;
+typeof myObject;   // &quot;object&quot;
+typeof myArray;    // &quot;object&quot; -- Careful!
+typeof myString;   // &quot;string&quot;
+typeof myNumber;   // &quot;number&quot;
+typeof null;       // &quot;object&quot; -- Careful!
+typeof undefined;  // &quot;undefined&quot;
+typeof meh;        // &quot;undefined&quot; -- undefined variable.
+typeof myRegExp;   // &quot;function&quot; or &quot;object&quot; depending on environment.
+
+
+if ( myArray.push && myArray.slice && myArray.join ) {
+    // probably an array (this is called &quot;duck typing&quot;)
+}
+
+if ( Object.prototype.toString.call( myArray ) === &quot;[object Array]&quot; ) {
+    // Definitely an array!
+    // This is widely considered as the most robust way
+    // to determine if a specific value is an Array.
+}</pre></div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>

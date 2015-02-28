@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <title>Running Code</title>
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Running Code</h1>
+  <div class="entry-content" itemprop="articleBody"><h3 id="external">External</h3><p>The first and recommended option is to write code in an external file (with a <code>.js</code> extension), which can then be included on our web page using an HTML <code>&lt;script&gt;</code> tag and pointing the <code>src</code> attribute to the file&#39;s location. Having JavaScript in a separate file will reduce code duplication if you want to reuse it on other pages. It will also allow the browser to cache the file on the remote client&#39;s computer, decreasing page load time.</p>
+<pre>&lt;!-- Code is written in a .js file, included via the script tag src attribute. --&gt;
+&lt;script src=&quot;/path/to/example.js&quot;&gt;&lt;/script&gt;</pre><h3 id="inline">Inline</h3><p>The second option is to inline the code directly on the web page. This is also achieved using HTML <code>&lt;script&gt;</code> tags, but instead of pointing the <code>src</code> attribute to a file, the code is placed between the tags. While there are use cases for this option, the majority of the time it is best to keep our code in an external file as described above.</p>
+<pre>&lt;!-- Embed code directly on a web page using script tags. --&gt;
+&lt;script&gt;
+alert( &quot;Hello World!&quot; );
+&lt;/script&gt;</pre><h3 id="attributes">Attributes</h3><p>The last option is to use the event handler attributes of HTML elements. This method is strongly discouraged:</p>
+<pre>&lt;!-- Inline code directly on HTML elements being clicked. --&gt;
+&lt;a href=&quot;javascript:alert( &#39;Hello World&#39; );&quot;&gt;Click Me!&lt;/a&gt;
+&lt;button onclick=&quot;alert( &#39;Good Bye World&#39; );&quot;&gt;Click Me Too!&lt;/button&gt;</pre><h3 id="placement">Placement</h3><p>Placement of the previous two options is important and can vary depending on the situation. If you are including JavaScript that doesn&#39;t access the elements on the page, you can safely place the script before the closing HTML <code>&lt;head&gt;</code> tag. However, if the code will interact with the elements on the page, you have to make sure those elements exist at the time the script is executed. This common pitfall can be seen in the example below. The script for finding the element with the ID <code>hello-world</code> will be executed before the element is defined in the document.</p>
+<pre>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script&gt;
+    // Attempting to access an element too early will have unexpected results.
+    var title = document.getElementById( &quot;hello-world&quot; );
+    console.log( title );
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1 id=&quot;hello-world&quot;&gt;Hello World&lt;/h1&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre><p>It is a common pattern to move scripts to the bottom of the page, prior to the closing HTML <code>&lt;body&gt;</code> tag. This will guarantee that elements are defined when the script is executed:</p>
+<pre>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1 id=&quot;hello-world&quot;&gt;Hello World&lt;/h1&gt;
+&lt;script&gt;
+// Moving the script to the bottom of the page will make sure the element exists.
+var title = document.getElementById( &quot;hello-world&quot; );
+console.log( title );
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>

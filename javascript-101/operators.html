@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <title>Operators</title>
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Operators</h1>
+  <div class="entry-content" itemprop="articleBody"><p>Basic operators allow you to manipulate values.</p>
+<pre>// Concatenation
+var foo = &quot;hello&quot;;
+var bar = &quot;world&quot;;
+
+console.log( foo + &quot; &quot; + bar ); // &quot;hello world&quot;</pre><pre>// Multiplication and division
+2 * 3;
+2 / 3;</pre><pre>// Incrementing and decrementing
+// The pre-increment operator increments the operand before any further processing.
+var i = 1;
+console.log( ++i ); // 2 - because i was incremented before evaluation
+console.log( i );   // 2
+
+// The post-increment operator increments the operand after processing it.
+var i = 1;
+console.log( i++ ); // 1 - because i was evaluated to 1 and _then_ incremented
+console.log( i );   // 2 - incremented after using it</pre><h2 id="operations-on-numbers-amp-strings">Operations on Numbers &amp; Strings</h2><p>In JavaScript, numbers and strings will occasionally behave in unexpected ways.</p>
+<pre>// Addition vs. Concatenation
+var foo = 1;
+var bar = &quot;2&quot;;
+
+console.log( foo + bar ); // &quot;12&quot;</pre><pre>// Coercing a string to act as a number.
+var foo = 1;
+var bar = &quot;2&quot;;
+
+console.log( foo + Number(bar) ); // 3</pre><p>The <code>Number</code> constructor, when called as a function (as in the above example), will have the effect of casting its argument into a number. The unary plus operator also does the same thing:</p>
+<pre>// Forcing a string to act as a number (using the unary plus operator).
+console.log( foo + +bar ); // 3</pre><h2 id="logical-operators">Logical Operators</h2><p>Logical operators allow evaluation of a series of operands using AND (<code>&amp;&amp;</code>) and OR (<code>||</code>) operations.</p>
+<pre>// Logical AND and OR operators
+
+var foo = 1;
+var bar = 0;
+var baz = 2;
+
+// returns 1, which is true
+foo || bar;
+
+// returns 1, which is true
+bar || foo;
+
+// returns 0, which is false
+foo && bar;
+
+// returns 2, which is true
+foo && baz;
+
+// returns 1, which is true
+baz && foo;</pre><p>In the above example, the <code>||</code> operator returns the value of the first truthy operand, or in cases where neither operand is truthy, it returns the last operand. The <code>&amp;&amp;</code> operator returns the value of the first false operand, or the value of the last operand if both operands are truthy.</p>
+<p>You&#39;ll sometimes see developers use these logical operators for flow control instead of using <code>if</code> statements. For example:</p>
+<pre>// Do something with foo if foo is truthy.
+foo && doSomething( foo );
+
+// Set bar to baz if baz is truthy;
+// otherwise, set it to the return value of createBar()
+var bar = baz || createBar();</pre><p>This style is quite elegant and pleasantly terse; that said, it can be really hard to read or use, especially for beginners. See the section on truthy and falsy things in the <a href="/conditional-code/">Conditional Code</a> article for more about evaluating truthiness.</p>
+<h2 id="comparison-operators">Comparison Operators</h2><p>Comparison operators allow you to test whether values are equivalent or whether values are identical.</p>
+<pre>// Comparison operators
+
+var foo = 1;
+var bar = 0;
+var baz = &quot;1&quot;;
+var bim = 2;
+
+foo == bar; // false
+foo != bar; // true
+foo == baz; // true; but note that the types are different
+
+foo === baz;             // false
+foo !== baz;             // true
+foo === parseInt( baz ); // true
+
+foo &gt; bim;  // false
+bim &gt; baz;  // true
+foo &lt;= baz; // true</pre><p>For more information about comparison operators, visit the <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Operators/Comparison_Operators" title="MDN - Comparison Operators">Mozilla Developer Network</a>.</p>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>
