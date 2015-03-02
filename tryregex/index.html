@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+	<title>小试正则—交互式的正则表达式教程</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="assets/js/bower/reset-css/reset.css">
+	<link rel="stylesheet" href="assets/build/style.css">
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,700">
+</head>
+<body>
+	<header>
+		<h1>小试正则</h1>
+	</header>
+
+	<div class="main">
+		<div class="console">
+			<p class="info">在这里输入一些 JavaScript：</p>
+			<ul>
+				<li class="input-container"><label>
+					<span class="prompt">&gt; </span>
+					<input class="regex-input"/>
+				</label></li>
+			</ul>
+		</div>
+
+		<div class="tutorial">
+			<div class="lesson lesson1">
+				<h2>开始使用正则表达式</h2>
+				<p>这是一个介绍正则表达式的交互教程，特别是 JavaScript 中的正则表达式。但仍然会教你编写可以在其他语言运行的正则表达式，不过你需要注意它们的不同之处。</p>
+				<p>左边是一个 JavaScript 控制台。 使用 <code>setName('Your name')</code> 告诉我们你的名字 （<code>Your name</code> 替换为你的名字）然后开始这个教程吧。</p>
+				<p>一些有用的命令：运行 <code>help()</code> 可以查看它们。</p>
+			</div>
+
+			<div class="lesson lesson2">
+				<h2>正则表达式是什么？</h2>
+				<p>正则表达式是一个表示搜索模式的字符串（也称为正则），类似星号用于通配符文件名匹配，但是功能更强大（也因此更复杂）。</p>
+				<p>我们将从一个非常基础的例子开始，这样你将掌握正则表达式的语法以及在 JavaScript 中的使用技巧。</p>
+				<p><code>bio</code> 变量是一个可能包含你名字的字符串。输入 <code>bio.match(/{{ firstEscaped }}/)</code> 查看它是否包含了你的名字。</p>
+			</div>
+
+			<div class="lesson lesson3">
+				<p>It does!</p>
+				<p>你可以从前面的例子里得知两件事情。第一个是定义正则表达式的语法：简单的将你的表达式包含在一对正斜线中。</p>
+
+				<pre><code>/your expression/</code></pre>
+
+				<p>如果你将它输入在控制台里，你会看到被返回的正则表达式。</p>
+				<p>第二个是你可以使用字符串的 <code>.match()</code> 方法去测试一个表达式。还有一些其他的方法可以调用：例如你可以使用正则表达式的 <code>.exec()</code> 方法去检测字符串。输入 <code>/{{ firstEscaped }}/.exec(bio)</code>。</p>
+			</div>
+
+			<div class="lesson lesson4">
+				<h2>简单的测试</h2>
+				<p><code>.exec()</code> 方法和 <code>.match()</code> 方法做同样的事情，但由正则表达式自身去调用。这是非常有用的。</p>
+				<p>另一个你可以使用的方法，可能也是所有方法中最简单的一个，<code>.test()</code> 方法。 它有点类似 <code>.exec()</code>，但返回的是一个布尔值。试试吧！</p>
+				<p>有用的提示：你可以使用键盘的向上箭头来返回之前的表达式。</p>
+			</div>
+
+			<div class="lesson lesson5">
+				<h2>字符串替换</h2>
+				<p>最后一个我们会使用的方法是  <code>.replace()</code> ，它是一个字符串替换一些字符为另一些字符的方法。输入以下的命令将你的名字从 <code>bio</code> 变量中隐藏：</p>
+				<pre><code>bio.replace(/{{ firstEscaped }}/, '[redacted]')</code></pre>
+			</div>
+
+			<div class="lesson lesson6">
+				<h2>特殊字符</h2>
+				<p>目前为止，我们使用的表达式都不是很有趣，它们都没有包含任何特殊字符。下面的字符在正则表达式中需要转义：</p>
+				<pre><code>$()*+.?[^|]</code></pre>
+				<p>使用一个反斜线去转义， 例如 <code>/what\?/</code>。</p>
+				<p>写一个正则表达式查看 <code>num</code> 变量是否包含字符串 "3.5"。</p>
+			</div>
+
+			<div class="lesson lesson7">
+				<h2>点操作符</h2>
+				<p>It doesn't! <code>num</code> 等于 123456，所以它没有包含字符串 "3.5"。</p>
+				<p>在正则表达式中，点号有一个特殊的含义： 它匹配除了换行符外的任何单一字符 （所以 <code>/a.c/</code> 会匹配 "abc"，"a c"，"a$c" 等等)。 使用 <code>/3.5/</code> （没有转义点号） <em>会</em> 匹配存储在 <code>num</code> 中的字符串， 点号会匹配 "4"。</p>
+				<p>试试吧</p>
+			</div>
+
+			<div class="lesson lesson8">
+				<h2>量词</h2>
+				<p>有一些“量词”，你可以用来指明某些字符应该匹配多少次。第一个是问号，在表达式中，它令前面的符号（前一字符或字符组）为可选的。</p>
+				<p>表达式 <code>/regexp?/</code> 会匹配 "regex" 和 "regexp"， 因为问号使得 P（但只有P）为可选的。</p>
+				<p>编写一个同时匹配 "frontend" 和 "front-end" 的表达式, 然后将其当做参数传递给 <code>answer()</code> 函数（例如 <code>answer(/your expression/)</code>）。</p>
+			</div>
+
+			<div class="lesson lesson9">
+				<h2>加号</h2>
+				<p>接下来的量词，我们将看到的是加号。它的意思是“一个或多个先前标记的”； <code>/Princes+/</code> 会匹配 "Princes"， "Princess"， "Princesssss" 等等。 但它不会匹配 "Prince"。</p>
+				<p>现在来编写一个有点复杂的表达式。编写一个正则表达式从 <code>shortStory</code> （你可以通过输入 <code>shortStory</code> 查看变量的内容）变量提取开闭括号之间的内容。提示：你需要前面提到的点操作符。</p>
+			</div>
+
+			<div class="lesson lesson10">
+				<h2>星号</h2>
+				<p>星号和加号有点类似；但不同于加号意味着“一个或多个”，星号的意思是“零个或多个”前面的标记。<code>/Princes*/</code>，除了会匹配由 <code>/Princes+/</code> 匹配到的例子，同时也会匹配 "Prince"。</p>
+				<p>重复上一个例子，但是用星号代替加号。从 <code>shortStory</code> 变量提取括号之间所有的内容，即使有可能内容为空。</p>
+			</div>
+
+			<div class="lesson lesson11">
+				<h2>有限重复</h2>
+				<p>最后一个量词是可以用来进行有限重复。语法是 <code>{min,max}</code> ，min 是重复的最小数字，最大数字是 max 。例如，<code>/a{3,5}/</code> 会匹配 "aaa", "aaaa" 和 "aaaaa" ，但仅匹配这些而已。</p>
+				<p>编写一个表达式从 <code>bracketNumbers</code> 变量匹配括号之间的文本，但文本内容只能是5到8之间的字符长度。</p>
+			</div>
+
+			<div class="lesson lesson12">
+				<h2>更多有限重复</h2>
+				<p>除了指定重复的范围，你还可以指定一个确切的重复数字，通过使用 <code>{n}</code>，n 是指重复的次数。例如，表达式 <code>a{6}</code>，会正好匹配字母 a 的6次重复。</p>
+				<p>在花括号中，你可以省略掉最大值，表达式会匹配至少 <em>最小值</em> ，但没有最大值的限制。例如， <code>/a{5,}/</code> 会匹配5个或更多字母 a。</p>
+				<p>传递给 <code>answer()</code> 函数一个与 <code>/a?b+c*/</code> 等价的表达式，但不能使用这些字符的任何一个：<code>?*+</code></p>
+			</div>
+
+			<div class="lesson lesson13">
+				<h2>标志符</h2>
+				<p>标志符被用来修改正则表达式的行为，它们在表达式的后面指定（例如 <code>/your expression/ig</code>）。 每个标志由一个字母代表，JavaScript 支持4种标志符，这个教程会提及其中的两种。<code>i</code> 标志让表达式不区分大小写，当没有标志 i 时 <code>/a/</code> 会匹配 "a" 但不匹配 "A"，<code>/a/i</code> 则会匹配 "a" 和 "A"。</p>
+				<p>运行 <code>/CAT/i.exec('Category')</code> 查看 <code>i</code> 标志的作用。</p>
+			</div>
+
+			<div class="lesson lesson14">
+				<h2>全局标志</h2>
+				<p>第二个经常用到的标志符是全局标志，由字母 <code>g</code> 表示。<code>/a/</code> 只匹配给它的字符串中的第一个字符 a ，<code>/a/g</code> 会匹配所有单个字母 a。</p>
+				<p>写一个正则表达式将 <code>shortStory</code> 变量中的每一个字母 "a" 替换为 "e"。</p>
+				<p>记住字符串有一个 <code>.replace(expr, replace)</code> 方法可以用来做替换。</p>
+			</div>
+
+			<div class="lesson lesson15">
+				<h2>字符类</h2>
+				<p>字符类允许你指定一个字符集合或字符范围来匹配。<code>/[aeiou]/</code> 匹配任何元音字母，<code>/[a-m]/</code> 匹配字母表前半部分的任何小写字母， <code>/[aeiou0-9]/</code> 匹配任何元音字母或者数字。</p>
+				<p>注意在字符类里，点号是不需要转义的，它会直接按照字面量进行匹配。如果你需要匹配一个连字符，你仍然需要转义它。</p>
+				<p>我们给出一个包含由5到12位字母（大写或小写）或连字符组成的用户名。编写一些代码，如果 <code>username</code> 变量包含一个有效的用户名则返回 true 值。</p>
+			</div>
+
+			<div class="lesson lesson16">
+				<h2>否定字符类</h2>
+				<p>一个 <em>否定</em> 字符类会匹配那些 <em>不在</em> 这个字符类中的字符。在字符类的开头放入一个插入字符（^）来否定一个字符类。例如， <code>/[^a-m]/</code> 会匹配 "z" 和 "$"，但不会匹配 "c"。</p>
+				<p>重点是要注意 "not [a-m]" 和 "something that isn't [a-m]" 的区别。 <code>/c[^a]t/</code> 会匹配 "cut"，但它不会匹配 "cat" 也不会匹配 "ct" - 这点很重要。</p>
+				<p>用户名现在可以包含任何不是空格的字符（但长度仍然是5到12之间）。编写一个新的表达式去验证 <code>username</code> 变量。</p>
+			</div>
+
+			<div class="lesson lesson17">
+				<h2>字符类型</h2>
+				<p>字符类型可以作为常见字符类的简写。有六个字符类型： <code>\d</code> 匹配十进制数字 (0-9)， <code>\s</code> 匹配空白字符， <code>\w</code> 匹配单词字符（字母（包括国际字符）数字和下划线）。</p>
+				<p>其他三个字符类型可以通过前三个字符类型来发现，它们的作用与前三个相反；例如 <code>\S</code> 匹配任何非空白字符。</p>
+				<p>编写表达式匹配一个单词，后面跟一个空格，然后是一串数字。 用它来测试 <code>charTypeTest</code> 变量：不要使用任何字面量字符。</p>
+			</div>
+
+			<div class="lesson lesson18">
+				<h2>位置</h2>
+				<p>如果你确定表达式在一个确切的位置以一个单词开始或结束，例如你想要确保一个字符串以一个大写字符开始，这时候你需要使用锚。美元符号匹配字符串的结尾，插入符号（^）匹配字符串开头。 <code>/^cat$/</code> 只会匹配 "cat"，而 <code>/cat/</code> 则会匹配包含 "cat" 的字符串。</p>
+				<p>编写表达式测试 <code>possibleUrl</code> 是否以 "http://" 或 "https://" 开始，并不包含空格。</p>
+				<p>提示：对协议部分使用问号，然后其余部分使用一个否定字符类。你需要两个锚点。</p>
+			</div>
+
+			<div class="lesson lesson19">
+				<h2>捕获组</h2>
+				<p>你可以使用括号来创建分组，它可以将多个标记组织在一起或者存储一个结果供之后引用：</p>
+				<pre><code>/"(.+)"/</code></pre>
+				<p>这是一个捕获组的例子，意思是括号内匹配的字符串稍后会保存到通过 <code>.match()</code> 或 <code>.exec()</code> 返回的数组中。</p>
+
+				<p>拿我们之前的例子，使用类似 <code>/\(.{5,8}\)/.exec(shorterStory)</code> 的表达式抓取括号之间的数据。试着再次运行它，然后用括号包起 "<code>.{5,8}</code>" 再试一次。</p>
+			</div>
+
+			<div class="lesson lesson20">
+				<h2>非捕获组</h2>
+				<p>你可以看到现在这个数组有两个项的长度：第一项是整个匹配，第二项只有捕获组匹配的数据。</p>
+				<p>还有一种分组的类型叫做非捕获组。 这一类的分组，有一个稍微不同的语法，不存储值到数组。如果你不需要向后引用一个分组，你更应该使用非捕获组：它可以让返回的数组更简洁。通过在分组的开头（点号之前）插入 "<code>?:</code>" 把前一个表达式中的捕获组改为非捕获组</p>
+			</div>
+
+			<div class="lesson lesson21">
+				<h2>量词</h2>
+				<!--p>It's almost as if we don't have a group.</p-->
+				<p>非捕获组的主要用途是对一些标记应用量词。以下会匹配 "I ate" 和 "{{ firstName }} and I ate"，但没有其他的了：</p>
+				<pre><code>/^(?:{{ firstEscaped }} and )?I ate$/</code></pre>
+				<p>编写一个表达式匹配 "ha" 重复两词或更多（例如，"haha" 或 "hahahahaha"），然后将表达式传给 <code>answer()</code> 函数。</p>
+				<p>提示：你的表达式应该不匹配 "hahah"。使用锚来确保它不会匹配。</p>
+			</div>
+
+			<div class="lesson lesson22">
+				<h2>管道符号</h2>
+				<p>通过管道符号 (|) 你可以指定一个 "或"。以下会匹配 "The dog ate" 和 "The cat ate"：</p>
+				<pre><code>/The (dog|cat) ate/</code></pre>
+				<p>我们也可以使用非捕获组，但在这个例子中我们想要访问分组捕获的结果。你可以在一个分组中使用多个管道。使之前的表达式在之前匹配的基础上再匹配 "The rabbit ate" (已存储在 <code>rabbit</code> 变量中)。</p>
+			</div>
+
+			<div class="lesson lesson23">
+				<h2>反向引用</h2>
+				<p>在同一个表达式中，你可以引用之前捕获组的值。简单的在反斜线之后添加一个捕获组的编号（返回数组中的索引）。例如，以下会匹配 "The cat ate with the other cat" 和 "The dog ate with the other dog"，但不会匹配 "the cat ate with the other dog" ：</p>
+				<pre><code>/The (dog|cat) ate with the other \1/</code></pre>
+				<p>写一个表达式来匹配一行中相同的单词（如 "hello hello world"）：像前面的例子一样，将表达式传给 <code>answer()</code> 函数。</p>
+			</div>
+
+			<div class="lesson lesson24">
+				<h2>正则表达式对象</h2>
+				<p>除了字面量操作符（斜线），JavaScript 还提供了一个正则表达式构造函数，它允许你以字符串的形式指定想要的表达式。当要将变量放入表达式中时，正则表达式对象会很有用。它是这样工作的：</p>
+				<pre><code>// Same as /regexp?/ig
+new RegExp('regexp?', 'ig');</code></pre>
+				<p>用户名还是一个变量。 <code>userData</code> 变量包含用户数据：在控制台打印出来可查看数据格式。使用 <code>username</code> 变量来提取与用户相关联的词。请把你的答案放在一行，以便于验证。</p>
+			</div>
+
+			<div class="lesson lesson25">
+				<h2>高级替换</h2>
+				<p>我们已经看到了使用捕获组捕获值的两种方式：第一种是返回的数组，第二种是反向引用。你还可以从字符串 <code>.replace()</code> 方法的第二个参数中访问它们：</p>
+				<pre><code>var text = '*italic text*';
+var replace = '&lt;em&gt;$1&lt;/em&gt;';
+text.replace(/\*([^*]+)\*/, replace);</code></pre>
+				<p>编写类似的代码，但是将 <code>boldText</code> 变量的值改为 <code>&lt;strong&gt;</code> 元素。</p>
+			</div>
+
+			<div class="lesson lesson26">
+				<h2>懒惰与贪婪匹配</h2>
+				<p>默认的，JavaScript 中的匹配模式是“贪婪的”，意味着它会尽可能的匹配更多：</p>
+				<pre><code>'"Hi", "Hello"'.match(/".+"/)</code></pre>
+				<p>上面的代码将返回 <code>"Hi", "Hello"</code>，因为它匹配了最外面的两个引号。懒惰模式匹配则与贪婪模式匹配相反，它会尽可能少的匹配，所以在上面代码中，只会匹配 <code>"Hi"</code>。</p>
+				<p>懒惰模式可以通过在量词后面添加一个问号来实现，用懒惰模式试一下上面的例子。</p>
+			</div>
+
+			<div class="lesson lesson27">
+				<h2>断言</h2>
+				<p>断言是一个应该被匹配但不存储的模式：所以不是“匹配 a 然后 b”， 而是“匹配后面跟着 b 的 a，但不匹配 b”。JavaScript 支持两种类型的断言，正向前瞻断言和负向前瞻断言。 前瞻意味着向前看，JavaScript 不支持回顾断言。</p>
+				<p>一个正向前瞻断言，意味着为了匹配我们需要向前查看。查找一个跟着 b 的 a，我们可以使用 <code>/a(?=b)/</code>。</p>
+				<p>使用断言从 <code>partialSums</code> 变量提取 "6+3"。不要使用任何字面量数字，用 <code>\d</code>。</p>
+			</div>
+
+			<div class="lesson lesson28">
+				<h2>负向断言</h2>
+				<p>断言也可以是反的，意思是你想匹配的东西后面没有跟着什么东西。 注意与字符类不同，这可能会匹配一些不想匹配的东西，如果你想匹配“a 后面没有跟着 b”，匹配到的 a 可能是字符串结尾的 a。</p>
+				<p>负向前瞻断言的语法类似于正向前瞻断言，但你需要将等号替换为感叹号：例如，<code>/a(?!b)/</code> 会寻找后面没有跟着字母 b 的字母 a。</p>
+				<p>使用一个正向前瞻断言，接着一个负向前瞻断言从 <code>partialSums</code> 变量中提取 "3+3"。</p>
+			</div>
+
+			<div class="lesson lesson29">
+				<h2>你完成了！</h2>
+				<p>恭喜，{{ firstName }}， 完成了小试正则。你已经简要的尝试了 JavaScript 中的大部分正则表达式知识，你可以为大多数情况编写正则表达式了。</p>
+				<p>进一步的阅读，试试以下的链接：</p>
+
+				<ul>
+					<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Mozilla 开发者网络: 正则表达式</a></li>
+					<li><a href="http://tech.pro/tutorial/1214/javascript-regular-expression-enlightenment">JavaScript Regular Expression Enlightenment</a> by Cody Lindley</li>
+					<li><a href="http://refcardz.dzone.com/refcardz/regular-expressions">DZone: The Essential Regular Expressions Cheat Sheet</a> by Callum Macrae</li>
+					<li><a href="http://leaverou.github.io/regexplained/">RegExp playground</a> by Lea Verou</li>
+					<li><a href="http://www.regular-expressions.info/tutorial.html">regular-expressions.info</a> 非特定语言的通用指南</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<p>Site by <a href="http://macr.ae/">Callum Macrae</a>. Translated by <a href="http://tanshuai.me/">7anshuai</a>. <small>Copyright &copy; 2014</small></p>
+	</footer>
+
+	<a class="gh-ribbon" href="https://github.com/ethrea1/tryregex"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+
+	<!-- This div is always hidden; it's for cloning from -->
+	<div class="hidden-storage">
+		<ul>
+			<li class="prompt-completed">
+				<span class="prompt">&gt; </span>
+				<code></code>
+			</li>
+			<li class="prompt-result"><code></code></li>
+		</ul>
+	</div>
+
+	<script data-main="assets/js/app" src="assets/js/bower/requirejs/require.js"></script>
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-50612052-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+</body>
+</html>
