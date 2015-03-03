@@ -53,7 +53,7 @@ CSS 是一个为 HTML 文档应用样式的附加语言。CSS 的全部都是关
 </html>
 ```
 
-在上面的例子中，HTML 是用来描述内容，“Hello World” 文本被 `h1` 标签描述为一个标题，“Click Me!”被 `button` 标签描述为一个按钮。`style` 代码块包含了改变标题颜色和字体大小的 CSS。`script` 代码块包含了给按钮添加交互的 JavaScript。当用户点击这个按钮，会弹出一个显示“Hello”的警告信息。
+在上面的例子中，HTML 是用来描述内容，“Hello World” 文本被 `h1` 元素描述为一个标题，“Click Me!”被 `button` 元素描述为一个按钮。`style` 代码块包含了改变标题颜色和字体大小的 CSS。`script` 代码块包含了给按钮添加交互的 JavaScript。当用户点击这个按钮，会弹出一个显示“Hello”的警告信息。
 
 ## Web 的脚本语言
 
@@ -73,8 +73,8 @@ JavaScript 的最大优势之一是它的简单。它可以在任何操作系统
 
 许多浏览器附带的内置功能，通常被称为“开发者工具”，它提供了更好的视角来观察运行在浏览器里的 JavaScript 和 jQuery。虽然不是必须的，但当你调试代码错误时，你会发现开发者工具很有用。看看常见的浏览器开发者工具：
 
-- [Apple Safari](https://developer.apple.com/cn/technologies/safari/developer-tools.html)
+- [Safari 开发者工具](https://developer.apple.com/cn/technologies/safari/developer-tools.html)
 - [Google Chrome Developer Tools](https://developers.google.com/chrome-developer-tools/)
-- [Microsoft Internet Explorer](http://msdn.microsoft.com/en-us/library/ie/gg589507.aspx)
-- [Mozilla Firefox Developer Tools](https://developer.mozilla.org/en-US/docs/Tools)
+- [IE 开发者工具](http://msdn.microsoft.com/zh-cn/library/ie/gg589507.aspx)
+- [火狐开发者工具](https://developer.mozilla.org/zh-CN/docs/Tools)
 - [Opera Dragonfly](http://www.opera.com/dragonfly/)

@@ -1,18 +1,18 @@
-# Running Code
+# 运行代码
 
 ------
 
-### External
+### 外部
 
-The first and recommended option is to write code in an external file (with a `.js` extension), which can then be included on our web page using an HTML `<script>` tag and pointing the `src` attribute to the file's location. Having JavaScript in a separate file will reduce code duplication if you want to reuse it on other pages. It will also allow the browser to cache the file on the remote client's computer, decreasing page load time.
+第一种也是推荐的方式是在一个外部文件（带有 `.js` 扩展名）编写代码，然后可以使用 HTML `script` 元素并通过 `src` 属性指定文件的位置来引入到网页中。当你需要将代码重复使用在其他页面时，保持 JavaScript 在一个单独的文件中可以减少代码的重复。另外它也可以让浏览器将文件缓存到客户端的计算机上，减少网页加载时间。
 
 ```
 <!-- Code is written in a .js file, included via the script tag src attribute. -->
 <script src="/path/to/example.js"></script>
 ```
-### Inline
+### 内嵌
 
-The second option is to inline the code directly on the web page. This is also achieved using HTML `<script>` tags, but instead of pointing the `src` attribute to a file, the code is placed between the tags. While there are use cases for this option, the majority of the time it is best to keep our code in an external file as described above.
+第二种方式是直接将代码内嵌在网页中。它也是通过 HTML `script` 元素实现，但不是通过 `src` 属性指定一个文件，而是将代码放置在元素中间。虽然有些情况下可以使用这种方式，但大部分时间，最好是如上所述将我们的代码放置在外部文件中。
 
 ```
 <!-- Embed code directly on a web page using script tags. -->
@@ -21,9 +21,9 @@ alert( "Hello World!" );
 </script>
 ```
 
-### Attributes
+### 属性
 
-The last option is to use the event handler attributes of HTML elements. This method is strongly discouraged:
+最后一个选择是使用 HTML 元素的事件处理程序属性。这种方式是强烈不推荐的：
 
 ```
 <!-- Inline code directly on HTML elements being clicked. -->
@@ -31,9 +31,9 @@ The last option is to use the event handler attributes of HTML elements. This me
 <button onclick="alert( 'Good Bye World' );">Click Me Too!</button>
 ```
 
-### Placement
+### 位置
 
-Placement of the previous two options is important and can vary depending on the situation. If you are including JavaScript that doesn't access the elements on the page, you can safely place the script before the closing HTML `<head>` tag. However, if the code will interact with the elements on the page, you have to make sure those elements exist at the time the script is executed. This common pitfall can be seen in the example below. The script for finding the element with the ID `hello-world` will be executed before the element is defined in the document.
+在上面的前两个方式中，代码的位置是重要的，并且需要根据情况而改变。如果你添加不访问页面元素的 JavaScript，你可以放心的把脚本放在 HTML `</head>` 之前。但是，如果代码将于页面上的元素交互，就必须确保在执行代码时这些元素已经存在了。可以在在下面的例子中看到这个常见的陷阱，一段查找 ID 为 `hello-world` 的元素脚本将会在页面定义元素之前执行。
 
 ```
 <!doctype html>
@@ -53,7 +53,7 @@ Placement of the previous two options is important and can vary depending on the
 </html>
 ```
 
-It is a common pattern to move scripts to the bottom of the page, prior to the closing HTML `<body>` tag. This will guarantee that elements are defined when the script is executed:
+一个常见的模式是将脚本移动到页面的底部，HTML `</body>` 前。这可以保证当执行代码时，元素已经在页面中定义了：
 
 ```
 <!doctype html>
