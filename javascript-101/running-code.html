@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="generator" content="nico 0.5.2">
     <meta name="theme" content="one 0.2">
-    <title>Running Code</title>
+    <title>运行代码</title>
     <link rel="stylesheet" href="../static/one.css" />
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -29,17 +29,17 @@
     </div>
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
-  <h1 class="entry-title" itemprop="name">Running Code</h1>
-  <div class="entry-content" itemprop="articleBody"><h3 id="external">External</h3><p>The first and recommended option is to write code in an external file (with a <code>.js</code> extension), which can then be included on our web page using an HTML <code>&lt;script&gt;</code> tag and pointing the <code>src</code> attribute to the file&#39;s location. Having JavaScript in a separate file will reduce code duplication if you want to reuse it on other pages. It will also allow the browser to cache the file on the remote client&#39;s computer, decreasing page load time.</p>
+  <h1 class="entry-title" itemprop="name">运行代码</h1>
+  <div class="entry-content" itemprop="articleBody"><h3 id="外部">外部</h3><p>第一种也是推荐的方式是在一个外部文件（带有 <code>.js</code> 扩展名）编写代码，然后可以使用 HTML <code>script</code> 元素并通过 <code>src</code> 属性指定文件的位置来引入到网页中。当你需要将代码重复使用在其他页面时，保持 JavaScript 在一个单独的文件中可以减少代码的重复。另外它也可以让浏览器将文件缓存到客户端的计算机上，减少网页加载时间。</p>
 <pre>&lt;!-- Code is written in a .js file, included via the script tag src attribute. --&gt;
-&lt;script src=&quot;/path/to/example.js&quot;&gt;&lt;/script&gt;</pre><h3 id="inline">Inline</h3><p>The second option is to inline the code directly on the web page. This is also achieved using HTML <code>&lt;script&gt;</code> tags, but instead of pointing the <code>src</code> attribute to a file, the code is placed between the tags. While there are use cases for this option, the majority of the time it is best to keep our code in an external file as described above.</p>
+&lt;script src=&quot;/path/to/example.js&quot;&gt;&lt;/script&gt;</pre><h3 id="内嵌">内嵌</h3><p>第二种方式是直接将代码内嵌在网页中。它也是通过 HTML <code>script</code> 元素实现，但不是通过 <code>src</code> 属性指定一个文件，而是将代码放置在元素中间。虽然有些情况下可以使用这种方式，但大部分时间，最好是如上所述将我们的代码放置在外部文件中。</p>
 <pre>&lt;!-- Embed code directly on a web page using script tags. --&gt;
 &lt;script&gt;
 alert( &quot;Hello World!&quot; );
-&lt;/script&gt;</pre><h3 id="attributes">Attributes</h3><p>The last option is to use the event handler attributes of HTML elements. This method is strongly discouraged:</p>
+&lt;/script&gt;</pre><h3 id="属性">属性</h3><p>最后一个选择是使用 HTML 元素的事件处理程序属性。这种方式是强烈不推荐的：</p>
 <pre>&lt;!-- Inline code directly on HTML elements being clicked. --&gt;
 &lt;a href=&quot;javascript:alert( &#39;Hello World&#39; );&quot;&gt;Click Me!&lt;/a&gt;
-&lt;button onclick=&quot;alert( &#39;Good Bye World&#39; );&quot;&gt;Click Me Too!&lt;/button&gt;</pre><h3 id="placement">Placement</h3><p>Placement of the previous two options is important and can vary depending on the situation. If you are including JavaScript that doesn&#39;t access the elements on the page, you can safely place the script before the closing HTML <code>&lt;head&gt;</code> tag. However, if the code will interact with the elements on the page, you have to make sure those elements exist at the time the script is executed. This common pitfall can be seen in the example below. The script for finding the element with the ID <code>hello-world</code> will be executed before the element is defined in the document.</p>
+&lt;button onclick=&quot;alert( &#39;Good Bye World&#39; );&quot;&gt;Click Me Too!&lt;/button&gt;</pre><h3 id="位置">位置</h3><p>在上面的前两个方式中，代码的位置是重要的，并且需要根据情况而改变。如果你添加不访问页面元素的 JavaScript，你可以放心的把脚本放在 HTML <code>&lt;/head&gt;</code> 之前。但是，如果代码将于页面上的元素交互，就必须确保在执行代码时这些元素已经存在了。可以在在下面的例子中看到这个常见的陷阱，一段查找 ID 为 <code>hello-world</code> 的元素脚本将会在页面定义元素之前执行。</p>
 <pre>&lt;!doctype html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -54,7 +54,7 @@ alert( &quot;Hello World!&quot; );
 &lt;h1 id=&quot;hello-world&quot;&gt;Hello World&lt;/h1&gt;
 
 &lt;/body&gt;
-&lt;/html&gt;</pre><p>It is a common pattern to move scripts to the bottom of the page, prior to the closing HTML <code>&lt;body&gt;</code> tag. This will guarantee that elements are defined when the script is executed:</p>
+&lt;/html&gt;</pre><p>一个常见的模式是将脚本移动到页面的底部，HTML <code>&lt;/body&gt;</code> 前。这可以保证当执行代码时，元素已经在页面中定义了：</p>
 <pre>&lt;!doctype html&gt;
 &lt;html&gt;
 &lt;head&gt;&lt;/head&gt;
