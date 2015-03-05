@@ -1,12 +1,14 @@
-# JavaScript 新手教程
+# JavaScript 101
 
 ------
+
+![JavaScript 101](/js101.png)
 
 [“Something 101” 是什么意思？](http://english.stackexchange.com/questions/14265/what-does-something-101-mean)
 
 它通常是指“某事情的入门介绍”。这种说法的典故来源于美国教学系统中，大学初级课程代码101。课程代码101通常表示这是入门课程，没有其他的前提要求。
 
-[JS101.co](http://js101.co) 是 [JavaScript](http://zh.wikipedia.org/zh-cn/JavaScript) 的新手课堂，收集并翻译了 [jQuery](http://jquery.com) 学习中心与 [DailyJS](http://dailyjs.com) 的 JavaScript 101教程。如果你是 JavaScript 新手，那就从这里开始吧。
+[JS101.co](http://js101.co) 是 [JavaScript](http://zh.wikipedia.org/zh-cn/JavaScript) 的新手课堂，收集并翻译了 jQuery 学习中心与 DailyJS 的 JavaScript 101教程。如果你是 JavaScript 新手，那就从这里开始吧。
 
 ## JavaScript 101
 
@@ -16,7 +18,7 @@
 
 ## JS101
 
-基于 [ECMAScript 5](http://zh.wikipedia.org/wiki/ECMAScript) 标准介绍了 JavaScript，涵盖了语言更深层次的方面。
+来自 [DailyJS](http://dailyjs.com) 的系列文章，基于 [ECMAScript 5](http://zh.wikipedia.org/wiki/ECMAScript) 标准介绍了 JavaScript，涵盖了语言更深层次的方面。
 
 [开始学习 JS101](/js101/)
 

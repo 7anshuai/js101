@@ -10,6 +10,7 @@
         "/favicon-16x16.png",
         "/favicon-32x32.png"
     ],
+    "duoshuo": "js101",
     "github": "https://github.com/7anshuai/js101",
     "google": "UA-50612052-1",
     "footer": "",
@@ -17,6 +18,7 @@
         "nico.PageWriter",
         "nico.PostWriter",
         "nico.FileWriter",
-        "nico.StaticWriter"
+        "nico.StaticWriter",
+        "nico.FeedWriter"
     ]
 }
