@@ -1,44 +1,64 @@
-<!DOCTYPE HTML>
-<html lang="zh-cn">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <meta name="generator" content="nico 0.5.1">
-    <meta name="theme" content="one 0.2">
-    <title>JS101:&nbsp;入门</title>
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" />
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" />
-    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
-    <link rel="stylesheet" href="../static/one.css" />
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-50612052-1']);
-      _gaq.push(['_trackPageview']);
-      _gaq.push(['_trackPageLoadTime']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = 'https://ssl.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-  </head>
-  <body>
-    <div class="header">
-      <div class="container">
-        <div class="brand">
-          <a class="home" href="../">JS101</a>
-        </div>
-        <div class="menu" role="navigation">
-          <a href="../../../../../feed.xml">订阅</a>
-        </div>
-      </div>
-    </div>
-    <div class="document yue">
-<div class="hentry" itemscope itemtype="http://schema.org/Article">
-  <h1 class="entry-title" itemprop="name">入门</h1>
-  <div class="entry-content" itemprop="articleBody"><h2 id="网页的解剖学">网页的解剖学</h2><p>在深入 JavaScript 之前，对网页的解剖有助于理解 JavaScript 是如何与其他网络技术密切合作的。</p>
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>JS101</title>
+    <link href="feed.xml" rel="self" />
+    <link href="" />
+    <id>feed.xml</id>
+    <entry>
+        <title type="html"><![CDATA[运行代码]]></title>
+        <link href="javascript-101/running-code.html"/>
+        <published>2015-03-03T00:00:00.000Z</published>
+        <updated>2015-03-03T00:00:00.000Z</updated>
+        <id>javascript-101/running-code.html</id>
+        <content type="html" xml:base="" xml:lang="en">
+            <![CDATA[ <h3 id="外部">外部</h3><p>第一种也是推荐的方式是在一个外部文件（带有 <code>.js</code> 扩展名）编写代码，然后可以使用 HTML <code>script</code> 元素并通过 <code>src</code> 属性指定文件的位置来引入到网页中。当你需要将代码重复使用在其他页面时，保持 JavaScript 在一个单独的文件中可以减少代码的重复。另外它也可以让浏览器将文件缓存到客户端的计算机上，减少网页加载时间。</p>
+<pre>&lt;!-- Code is written in a .js file, included via the script tag src attribute. --&gt;
+&lt;script src=&quot;/path/to/example.js&quot;&gt;&lt;/script&gt;</pre><h3 id="内嵌">内嵌</h3><p>第二种方式是直接将代码内嵌在网页中。它也是通过 HTML <code>script</code> 元素实现，但不是通过 <code>src</code> 属性指定一个文件，而是将代码放置在元素中间。虽然有些情况下可以使用这种方式，但大部分时间，最好是如上所述将我们的代码放置在外部文件中。</p>
+<pre>&lt;!-- Embed code directly on a web page using script tags. --&gt;
+&lt;script&gt;
+alert( &quot;Hello World!&quot; );
+&lt;/script&gt;</pre><h3 id="属性">属性</h3><p>最后一个选择是使用 HTML 元素的事件处理程序属性。这种方式是强烈不推荐的：</p>
+<pre>&lt;!-- Inline code directly on HTML elements being clicked. --&gt;
+&lt;a href=&quot;javascript:alert( &#39;Hello World&#39; );&quot;&gt;Click Me!&lt;/a&gt;
+&lt;button onclick=&quot;alert( &#39;Good Bye World&#39; );&quot;&gt;Click Me Too!&lt;/button&gt;</pre><h3 id="位置">位置</h3><p>在上面的前两个方式中，代码的位置是重要的，并且需要根据情况而改变。如果你添加不访问页面元素的 JavaScript，你可以放心的把脚本放在 HTML <code>&lt;/head&gt;</code> 之前。但是，如果代码将于页面上的元素交互，就必须确保在执行代码时这些元素已经存在了。可以在下面的例子中看到这个常见的陷阱，一段查找 ID 为 <code>hello-world</code> 的元素脚本将会在页面定义元素之前执行。</p>
+<pre>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script&gt;
+    // Attempting to access an element too early will have unexpected results.
+    var title = document.getElementById( &quot;hello-world&quot; );
+    console.log( title );
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1 id=&quot;hello-world&quot;&gt;Hello World&lt;/h1&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre><p>一个常见的模式是将脚本移动到页面的底部，HTML <code>&lt;/body&gt;</code> 前。这可以保证当执行代码时，元素已经在页面中定义了：</p>
+<pre>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1 id=&quot;hello-world&quot;&gt;Hello World&lt;/h1&gt;
+&lt;script&gt;
+// Moving the script to the bottom of the page will make sure the element exists.
+var title = document.getElementById( &quot;hello-world&quot; );
+console.log( title );
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>]]>
+        </content>
+    </entry><entry>
+        <title type="html"><![CDATA[入门]]></title>
+        <link href="javascript-101/getting-started.html"/>
+        <published>2015-02-28T00:00:00.000Z</published>
+        <updated>2015-02-28T00:00:00.000Z</updated>
+        <id>javascript-101/getting-started.html</id>
+        <content type="html" xml:base="" xml:lang="en">
+            <![CDATA[ <h2 id="网页的解剖学">网页的解剖学</h2><p>在深入 JavaScript 之前，对网页的解剖有助于理解 JavaScript 是如何与其他网络技术密切合作的。</p>
 <h2 id="html-是内容">HTML 是内容</h2><p>HTML 是用来定义和描述内容的标记语言。无论是博客文章，搜索引擎结果，或者电商网站，网页的核心内容都是用 HTML 编写的。语义标记是指 HTML 中用来描述内容的通用术语（头部，段落，图片等）。</p>
 <h2 id="css-是表现">CSS 是表现</h2><p>CSS 是一个为 HTML 文档应用样式的附加语言。CSS 的全部都是关于如何通过定义字体，颜色等其他视觉美感，让内容更好看。CSS 的强大之处在于样式不再和内容夹杂，这意味着你可以将不同的样式应用到同一块内容，当构建良好跨设备响应式网站时，这是至关重要的。</p>
 <h2 id="javascript-是交互">JavaScript 是交互</h2><p>在浏览器中，JavaScript 为 HTML 内容添加交互性和行为能力。没有 JavaScript，网页将会是静态和无聊的。JavaScript 使网页富有生命力。</p>
@@ -89,28 +109,7 @@
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Tools">火狐开发者工具</a></li>
 <li><a href="http://www.opera.com/dragonfly/">Opera Dragonfly</a></li>
 </ul>
-</div>
-
-  <div class="entry-meta">
-    <time class="updated" datetime="2015-02-28T00:00:00.000Z" itemprop="dateModified">Saturday, Feb 28th, 2015</time>
-  </div><div class="ds-thread"></div>
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"js101"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = 'http://static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script>
-</div>
-</div>
-    <div class="footer">
-      <p class="copyright">powered by <a href="">nico</a> 0.5.1</p>
-    </div>
-    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
-    <script src="../static/one.js"></script>
-  </body>
-</html>
+]]>
+        </content>
+    </entry>
+</feed>
