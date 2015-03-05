@@ -3,9 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <meta name="generator" content="nico 0.5.2">
+    <meta name="generator" content="nico 0.5.1">
     <meta name="theme" content="one 0.2">
     <title>运行代码</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" />
     <link rel="stylesheet" href="../static/one.css" />
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -39,7 +42,7 @@ alert( &quot;Hello World!&quot; );
 &lt;/script&gt;</pre><h3 id="属性">属性</h3><p>最后一个选择是使用 HTML 元素的事件处理程序属性。这种方式是强烈不推荐的：</p>
 <pre>&lt;!-- Inline code directly on HTML elements being clicked. --&gt;
 &lt;a href=&quot;javascript:alert( &#39;Hello World&#39; );&quot;&gt;Click Me!&lt;/a&gt;
-&lt;button onclick=&quot;alert( &#39;Good Bye World&#39; );&quot;&gt;Click Me Too!&lt;/button&gt;</pre><h3 id="位置">位置</h3><p>在上面的前两个方式中，代码的位置是重要的，并且需要根据情况而改变。如果你添加不访问页面元素的 JavaScript，你可以放心的把脚本放在 HTML <code>&lt;/head&gt;</code> 之前。但是，如果代码将于页面上的元素交互，就必须确保在执行代码时这些元素已经存在了。可以在在下面的例子中看到这个常见的陷阱，一段查找 ID 为 <code>hello-world</code> 的元素脚本将会在页面定义元素之前执行。</p>
+&lt;button onclick=&quot;alert( &#39;Good Bye World&#39; );&quot;&gt;Click Me Too!&lt;/button&gt;</pre><h3 id="位置">位置</h3><p>在上面的前两个方式中，代码的位置是重要的，并且需要根据情况而改变。如果你添加不访问页面元素的 JavaScript，你可以放心的把脚本放在 HTML <code>&lt;/head&gt;</code> 之前。但是，如果代码将于页面上的元素交互，就必须确保在执行代码时这些元素已经存在了。可以在下面的例子中看到这个常见的陷阱，一段查找 ID 为 <code>hello-world</code> 的元素脚本将会在页面定义元素之前执行。</p>
 <pre>&lt;!doctype html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -72,7 +75,7 @@ console.log( title );
 </div>
 </div>
     <div class="footer">
-      <p class="copyright">powered by <a href="">nico</a> 0.5.2</p>
+      <p class="copyright">powered by <a href="">nico</a> 0.5.1</p>
     </div>
     <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
     <script src="../static/one.js"></script>
