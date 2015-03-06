@@ -6,11 +6,11 @@
     <meta name="generator" content="nico 0.5.1">
     <meta name="theme" content="one 0.2">
     <title>JS101:&nbsp;语法基础</title>
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" />
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" />
-    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="feed.xml" title="JS101" />
     <link rel="stylesheet" href="../static/one.css" />
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -31,14 +31,14 @@
           <a class="home" href="../">JS101</a>
         </div>
         <div class="menu" role="navigation">
-          <a href="../../../../../feed.xml">订阅</a>
+          <a href="../feed.xml">订阅</a>
         </div>
       </div>
     </div>
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">语法基础</h1>
-  <div class="entry-content" itemprop="articleBody"><h3 id="注释">注释</h3><p>JavaScript has support for single- and multi-line comments. Comments are ignored by the JavaScript engine and therefore have no side-effects on the outcome of the program. Use comments to document the code for other developers. Libraries like <a href="http://usejsdoc.org/" title="JSDoc">JSDoc</a> are available to help generate project documentation pages based on commenting conventions.</p>
+  <div class="entry-content" itemprop="articleBody"><h3 id="注释">注释</h3><p>JavaScript 支持单行和多行注释。注释会被 JavaScript 引擎忽略，所以它对程序的结果没有影响。使用注释为其他开发者记录代码，像 <a href="http://usejsdoc.org/" title="JSDoc">JSDoc</a> 这类工具库，可以帮助生成基于注释的项目文档页面。</p>
 <pre>// Single- and multi-line comments.
 
 // This is an example of a single-line comment.
@@ -48,7 +48,7 @@
  * of a
  * multi-line
  * comment.
- */</pre><h3 id="whitespace">Whitespace</h3><p>Whitespace is also ignored in JavaScript. There are many tools that will strip out all the whitespace in a program, reducing the overall file size and improving network latency. Given the availability of tools like these, whitespace should be leveraged to make the code as readable as possible.</p>
+ */</pre><h3 id="空白">空白</h3><p>空白也被 JavaScript 引擎忽略。有许多工具可以用来去掉程序中的空白，降低了文件的整体大小和改进网络延迟。鉴于这类工具的可用性，空白应该加以利用，以使代码尽可能的易读。</p>
 <pre>// Whitespace is insignificant.
 var hello = &quot;Hello&quot;;
 var world     =      &quot;World!&quot;;</pre><pre>// Semantic whitespace promotes readability.
@@ -66,20 +66,20 @@ var foo = function() {
 foo();
 
 // This is much harder to read!
-var foo=function() {for(var i=0;i&lt;10;i++){alert(i);}};foo();</pre><h3 id="reserved-words">Reserved Words</h3><p>There are a handful of reserved words that can&#39;t be used when declaring user-defined variables and functions. Some of these reserved words are currently implemented, some are saved for future use, and others are reserved for historical reasons. A list of reserved words can be found <a href="/javascript-101/reserved-words/">here</a>, and in-depth explanations for each can be found on the <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Reserved_Words" title="MDN Reserved Words.">MDN JavaScript Reference</a> site.</p>
-<h3 id="identifiers">Identifiers</h3><p>Identifiers are used to give variables and functions a unique name so they can subsequently be referred to by that name. The name of an identifier must follow a few rules:</p>
+var foo=function() {for(var i=0;i&lt;10;i++){alert(i);}};foo();</pre><h3 id="保留字">保留字</h3><p>当声明用户定义的变量和函数时，有少量的保留字不能被使用。一些保留字已经被实现，一些被保留以供将来使用，还有一些事因为历史原因而保留。<a href="/javascript-101/reserved-words.html">这里</a>是保留字的列表，对保留字的深入解释可以在<a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Reserved_Words" title="MDN 保留字"> MDN 的 JavaScript 参考</a>当中找到。</p>
+<h3 id="标识符">标识符</h3><p>标识符被用来给变量和函数的唯一名称，以便随后它们可以通过该名称被引用到。标识符名称必须遵循一些规则：</p>
 <ul>
-<li>Cannot be a reserved word.</li>
-<li>Can only be composed of letters, numbers, dollar signs, and underscores.</li>
-<li>The first character cannot be a number.</li>
+<li>不能是保留字。</li>
+<li>只能由字母，数字，美元符号和下划线组成。</li>
+<li>第一个字符不能是数字。</li>
 </ul>
-<p>It&#39;s a best practice to name identifiers in a way that will make sense to you and other developers later on.</p>
+<p>命名标识符的最佳实践是选取一个将来也能对你或者其他开发者有意义的名称。</p>
 <pre>// Valid identifier names.
 var myAwesomeVariable = &quot;a&quot;;
 var myAwesomeVariable2 = &quot;b&quot;;
 var my_awesome_variable = &quot;c&quot;;
 var $my_AwesomeVariable = &quot;d&quot;;
-var _my_awesome_variable_$ = &quot;e&quot;;</pre><h3 id="variable-definition">Variable Definition</h3><p>Variables can be defined using multiple <code>var</code> statements, or in a single combined <code>var</code> statement.</p>
+var _my_awesome_variable_$ = &quot;e&quot;;</pre><h3 id="变量定义">变量定义</h3><p>变量可以使用多个 <code>var</code> 语句来定义，或者使用单个组合的 <code>var</code> 语句。</p>
 <pre>// This works:
 var test = 1;
 var test2 = function() { ... };
@@ -88,9 +88,24 @@ var test3 = test2( test );
 // And so does this:
 var test4 = 1,
     test5 = function() { ... },
-    test6 = test2( test );</pre><p>Variables can be declared without assigning them a value. The value of a variable declared without a value is <code>undefined</code>.</p>
+    test6 = test2( test );</pre><p>变量可以在声明时不分配一个值，程序会给它们一个默认的值 <code>undefined</code>。</p>
 <pre>var x;
 x === undefined; // true</pre></div>
+
+  <div class="entry-meta">
+    <time class="updated" datetime="2015-03-06T00:00:00.000Z" itemprop="dateModified">Friday, Mar 6th, 2015</time>
+  </div><div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"js101"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
 </div>
 </div>
     <div class="footer">
