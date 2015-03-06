@@ -1,8 +1,10 @@
-# Reserved Words
+# 保留字
+
+- pubdate: 2015-03-06
 
 -------
 
-JavaScript has a number of "reserved words," or words that have special meaning in the language. You should avoid using these words in your code except when using them with their intended meaning.
+JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。
 
 - `break`
 - `case`

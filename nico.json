@@ -4,12 +4,16 @@
     "theme": "themes/one",
     "permalink": "{{directory}}/{{filename}}.html",
     "sitename": "JS101",
-    "touchIcon": "/apple-touch-icon.png",
-    "favicon": "/favicon.ico",
-    "icon": [
-        "/favicon-16x16.png",
-        "/favicon-32x32.png"
+    "navigation": [
+        {"link": "feed.xml", "title": "订阅"}
     ],
+    "touchIcon": "apple-touch-icon.png",
+    "favicon": "favicon.ico",
+    "icon": [
+        "favicon-16x16.png",
+        "favicon-32x32.png"
+    ],
+    "feedurl": "feed.xml",
     "duoshuo": "js101",
     "github": "https://github.com/7anshuai/js101",
     "google": "UA-50612052-1",

@@ -1,10 +1,12 @@
 # 语法基础
 
+- pubdate: 2015-03-06
+
 -------
 
 ### 注释
 
-JavaScript has support for single- and multi-line comments. Comments are ignored by the JavaScript engine and therefore have no side-effects on the outcome of the program. Use comments to document the code for other developers. Libraries like [JSDoc](http://usejsdoc.org/ "JSDoc") are available to help generate project documentation pages based on commenting conventions.
+JavaScript 支持单行和多行注释。注释会被 JavaScript 引擎忽略，所以它对程序的结果没有影响。使用注释为其他开发者记录代码，像 [JSDoc](http://usejsdoc.org/ "JSDoc") 这类工具库，可以帮助生成基于注释的项目文档页面。
 
 ```
 // Single- and multi-line comments.
@@ -19,9 +21,9 @@ JavaScript has support for single- and multi-line comments. Comments are ignored
  */
 ```
 
-### Whitespace
+### 空白
 
-Whitespace is also ignored in JavaScript. There are many tools that will strip out all the whitespace in a program, reducing the overall file size and improving network latency. Given the availability of tools like these, whitespace should be leveraged to make the code as readable as possible.
+空白也被 JavaScript 引擎忽略。有许多工具可以用来去掉程序中的空白，降低了文件的整体大小和改进网络延迟。鉴于这类工具的可用性，空白应该加以利用，以使代码尽可能的易读。
 
 ```
 // Whitespace is insignificant.
@@ -48,19 +50,19 @@ foo();
 var foo=function() {for(var i=0;i<10;i++){alert(i);}};foo();
 ```
 
-### Reserved Words
+### 保留字
 
-There are a handful of reserved words that can't be used when declaring user-defined variables and functions. Some of these reserved words are currently implemented, some are saved for future use, and others are reserved for historical reasons. A list of reserved words can be found [here](/javascript-101/reserved-words/), and in-depth explanations for each can be found on the [MDN JavaScript Reference](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Reserved_Words "MDN Reserved Words.") site.
+当声明用户定义的变量和函数时，有少量的保留字不能被使用。一些保留字已经被实现，一些被保留以供将来使用，还有一些事因为历史原因而保留。[这里](/javascript-101/reserved-words.html)是保留字的列表，对保留字的深入解释可以在[ MDN 的 JavaScript 参考](https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Reserved_Words "MDN 保留字")当中找到。
 
-### Identifiers
+### 标识符
 
-Identifiers are used to give variables and functions a unique name so they can subsequently be referred to by that name. The name of an identifier must follow a few rules:
+标识符被用来给变量和函数的唯一名称，以便随后它们可以通过该名称被引用到。标识符名称必须遵循一些规则：
 
-* Cannot be a reserved word.
-* Can only be composed of letters, numbers, dollar signs, and underscores.
-* The first character cannot be a number.
+* 不能是保留字。
+* 只能由字母，数字，美元符号和下划线组成。
+* 第一个字符不能是数字。
 
-It's a best practice to name identifiers in a way that will make sense to you and other developers later on.
+命名标识符的最佳实践是选取一个将来也能对你或者其他开发者有意义的名称。
 
 ```
 // Valid identifier names.
@@ -71,9 +73,9 @@ var $my_AwesomeVariable = "d";
 var _my_awesome_variable_$ = "e";
 ```
 
-### Variable Definition
+### 变量定义
 
-Variables can be defined using multiple `var` statements, or in a single combined `var` statement.
+变量可以使用多个 `var` 语句来定义，或者使用单个组合的 `var` 语句。
 
 ```
 // This works:
@@ -87,7 +89,7 @@ var test4 = 1,
 	test6 = test2( test );
 ```
 
-Variables can be declared without assigning them a value. The value of a variable declared without a value is `undefined`.
+变量可以在声明时不分配一个值，程序会给它们一个默认的值 `undefined`。
 
 ```
 var x;
