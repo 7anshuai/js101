@@ -1,18 +1,20 @@
-# Types
+# 类型
+
+- pubdate: 2015-03-09
 
 ------
 
-Types in JavaScript fall into two categories: primitives and objects. Primitive types include:
+JavaScript 中的数据类型有两类：原始类型和对象。原始类型包括：
 
-* String
-* Number
-* Boolean
+* 字符串
+* 数字
+* 布尔
 * null
 * undefined
 
-## String
+## 字符串
 
-Strings are text wrapped in single or double quotation marks. It is best practice to consistently use one or the other. There may be times when the string contains quotation marks that collide with the ones used to create the string. In this case, either escape the characters using a `\` backslash or use different quotes around the string.
+字符串是被单引号或双引号包含的文本。最佳实践是始终保持使用一种引号。有时候字符串里的引号标记会和创建字符串的引号冲突，在这种情况下，可以使用 `\` 反斜线转义字符或者使用不同的引号。
 
 ```
 // Strings can be created with double or single quotes.
@@ -28,9 +30,9 @@ var statement1 = 'He said "JavaScript is awesome!"';
 var statement2 = "He said \"JavaScript is awesome!\"";
 ```
 
-## Number
+## 数字
 
-Number types are any positive or negative numeric value. There is no distinction between integer and floating point values.
+数字是任何正或负的数值。整数和浮点数之间没有区别。
 
 ```
 // Numbers are any whole or floating point integer.
@@ -39,8 +41,9 @@ var num2 = 100.10;
 var num3 = 0.10;
 ```
 
-## Boolean
-Boolean types are either `true` or `false`.
+## 布尔
+
+布尔类型是 `true` 或者 `false`。
 
 ```
 // Boolean values.
@@ -48,9 +51,9 @@ var okay = true;
 var fail = false;
 ```
 
-## null and undefined
+## null 和 undefined
 
-`null` and `undefined` are special types in JavaScript. Null types are values that represent the absence of a value, similar to many other programming languages. Undefined types represent a state in which no value has been assigned at all. This type is created in two ways: by using the `undefined` keyword or by not defining a value at all.
+`null` 和 `undefined` 是 JavaScript 中的特殊类型。 Null 类型表示一个空值，类似于许多其他语言。 Undefined 类型表示变量还没有赋值的状态，可以通过两种方式来创建： 通过使用 `undefined` 关键字或者在定义变量的时候不赋值。
 
 ```
 // Define a null value.
@@ -61,15 +64,15 @@ var bar1 = undefined;
 var bar2;
 ```
 
-## Objects
+## 对象
 
-Everything else in JavaScript is considered an object. While there are [numerous built-in objects](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects "MDN - Standard built-in objects"), this chapter will cover:
+其他一切都是对象。JavaScript 有众多的 [内置对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects "MDN - 内置对象")，但本章只包括：
 
-* Object
-* Array
-* Function
+* 对象
+* 数组
+* 函数
 
-The simplest way to create an object is the shorthand syntax known as object literal. These simple objects are unordered key and value pairs. The key is formally known as a *property* and the value can be any valid JavaScript type, even another object. To create or access a property on an object, we use what is known as "dot notation" or "bracket notation."
+最简单的创建对象的方法是被称为对象字面量的简写语法。这些简单的对象是无序的键值对集合。对象中的键通常被称为“属性”，属性的值可以是任何有效的 JavaScript 类型，甚至可以是另一个对象。创建或访问对象的属性，我们可以使用“点号表示法”或者“括号表示法”。
 
 ```
 // Using an empty object literal
@@ -102,7 +105,7 @@ alert( people[ "person1" ].firstName );
 alert( people[ "person2" ].firstName );
 ```
 
-If a property is accessed that has not been defined, it will have the value `undefined`.
+如果被访问的属性还未定义，那么它的值将是 `undefined`。
 
 ```
 // Properties that have not been created are undefined.
@@ -110,11 +113,11 @@ var person = { name: "John Doe" };
 alert( person.email ); // undefined
 ```
 
-Objects are covered further in the [Objects](/objects/) section.
+在 [对象](/javascript-101/objects.html) 部分会进一步讨论 JavaScript 对象。
 
-## Array
+## 数组
 
-An array is a type of object that is ordered by the index of each item it contains. The index starts at zero and extends to however many items have been added, which is a property of the array known as the `.length`. Similar to a basic object, an array can be created with the `Array` constructor or the shorthand syntax known as array literal.
+数组是一类由它所包含的每一个项的索引排序的对象。索引开始于零，并延伸到已添加的项的数目，（项的数目）也是被称为 `.length` 的数组属性。类似一个基本对象，数组可以使用 `Array` 构造函数或者被称为数组字面量的简写语法来创建。
 
 ```
 // Creating an array with the constructor:
@@ -124,7 +127,7 @@ var foo = new Array;
 var bar = [];
 ```
 
-There is an important distinction to be made between the two. Both an array constructor and an array literal can contain items to be added to the array upon creating it. However, if just a single numeric item is passed in, the array constructor will assume its length to be that value.
+在这两种语法之间有一个重要的区别。数组构造函数和数组字面量都可以在创建时加入要包含到数组的项，但是如果只是传入一个单一的数字项，数组构造函数会将该数字项当作数组的长度值。
 
 ```
 // The array literal returns a foo.length value of 1:
@@ -138,9 +141,9 @@ alert( bar[ 0 ] ); // undefined
 alert( bar.length ); // 100
 ```
 
-An array can be manipulated through methods that are available on the instance of the array. Items in the array can be accessed using bracket notation with a given index. If the index does not exist or contains no value, the return type will be `undefined`.
+数组可以通过已经存在数组实例中的方法来进行相关操作。数组中的项可以通过括号和给定的索引来引用。如果索引不存在或者不包括任何值，则返回值 `undefined`。
 
-A few common array methods are shown below:
+一些常见的数组方法如下所示：
 
 ```
 // Using the push(), pop(), unshift() and shift() methods on an array.
@@ -177,11 +180,11 @@ alert( foo[ 1 ] ); // undefined
 alert( foo.length ); // 1
 ```
 
-There are many more methods for manipulating arrays, some of which are covered further in the [Arrays](/arrays/) section. Details can be found on the [Mozilla Developer Network](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array "MDN - Array Reference").
+还有更多的方法来操作数组，一部分将在[数组](/javascript-101/arrays.html) 进一步讨论。更多的详细信息可在 [Mozilla 开发者网络](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array "MDN - 数组参考") 找到。
 
-## Type Checking with jQuery
+## jQuery 中的类型检测
 
-jQuery offers a few basic utility methods for determining the type of a specific value. Type checking is covered further in the [Testing Type](/testing-type/) section, but here are some examples:
+jQuery 提供了一些基本的实用方法，用于判断一个特定值的类型。类型检测会在 [类型检测](/javascript-101/testing-type.html)部分进一步的讨论，这里有一些例子：
 
 ```
 // Checking the type of an arbitrary value.
