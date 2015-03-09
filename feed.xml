@@ -5,6 +5,146 @@
     <link href="" />
     <id>feed.xml</id>
     <entry>
+        <title type="html"><![CDATA[类型]]></title>
+        <link href="javascript-101/types.html"/>
+        <published>2015-03-09T00:00:00.000Z</published>
+        <updated>2015-03-09T00:00:00.000Z</updated>
+        <id>javascript-101/types.html</id>
+        <content type="html" xml:base="" xml:lang="en">
+            <![CDATA[ <p>JavaScript 中的数据类型有两类：原始类型和对象。原始类型包括：</p>
+<ul>
+<li>字符串</li>
+<li>数字</li>
+<li>布尔</li>
+<li>null</li>
+<li>undefined</li>
+</ul>
+<h2 id="字符串">字符串</h2><p>字符串是被单引号或双引号包含的文本。最佳实践是始终保持使用一种引号。有时候字符串里的引号标记会和创建字符串的引号冲突，在这种情况下，可以使用 <code>\</code> 反斜线转义字符或者使用不同的引号。</p>
+<pre>// Strings can be created with double or single quotes.
+var a = &quot;I am a string&quot;;
+var b = &#39;So am I!&#39;;
+alert( a );
+alert( b );</pre><pre>// Sometimes a string may contain quotation marks.
+var statement1 = &#39;He said &quot;JavaScript is awesome!&quot;&#39;;
+var statement2 = &quot;He said \&quot;JavaScript is awesome!\&quot;&quot;;</pre><h2 id="数字">数字</h2><p>数字是任何正或负的数值。整数和浮点数之间没有区别。</p>
+<pre>// Numbers are any whole or floating point integer.
+var num1 = 100;
+var num2 = 100.10;
+var num3 = 0.10;</pre><h2 id="布尔">布尔</h2><p>布尔类型是 <code>true</code> 或者 <code>false</code>。</p>
+<pre>// Boolean values.
+var okay = true;
+var fail = false;</pre><h2 id="null-和-undefined">null 和 undefined</h2><p><code>null</code> 和 <code>undefined</code> 是 JavaScript 中的特殊类型。 Null 类型表示一个空值，类似于许多其他语言。 Undefined 类型表示变量还没有赋值的状态，可以通过两种方式来创建： 通过使用 <code>undefined</code> 关键字或者在定义变量的时候不赋值。</p>
+<pre>// Define a null value.
+var foo = null;
+
+// Two ways to achieve an undefined value.
+var bar1 = undefined;
+var bar2;</pre><h2 id="对象">对象</h2><p>其他一切都是对象。JavaScript 有众多的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects" title="MDN - 内置对象">内置对象</a>，但本章只包括：</p>
+<ul>
+<li>对象</li>
+<li>数组</li>
+<li>函数</li>
+</ul>
+<p>最简单的创建对象的方法是被称为对象字面量的简写语法。这些简单的对象是无序的键值对集合。对象中的键通常被称为“属性”，属性的值可以是任何有效的 JavaScript 类型，甚至可以是另一个对象。创建或访问对象的属性，我们可以使用“点号表示法”或者“括号表示法”。</p>
+<pre>// Using an empty object literal
+var person1 = {};
+
+// Assign properties using &quot;dot notation&quot;
+person1.firstName = &quot;John&quot;;
+person1.lastName = &quot;Doe&quot;;
+
+// Access properties using &quot;dot notation&quot;
+alert( person1.firstName + &quot; &quot; + person1.lastName );
+
+// Creating an object with the object literal syntax:
+var person2 = {
+    firstName: &quot;Jane&quot;,
+    lastName: &quot;Doe&quot;
+};
+
+alert( person2.firstName + &quot; &quot; + person2.lastName );
+
+var people = {};
+
+// Assign properties using &quot;bracket notation&quot;
+// As mentioned, objects can also have objects as a property value
+people[ &quot;person1&quot; ] = person1;
+people[ &quot;person2&quot; ] = person2;
+
+// Access properties using a mix of both bracket and dot notation
+alert( people[ &quot;person1&quot; ].firstName );
+alert( people[ &quot;person2&quot; ].firstName );</pre><p>如果被访问的属性还未定义，那么它的值将是 <code>undefined</code>。</p>
+<pre>// Properties that have not been created are undefined.
+var person = { name: &quot;John Doe&quot; };
+alert( person.email ); // undefined</pre><p>在 <a href="/javascript-101/objects.html">对象</a> 部分会进一步讨论 JavaScript 对象。</p>
+<h2 id="数组">数组</h2><p>数组是一类由它所包含的每一个项的索引排序的对象。索引开始于零，并延伸到已添加的项的数目，（项的数目）也是被称为 <code>.length</code> 的数组属性。类似一个基本对象，数组可以使用 <code>Array</code> 构造函数或者被称为数组字面量的简写语法来创建。</p>
+<pre>// Creating an array with the constructor:
+var foo = new Array;
+
+// Creating an array with the array literal syntax:
+var bar = [];</pre><p>在这两种语法之间有一个重要的区别。数组构造函数和数组字面量都可以在创建时加入要包含到数组的项，但是如果只是传入一个单一的数字项，数组构造函数会将该数字项当作数组的长度值。</p>
+<pre>// The array literal returns a foo.length value of 1:
+var foo = [ 100 ];
+alert( foo[ 0 ] ); // 100
+alert( foo.length ); // 1
+
+// The array constructor returns a bar.length value of 100:
+var bar = new Array( 100 );
+alert( bar[ 0 ] ); // undefined
+alert( bar.length ); // 100</pre><p>数组可以通过已经存在数组实例中的方法来进行相关操作。数组中的项可以通过括号和给定的索引来引用。如果索引不存在或者不包括任何值，则返回值 <code>undefined</code>。</p>
+<p>一些常见的数组方法如下所示：</p>
+<pre>// Using the push(), pop(), unshift() and shift() methods on an array.
+
+var foo = [];
+
+foo.push( &quot;a&quot; );
+foo.push( &quot;b&quot; );
+
+alert( foo[ 0 ] ); // a
+alert( foo[ 1 ] ); // b
+
+alert( foo.length ); // 2
+
+foo.pop();
+
+alert( foo[ 0 ] ); // a
+alert( foo[ 1 ] ); // undefined
+
+alert( foo.length ); // 1
+
+foo.unshift( &quot;z&quot; );
+
+alert( foo[ 0 ] ); // z
+alert( foo[ 1 ] ); // a
+
+alert( foo.length ); // 2
+
+foo.shift();
+
+alert( foo[ 0 ] ); // a
+alert( foo[ 1 ] ); // undefined
+
+alert( foo.length ); // 1</pre><p>还有更多的方法来操作数组，一部分将在<a href="/javascript-101/arrays.html">数组</a> 进一步讨论。更多的详细信息可在 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array" title="MDN - 数组参考">Mozilla 开发者网络</a> 找到。</p>
+<h2 id="jquery-中的类型检测">jQuery 中的类型检测</h2><p>jQuery 提供了一些基本的实用方法，用于判断一个特定值的类型。类型检测会在 <a href="/javascript-101/testing-type.html">类型检测</a>部分进一步的讨论，这里有一些例子：</p>
+<pre>// Checking the type of an arbitrary value.
+
+var myValue = [ 1, 2, 3 ];
+
+// Using JavaScript&#39;s typeof operator to test for primitive types:
+typeof myValue === &quot;string&quot;; // false
+typeof myValue === &quot;number&quot;; // false
+typeof myValue === &quot;undefined&quot;; // false
+typeof myValue === &quot;boolean&quot;; // false
+
+// Using strict equality operator to check for null:
+myValue === null; // false
+
+// Using jQuery&#39;s methods to check for non-primitive types:
+jQuery.isFunction( myValue ); // false
+jQuery.isPlainObject( myValue ); // false
+jQuery.isArray( myValue ); // true</pre>]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[保留字]]></title>
         <link href="javascript-101/reserved-words.html"/>
         <published>2015-03-06T00:00:00.000Z</published>
