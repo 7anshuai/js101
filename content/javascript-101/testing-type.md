@@ -1,10 +1,12 @@
-# Testing Type
+# 类型测试
+
+- pubdate: 2015-03-09
 
 ------
 
-JavaScript offers a way to test the type of a variable. However, the result can be confusing – for example, the type of an array is `object`.
+JavaScript 提供了一种方法来测试变量的类型。然后，其结果可能会让人迷惑 － 例如，一个数组的类型是 `object`。
 
-It's common practice to use the `typeof` operator when trying to determining the type of a specific value.
+当试图检测一个特定值的类型时，常见的做法是使用 `typeof` 运算符。
 
 ```
 // Testing the type of various variables.
