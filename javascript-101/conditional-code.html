@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <meta name="generator" content="nico 0.5.1">
+    <meta name="generator" content="nico 0.5.2">
     <meta name="theme" content="one 0.2">
-    <title>JS101:&nbsp;Conditional Code</title>
+    <title>JS101:&nbsp;条件代码</title>
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="favicon" type="image/png" sizes="16x16" href="favicon.ico" />
     <link rel="icon" sizes="16x16" type="image/png" href="favicon-16x16.png" />
@@ -37,8 +37,8 @@
     </div>
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
-  <h1 class="entry-title" itemprop="name">Conditional Code</h1>
-  <div class="entry-content" itemprop="articleBody"><p>Sometimes a block of code should only be run under certain conditions. Flow control – via <code>if</code> and <code>else</code> blocks – lets you run code if certain conditions have been met.</p>
+  <h1 class="entry-title" itemprop="name">条件代码</h1>
+  <div class="entry-content" itemprop="articleBody"><p>有时候一个代码块应该只在一定条件下运行。流程控制 － 通过 <code>if</code> 和 <code>else</code> 代码块，让你的代码只在满足一定的条件下运行。</p>
 <pre>// Flow control
 
 var foo = true;
@@ -61,9 +61,9 @@ if ( bar ) {
         // This code would run if foo and bar were both false.
     }
 
-}</pre><p>While curly braces aren&#39;t strictly required around single-line <code>if</code> statements, using them consistently, even when they aren&#39;t strictly required, makes for vastly more readable code.</p>
-<p>Be mindful not to define functions with the same name multiple times within separate <code>if</code>/<code>else</code> blocks, as doing so may not have the expected result.</p>
-<h2 id="truthy-and-falsy-things">Truthy and Falsy Things</h2><p>In order to use flow control successfully, it&#39;s important to understand which kinds of values are &quot;truthy&quot; and which kinds of values are &quot;falsy.&quot; Sometimes, values that seem like they should evaluate one way actually evaluate another.</p>
+}</pre><p>虽然在单行 <code>if</code> 语句里，大括号不是必须的，但应该保持一致的使用它们，这样使得代码会更有可读性。</p>
+<p>注意不要在 <code>if</code> 或 <code>else</code> 代码块中，多次定义相同名称的函数。因为这样做可能会得不到预期的结果。</p>
+<h2 id="truthy-和-falsy">Truthy 和 Falsy</h2><p>为了成功的使用流程控制，重要的一点是需要理解哪些类型的值时“truthy”，哪些是“falsy”。有时候一个值实际计算的结果和看起来应该会得到的结果不同。</p>
 <pre>// Values that evaluate to false:
 false
 &quot;&quot; // An empty string.
@@ -75,11 +75,11 @@ undefined // Be careful -- undefined can be redefined!
 &quot;any string&quot;
 [] // An empty array.
 {} // An empty object.
-1 // Any non-zero number.</pre><h2 id="conditional-variable-assignment-with-the-ternary-operator">Conditional Variable Assignment with the Ternary Operator</h2><p>Sometimes a variable should be set depending on some condition. An <code>if</code>/<code>else</code> statement works, but in many cases the ternary operator is more convenient. The ternary operator tests a condition; if the condition is true, it returns a certain value, otherwise it returns a different value.</p>
-<p>The ternary operator:</p>
+1 // Any non-zero number.</pre><h2 id="有条件的变量赋值与三元运算符">有条件的变量赋值与三元运算符</h2><p>有时一个变量要根据一些条件而设定。可以使用 <code>if</code> 或 <code>else</code> 语句，但在许多情况下，三元运算符更加方便。三元运算符测试一个条件，如果条件为真，则返回一个确定的值，否则返回一个不同的值。</p>
+<p>三元运算符：</p>
 <pre>// Set foo to 1 if bar is true; otherwise, set foo to 0:
-var foo = bar ? 1 : 0;</pre><p>While the ternary operator can be used without assigning the return value to a variable, this is generally discouraged.</p>
-<h2 id="switch-statements">Switch Statements</h2><p>Rather than using a series of <code>if</code>/<code>else</code> blocks, sometimes it can be useful to use a <code>switch</code> statement instead. <code>switch</code> statements look at the value of a variable or expression, and run different blocks of code depending on the value.</p>
+var foo = bar ? 1 : 0;</pre><p>虽然三元运算符可以在不将返回值赋值给变量的情况下使用，但这是不推荐的。</p>
+<h2 id="switch-语句">switch 语句</h2><p>比起使用一系列的 <code>if</code> 或 <code>else</code> 代码块，有时使用一个 <code>switch</code> 语句替代会更有效。<code>switch</code> 语句查看一个变量或表达式的值，并根据不同的值执行不同的代码块。</p>
 <pre>// A switch statement
 
 switch ( foo ) {
@@ -95,7 +95,7 @@ switch ( foo ) {
     default:
         alert( &quot;everything else is just ok&quot; );
 
-}</pre><p>Switch statements have somewhat fallen out of favor in JavaScript, because often the same behavior can be accomplished by creating an object that has more potential for reuse or testing. For example:</p>
+}</pre><p>在 JavaScript 中 switch 语句有些不太流行，因为同样的行为可以通过创建一个可重用和易测试的对象来完成。</p>
 <pre>var stuffToDo = {
 
     &quot;bar&quot;: function() {
@@ -121,12 +121,27 @@ if ( stuffToDo[ foo ] ) {
     // This code will run.
     stuffToDo[ &quot;default&quot; ]();
 
-}</pre><p>Objects are covered further in the <a href="/types/">Types</a> and <a href="/objects/">Objects</a> sections.</p>
+}</pre><p>对象会在 <a href="/javascript-101/types.html">类型</a> 和 <a href="/javascript-101/objects.html">对象</a> 部分进一步讨论。</p>
 </div>
+
+  <div class="entry-meta">
+    <time class="updated" datetime="2015-03-11T00:00:00.000Z" itemprop="dateModified">Wednesday, Mar 11th, 2015</time>
+  </div><div class="ds-thread" data-title="JS101: 条件代码"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"js101"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
 </div>
 </div>
     <div class="footer">
-      <p class="copyright">powered by <a href="">nico</a> 0.5.1</p>
+      <p class="copyright">powered by <a href="">nico</a> 0.5.2</p>
     </div>
     <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
     <script src="../static/one.js"></script>

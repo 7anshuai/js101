@@ -5,6 +5,99 @@
     <link href="" />
     <id>feed.xml</id>
     <entry>
+        <title type="html"><![CDATA[条件代码]]></title>
+        <link href="javascript-101/conditional-code.html"/>
+        <published>2015-03-11T00:00:00.000Z</published>
+        <updated>2015-03-11T00:00:00.000Z</updated>
+        <id>javascript-101/conditional-code.html</id>
+        <content type="html" xml:base="" xml:lang="en">
+            <![CDATA[ <p>有时候一个代码块应该只在一定条件下运行。流程控制 － 通过 <code>if</code> 和 <code>else</code> 代码块，让你的代码只在满足一定的条件下运行。</p>
+<pre>// Flow control
+
+var foo = true;
+var bar = false;
+
+if ( bar ) {
+    // This code will never run.
+    console.log( &quot;hello!&quot; );
+}
+
+if ( bar ) {
+
+    // This code won&#39;t run.
+
+} else {
+
+    if ( foo ) {
+        // This code will run.
+    } else {
+        // This code would run if foo and bar were both false.
+    }
+
+}</pre><p>虽然在单行 <code>if</code> 语句里，大括号不是必须的，但应该保持一致的使用它们，这样使得代码会更有可读性。</p>
+<p>注意不要在 <code>if</code> 或 <code>else</code> 代码块中，多次定义相同名称的函数。因为这样做可能会得不到预期的结果。</p>
+<h2 id="truthy-和-falsy">Truthy 和 Falsy</h2><p>为了成功的使用流程控制，重要的一点是需要理解哪些类型的值时“truthy”，哪些是“falsy”。有时候一个值实际计算的结果和看起来应该会得到的结果不同。</p>
+<pre>// Values that evaluate to false:
+false
+&quot;&quot; // An empty string.
+NaN // JavaScript&#39;s &quot;not-a-number&quot; variable.
+null
+undefined // Be careful -- undefined can be redefined!
+0 // The number zero.</pre><pre>// Everything else evaluates to true, some examples:
+&quot;0&quot;
+&quot;any string&quot;
+[] // An empty array.
+{} // An empty object.
+1 // Any non-zero number.</pre><h2 id="有条件的变量赋值与三元运算符">有条件的变量赋值与三元运算符</h2><p>有时一个变量要根据一些条件而设定。可以使用 <code>if</code> 或 <code>else</code> 语句，但在许多情况下，三元运算符更加方便。三元运算符测试一个条件，如果条件为真，则返回一个确定的值，否则返回一个不同的值。</p>
+<p>三元运算符：</p>
+<pre>// Set foo to 1 if bar is true; otherwise, set foo to 0:
+var foo = bar ? 1 : 0;</pre><p>虽然三元运算符可以在不将返回值赋值给变量的情况下使用，但这是不推荐的。</p>
+<h2 id="switch-语句">switch 语句</h2><p>比起使用一系列的 <code>if</code> 或 <code>else</code> 代码块，有时使用一个 <code>switch</code> 语句替代会更有效。<code>switch</code> 语句查看一个变量或表达式的值，并根据不同的值执行不同的代码块。</p>
+<pre>// A switch statement
+
+switch ( foo ) {
+
+    case &quot;bar&quot;:
+        alert( &quot;the value was bar -- yay!&quot; );
+        break;
+
+    case &quot;baz&quot;:
+        alert( &quot;boo baz :(&quot; );
+        break;
+
+    default:
+        alert( &quot;everything else is just ok&quot; );
+
+}</pre><p>在 JavaScript 中 switch 语句有些不太流行，因为同样的行为可以通过创建一个可重用和易测试的对象来完成。</p>
+<pre>var stuffToDo = {
+
+    &quot;bar&quot;: function() {
+        alert( &quot;the value was bar -- yay!&quot; );
+    },
+
+    &quot;baz&quot;: function() {
+        alert( &quot;boo baz :(&quot; );
+    },
+
+    &quot;default&quot;: function() {
+        alert( &quot;everything else is just ok&quot; );
+    }
+
+};
+
+// Check if the property exists in the object.
+if ( stuffToDo[ foo ] ) {
+    // This code won&#39;t run.
+    stuffToDo[ foo ]();
+
+} else {
+    // This code will run.
+    stuffToDo[ &quot;default&quot; ]();
+
+}</pre><p>对象会在 <a href="/javascript-101/types.html">类型</a> 和 <a href="/javascript-101/objects.html">对象</a> 部分进一步讨论。</p>
+]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[类型测试]]></title>
         <link href="javascript-101/testing-type.html"/>
         <published>2015-03-09T00:00:00.000Z</published>
