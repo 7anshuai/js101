@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <title>JS101:&nbsp;Loops</title>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Loops</h1>
+  <div class="entry-content" itemprop="articleBody"><p>Loops let a block of code run a certain number of times:</p>
+<pre>for ( var i = 0; i &lt; 5; i++ ) {
+    // Logs &quot;try 0&quot;, &quot;try 1&quot;, ..., &quot;try 4&quot;.
+    console.log( &quot;try &quot; + i );
+}</pre><p>Note that in loops, the variable <code>i</code> is not &quot;scoped&quot; to the loop block even though the keyword <code>var</code> is used before the variable name. Scope is covered in more depth in the <a href="/scope/">Scope</a> section.</p>
+<h2 id="the-for-loop">The <code>for</code> Loop</h2><p>A <code>for</code> loop is made up of four statements and has the following structure:</p>
+<pre>for ( [initialization]; [conditional]; [iteration] ) {
+
+    [loopBody]
+
+}</pre><p>The <em>initialization</em> statement is executed only once, before the loop starts. It gives you an opportunity to prepare or declare any variables.</p>
+<p>The <em>conditional</em> statement is executed before each iteration, and its return value decides whether the loop is to continue. If the conditional statement evaluates to a falsy value, then the loop stops.</p>
+<p>The <em>iteration</em> statement is executed at the end of each iteration and gives you an opportunity to change the state of important variables. Typically, this will involve incrementing or decrementing a counter and thus bringing the loop closer to its end.</p>
+<p>The <em>loopBody</em> statement is what runs on every iteration. It can contain anything. Typically, there will be multiple statements that need to be executed, and should be wrapped in a block (<code>{...}</code>).</p>
+<p>Here&#39;s a typical <code>for</code> loop:</p>
+<pre>for (var i = 0, limit = 100; i &lt; limit; i++) {
+    // This block will be executed 100 times.
+    console.log( &quot;Currently at &quot; + i );
+    // Note: The last log will be &quot;Currently at 99&quot;.
+}</pre><h2 id="the-for-in-loop">The <code>for...in</code> loop</h2><p>A <code>for...in</code> loop iterates over the properties of an object. For each property, statements can be executed.</p>
+<pre>for ( prop in obj ) {
+    // statements here will be executed for every key in the object
+    console.log( prop + &#39;: &#39; + obj[ prop ] );
+}</pre><h2 id="the-while-loop">The <code>while</code> loop</h2><p>A while loop is similar to an <code>if</code> statement, except that its body will keep executing until the condition evaluates to a falsy value.</p>
+<pre>while ( [conditional] ) {
+
+    [loopBody]
+
+}</pre><p>Here&#39;s a typical <code>while</code> loop:</p>
+<pre>var i = 0;
+while ( i &lt; 100 ) {
+    // This block will be executed 100 times.
+    console.log( &quot;Currently at &quot; + i );
+    i++; // Increment i
+}</pre><p>Notice that the counter is incrementing within the loop&#39;s body. It&#39;s possible to combine the conditional and incrementer, like so:</p>
+<pre>var i = -1;
+while ( ++i &lt; 100 ) {
+    // This block will be executed 100 times.
+    console.log( &quot;Currently at &quot; + i );
+}</pre><p>Notice that the counter starts at -1 and uses the prefix incrementer (<code>++i</code>).</p>
+<h2 id="the-do-while-loop">The <code>do-while</code> Loop</h2><p>This is almost exactly the same as the <code>while</code> loop, except for the fact that the loop&#39;s body is executed at least once before the condition is tested.</p>
+<pre>do {
+
+    [loopBody]
+
+} while ( [conditional] )</pre><p>Here&#39;s a <code>do-while</code> loop:</p>
+<pre>do {
+    // Even though the condition evaluates to false
+    // this loop&#39;s body will still execute once.
+    alert( &quot;Hi there!&quot; );
+
+} while ( false );</pre><p>These types of loops are quite rare since only few situations require a loop that blindly executes at least once. Regardless, it&#39;s good to be aware of it.</p>
+<h2 id="breaking-and-continuing">Breaking and Continuing</h2><p>Usually, a loop&#39;s termination will result from the conditional statement not evaluating to a truthy value, but it is possible to stop a loop in its tracks from within the loop&#39;s body with the <code>break</code> statement:</p>
+<pre>// Stopping a loop
+for ( var i = 0; i &lt; 10; i++ ) {
+    if ( something ) {
+        break;
+    }
+}</pre><p>You may also want to continue the loop without executing more of the loop&#39;s body. This is done using the <code>continue</code> statement:</p>
+<pre>// Skipping to the next iteration of a loop
+for ( var i = 0; i &lt; 10; i++ ) {
+    if ( something ) {
+        continue;
+    }
+
+    // The following statement will only be executed
+    // if the conditional &quot;something&quot; has not been met
+    console.log( &quot;I have been reached&quot; );
+
+}</pre></div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>

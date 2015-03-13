@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="generator" content="nico 0.5.2">
     <meta name="theme" content="one 0.2">
-    <title>JS101:&nbsp;Operators</title>
+    <title>JS101:&nbsp;运算符</title>
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="favicon" type="image/png" sizes="16x16" href="favicon.ico" />
     <link rel="icon" sizes="16x16" type="image/png" href="favicon-16x16.png" />
@@ -37,8 +37,8 @@
     </div>
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
-  <h1 class="entry-title" itemprop="name">Operators</h1>
-  <div class="entry-content" itemprop="articleBody"><p>Basic operators allow you to manipulate values.</p>
+  <h1 class="entry-title" itemprop="name">运算符</h1>
+  <div class="entry-content" itemprop="articleBody"><p>基本的运算符让你可以操作值。</p>
 <pre>// Concatenation
 var foo = &quot;hello&quot;;
 var bar = &quot;world&quot;;
@@ -54,7 +54,7 @@ console.log( i );   // 2
 // The post-increment operator increments the operand after processing it.
 var i = 1;
 console.log( i++ ); // 1 - because i was evaluated to 1 and _then_ incremented
-console.log( i );   // 2 - incremented after using it</pre><h2 id="operations-on-numbers-amp-strings">Operations on Numbers &amp; Strings</h2><p>In JavaScript, numbers and strings will occasionally behave in unexpected ways.</p>
+console.log( i );   // 2 - incremented after using it</pre><h2 id="数字和字符串操作">数字和字符串操作</h2><p>在 JavaScript 中，数字和字符串偶尔会表现的出人意料。</p>
 <pre>// Addition vs. Concatenation
 var foo = 1;
 var bar = &quot;2&quot;;
@@ -63,9 +63,9 @@ console.log( foo + bar ); // &quot;12&quot;</pre><pre>// Coercing a string to ac
 var foo = 1;
 var bar = &quot;2&quot;;
 
-console.log( foo + Number(bar) ); // 3</pre><p>The <code>Number</code> constructor, when called as a function (as in the above example), will have the effect of casting its argument into a number. The unary plus operator also does the same thing:</p>
+console.log( foo + Number(bar) ); // 3</pre><p><code>Number</code> 构造函数被当作普通函数调用时（如上所示），会将传递给它的参数转换成数字。一元加号运算符也可以完成同样的功能：</p>
 <pre>// Forcing a string to act as a number (using the unary plus operator).
-console.log( foo + +bar ); // 3</pre><h2 id="logical-operators">Logical Operators</h2><p>Logical operators allow evaluation of a series of operands using AND (<code>&amp;&amp;</code>) and OR (<code>||</code>) operations.</p>
+console.log( foo + +bar ); // 3</pre><h2 id="逻辑运算符">逻辑运算符</h2><p>逻辑运算符允许通过与（<code>&amp;&amp;</code>）和或（<code>||</code>）运算符来对一系列的运算数进行运算。</p>
 <pre>// Logical AND and OR operators
 
 var foo = 1;
@@ -85,15 +85,15 @@ foo && bar;
 foo && baz;
 
 // returns 1, which is true
-baz && foo;</pre><p>In the above example, the <code>||</code> operator returns the value of the first truthy operand, or in cases where neither operand is truthy, it returns the last operand. The <code>&amp;&amp;</code> operator returns the value of the first false operand, or the value of the last operand if both operands are truthy.</p>
-<p>You&#39;ll sometimes see developers use these logical operators for flow control instead of using <code>if</code> statements. For example:</p>
+baz && foo;</pre><p>在上面的例子中，<code>||</code> 运算符返回第一个真值运算数的值，或者在运算数都是真值的情况下返回最后一个运算数的值。<code>&amp;&amp;</code> 运算符返回第一个假值运算数的值，或者当运算数都是真值的情况下返回最后一个运算数的值。</p>
+<p>通常你会看到开发者使用逻辑操作符来替代 <code>if</code> 语句进行流程控制。例如：</p>
 <pre>// Do something with foo if foo is truthy.
 foo && doSomething( foo );
 
 // Set bar to baz if baz is truthy;
 // otherwise, set it to the return value of createBar()
-var bar = baz || createBar();</pre><p>This style is quite elegant and pleasantly terse; that said, it can be really hard to read or use, especially for beginners. See the section on truthy and falsy things in the <a href="/conditional-code/">Conditional Code</a> article for more about evaluating truthiness.</p>
-<h2 id="comparison-operators">Comparison Operators</h2><p>Comparison operators allow you to test whether values are equivalent or whether values are identical.</p>
+var bar = baz || createBar();</pre><p>这种风格比较优雅和简洁，但是也可能难于阅读或使用，特别是对新手来说。在<a href="javascript-101/conditional-code.html">条件代码</a>部分可查看更多关于真值和价值的事情。</p>
+<h2 id="比较运算符">比较运算符</h2><p>比较运算符允许你来测试值是否相等或者是否相同。</p>
 <pre>// Comparison operators
 
 var foo = 1;
@@ -111,8 +111,23 @@ foo === parseInt( baz ); // true
 
 foo &gt; bim;  // false
 bim &gt; baz;  // true
-foo &lt;= baz; // true</pre><p>For more information about comparison operators, visit the <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Operators/Comparison_Operators" title="MDN - Comparison Operators">Mozilla Developer Network</a>.</p>
+foo &lt;= baz; // true</pre><p>有关比较运算符的更多信息，可访问<a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Operators/Comparison_Operators" title="MDN - 比较运算符">Mozilla 开发者网络</a>。</p>
 </div>
+
+  <div class="entry-meta">
+    <time class="updated" datetime="2015-03-13T00:00:00.000Z" itemprop="dateModified">Friday, Mar 13th, 2015</time>
+  </div><div class="ds-thread" data-title="JS101: 运算符"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"js101"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
 </div>
 </div>
     <div class="footer">
