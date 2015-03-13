@@ -1,8 +1,10 @@
-# Conditional Code
+# 条件代码
+
+- pubdate: 2015-03-11
 
 ------
 
-Sometimes a block of code should only be run under certain conditions. Flow control – via `if` and `else` blocks – lets you run code if certain conditions have been met.
+有时候一个代码块应该只在一定条件下运行。流程控制 － 通过 `if` 和 `else` 代码块，让你的代码只在满足一定的条件下运行。
 
 ```
 // Flow control
@@ -29,14 +31,13 @@ if ( bar ) {
 
 }
 ```
+虽然在单行 `if` 语句里，大括号不是必须的，但应该保持一致的使用它们，这样使得代码会更有可读性。
 
-While curly braces aren't strictly required around single-line `if` statements, using them consistently, even when they aren't strictly required, makes for vastly more readable code.
+注意不要在 `if` 或 `else` 代码块中，多次定义相同名称的函数。因为这样做可能会得不到预期的结果。
 
-Be mindful not to define functions with the same name multiple times within separate `if`/`else` blocks, as doing so may not have the expected result.
+## Truthy 和 Falsy
 
-## Truthy and Falsy Things
-
-In order to use flow control successfully, it's important to understand which kinds of values are "truthy" and which kinds of values are "falsy." Sometimes, values that seem like they should evaluate one way actually evaluate another.
+为了成功的使用流程控制，重要的一点是需要理解哪些类型的值时“truthy”，哪些是“falsy”。有时候一个值实际计算的结果和看起来应该会得到的结果不同。
 
 ```
 // Values that evaluate to false:
@@ -57,22 +58,22 @@ undefined // Be careful -- undefined can be redefined!
 1 // Any non-zero number.
 ```
 
-## Conditional Variable Assignment with the Ternary Operator
+## 有条件的变量赋值与三元运算符
 
-Sometimes a variable should be set depending on some condition. An `if`/`else` statement works, but in many cases the ternary operator is more convenient. The ternary operator tests a condition; if the condition is true, it returns a certain value, otherwise it returns a different value.
+有时一个变量要根据一些条件而设定。可以使用 `if` 或 `else` 语句，但在许多情况下，三元运算符更加方便。三元运算符测试一个条件，如果条件为真，则返回一个确定的值，否则返回一个不同的值。
 
-The ternary operator:
+三元运算符：
 
 ```
 // Set foo to 1 if bar is true; otherwise, set foo to 0:
 var foo = bar ? 1 : 0;
 ```
 
-While the ternary operator can be used without assigning the return value to a variable, this is generally discouraged.
+虽然三元运算符可以在不将返回值赋值给变量的情况下使用，但这是不推荐的。
 
-## Switch Statements
+## switch 语句
 
-Rather than using a series of `if`/`else` blocks, sometimes it can be useful to use a `switch` statement instead. `switch` statements look at the value of a variable or expression, and run different blocks of code depending on the value.
+比起使用一系列的 `if` 或 `else` 代码块，有时使用一个 `switch` 语句替代会更有效。`switch` 语句查看一个变量或表达式的值，并根据不同的值执行不同的代码块。
 
 ```
 // A switch statement
@@ -93,7 +94,7 @@ switch ( foo ) {
 }
 ```
 
-Switch statements have somewhat fallen out of favor in JavaScript, because often the same behavior can be accomplished by creating an object that has more potential for reuse or testing. For example:
+在 JavaScript 中 switch 语句有些不太流行，因为同样的行为可以通过创建一个可重用和易测试的对象来完成。
 
 ```
 var stuffToDo = {
@@ -124,4 +125,4 @@ if ( stuffToDo[ foo ] ) {
 }
 ```
 
-Objects are covered further in the [Types](/types/) and [Objects](/objects/) sections.
+对象会在 [类型](/javascript-101/types.html) 和 [对象](/javascript-101/objects.html) 部分进一步讨论。

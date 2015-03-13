@@ -2,8 +2,6 @@
 
 ------
 
-![JavaScript 101](/js101.png)
-
 [“Something 101” 是什么意思？](http://english.stackexchange.com/questions/14265/what-does-something-101-mean)
 
 它通常是指“某事情的入门介绍”。这种说法的典故来源于美国教学系统中，大学初级课程代码101。课程代码101通常表示这是入门课程，没有其他的前提要求。

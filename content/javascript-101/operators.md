@@ -1,8 +1,10 @@
-# Operators
+# 运算符
+
+- pubdate: 2015-03-13
 
 -------
 
-Basic operators allow you to manipulate values.
+基本的运算符让你可以操作值。
 
 ```
 // Concatenation
@@ -31,9 +33,9 @@ console.log( i++ ); // 1 - because i was evaluated to 1 and _then_ incremented
 console.log( i );   // 2 - incremented after using it
 ```
 
-## Operations on Numbers & Strings
+## 数字和字符串操作
 
-In JavaScript, numbers and strings will occasionally behave in unexpected ways.
+在 JavaScript 中，数字和字符串偶尔会表现的出人意料。
 
 ```
 // Addition vs. Concatenation
@@ -51,16 +53,16 @@ var bar = "2";
 console.log( foo + Number(bar) ); // 3
 ```
 
-The `Number` constructor, when called as a function (as in the above example), will have the effect of casting its argument into a number. The unary plus operator also does the same thing:
+`Number` 构造函数被当作普通函数调用时（如上所示），会将传递给它的参数转换成数字。一元加号运算符也可以完成同样的功能：
 
 ```
 // Forcing a string to act as a number (using the unary plus operator).
 console.log( foo + +bar ); // 3
 ```
 
-## Logical Operators
+## 逻辑运算符
 
-Logical operators allow evaluation of a series of operands using AND (`&&`) and OR (`||`) operations.
+逻辑运算符允许通过与（`&&`）和或（`||`）运算符来对一系列的运算数进行运算。
 
 ```
 // Logical AND and OR operators
@@ -85,9 +87,9 @@ foo && baz;
 baz && foo;
 ```
 
-In the above example, the `||` operator returns the value of the first truthy operand, or in cases where neither operand is truthy, it returns the last operand. The `&&` operator returns the value of the first false operand, or the value of the last operand if both operands are truthy.
+在上面的例子中，`||` 运算符返回第一个真值运算数的值，或者在运算数都是真值的情况下返回最后一个运算数的值。`&&` 运算符返回第一个假值运算数的值，或者当运算数都是真值的情况下返回最后一个运算数的值。
 
-You'll sometimes see developers use these logical operators for flow control instead of using `if` statements. For example:
+通常你会看到开发者使用逻辑操作符来替代 `if` 语句进行流程控制。例如：
 
 ```
 // Do something with foo if foo is truthy.
@@ -98,11 +100,11 @@ foo && doSomething( foo );
 var bar = baz || createBar();
 ```
 
-This style is quite elegant and pleasantly terse; that said, it can be really hard to read or use, especially for beginners. See the section on truthy and falsy things in the [Conditional Code](/conditional-code/) article for more about evaluating truthiness.
+这种风格比较优雅和简洁，但是也可能难于阅读或使用，特别是对新手来说。在[条件代码](javascript-101/conditional-code.html)部分可查看更多关于真值和价值的事情。
 
-## Comparison Operators
+## 比较运算符
 
-Comparison operators allow you to test whether values are equivalent or whether values are identical.
+比较运算符允许你来测试值是否相等或者是否相同。
 
 ```
 // Comparison operators
@@ -125,4 +127,4 @@ bim > baz;  // true
 foo <= baz; // true
 ```
 
-For more information about comparison operators, visit the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Operators/Comparison_Operators "MDN - Comparison Operators").
+有关比较运算符的更多信息，可访问[Mozilla 开发者网络](https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Operators/Comparison_Operators "MDN - 比较运算符")。
