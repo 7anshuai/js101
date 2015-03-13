@@ -100,7 +100,7 @@ foo && doSomething( foo );
 var bar = baz || createBar();
 ```
 
-这种风格比较优雅和简洁，但是也可能难于阅读或使用，特别是对新手来说。在[条件代码](javascript-101/conditional-code.html)部分可查看更多关于真值和价值的事情。
+这种风格比较优雅和简洁，但是也可能难于阅读或使用，特别是对新手来说。在[条件代码](/javascript-101/conditional-code.html)部分可查看更多关于真值和价值的事情。
 
 ## 比较运算符
 
