@@ -5,6 +5,84 @@
     <link href="http://js101.co/" />
     <id>http://js101.co/feed.xml</id>
     <entry>
+        <title type="html"><![CDATA[循环]]></title>
+        <link href="http://js101.co/javascript-101/loops.html"/>
+        <published>2015-03-17T00:00:00.000Z</published>
+        <updated>2015-03-17T00:00:00.000Z</updated>
+        <id>http://js101.co/javascript-101/loops.html</id>
+        <content type="html" xml:base="http://js101.co/" xml:lang="en">
+            <![CDATA[ <p>循环让一块代码运行一定的次数：</p>
+<pre>for ( var i = 0; i &lt; 5; i++ ) {
+    // Logs &quot;try 0&quot;, &quot;try 1&quot;, ..., &quot;try 4&quot;.
+    console.log( &quot;try &quot; + i );
+}</pre><p>需要注意的是在循环中，变量 <code>i</code> 的不仅仅作用于循环代码块，即使在变量名前使用了关键字 <code>var</code>。在<a href="/javascript-101/scope.html">作用域</a>部分将对作用域进行深入讨论。</p>
+<h2 id="for-循环"><code>for</code> 循环</h2><p>一个 <code>for</code> 循环由四个语句组成，并具有以下结构：</p>
+<pre>for ( [initialization]; [conditional]; [iteration] ) {
+
+    [loopBody]
+
+}</pre><p>初始化语句（<em>initialization</em>）在循环开始前只执行一次。它是用来准备或声明任何变量的。</p>
+<p>条件语句（<em>conditional</em>）在每次迭代之前执行，它会返回一个值用来判断循环是否继续。如果条件语句的计算结果为一个假值，则循环停止。</p>
+<p>迭代语句（<em>iteration</em>）在每次迭代结束时执行，它给你一个机会来改变重要变量的状态。通常，这将涉及递增或递减一个计数器，从而使循环接近结束。</p>
+<p>循环体语句（<em>loopBody</em>）是每一次循环执行的内容，它可以包含任何东西。通常，会有需要被执行的多行语句，并应包裹在一个代码块中（<code>{...}</code>）。</p>
+<p>一个典型的 <code>for</code> 循环：</p>
+<pre>for (var i = 0, limit = 100; i &lt; limit; i++) {
+    // This block will be executed 100 times.
+    console.log( &quot;Currently at &quot; + i );
+    // Note: The last log will be &quot;Currently at 99&quot;.
+}</pre><h2 id="for-in-循环"><code>for...in</code> 循环</h2><p>一个 <code>for...in</code> 循环遍历一个对象的属性，针对每一个属性，循环体语句可以被执行一次。</p>
+<pre>for ( prop in obj ) {
+    // statements here will be executed for every key in the object
+    console.log( prop + &#39;: &#39; + obj[ prop ] );
+}</pre><h2 id="while-循环"><code>while</code> 循环</h2><p>一个 <code>while</code> 循环类似于一个 <code>if</code> 语句，不同之处在于它的主体部分会继续执行，直到条件语句计算结果为一个假值。</p>
+<pre>while ( [conditional] ) {
+
+    [loopBody]
+
+}</pre><p>一个典型的 <code>while</code> 循环：</p>
+<pre>var i = 0;
+while ( i &lt; 100 ) {
+    // This block will be executed 100 times.
+    console.log( &quot;Currently at &quot; + i );
+    i++; // Increment i
+}</pre><p>需要注意的是计数器是在循环的主体部分递增的。将条件和增量合并也是可行的，像这样：</p>
+<pre>var i = -1;
+while ( ++i &lt; 100 ) {
+    // This block will be executed 100 times.
+    console.log( &quot;Currently at &quot; + i );
+}</pre><p>请注意计数器开始于－1，并使用前置增量符（<code>++i</code>）。</p>
+<h2 id="do-while-循环"><code>do-while</code> 循环</h2><p>这几乎是与 <code>while</code> 循环完全一样的，不同的是实际上它的循环主体内容在条件测试之前至少会执行一次。</p>
+<pre>do {
+
+    [loopBody]
+
+} while ( [conditional] )</pre><p>一个 <code>do-while</code> 循环：</p>
+<pre>do {
+    // Even though the condition evaluates to false
+    // this loop&#39;s body will still execute once.
+    alert( &quot;Hi there!&quot; );
+
+} while ( false );</pre><p>这一类型的循环是少见的，因为只有极少数情况下需要盲目的执行一次循环。无论如何，意识到这一点就好。</p>
+<h2 id="break-和-continue"><code>break</code> 和 <code>continue</code></h2><p>通常的，条件语句的计算结果不是一个真值会导致循环的终止，但是也可以通过循环内部的 <code>break</code> 语句将循环在其正常运行轨道期终止：</p>
+<pre>// Stopping a loop
+for ( var i = 0; i &lt; 10; i++ ) {
+    if ( something ) {
+        break;
+    }
+}</pre><p>你可能还需要继续循环，但不执行循环主体内的部分内容。这可以通过 <code>continue</code> 语句做到：</p>
+<pre>// Skipping to the next iteration of a loop
+for ( var i = 0; i &lt; 10; i++ ) {
+    if ( something ) {
+        continue;
+    }
+
+    // The following statement will only be executed
+    // if the conditional &quot;something&quot; has not been met
+    console.log( &quot;I have been reached&quot; );
+
+}</pre>]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[运算符]]></title>
         <link href="http://js101.co/javascript-101/operators.html"/>
         <published>2015-03-13T00:00:00.000Z</published>
