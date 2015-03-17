@@ -1,8 +1,10 @@
-# Loops
+# 循环
+
+- pubdate: 2015-03-17
 
 ------
 
-Loops let a block of code run a certain number of times:
+循环让一块代码运行一定的次数：
 
 ```
 for ( var i = 0; i < 5; i++ ) {
@@ -11,11 +13,11 @@ for ( var i = 0; i < 5; i++ ) {
 }
 ```
 
-Note that in loops, the variable `i` is not "scoped" to the loop block even though the keyword `var` is used before the variable name. Scope is covered in more depth in the [Scope](/scope/) section.
+需要注意的是在循环中，变量 `i` 的不仅仅作用于循环代码块，即使在变量名前使用了关键字 `var`。在[作用域](/javascript-101/scope.html)部分将对作用域进行深入讨论。
 
-## The `for` Loop
+## `for` 循环
 
-A `for` loop is made up of four statements and has the following structure:
+一个 `for` 循环由四个语句组成，并具有以下结构：
 
 ```
 for ( [initialization]; [conditional]; [iteration] ) {
@@ -25,15 +27,15 @@ for ( [initialization]; [conditional]; [iteration] ) {
 }
 ```
 
-The _initialization_ statement is executed only once, before the loop starts. It gives you an opportunity to prepare or declare any variables.
+初始化语句（_initialization_）在循环开始前只执行一次。它是用来准备或声明任何变量的。
 
-The _conditional_ statement is executed before each iteration, and its return value decides whether the loop is to continue. If the conditional statement evaluates to a falsy value, then the loop stops.
+条件语句（_conditional_）在每次迭代之前执行，它会返回一个值用来判断循环是否继续。如果条件语句的计算结果为一个假值，则循环停止。
 
-The _iteration_ statement is executed at the end of each iteration and gives you an opportunity to change the state of important variables. Typically, this will involve incrementing or decrementing a counter and thus bringing the loop closer to its end.
+迭代语句（_iteration_）在每次迭代结束时执行，它给你一个机会来改变重要变量的状态。通常，这将涉及递增或递减一个计数器，从而使循环接近结束。
 
-The _loopBody_ statement is what runs on every iteration. It can contain anything. Typically, there will be multiple statements that need to be executed, and should be wrapped in a block (`{...}`).
+循环体语句（_loopBody_）是每一次循环执行的内容，它可以包含任何东西。通常，会有需要被执行的多行语句，并应包裹在一个代码块中（`{...}`）。
 
-Here's a typical `for` loop:
+一个典型的 `for` 循环：
 
 ```
 for (var i = 0, limit = 100; i < limit; i++) {
@@ -43,9 +45,9 @@ for (var i = 0, limit = 100; i < limit; i++) {
 }
 ```
 
-## The `for...in` loop
+## `for...in` 循环
 
-A `for...in` loop iterates over the properties of an object. For each property, statements can be executed.
+一个 `for...in` 循环遍历一个对象的属性，针对每一个属性，循环体语句可以被执行一次。
 
 ```
 for ( prop in obj ) {
@@ -55,9 +57,9 @@ for ( prop in obj ) {
 ```
 
 
-## The `while` loop
+## `while` 循环
 
-A while loop is similar to an `if` statement, except that its body will keep executing until the condition evaluates to a falsy value.
+一个 `while` 循环类似于一个 `if` 语句，不同之处在于它的主体部分会继续执行，直到条件语句计算结果为一个假值。
 
 ```
 while ( [conditional] ) {
@@ -67,7 +69,7 @@ while ( [conditional] ) {
 }
 ```
 
-Here's a typical `while` loop:
+一个典型的 `while` 循环：
 
 ```
 var i = 0;
@@ -78,7 +80,7 @@ while ( i < 100 ) {
 }
 ```
 
-Notice that the counter is incrementing within the loop's body. It's possible to combine the conditional and incrementer, like so:
+需要注意的是计数器是在循环的主体部分递增的。将条件和增量合并也是可行的，像这样：
 
 ```
 var i = -1;
@@ -88,11 +90,11 @@ while ( ++i < 100 ) {
 }
 ```
 
-Notice that the counter starts at -1 and uses the prefix incrementer (`++i`).
+请注意计数器开始于－1，并使用前置增量符（`++i`）。
 
-## The `do-while` Loop
+## `do-while` 循环
 
-This is almost exactly the same as the `while` loop, except for the fact that the loop's body is executed at least once before the condition is tested.
+这几乎是与 `while` 循环完全一样的，不同的是实际上它的循环主体内容在条件测试之前至少会执行一次。
 
 ```
 do {
@@ -102,7 +104,7 @@ do {
 } while ( [conditional] )
 ```
 
-Here's a `do-while` loop:
+一个 `do-while` 循环：
 
 ```
 do {
@@ -113,11 +115,11 @@ do {
 } while ( false );
 ```
 
-These types of loops are quite rare since only few situations require a loop that blindly executes at least once. Regardless, it's good to be aware of it.
+这一类型的循环是少见的，因为只有极少数情况下需要盲目的执行一次循环。无论如何，意识到这一点就好。
 
-## Breaking and Continuing
+## `break` 和 `continue`
 
-Usually, a loop's termination will result from the conditional statement not evaluating to a truthy value, but it is possible to stop a loop in its tracks from within the loop's body with the `break` statement:
+通常的，条件语句的计算结果不是一个真值会导致循环的终止，但是也可以通过循环内部的 `break` 语句将循环在其正常运行轨道期终止：
 
 ```
 // Stopping a loop
@@ -128,7 +130,7 @@ for ( var i = 0; i < 10; i++ ) {
 }
 ```
 
-You may also want to continue the loop without executing more of the loop's body. This is done using the `continue` statement:
+你可能还需要继续循环，但不执行循环主体内的部分内容。这可以通过 `continue` 语句做到：
 
 ```
 // Skipping to the next iteration of a loop
