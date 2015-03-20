@@ -137,13 +137,13 @@ foo && baz;
 
 // returns 1, which is true
 baz && foo;</pre><p>在上面的例子中，<code>||</code> 运算符返回第一个真值运算数的值，或者在运算数都是真值的情况下返回最后一个运算数的值。<code>&amp;&amp;</code> 运算符返回第一个假值运算数的值，或者当运算数都是真值的情况下返回最后一个运算数的值。</p>
-<p>通常你会看到开发者使用逻辑操作符来替代 <code>if</code> 语句进行流程控制。例如：</p>
+<p>通常你会看到开发者使用逻辑运算符来代替 <code>if</code> 语句进行流程控制。例如：</p>
 <pre>// Do something with foo if foo is truthy.
 foo && doSomething( foo );
 
 // Set bar to baz if baz is truthy;
 // otherwise, set it to the return value of createBar()
-var bar = baz || createBar();</pre><p>这种风格比较优雅和简洁，但是也可能难于阅读或使用，特别是对新手来说。在<a href="/javascript-101/conditional-code.html">条件代码</a>部分可查看更多关于真值和价值的事情。</p>
+var bar = baz || createBar();</pre><p>这种风格比较优雅和简洁，但是也可能难于阅读或使用，特别是对新手来说。在<a href="/javascript-101/conditional-code.html">条件代码</a>部分可查看更多关于真值和假值的事情。</p>
 <h2 id="比较运算符">比较运算符</h2><p>比较运算符允许你来测试值是否相等或者是否相同。</p>
 <pre>// Comparison operators
 
