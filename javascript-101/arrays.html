@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="generator" content="nico 0.5.2">
     <meta name="theme" content="one 0.2">
-    <title>JS101:&nbsp;Arrays</title>
+    <title>JS101:&nbsp;数组</title>
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
     <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
@@ -37,15 +37,15 @@
     </div>
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
-  <h1 class="entry-title" itemprop="name">Arrays</h1>
-  <div class="entry-content" itemprop="articleBody"><p>Arrays are zero-indexed, ordered lists of values. They are a handy way to store a set of related items of the same type (such as strings), though in reality, an array can include multiple types of items, including other arrays.</p>
-<p>To create an array, either use the object constructor or the literal declaration, by assigning the variable a list of values after the declaration.</p>
+  <h1 class="entry-title" itemprop="name">数组</h1>
+  <div class="entry-content" itemprop="articleBody"><p>数组是从零索引，值的有序列表。数组是一个简便的方式来存储一组相同类型的有关项（例如字符串），但实际上，一个数组可以包含多个类型的项，甚至是其他数组。</p>
+<p>要创建一个数组，可以使用数组构造函数或者字面量声明式，在声明后，可以赋给变量一系列的值。</p>
 <pre>// A simple array with constructor.
 var myArray1 = new Array( &quot;hello&quot;, &quot;world&quot; );
 
 // Literal declaration, the preferred way.
-var myArray2 = [ &quot;hello&quot;, &quot;world&quot; ];</pre><p>The literal declaration is generally preferred. See the <a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Array_and_Object_literals">Google Coding Guidelines</a> for more information.</p>
-<p>If the values are unknown, it is also possible to declare an empty array, and add elements either through functions or through accessing by index:</p>
+var myArray2 = [ &quot;hello&quot;, &quot;world&quot; ];</pre><p>字面量声明式通常是更好的选择。查看<a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Array_and_Object_literals">谷歌编码指南</a>可获得更多信息。</p>
+<p>如果值是未知的，也可以创建一个空的数组，然后通过数组方法或者访问索引来添加元素：</p>
 <pre>// Creating empty arrays and adding values
 
 var myArray = [];
@@ -57,7 +57,7 @@ myArray.push( &quot;hello&quot; );
 myArray.push( &quot;world&quot; );
 
 // Adds &quot;!&quot; on index 2
-myArray[ 2 ] = &quot;!&quot;;</pre><p><code>.push()</code> is a function that adds an element on the end of the array and expands the array respectively. You also can directly add items by index. Missing indices will be filled with <code>undefined</code>.</p>
+myArray[ 2 ] = &quot;!&quot;;</pre><p><code>.push()</code> 是一个函数，它扩展数组并添加一个元素到尾端。您也可以直接通过索引添加项。缺失的指数项将会被 <code>undefined</code> 填充。</p>
 <pre>// Leaving indices
 
 var myArray = [];
@@ -66,17 +66,17 @@ myArray[ 0 ] = &quot;hello&quot;;
 myArray[ 1 ] = &quot;world&quot;;
 myArray[ 3 ] = &quot;!&quot;;
 
-console.log( myArray ); // [ &quot;hello&quot;, &quot;world&quot;, undefined, &quot;!&quot; ];</pre><p>If the size of the array is unknown, <code>.push()</code> is far more safe. You can both access and assign values to array items with the index.</p>
+console.log( myArray ); // [ &quot;hello&quot;, &quot;world&quot;, undefined, &quot;!&quot; ];</pre><p>如果数组的大小是未知的，<code>.push()</code> 是更安全的。您可以通过索引取值或者赋值给数组项。</p>
 <pre>// Accessing array items by index
 
 var myArray = [ &quot;hello&quot;, &quot;world&quot;, &quot;!&quot; ];
 
-console.log( myArray[ 2 ] ); // &quot;!&quot;</pre><h2 id="array-methods-and-properties">Array Methods and Properties</h2><h3 id="length">.length</h3><p>The <code>.length</code> property is used to determine the amount of items in an array.</p>
+console.log( myArray[ 2 ] ); // &quot;!&quot;</pre><h2 id="数组方法和属性">数组方法和属性</h2><h3 id="length">.length</h3><p><code>.length</code> 属性用于确定数组项的数量。</p>
 <pre>// Length of an array
 
 var myArray = [ &quot;hello&quot;, &quot;world&quot;, &quot;!&quot; ];
 
-console.log( myArray.length ); // 3</pre><p>You will need the <code>.length</code> property for looping through an array:</p>
+console.log( myArray.length ); // 3</pre><p>您将需要 <code>.length</code> 属性用于遍历一个数组：</p>
 <pre>// For loops and arrays - a classic
 
 var myArray = [ &quot;hello&quot;, &quot;world&quot;, &quot;!&quot; ];
@@ -85,10 +85,10 @@ for ( var i = 0; i &lt; myArray.length; i = i + 1 ) {
 
     console.log( myArray[ i ] );
 
-}</pre><h3 id="concat">.concat()</h3><p>Concatenate two or more arrays with <code>.concat()</code>:</p>
+}</pre><h3 id="concat">.concat()</h3><p>通过 <code>.concat()</code> 串联两个或多个数组：</p>
 <pre>var myArray = [ 2, 3, 4 ];
 var myOtherArray = [ 5, 6, 7 ];
-var wholeArray = myArray.concat( myOtherArray ); // [ 2, 3, 4, 5, 6, 7 ]</pre><h3 id="join">.join()</h3><p><code>.join()</code> creates a string representation of an array by joining all of its elements using a separator string. If no separator is supplied (i.e., <code>.join()</code> is called without arguments) the array will be joined using a comma.</p>
+var wholeArray = myArray.concat( myOtherArray ); // [ 2, 3, 4, 5, 6, 7 ]</pre><h3 id="join">.join()</h3><p><code>.join()</code> 使用一个分隔字符拼接数组的所有元素并创建数组的字符串表示。如果没有提供分隔符（即不带参数调用 <code>.join()</code>），数组会使用逗号进行拼接。</p>
 <pre>// Joining elements
 
 var myArray = [ &quot;hello&quot;, &quot;world&quot;, &quot;!&quot; ];
@@ -101,7 +101,7 @@ console.log( myArray.join( &quot; &quot; ) );  // &quot;hello world !&quot;;
 console.log( myArray.join( &quot;!!&quot; ) ); // &quot;hello!!world!!!&quot;;
 
 // ...including an empty one.
-console.log( myArray.join( &quot;&quot; ) );   // &quot;helloworld!&quot;</pre><h3 id="pop">.pop()</h3><p><code>.pop()</code> removes the last element of an array. It is the opposite method of <code>.push()</code>:</p>
+console.log( myArray.join( &quot;&quot; ) );   // &quot;helloworld!&quot;</pre><h3 id="pop">.pop()</h3><p><code>.pop()</code> 移除数组的最后一个元素。它是 <code>.push()</code> 的对立方法：</p>
 <pre>// Pushing and popping
 
 var myArray = [];
@@ -109,9 +109,9 @@ var myArray = [];
 myArray.push( 0 ); // [ 0 ]
 myArray.push( 2 ); // [ 0 , 2 ]
 myArray.push( 7 ); // [ 0 , 2 , 7 ]
-myArray.pop();     // [ 0 , 2 ]</pre><h3 id="reverse">.reverse()</h3><p>As the name suggests, the elements of the array are in reverse order after calling this method:</p>
+myArray.pop();     // [ 0 , 2 ]</pre><h3 id="reverse">.reverse()</h3><p>顾名思义，调用 <code>.reverse()</code> 方法后，数组中的元素按相反的顺序排列：</p>
 <pre>var myArray = [ &quot;world&quot; , &quot;hello&quot; ];
-myArray.reverse(); // [ &quot;hello&quot;, &quot;world&quot; ]</pre><h3 id="shift">.shift()</h3><p>Removes the first element of an array. With <code>.push()</code> and <code>.shift()</code>, you can recreate the method of a <a href="http://en.wikipedia.org/wiki/Queue_(abstract_data_type%29">queue</a>:</p>
+myArray.reverse(); // [ &quot;hello&quot;, &quot;world&quot; ]</pre><h3 id="shift">.shift()</h3><p>移除数组中的第一个元素。结合 <code>.push</code> 和 <code>.shift()</code>，你可以重建一个<a href="http://zh.wikipedia.org/wiki/%E9%98%9F%E5%88%97">队列</a>方法：</p>
 <pre>// Queue with shift() and push()
 
 var myArray = [];
@@ -119,25 +119,25 @@ var myArray = [];
 myArray.push( 0 ); // [ 0 ]
 myArray.push( 2 ); // [ 0 , 2 ]
 myArray.push( 7 ); // [ 0 , 2 , 7 ]
-myArray.shift();   // [ 2 , 7 ]</pre><h3 id="slice">.slice()</h3><p>Extracts a part of the array and returns that part in a new array. This method takes one parameter, which is the starting index:</p>
+myArray.shift();   // [ 2 , 7 ]</pre><h3 id="slice">.slice()</h3><p>提取数组的一部分，并返回一个包含该部分的新数组。这个方法需要一个参数，起始的索引：</p>
 <pre>// Slicing
 
 var myArray = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
 var newArray = myArray.slice( 3 );
 
 console.log( myArray );  // [ 1, 2, 3, 4, 5, 6, 7, 8 ]
-console.log( newArray ); // [ 4, 5, 6, 7, 8 ]</pre><p>The <code>.slice()</code> method takes an optional second parameter, the end index.</p>
-<pre>console.log( [ 1, 2, 3, 4, 5, 6, 7, 8 ].slice( 2, 5 ) ); // [ 3, 4, 5 ]</pre><h3 id="splice">.splice()</h3><p>Removes a certain amount of elements and adds new ones at the given index. It takes at least three parameters:</p>
+console.log( newArray ); // [ 4, 5, 6, 7, 8 ]</pre><p><code>.slice()</code> 方法有一个可选的第二个参数，结束的索引。</p>
+<pre>console.log( [ 1, 2, 3, 4, 5, 6, 7, 8 ].slice( 2, 5 ) ); // [ 3, 4, 5 ]</pre><h3 id="splice">.splice()</h3><p>移除一个确定数量的元素并在给定的索引处开始添加新的元素。它至少需要三个参数：</p>
 <pre>myArray.splice( index, length, values, ... );</pre><ul>
-<li><em>Index</em> – The starting index.</li>
-<li><em>Length</em> – The number of elements to remove.</li>
-<li><em>Values</em> – The values to be inserted at the index position.</li>
+<li><em>Index</em> – 开始的索引。</li>
+<li><em>Length</em> – 移除的元素数量。</li>
+<li><em>Values</em> – 在索引的位置插入的值。</li>
 </ul>
-<p>For example:</p>
+<p>例如：</p>
 <pre>var myArray = [ 0, 7, 8, 5 ];
 myArray.splice( 1, 2, 1, 2, 3, 4 );
 
-console.log( myArray ); // [ 0, 1, 2, 3, 4, 5 ]</pre><h3 id="sort">.sort()</h3><p>Sorts an array. It takes one parameter, which is a comparing function. If this function is not given, the array is sorted ascending:</p>
+console.log( myArray ); // [ 0, 1, 2, 3, 4, 5 ]</pre><h3 id="sort">.sort()</h3><p>数组排序。它需要一个参数，一个比较函数。如果没有提供这个函数，数组默认按照升序进行排序：</p>
 <pre>// Sorting without comparing function.
 
 var myArray = [ 3, 4, 6, 1 ];
@@ -150,20 +150,20 @@ function descending( a, b ) {
 
 var myArray = [ 3, 4, 6, 1 ];
 
-myArray.sort( descending ); // [ 6, 4, 3, 1 ]</pre><p>The return value of descending (for this example) is important. If the return value is less than zero, the index of <code>a</code> is before <code>b</code>, and if it is greater than zero it&#39;s vice-versa. If the return value is zero, the elements&#39; index is equal.</p>
-<h3 id="unshift">.unshift()</h3><p>Inserts an element at the first position of the array:</p>
+myArray.sort( descending ); // [ 6, 4, 3, 1 ]</pre><p>例子中的 <code>descending</code> 函数返回的值很重要。如果返回的值小于0，<code>a</code> 的位置在 <code>b</code> 之前，如果值大于0则位置相反。如果值等于0，则元素的位置（与当前）相同。</p>
+<h3 id="unshift">.unshift()</h3><p>在数组的第一个位置插入一个元素：</p>
 <pre>var myArray = [];
 
 myArray.unshift( 0 ); // [ 0 ]
 myArray.unshift( 2 ); // [ 2 , 0 ]
-myArray.unshift( 7 ); // [ 7 , 2 , 0 ]</pre><h3 id="foreach">.forEach()</h3><p>In modern browsers it is possible to traverse through arrays with a <code>.forEach()</code> method, where you pass a function that is called for each element in the array.</p>
-<p>The function takes up to three arguments:</p>
+myArray.unshift( 7 ); // [ 7 , 2 , 0 ]</pre><h3 id="foreach">.forEach()</h3><p>在现代浏览器中可以使用 <code>.forEach()</code> 方法遍历数组，您传递个这个方法的函数会被数组中的每个元素调用。</p>
+<p>被传递的函数可以带三个参数：</p>
 <ul>
-<li><em>Element</em> – The element itself.</li>
-<li><em>Index</em> – The index of this element in the array.</li>
-<li><em>Array</em> – The array itself.</li>
+<li><em>Element</em> – 元素本身。</li>
+<li><em>Index</em> – 元素在数组中的索引。</li>
+<li><em>Array</em> – 数组本身。</li>
 </ul>
-<p>All of these are optional, but you will need at least the <em>Element</em> parameter in most cases.</p>
+<p>所有的参数都是可选的，但你通常至少需要一个 <em>Element</em> 参数。</p>
 <pre>// Native .forEach()
 
 function printElement( elem ) {
@@ -188,10 +188,25 @@ myArray.forEach( printElementAndIndex );
 
 // myArray is now [ -1, -2, -3, -4, -5 ]
 myArray.forEach( negateElement );</pre></div>
+
+  <div class="entry-meta">
+    <time class="updated" datetime="2015-03-28T00:00:00.000Z" itemprop="dateModified">Saturday, Mar 28th, 2015</time>
+  </div><div class="ds-thread" data-title="JS101: 数组"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"js101"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
 </div>
 </div>
     <div class="footer">
-      <p class="copyright">powered by <a href="">nico</a> 0.5.2</p>
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
     </div>
     <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
     <script src="../static/one.js"></script>
