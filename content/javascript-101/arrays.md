@@ -8,7 +8,7 @@
 
 创建一个数组，可以使用数组构造函数或者字面量声明式，在声明后，可以赋给变量一系列的值。
 
-```
+```javascript
 // A simple array with constructor.
 var myArray1 = new Array( "hello", "world" );
 
@@ -20,7 +20,7 @@ var myArray2 = [ "hello", "world" ];
 
 如果值是未知的，也可以创建一个空的数组，然后通过数组方法或者访问索引来添加元素：
 
-```
+```javascript
 // Creating empty arrays and adding values
 
 var myArray = [];
@@ -37,7 +37,7 @@ myArray[ 2 ] = "!";
 
 `.push()` 是一个函数，它扩展数组并添加一个元素到尾端。您也可以直接通过索引添加项。缺失的指数项将会被 `undefined` 填充。
 
-```
+```javascript
 // Leaving indices
 
 var myArray = [];
@@ -51,7 +51,7 @@ console.log( myArray ); // [ "hello", "world", undefined, "!" ];
 
 如果数组的大小是未知的，`.push()` 是更安全的。您可以通过索引取值或者赋值给数组项。
 
-```
+```javascript
 // Accessing array items by index
 
 var myArray = [ "hello", "world", "!" ];
@@ -65,7 +65,7 @@ console.log( myArray[ 2 ] ); // "!"
 
 `.length` 属性用于确定数组项的数量。
 
-```
+```javascript
 // Length of an array
 
 var myArray = [ "hello", "world", "!" ];
@@ -75,7 +75,7 @@ console.log( myArray.length ); // 3
 
 您将需要 `.length` 属性用于遍历一个数组：
 
-```
+```javascript
 // For loops and arrays - a classic
 
 var myArray = [ "hello", "world", "!" ];
@@ -91,7 +91,7 @@ for ( var i = 0; i < myArray.length; i = i + 1 ) {
 
 通过 `.concat()` 串联两个或多个数组：
 
-```
+```javascript
 var myArray = [ 2, 3, 4 ];
 var myOtherArray = [ 5, 6, 7 ];
 var wholeArray = myArray.concat( myOtherArray ); // [ 2, 3, 4, 5, 6, 7 ]
@@ -101,7 +101,7 @@ var wholeArray = myArray.concat( myOtherArray ); // [ 2, 3, 4, 5, 6, 7 ]
 
 `.join()` 使用一个分隔字符拼接数组的所有元素并创建数组的字符串表示。如果没有提供分隔符（即不带参数调用 `.join()`），数组会使用逗号进行拼接。
 
-```
+```javascript
 // Joining elements
 
 var myArray = [ "hello", "world", "!" ];
@@ -122,7 +122,7 @@ console.log( myArray.join( "" ) );   // "helloworld!"
 
 `.pop()` 移除数组的最后一个元素。它是 `.push()` 的对立方法：
 
-```
+```javascript
 // Pushing and popping
 
 var myArray = [];
@@ -137,7 +137,7 @@ myArray.pop();     // [ 0 , 2 ]
 
 顾名思义，调用 `.reverse()` 方法后，数组中的元素按相反的顺序排列：
 
-```
+```javascript
 var myArray = [ "world" , "hello" ];
 myArray.reverse(); // [ "hello", "world" ]
 ```
@@ -146,7 +146,7 @@ myArray.reverse(); // [ "hello", "world" ]
 
 移除数组中的第一个元素。结合 `.push` 和 `.shift()`，你可以重建一个[队列](http://zh.wikipedia.org/wiki/%E9%98%9F%E5%88%97)方法：
 
-```
+```javascript
 // Queue with shift() and push()
 
 var myArray = [];
@@ -161,7 +161,7 @@ myArray.shift();   // [ 2 , 7 ]
 
 提取数组的一部分，并返回一个包含该部分的新数组。这个方法需要一个参数，起始的索引：
 
-```
+```javascript
 // Slicing
 
 var myArray = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
@@ -173,7 +173,7 @@ console.log( newArray ); // [ 4, 5, 6, 7, 8 ]
 
 `.slice()` 方法有一个可选的第二个参数，结束的索引。
 
-```
+```javascript
 console.log( [ 1, 2, 3, 4, 5, 6, 7, 8 ].slice( 2, 5 ) ); // [ 3, 4, 5 ]
 ```
 
@@ -181,7 +181,7 @@ console.log( [ 1, 2, 3, 4, 5, 6, 7, 8 ].slice( 2, 5 ) ); // [ 3, 4, 5 ]
 
 移除一个确定数量的元素并在给定的索引处开始添加新的元素。它至少需要三个参数：
 
-```
+```javascript
 myArray.splice( index, length, values, ... );
 ```
 
@@ -191,7 +191,7 @@ myArray.splice( index, length, values, ... );
 
 例如：
 
-```
+```javascript
 var myArray = [ 0, 7, 8, 5 ];
 myArray.splice( 1, 2, 1, 2, 3, 4 );
 
@@ -202,7 +202,7 @@ console.log( myArray ); // [ 0, 1, 2, 3, 4, 5 ]
 
 数组排序。它需要一个参数，一个比较函数。如果没有提供这个函数，数组默认按照升序进行排序：
 
-```
+```javascript
 // Sorting without comparing function.
 
 var myArray = [ 3, 4, 6, 1 ];
@@ -210,7 +210,7 @@ var myArray = [ 3, 4, 6, 1 ];
 myArray.sort(); // 1, 3, 4, 6
 ```
 
-```
+```javascript
 // Sorting with comparing function.
 
 function descending( a, b ) {
@@ -228,7 +228,7 @@ myArray.sort( descending ); // [ 6, 4, 3, 1 ]
 
 在数组的第一个位置插入一个元素：
 
-```
+```javascript
 var myArray = [];
 
 myArray.unshift( 0 ); // [ 0 ]
@@ -248,7 +248,7 @@ myArray.unshift( 7 ); // [ 7 , 2 , 0 ]
 
 所有的参数都是可选的，但你通常至少需要一个 *Element* 参数。
 
-```
+```javascript
 // Native .forEach()
 
 function printElement( elem ) {

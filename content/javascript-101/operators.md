@@ -6,7 +6,7 @@
 
 基本的运算符让你可以操作值。
 
-```
+```javascript
 // Concatenation
 var foo = "hello";
 var bar = "world";
@@ -14,13 +14,13 @@ var bar = "world";
 console.log( foo + " " + bar ); // "hello world"
 ```
 
-```
+```javascript
 // Multiplication and division
 2 * 3;
 2 / 3;
 ```
 
-```
+```javascript
 // Incrementing and decrementing
 // The pre-increment operator increments the operand before any further processing.
 var i = 1;
@@ -37,7 +37,7 @@ console.log( i );   // 2 - incremented after using it
 
 在 JavaScript 中，数字和字符串偶尔会表现的出人意料。
 
-```
+```javascript
 // Addition vs. Concatenation
 var foo = 1;
 var bar = "2";
@@ -45,7 +45,7 @@ var bar = "2";
 console.log( foo + bar ); // "12"
 ```
 
-```
+```javascript
 // Coercing a string to act as a number.
 var foo = 1;
 var bar = "2";
@@ -55,7 +55,7 @@ console.log( foo + Number(bar) ); // 3
 
 `Number` 构造函数被当作普通函数调用时（如上所示），会将传递给它的参数转换成数字。一元加号运算符也可以完成同样的功能：
 
-```
+```javascript
 // Forcing a string to act as a number (using the unary plus operator).
 console.log( foo + +bar ); // 3
 ```
@@ -64,7 +64,7 @@ console.log( foo + +bar ); // 3
 
 逻辑运算符允许通过与（`&&`）和或（`||`）运算符来对一系列的运算数进行运算。
 
-```
+```javascript
 // Logical AND and OR operators
 
 var foo = 1;
@@ -91,7 +91,7 @@ baz && foo;
 
 通常你会看到开发者使用逻辑运算符来代替 `if` 语句进行流程控制。例如：
 
-```
+```javascript
 // Do something with foo if foo is truthy.
 foo && doSomething( foo );
 
@@ -106,7 +106,7 @@ var bar = baz || createBar();
 
 比较运算符允许你来测试值是否相等或者是否相同。
 
-```
+```javascript
 // Comparison operators
 
 var foo = 1;

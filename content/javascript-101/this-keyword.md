@@ -9,7 +9,7 @@ In JavaScript, as in most object-oriented programming languages, `this` is a spe
 - If the function is being invoked as a method of an object, `this` will refer to that object.
 - Otherwise, the function is being invoked as a standalone function not attached to any object, and `this` will refer to the global object.
 
-```
+```javascript
 // A function invoked using Function.call()
 
 var myObject = {
@@ -27,7 +27,7 @@ myObject.sayHello();                    // "Hi! My name is Rebecca"
 myObject.sayHello.call( secondObject ); // "Hi! My name is Colin"
 ```
 
-```
+```javascript
 // A function created using Function.bind()
 
 var myName = "the global object";
@@ -43,7 +43,7 @@ sayHello();      // "Hi! My name is the global object"
 myObjectHello(); // "Hi! My name is Rebecca"
 ```
 
-```
+```javascript
 // A function being attached to an object at runtime.
 
 var myName = "the global object";
@@ -67,7 +67,7 @@ secondObject.sayHello(); // "Hi! My name is Colin"
 
 When invoking a function deep within a long namespace, it is often tempting to reduce the amount of code you need to type by storing a reference to the actual function as a single, shorter variable. It is important not to do this with instance methods as this will cause the value of `this` within the function to change, leading to incorrect code operation. For instance:
 
-```
+```javascript
 var myNamespace = {
 	myObject: {
 		sayHello: function() {
@@ -84,7 +84,7 @@ hello(); // "Hi! My name is undefined"
 
 You can, however, safely reduce everything up to the object on which the method is invoked:
 
-```
+```javascript
 var myNamespace = {
 	myObject: {
 		sayHello: function() {

@@ -6,7 +6,7 @@ Objects contain one or more key-value pairs. The key portion can be any string. 
 
 As it turns out, nearly everything in JavaScript is an object – arrays, functions, numbers, even strings – and they all have properties and methods.
 
-```
+```javascript
 // Creating an object literal.
 
 var myObject = {
@@ -23,7 +23,7 @@ console.log( myObject.myName ); // "Rebecca"
 
 When creating object literals, note that the key portion of each key-value pair can be written as any valid JavaScript identifier, a string (wrapped in quotes), or a number:
 
-```
+```javascript
 var myObject = {
 	validIdentifier: 123,
 	"some string": 456,
@@ -32,7 +32,7 @@ var myObject = {
 ```
 ## Iterating Over the Enumerable Properties of an Object:
 
-```
+```javascript
 var myObject = {
 	validIdentifier: 123,
 	"some string": 456,

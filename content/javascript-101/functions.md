@@ -6,7 +6,7 @@ Functions contain blocks of code that need to be executed repeatedly. Functions 
 
 Functions can be created in a variety of ways, two of which are shown below:
 
-```
+```javascript
 // Function declaration.
 
 function foo() {
@@ -14,7 +14,7 @@ function foo() {
 }
 ```
 
-```
+```javascript
 // Function expression.
 
 var foo = function() {
@@ -24,7 +24,7 @@ var foo = function() {
 
 ## Using Functions
 
-```
+```javascript
 // A simple function.
 
 var greet = function( person, greeting ) {
@@ -35,7 +35,7 @@ var greet = function( person, greeting ) {
 greet( "Rebecca", "Hello" ); // "Hello, Rebecca"
 ```
 
-```
+```javascript
 // A function that returns a value.
 
 var greet = function( person, greeting ) {
@@ -46,7 +46,7 @@ var greet = function( person, greeting ) {
 console.log( greet( "Rebecca", "Hello" ) ); // "Hello, Rebecca"
 ```
 
-```
+```javascript
 // A function that returns another function.
 
 var greet = function( person, greeting ) {
@@ -65,7 +65,7 @@ greeting(); // "Hello, Rebecca"
 
 A common pattern in JavaScript is the immediately-invoked function expression. This pattern creates a function expression and then immediately executes the function. This pattern is extremely useful for cases where you want to avoid polluting the global namespace with code – no variables declared inside of the function are visible outside of it.
 
-```
+```javascript
 // An immediately-invoked function expression.
 
 (function() {
@@ -79,7 +79,7 @@ console.log( foo ); // undefined!
 
 In JavaScript, functions are "first-class citizens" – they can be assigned to variables or passed to other functions as arguments. Passing functions as arguments is an extremely common idiom in jQuery.
 
-```
+```javascript
 // Passing an anonymous function as an argument.
 
 var myFn = function( fn ) {
@@ -93,7 +93,7 @@ myFn( function() {
 });
 ```
 
-```
+```javascript
 // Passing a named function as an argument
 
 var myFn = function( fn ) {

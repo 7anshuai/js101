@@ -8,7 +8,7 @@
 
 JavaScript 支持单行和多行注释。注释会被 JavaScript 引擎忽略，所以它对程序的结果没有影响。使用注释为其他开发者记录代码，像 [JSDoc](http://usejsdoc.org/ "JSDoc") 这类工具库，可以帮助生成基于注释的项目文档页面。
 
-```
+```javascript
 // Single- and multi-line comments.
 
 // This is an example of a single-line comment.
@@ -25,13 +25,13 @@ JavaScript 支持单行和多行注释。注释会被 JavaScript 引擎忽略，
 
 空白也被 JavaScript 引擎忽略。有许多工具可以用来去掉程序中的空白，降低了文件的整体大小和改进网络延迟。鉴于这类工具的可用性，空白应该加以利用，以使代码尽可能的易读。
 
-```
+```javascript
 // Whitespace is insignificant.
 var hello = "Hello";
 var world     =      "World!";
 ```
 
-```
+```javascript
 // Semantic whitespace promotes readability.
 // Readable code is good!
 var foo = function() {
@@ -64,7 +64,7 @@ var foo=function() {for(var i=0;i<10;i++){alert(i);}};foo();
 
 命名标识符的最佳实践是选取一个将来也能对你或者其他开发者有意义的名称。
 
-```
+```javascript
 // Valid identifier names.
 var myAwesomeVariable = "a";
 var myAwesomeVariable2 = "b";
@@ -77,7 +77,7 @@ var _my_awesome_variable_$ = "e";
 
 变量可以使用多个 `var` 语句来定义，或者使用单个组合的 `var` 语句。
 
-```
+```javascript
 // This works:
 var test = 1;
 var test2 = function() { ... };
@@ -91,7 +91,7 @@ var test4 = 1,
 
 变量可以在声明时不分配一个值，程序会给它们一个默认的值 `undefined`。
 
-```
+```javascript
 var x;
 x === undefined; // true
 ```

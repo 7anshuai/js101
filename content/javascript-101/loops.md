@@ -6,7 +6,7 @@
 
 循环让一块代码运行一定的次数：
 
-```
+```javascript
 for ( var i = 0; i < 5; i++ ) {
 	// Logs "try 0", "try 1", ..., "try 4".
 	console.log( "try " + i );
@@ -19,7 +19,7 @@ for ( var i = 0; i < 5; i++ ) {
 
 一个 `for` 循环由四个语句组成，并具有以下结构：
 
-```
+```javascript
 for ( [initialization]; [conditional]; [iteration] ) {
 
 	[loopBody]
@@ -37,7 +37,7 @@ for ( [initialization]; [conditional]; [iteration] ) {
 
 一个典型的 `for` 循环：
 
-```
+```javascript
 for (var i = 0, limit = 100; i < limit; i++) {
 	// This block will be executed 100 times.
 	console.log( "Currently at " + i );
@@ -49,7 +49,7 @@ for (var i = 0, limit = 100; i < limit; i++) {
 
 一个 `for...in` 循环遍历一个对象的属性，针对每一个属性，循环体语句可以被执行一次。
 
-```
+```javascript
 for ( prop in obj ) {
 	// statements here will be executed for every key in the object
 	console.log( prop + ': ' + obj[ prop ] );
@@ -61,7 +61,7 @@ for ( prop in obj ) {
 
 一个 `while` 循环类似于一个 `if` 语句，不同之处在于它的主体部分会继续执行，直到条件语句计算结果为一个假值。
 
-```
+```javascript
 while ( [conditional] ) {
 
 	[loopBody]
@@ -71,7 +71,7 @@ while ( [conditional] ) {
 
 一个典型的 `while` 循环：
 
-```
+```javascript
 var i = 0;
 while ( i < 100 ) {
 	// This block will be executed 100 times.
@@ -82,7 +82,7 @@ while ( i < 100 ) {
 
 需要注意的是计数器是在循环的主体部分递增的。将条件和增量合并也是可行的，像这样：
 
-```
+```javascript
 var i = -1;
 while ( ++i < 100 ) {
 	// This block will be executed 100 times.
@@ -96,7 +96,7 @@ while ( ++i < 100 ) {
 
 这几乎是与 `while` 循环完全一样的，不同的是实际上它的循环主体内容在条件测试之前至少会执行一次。
 
-```
+```javascript
 do {
 
 	[loopBody]
@@ -106,7 +106,7 @@ do {
 
 一个 `do-while` 循环：
 
-```
+```javascript
 do {
 	// Even though the condition evaluates to false
 	// this loop's body will still execute once.
@@ -121,7 +121,7 @@ do {
 
 通常的，条件语句的计算结果不是一个真值会导致循环的终止，但是也可以通过循环内部的 `break` 语句将循环在其正常运行轨道期终止：
 
-```
+```javascript
 // Stopping a loop
 for ( var i = 0; i < 10; i++ ) {
 	if ( something ) {
@@ -132,7 +132,7 @@ for ( var i = 0; i < 10; i++ ) {
 
 你可能还需要继续循环，但不执行循环主体内的部分内容。这可以通过 `continue` 语句做到：
 
-```
+```javascript
 // Skipping to the next iteration of a loop
 for ( var i = 0; i < 10; i++ ) {
 	if ( something ) {

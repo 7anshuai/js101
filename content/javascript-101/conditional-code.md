@@ -6,7 +6,7 @@
 
 有时候一个代码块应该只在一定条件下运行。流程控制 － 通过 `if` 和 `else` 代码块，让你的代码只在满足一定的条件下运行。
 
-```
+```javascript
 // Flow control
 
 var foo = true;
@@ -39,7 +39,7 @@ if ( bar ) {
 
 为了成功的使用流程控制，重要的一点是需要理解哪些类型的值是“truthy”，哪些是“falsy”。有时候一个值实际计算的结果和看起来应该会得到的结果不同。
 
-```
+```javascript
 // Values that evaluate to false:
 false
 "" // An empty string.
@@ -49,7 +49,7 @@ undefined // Be careful -- undefined can be redefined!
 0 // The number zero.
 ```
 
-```
+```javascript
 // Everything else evaluates to true, some examples:
 "0"
 "any string"
@@ -64,7 +64,7 @@ undefined // Be careful -- undefined can be redefined!
 
 三元运算符：
 
-```
+```javascript
 // Set foo to 1 if bar is true; otherwise, set foo to 0:
 var foo = bar ? 1 : 0;
 ```
@@ -75,7 +75,7 @@ var foo = bar ? 1 : 0;
 
 比起使用一系列的 `if` 或 `else` 代码块，有时使用一个 `switch` 语句替代会更有效。`switch` 语句查看一个变量或表达式的值，并根据不同的值执行不同的代码块。
 
-```
+```javascript
 // A switch statement
 
 switch ( foo ) {
@@ -96,7 +96,7 @@ switch ( foo ) {
 
 在 JavaScript 中 switch 语句有些不太流行，因为同样的行为可以通过创建一个可重用和易测试的对象来完成。
 
-```
+```javascript
 var stuffToDo = {
 
 	"bar": function() {

@@ -22,7 +22,7 @@ CSS 是一个为 HTML 文档应用样式的附加语言。CSS 的全部都是关
 
 看下面这个包含了 CSS 和 JavaScript 的简单 HTML 页面，了解这一切是如何组织在一起的：
 
-```
+```html
 <!doctype html>
 <html lang="en">
 <head>

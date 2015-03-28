@@ -8,7 +8,7 @@ JavaScript 提供了一种方法来测试变量的类型。然而，其结果可
 
 当试图检测一个特定值的类型时，常见的做法是使用 `typeof` 运算符。
 
-```
+```javascript
 // Testing the type of various variables.
 var myFunction = function() {
 	console.log( "hello" );
