@@ -45,75 +45,75 @@
 <li>If the function is being invoked as a method of an object, <code>this</code> will refer to that object.</li>
 <li>Otherwise, the function is being invoked as a standalone function not attached to any object, and <code>this</code> will refer to the global object.</li>
 </ul>
-<pre>// A function invoked using Function.call()
+<div class="highlight"><pre><code class="javascript"><span class="comment">// A function invoked using Function.call()</span>
 
-var myObject = {
-    sayHello: function() {
-        console.log( &quot;Hi! My name is &quot; + this.myName );
+<span class="keyword">var</span> myObject = {
+    sayHello: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log( <span class="string">"Hi! My name is "</span> + <span class="keyword">this</span>.myName );
     },
-    myName: &quot;Rebecca&quot;
+    myName: <span class="string">"Rebecca"</span>
 };
 
-var secondObject = {
-    myName: &quot;Colin&quot;
+<span class="keyword">var</span> secondObject = {
+    myName: <span class="string">"Colin"</span>
 };
 
-myObject.sayHello();                    // &quot;Hi! My name is Rebecca&quot;
-myObject.sayHello.call( secondObject ); // &quot;Hi! My name is Colin&quot;</pre><pre>// A function created using Function.bind()
+myObject.sayHello();                    <span class="comment">// "Hi! My name is Rebecca"</span>
+myObject.sayHello.call( secondObject ); <span class="comment">// "Hi! My name is Colin"</span></code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// A function created using Function.bind()</span>
 
-var myName = &quot;the global object&quot;;
-var sayHello = function() {
-    console.log( &quot;Hi! My name is &quot; + this.myName );
+<span class="keyword">var</span> myName = <span class="string">"the global object"</span>;
+<span class="keyword">var</span> sayHello = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    console.log( <span class="string">"Hi! My name is "</span> + <span class="keyword">this</span>.myName );
 };
-var myObject = {
-    myName: &quot;Rebecca&quot;
+<span class="keyword">var</span> myObject = {
+    myName: <span class="string">"Rebecca"</span>
 };
-var myObjectHello = sayHello.bind( myObject );
+<span class="keyword">var</span> myObjectHello = sayHello.bind( myObject );
 
-sayHello();      // &quot;Hi! My name is the global object&quot;
-myObjectHello(); // &quot;Hi! My name is Rebecca&quot;</pre><pre>// A function being attached to an object at runtime.
+sayHello();      <span class="comment">// "Hi! My name is the global object"</span>
+myObjectHello(); <span class="comment">// "Hi! My name is Rebecca"</span></code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// A function being attached to an object at runtime.</span>
 
-var myName = &quot;the global object&quot;;
-var sayHello = function() {
-    console.log( &quot;Hi! My name is &quot; + this.myName );
+<span class="keyword">var</span> myName = <span class="string">"the global object"</span>;
+<span class="keyword">var</span> sayHello = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    console.log( <span class="string">"Hi! My name is "</span> + <span class="keyword">this</span>.myName );
 };
-var myObject = {
-    myName: &quot;Rebecca&quot;
+<span class="keyword">var</span> myObject = {
+    myName: <span class="string">"Rebecca"</span>
 };
-var secondObject = {
-    myName: &quot;Colin&quot;
+<span class="keyword">var</span> secondObject = {
+    myName: <span class="string">"Colin"</span>
 };
 
 myObject.sayHello = sayHello;
 secondObject.sayHello = sayHello;
 
-sayHello();              // &quot;Hi! My name is the global object&quot;
-myObject.sayHello();     // &quot;Hi! My name is Rebecca&quot;
-secondObject.sayHello(); // &quot;Hi! My name is Colin&quot;</pre><p>When invoking a function deep within a long namespace, it is often tempting to reduce the amount of code you need to type by storing a reference to the actual function as a single, shorter variable. It is important not to do this with instance methods as this will cause the value of <code>this</code> within the function to change, leading to incorrect code operation. For instance:</p>
-<pre>var myNamespace = {
+sayHello();              <span class="comment">// "Hi! My name is the global object"</span>
+myObject.sayHello();     <span class="comment">// "Hi! My name is Rebecca"</span>
+secondObject.sayHello(); <span class="comment">// "Hi! My name is Colin"</span></code></pre></div><p>When invoking a function deep within a long namespace, it is often tempting to reduce the amount of code you need to type by storing a reference to the actual function as a single, shorter variable. It is important not to do this with instance methods as this will cause the value of <code>this</code> within the function to change, leading to incorrect code operation. For instance:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myNamespace = {
     myObject: {
-        sayHello: function() {
-            console.log( &quot;Hi! My name is &quot; + this.myName );
+        sayHello: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+            console.log( <span class="string">"Hi! My name is "</span> + <span class="keyword">this</span>.myName );
         },
-        myName: &quot;Rebecca&quot;
+        myName: <span class="string">"Rebecca"</span>
     }
 };
 
-var hello = myNamespace.myObject.sayHello;
+<span class="keyword">var</span> hello = myNamespace.myObject.sayHello;
 
-hello(); // &quot;Hi! My name is undefined&quot;</pre><p>You can, however, safely reduce everything up to the object on which the method is invoked:</p>
-<pre>var myNamespace = {
+hello(); <span class="comment">// "Hi! My name is undefined"</span></code></pre></div><p>You can, however, safely reduce everything up to the object on which the method is invoked:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myNamespace = {
     myObject: {
-        sayHello: function() {
-            console.log( &quot;Hi! My name is &quot; + this.myName );
+        sayHello: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+            console.log( <span class="string">"Hi! My name is "</span> + <span class="keyword">this</span>.myName );
         },
-        myName: &quot;Rebecca&quot;
+        myName: <span class="string">"Rebecca"</span>
     }
 };
 
-var obj = myNamespace.myObject;
+<span class="keyword">var</span> obj = myNamespace.myObject;
 
-obj.sayHello(); // &quot;Hi! My name is Rebecca&quot;</pre></div>
+obj.sayHello(); <span class="comment">// "Hi! My name is Rebecca"</span></code></pre></div></div>
 </div>
 </div>
     <div class="footer">

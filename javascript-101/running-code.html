@@ -39,44 +39,44 @@
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">运行代码</h1>
   <div class="entry-content" itemprop="articleBody"><h3 id="外部">外部</h3><p>第一种也是推荐的方式是在一个外部文件（带有 <code>.js</code> 扩展名）编写代码，然后可以使用 HTML <code>script</code> 元素并通过 <code>src</code> 属性指定文件的位置来引入到网页中。当你需要将代码重复使用在其他页面时，保持 JavaScript 在一个单独的文件中可以减少代码的重复。另外它也可以让浏览器将文件缓存到客户端的计算机上，减少网页加载时间。</p>
-<pre>&lt;!-- Code is written in a .js file, included via the script tag src attribute. --&gt;
-&lt;script src=&quot;/path/to/example.js&quot;&gt;&lt;/script&gt;</pre><h3 id="内嵌">内嵌</h3><p>第二种方式是直接将代码内嵌在网页中。它也是通过 HTML <code>script</code> 元素实现，但不是通过 <code>src</code> 属性指定一个文件，而是将代码放置在元素中间。虽然有些情况下可以使用这种方式，但大部分时间，最好是如上所述将我们的代码放置在外部文件中。</p>
-<pre>&lt;!-- Embed code directly on a web page using script tags. --&gt;
-&lt;script&gt;
-alert( &quot;Hello World!&quot; );
-&lt;/script&gt;</pre><h3 id="属性">属性</h3><p>最后一个选择是使用 HTML 元素的事件处理程序属性。这种方式是强烈不推荐的：</p>
-<pre>&lt;!-- Inline code directly on HTML elements being clicked. --&gt;
-&lt;a href=&quot;javascript:alert( &#39;Hello World&#39; );&quot;&gt;Click Me!&lt;/a&gt;
-&lt;button onclick=&quot;alert( &#39;Good Bye World&#39; );&quot;&gt;Click Me Too!&lt;/button&gt;</pre><h3 id="位置">位置</h3><p>在上面的前两个方式中，代码的位置是重要的，并且需要根据情况而改变。如果你添加不访问页面元素的 JavaScript，你可以放心的把脚本放在 HTML <code>&lt;/head&gt;</code> 之前。但是，如果代码将与页面上的元素交互，就必须确保在执行代码时这些元素已经存在了。可以在下面的例子中看到这个常见的陷阱，一段查找 ID 为 <code>hello-world</code> 的元素脚本将会在页面定义元素之前执行。</p>
-<pre>&lt;!doctype html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;script&gt;
-    // Attempting to access an element too early will have unexpected results.
-    var title = document.getElementById( &quot;hello-world&quot; );
+<div class="highlight"><pre><code class="xml"><span class="comment">&lt;!-- Code is written in a .js file, included via the script tag src attribute. --&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"/path/to/example.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code></pre></div><h3 id="内嵌">内嵌</h3><p>第二种方式是直接将代码内嵌在网页中。它也是通过 HTML <code>script</code> 元素实现，但不是通过 <code>src</code> 属性指定一个文件，而是将代码放置在元素中间。虽然有些情况下可以使用这种方式，但大部分时间，最好是如上所述将我们的代码放置在外部文件中。</p>
+<div class="highlight"><pre><code class="xml"><span class="comment">&lt;!-- Embed code directly on a web page using script tags. --&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+alert( <span class="string">"Hello World!"</span> );
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code></pre></div><h3 id="属性">属性</h3><p>最后一个选择是使用 HTML 元素的事件处理程序属性。这种方式是强烈不推荐的：</p>
+<div class="highlight"><pre><code class="xml"><span class="comment">&lt;!-- Inline code directly on HTML elements being clicked. --&gt;</span>
+<span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"javascript:alert( 'Hello World' );"</span>&gt;</span>Click Me!<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+<span class="tag">&lt;<span class="title">button</span> <span class="attribute">onclick</span>=<span class="value">"alert( 'Good Bye World' );"</span>&gt;</span>Click Me Too!<span class="tag">&lt;/<span class="title">button</span>&gt;</span></code></pre></div><h3 id="位置">位置</h3><p>在上面的前两个方式中，代码的位置是重要的，并且需要根据情况而改变。如果你添加不访问页面元素的 JavaScript，你可以放心的把脚本放在 HTML <code>&lt;/head&gt;</code> 之前。但是，如果代码将与页面上的元素交互，就必须确保在执行代码时这些元素已经存在了。可以在下面的例子中看到这个常见的陷阱，一段查找 ID 为 <code>hello-world</code> 的元素脚本将会在页面定义元素之前执行。</p>
+<div class="highlight"><pre><code class="xml"><span class="doctype">&lt;!doctype html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+    <span class="comment">// Attempting to access an element too early will have unexpected results.</span>
+    <span class="keyword">var</span> title = document.getElementById( <span class="string">"hello-world"</span> );
     console.log( title );
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
 
-&lt;h1 id=&quot;hello-world&quot;&gt;Hello World&lt;/h1&gt;
+<span class="tag">&lt;<span class="title">h1</span> <span class="attribute">id</span>=<span class="value">"hello-world"</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;</pre><p>一个常见的模式是将脚本移动到页面的底部，HTML <code>&lt;/body&gt;</code> 前。这可以保证当执行代码时，元素已经在页面中定义了：</p>
-<pre>&lt;!doctype html&gt;
-&lt;html&gt;
-&lt;head&gt;&lt;/head&gt;
-&lt;body&gt;
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div><p>一个常见的模式是将脚本移动到页面的底部，HTML <code>&lt;/body&gt;</code> 前。这可以保证当执行代码时，元素已经在页面中定义了：</p>
+<div class="highlight"><pre><code class="xml"><span class="doctype">&lt;!doctype html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span><span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
 
-&lt;h1 id=&quot;hello-world&quot;&gt;Hello World&lt;/h1&gt;
-&lt;script&gt;
-// Moving the script to the bottom of the page will make sure the element exists.
-var title = document.getElementById( &quot;hello-world&quot; );
+<span class="tag">&lt;<span class="title">h1</span> <span class="attribute">id</span>=<span class="value">"hello-world"</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+<span class="comment">// Moving the script to the bottom of the page will make sure the element exists.</span>
+<span class="keyword">var</span> title = document.getElementById( <span class="string">"hello-world"</span> );
 console.log( title );
-&lt;/script&gt;
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;</pre></div>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div></div>
 
   <div class="entry-meta">
     <time class="updated" datetime="2015-03-03T00:00:00.000Z" itemprop="dateModified">Tuesday, Mar 3rd, 2015</time>

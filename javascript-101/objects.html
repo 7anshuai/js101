@@ -40,42 +40,42 @@
   <h1 class="entry-title" itemprop="name">Objects</h1>
   <div class="entry-content" itemprop="articleBody"><p>Objects contain one or more key-value pairs. The key portion can be any string. The value portion can be any type of value: a number, a string, an array, a function, or even another object.  When one of these values is a function, it’s called a method of the object. Otherwise, they are called properties.</p>
 <p>As it turns out, nearly everything in JavaScript is an object – arrays, functions, numbers, even strings – and they all have properties and methods.</p>
-<pre>// Creating an object literal.
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Creating an object literal.</span>
 
-var myObject = {
-    sayHello: function() {
-        console.log( &quot;hello&quot; );
+<span class="keyword">var</span> myObject = {
+    sayHello: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log( <span class="string">"hello"</span> );
     },
-    myName: &quot;Rebecca&quot;
+    myName: <span class="string">"Rebecca"</span>
 };
 
-myObject.sayHello(); // &quot;hello&quot;
+myObject.sayHello(); <span class="comment">// "hello"</span>
 
-console.log( myObject.myName ); // &quot;Rebecca&quot;</pre><p>When creating object literals, note that the key portion of each key-value pair can be written as any valid JavaScript identifier, a string (wrapped in quotes), or a number:</p>
-<pre>var myObject = {
-    validIdentifier: 123,
-    &quot;some string&quot;: 456,
-    99999: 789
-};</pre><h2 id="iterating-over-the-enumerable-properties-of-an-object">Iterating Over the Enumerable Properties of an Object:</h2><pre>var myObject = {
-    validIdentifier: 123,
-    &quot;some string&quot;: 456,
-    99999: 789
+console.log( myObject.myName ); <span class="comment">// "Rebecca"</span></code></pre></div><p>When creating object literals, note that the key portion of each key-value pair can be written as any valid JavaScript identifier, a string (wrapped in quotes), or a number:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myObject = {
+    validIdentifier: <span class="number">123</span>,
+    <span class="string">"some string"</span>: <span class="number">456</span>,
+    <span class="number">99999</span>: <span class="number">789</span>
+};</code></pre></div><h2 id="iterating-over-the-enumerable-properties-of-an-object">Iterating Over the Enumerable Properties of an Object:</h2><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myObject = {
+    validIdentifier: <span class="number">123</span>,
+    <span class="string">"some string"</span>: <span class="number">456</span>,
+    <span class="number">99999</span>: <span class="number">789</span>
 };
 
-for ( var prop in myObject ) {
-    // Determine if the property is on the object itself.
-    // (not on the prototype)
-    if ( myObject.hasOwnProperty( prop ) ) {
-        console.log( &quot;Property : &quot; + prop + &quot; ; value : &quot; + myObject[ prop ] );
+<span class="keyword">for</span> ( <span class="keyword">var</span> prop <span class="keyword">in</span> myObject ) {
+    <span class="comment">// Determine if the property is on the object itself.</span>
+    <span class="comment">// (not on the prototype)</span>
+    <span class="keyword">if</span> ( myObject.hasOwnProperty( prop ) ) {
+        console.log( <span class="string">"Property : "</span> + prop + <span class="string">" ; value : "</span> + myObject[ prop ] );
     }
 }
 
-// Would log the following:
-// Please note that the order is not guaranteed and may differ.
+<span class="comment">// Would log the following:</span>
+<span class="comment">// Please note that the order is not guaranteed and may differ.</span>
 
-// Property : 99999 ; value : 789
-// Property : validIdentifier ; value : 123
-// Property : some string ; value : 456</pre></div>
+<span class="comment">// Property : 99999 ; value : 789</span>
+<span class="comment">// Property : validIdentifier ; value : 123</span>
+<span class="comment">// Property : some string ; value : 456</span></code></pre></div></div>
 </div>
 </div>
     <div class="footer">

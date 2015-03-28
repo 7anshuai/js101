@@ -39,79 +39,79 @@
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">运算符</h1>
   <div class="entry-content" itemprop="articleBody"><p>基本的运算符让你可以操作值。</p>
-<pre>// Concatenation
-var foo = &quot;hello&quot;;
-var bar = &quot;world&quot;;
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Concatenation</span>
+<span class="keyword">var</span> foo = <span class="string">"hello"</span>;
+<span class="keyword">var</span> bar = <span class="string">"world"</span>;
 
-console.log( foo + &quot; &quot; + bar ); // &quot;hello world&quot;</pre><pre>// Multiplication and division
-2 * 3;
-2 / 3;</pre><pre>// Incrementing and decrementing
-// The pre-increment operator increments the operand before any further processing.
-var i = 1;
-console.log( ++i ); // 2 - because i was incremented before evaluation
-console.log( i );   // 2
+console.log( foo + <span class="string">" "</span> + bar ); <span class="comment">// "hello world"</span></code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// Multiplication and division</span>
+<span class="number">2</span> * <span class="number">3</span>;
+<span class="number">2</span> / <span class="number">3</span>;</code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// Incrementing and decrementing</span>
+<span class="comment">// The pre-increment operator increments the operand before any further processing.</span>
+<span class="keyword">var</span> i = <span class="number">1</span>;
+console.log( ++i ); <span class="comment">// 2 - because i was incremented before evaluation</span>
+console.log( i );   <span class="comment">// 2</span>
 
-// The post-increment operator increments the operand after processing it.
-var i = 1;
-console.log( i++ ); // 1 - because i was evaluated to 1 and _then_ incremented
-console.log( i );   // 2 - incremented after using it</pre><h2 id="数字和字符串操作">数字和字符串操作</h2><p>在 JavaScript 中，数字和字符串偶尔会表现的出人意料。</p>
-<pre>// Addition vs. Concatenation
-var foo = 1;
-var bar = &quot;2&quot;;
+<span class="comment">// The post-increment operator increments the operand after processing it.</span>
+<span class="keyword">var</span> i = <span class="number">1</span>;
+console.log( i++ ); <span class="comment">// 1 - because i was evaluated to 1 and _then_ incremented</span>
+console.log( i );   <span class="comment">// 2 - incremented after using it</span></code></pre></div><h2 id="数字和字符串操作">数字和字符串操作</h2><p>在 JavaScript 中，数字和字符串偶尔会表现的出人意料。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Addition vs. Concatenation</span>
+<span class="keyword">var</span> foo = <span class="number">1</span>;
+<span class="keyword">var</span> bar = <span class="string">"2"</span>;
 
-console.log( foo + bar ); // &quot;12&quot;</pre><pre>// Coercing a string to act as a number.
-var foo = 1;
-var bar = &quot;2&quot;;
+console.log( foo + bar ); <span class="comment">// "12"</span></code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// Coercing a string to act as a number.</span>
+<span class="keyword">var</span> foo = <span class="number">1</span>;
+<span class="keyword">var</span> bar = <span class="string">"2"</span>;
 
-console.log( foo + Number(bar) ); // 3</pre><p><code>Number</code> 构造函数被当作普通函数调用时（如上所示），会将传递给它的参数转换成数字。一元加号运算符也可以完成同样的功能：</p>
-<pre>// Forcing a string to act as a number (using the unary plus operator).
-console.log( foo + +bar ); // 3</pre><h2 id="逻辑运算符">逻辑运算符</h2><p>逻辑运算符允许通过与（<code>&amp;&amp;</code>）和或（<code>||</code>）运算符来对一系列的运算数进行运算。</p>
-<pre>// Logical AND and OR operators
+console.log( foo + Number(bar) ); <span class="comment">// 3</span></code></pre></div><p><code>Number</code> 构造函数被当作普通函数调用时（如上所示），会将传递给它的参数转换成数字。一元加号运算符也可以完成同样的功能：</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Forcing a string to act as a number (using the unary plus operator).</span>
+console.log( foo + +bar ); <span class="comment">// 3</span></code></pre></div><h2 id="逻辑运算符">逻辑运算符</h2><p>逻辑运算符允许通过与（<code>&amp;&amp;</code>）和或（<code>||</code>）运算符来对一系列的运算数进行运算。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Logical AND and OR operators</span>
 
-var foo = 1;
-var bar = 0;
-var baz = 2;
+<span class="keyword">var</span> foo = <span class="number">1</span>;
+<span class="keyword">var</span> bar = <span class="number">0</span>;
+<span class="keyword">var</span> baz = <span class="number">2</span>;
 
-// returns 1, which is true
+<span class="comment">// returns 1, which is true</span>
 foo || bar;
 
-// returns 1, which is true
+<span class="comment">// returns 1, which is true</span>
 bar || foo;
 
-// returns 0, which is false
-foo && bar;
+<span class="comment">// returns 0, which is false</span>
+foo &amp;&amp; bar;
 
-// returns 2, which is true
-foo && baz;
+<span class="comment">// returns 2, which is true</span>
+foo &amp;&amp; baz;
 
-// returns 1, which is true
-baz && foo;</pre><p>在上面的例子中，<code>||</code> 运算符返回第一个真值运算数的值，或者在运算数都是真值的情况下返回最后一个运算数的值。<code>&amp;&amp;</code> 运算符返回第一个假值运算数的值，或者当运算数都是真值的情况下返回最后一个运算数的值。</p>
+<span class="comment">// returns 1, which is true</span>
+baz &amp;&amp; foo;</code></pre></div><p>在上面的例子中，<code>||</code> 运算符返回第一个真值运算数的值，或者在运算数都是真值的情况下返回最后一个运算数的值。<code>&amp;&amp;</code> 运算符返回第一个假值运算数的值，或者当运算数都是真值的情况下返回最后一个运算数的值。</p>
 <p>通常你会看到开发者使用逻辑运算符来代替 <code>if</code> 语句进行流程控制。例如：</p>
-<pre>// Do something with foo if foo is truthy.
-foo && doSomething( foo );
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Do something with foo if foo is truthy.</span>
+foo &amp;&amp; doSomething( foo );
 
-// Set bar to baz if baz is truthy;
-// otherwise, set it to the return value of createBar()
-var bar = baz || createBar();</pre><p>这种风格比较优雅和简洁，但是也可能难于阅读或使用，特别是对新手来说。在<a href="/javascript-101/conditional-code.html">条件代码</a>部分可查看更多关于真值和假值的事情。</p>
+<span class="comment">// Set bar to baz if baz is truthy;</span>
+<span class="comment">// otherwise, set it to the return value of createBar()</span>
+<span class="keyword">var</span> bar = baz || createBar();</code></pre></div><p>这种风格比较优雅和简洁，但是也可能难于阅读或使用，特别是对新手来说。在<a href="/javascript-101/conditional-code.html">条件代码</a>部分可查看更多关于真值和假值的事情。</p>
 <h2 id="比较运算符">比较运算符</h2><p>比较运算符允许你来测试值是否相等或者是否相同。</p>
-<pre>// Comparison operators
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Comparison operators</span>
 
-var foo = 1;
-var bar = 0;
-var baz = &quot;1&quot;;
-var bim = 2;
+<span class="keyword">var</span> foo = <span class="number">1</span>;
+<span class="keyword">var</span> bar = <span class="number">0</span>;
+<span class="keyword">var</span> baz = <span class="string">"1"</span>;
+<span class="keyword">var</span> bim = <span class="number">2</span>;
 
-foo == bar; // false
-foo != bar; // true
-foo == baz; // true; but note that the types are different
+foo == bar; <span class="comment">// false</span>
+foo != bar; <span class="comment">// true</span>
+foo == baz; <span class="comment">// true; but note that the types are different</span>
 
-foo === baz;             // false
-foo !== baz;             // true
-foo === parseInt( baz ); // true
+foo === baz;             <span class="comment">// false</span>
+foo !== baz;             <span class="comment">// true</span>
+foo === parseInt( baz ); <span class="comment">// true</span>
 
-foo &gt; bim;  // false
-bim &gt; baz;  // true
-foo &lt;= baz; // true</pre><p>有关比较运算符的更多信息，可访问<a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Operators/Comparison_Operators" title="MDN - 比较运算符">Mozilla 开发者网络</a>。</p>
+foo &gt; bim;  <span class="comment">// false</span>
+bim &gt; baz;  <span class="comment">// true</span>
+foo &lt;= baz; <span class="comment">// true</span></code></pre></div><p>有关比较运算符的更多信息，可访问<a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Operators/Comparison_Operators" title="MDN - 比较运算符">Mozilla 开发者网络</a>。</p>
 </div>
 
   <div class="entry-meta">

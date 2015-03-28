@@ -40,123 +40,123 @@
   <h1 class="entry-title" itemprop="name">数组</h1>
   <div class="entry-content" itemprop="articleBody"><p>数组是从零索引，值的有序列表。数组是一个简便的方式来存储一组相同类型的有关项（例如字符串），但实际上，一个数组可以包含多个类型的项，甚至是其他数组。</p>
 <p>创建一个数组，可以使用数组构造函数或者字面量声明式，在声明后，可以赋给变量一系列的值。</p>
-<pre>// A simple array with constructor.
-var myArray1 = new Array( &quot;hello&quot;, &quot;world&quot; );
+<div class="highlight"><pre><code class="javascript"><span class="comment">// A simple array with constructor.</span>
+<span class="keyword">var</span> myArray1 = <span class="keyword">new</span> Array( <span class="string">"hello"</span>, <span class="string">"world"</span> );
 
-// Literal declaration, the preferred way.
-var myArray2 = [ &quot;hello&quot;, &quot;world&quot; ];</pre><p>字面量声明式通常是更好的选择。查看<a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Array_and_Object_literals">谷歌编码指南</a>可获得更多信息。</p>
+<span class="comment">// Literal declaration, the preferred way.</span>
+<span class="keyword">var</span> myArray2 = [ <span class="string">"hello"</span>, <span class="string">"world"</span> ];</code></pre></div><p>字面量声明式通常是更好的选择。查看<a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Array_and_Object_literals">谷歌编码指南</a>可获得更多信息。</p>
 <p>如果值是未知的，也可以创建一个空的数组，然后通过数组方法或者访问索引来添加元素：</p>
-<pre>// Creating empty arrays and adding values
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Creating empty arrays and adding values</span>
 
-var myArray = [];
+<span class="keyword">var</span> myArray = [];
 
-// Adds &quot;hello&quot; on index 0
-myArray.push( &quot;hello&quot; );
+<span class="comment">// Adds "hello" on index 0</span>
+myArray.push( <span class="string">"hello"</span> );
 
-// Adds &quot;world&quot; on index 1
-myArray.push( &quot;world&quot; );
+<span class="comment">// Adds "world" on index 1</span>
+myArray.push( <span class="string">"world"</span> );
 
-// Adds &quot;!&quot; on index 2
-myArray[ 2 ] = &quot;!&quot;;</pre><p><code>.push()</code> 是一个函数，它扩展数组并添加一个元素到尾端。您也可以直接通过索引添加项。缺失的指数项将会被 <code>undefined</code> 填充。</p>
-<pre>// Leaving indices
+<span class="comment">// Adds "!" on index 2</span>
+myArray[ <span class="number">2</span> ] = <span class="string">"!"</span>;</code></pre></div><p><code>.push()</code> 是一个函数，它扩展数组并添加一个元素到尾端。您也可以直接通过索引添加项。缺失的指数项将会被 <code>undefined</code> 填充。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Leaving indices</span>
 
-var myArray = [];
+<span class="keyword">var</span> myArray = [];
 
-myArray[ 0 ] = &quot;hello&quot;;
-myArray[ 1 ] = &quot;world&quot;;
-myArray[ 3 ] = &quot;!&quot;;
+myArray[ <span class="number">0</span> ] = <span class="string">"hello"</span>;
+myArray[ <span class="number">1</span> ] = <span class="string">"world"</span>;
+myArray[ <span class="number">3</span> ] = <span class="string">"!"</span>;
 
-console.log( myArray ); // [ &quot;hello&quot;, &quot;world&quot;, undefined, &quot;!&quot; ];</pre><p>如果数组的大小是未知的，<code>.push()</code> 是更安全的。您可以通过索引取值或者赋值给数组项。</p>
-<pre>// Accessing array items by index
+console.log( myArray ); <span class="comment">// [ "hello", "world", undefined, "!" ];</span></code></pre></div><p>如果数组的大小是未知的，<code>.push()</code> 是更安全的。您可以通过索引取值或者赋值给数组项。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Accessing array items by index</span>
 
-var myArray = [ &quot;hello&quot;, &quot;world&quot;, &quot;!&quot; ];
+<span class="keyword">var</span> myArray = [ <span class="string">"hello"</span>, <span class="string">"world"</span>, <span class="string">"!"</span> ];
 
-console.log( myArray[ 2 ] ); // &quot;!&quot;</pre><h2 id="数组方法和属性">数组方法和属性</h2><h3 id="length">.length</h3><p><code>.length</code> 属性用于确定数组项的数量。</p>
-<pre>// Length of an array
+console.log( myArray[ <span class="number">2</span> ] ); <span class="comment">// "!"</span></code></pre></div><h2 id="数组方法和属性">数组方法和属性</h2><h3 id="length">.length</h3><p><code>.length</code> 属性用于确定数组项的数量。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Length of an array</span>
 
-var myArray = [ &quot;hello&quot;, &quot;world&quot;, &quot;!&quot; ];
+<span class="keyword">var</span> myArray = [ <span class="string">"hello"</span>, <span class="string">"world"</span>, <span class="string">"!"</span> ];
 
-console.log( myArray.length ); // 3</pre><p>您将需要 <code>.length</code> 属性用于遍历一个数组：</p>
-<pre>// For loops and arrays - a classic
+console.log( myArray.length ); <span class="comment">// 3</span></code></pre></div><p>您将需要 <code>.length</code> 属性用于遍历一个数组：</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// For loops and arrays - a classic</span>
 
-var myArray = [ &quot;hello&quot;, &quot;world&quot;, &quot;!&quot; ];
+<span class="keyword">var</span> myArray = [ <span class="string">"hello"</span>, <span class="string">"world"</span>, <span class="string">"!"</span> ];
 
-for ( var i = 0; i &lt; myArray.length; i = i + 1 ) {
+<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; myArray.length; i = i + <span class="number">1</span> ) {
 
     console.log( myArray[ i ] );
 
-}</pre><h3 id="concat">.concat()</h3><p>通过 <code>.concat()</code> 串联两个或多个数组：</p>
-<pre>var myArray = [ 2, 3, 4 ];
-var myOtherArray = [ 5, 6, 7 ];
-var wholeArray = myArray.concat( myOtherArray ); // [ 2, 3, 4, 5, 6, 7 ]</pre><h3 id="join">.join()</h3><p><code>.join()</code> 使用一个分隔字符拼接数组的所有元素并创建数组的字符串表示。如果没有提供分隔符（即不带参数调用 <code>.join()</code>），数组会使用逗号进行拼接。</p>
-<pre>// Joining elements
+}</code></pre></div><h3 id="concat">.concat()</h3><p>通过 <code>.concat()</code> 串联两个或多个数组：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myArray = [ <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ];
+<span class="keyword">var</span> myOtherArray = [ <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span> ];
+<span class="keyword">var</span> wholeArray = myArray.concat( myOtherArray ); <span class="comment">// [ 2, 3, 4, 5, 6, 7 ]</span></code></pre></div><h3 id="join">.join()</h3><p><code>.join()</code> 使用一个分隔字符拼接数组的所有元素并创建数组的字符串表示。如果没有提供分隔符（即不带参数调用 <code>.join()</code>），数组会使用逗号进行拼接。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Joining elements</span>
 
-var myArray = [ &quot;hello&quot;, &quot;world&quot;, &quot;!&quot; ];
+<span class="keyword">var</span> myArray = [ <span class="string">"hello"</span>, <span class="string">"world"</span>, <span class="string">"!"</span> ];
 
-// The default separator is a comma.
-console.log( myArray.join() );     // &quot;hello,world,!&quot;
+<span class="comment">// The default separator is a comma.</span>
+console.log( myArray.join() );     <span class="comment">// "hello,world,!"</span>
 
-// Any string can be used as separator...
-console.log( myArray.join( &quot; &quot; ) );  // &quot;hello world !&quot;;
-console.log( myArray.join( &quot;!!&quot; ) ); // &quot;hello!!world!!!&quot;;
+<span class="comment">// Any string can be used as separator...</span>
+console.log( myArray.join( <span class="string">" "</span> ) );  <span class="comment">// "hello world !";</span>
+console.log( myArray.join( <span class="string">"!!"</span> ) ); <span class="comment">// "hello!!world!!!";</span>
 
-// ...including an empty one.
-console.log( myArray.join( &quot;&quot; ) );   // &quot;helloworld!&quot;</pre><h3 id="pop">.pop()</h3><p><code>.pop()</code> 移除数组的最后一个元素。它是 <code>.push()</code> 的对立方法：</p>
-<pre>// Pushing and popping
+<span class="comment">// ...including an empty one.</span>
+console.log( myArray.join( <span class="string">""</span> ) );   <span class="comment">// "helloworld!"</span></code></pre></div><h3 id="pop">.pop()</h3><p><code>.pop()</code> 移除数组的最后一个元素。它是 <code>.push()</code> 的对立方法：</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Pushing and popping</span>
 
-var myArray = [];
+<span class="keyword">var</span> myArray = [];
 
-myArray.push( 0 ); // [ 0 ]
-myArray.push( 2 ); // [ 0 , 2 ]
-myArray.push( 7 ); // [ 0 , 2 , 7 ]
-myArray.pop();     // [ 0 , 2 ]</pre><h3 id="reverse">.reverse()</h3><p>顾名思义，调用 <code>.reverse()</code> 方法后，数组中的元素按相反的顺序排列：</p>
-<pre>var myArray = [ &quot;world&quot; , &quot;hello&quot; ];
-myArray.reverse(); // [ &quot;hello&quot;, &quot;world&quot; ]</pre><h3 id="shift">.shift()</h3><p>移除数组中的第一个元素。结合 <code>.push</code> 和 <code>.shift()</code>，你可以重建一个<a href="http://zh.wikipedia.org/wiki/%E9%98%9F%E5%88%97">队列</a>方法：</p>
-<pre>// Queue with shift() and push()
+myArray.push( <span class="number">0</span> ); <span class="comment">// [ 0 ]</span>
+myArray.push( <span class="number">2</span> ); <span class="comment">// [ 0 , 2 ]</span>
+myArray.push( <span class="number">7</span> ); <span class="comment">// [ 0 , 2 , 7 ]</span>
+myArray.pop();     <span class="comment">// [ 0 , 2 ]</span></code></pre></div><h3 id="reverse">.reverse()</h3><p>顾名思义，调用 <code>.reverse()</code> 方法后，数组中的元素按相反的顺序排列：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myArray = [ <span class="string">"world"</span> , <span class="string">"hello"</span> ];
+myArray.reverse(); <span class="comment">// [ "hello", "world" ]</span></code></pre></div><h3 id="shift">.shift()</h3><p>移除数组中的第一个元素。结合 <code>.push</code> 和 <code>.shift()</code>，你可以重建一个<a href="http://zh.wikipedia.org/wiki/%E9%98%9F%E5%88%97">队列</a>方法：</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Queue with shift() and push()</span>
 
-var myArray = [];
+<span class="keyword">var</span> myArray = [];
 
-myArray.push( 0 ); // [ 0 ]
-myArray.push( 2 ); // [ 0 , 2 ]
-myArray.push( 7 ); // [ 0 , 2 , 7 ]
-myArray.shift();   // [ 2 , 7 ]</pre><h3 id="slice">.slice()</h3><p>提取数组的一部分，并返回一个包含该部分的新数组。这个方法需要一个参数，起始的索引：</p>
-<pre>// Slicing
+myArray.push( <span class="number">0</span> ); <span class="comment">// [ 0 ]</span>
+myArray.push( <span class="number">2</span> ); <span class="comment">// [ 0 , 2 ]</span>
+myArray.push( <span class="number">7</span> ); <span class="comment">// [ 0 , 2 , 7 ]</span>
+myArray.shift();   <span class="comment">// [ 2 , 7 ]</span></code></pre></div><h3 id="slice">.slice()</h3><p>提取数组的一部分，并返回一个包含该部分的新数组。这个方法需要一个参数，起始的索引：</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Slicing</span>
 
-var myArray = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
-var newArray = myArray.slice( 3 );
+<span class="keyword">var</span> myArray = [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span> ];
+<span class="keyword">var</span> newArray = myArray.slice( <span class="number">3</span> );
 
-console.log( myArray );  // [ 1, 2, 3, 4, 5, 6, 7, 8 ]
-console.log( newArray ); // [ 4, 5, 6, 7, 8 ]</pre><p><code>.slice()</code> 方法有一个可选的第二个参数，结束的索引。</p>
-<pre>console.log( [ 1, 2, 3, 4, 5, 6, 7, 8 ].slice( 2, 5 ) ); // [ 3, 4, 5 ]</pre><h3 id="splice">.splice()</h3><p>移除一个确定数量的元素并在给定的索引处开始添加新的元素。它至少需要三个参数：</p>
-<pre>myArray.splice( index, length, values, ... );</pre><ul>
+console.log( myArray );  <span class="comment">// [ 1, 2, 3, 4, 5, 6, 7, 8 ]</span>
+console.log( newArray ); <span class="comment">// [ 4, 5, 6, 7, 8 ]</span></code></pre></div><p><code>.slice()</code> 方法有一个可选的第二个参数，结束的索引。</p>
+<div class="highlight"><pre><code class="javascript">console.log( [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span> ].slice( <span class="number">2</span>, <span class="number">5</span> ) ); <span class="comment">// [ 3, 4, 5 ]</span></code></pre></div><h3 id="splice">.splice()</h3><p>移除一个确定数量的元素并在给定的索引处开始添加新的元素。它至少需要三个参数：</p>
+<div class="highlight"><pre><code class="javascript">myArray.splice( index, length, values, ... );</code></pre></div><ul>
 <li><em>Index</em> – 开始的索引。</li>
 <li><em>Length</em> – 移除的元素数量。</li>
 <li><em>Values</em> – 在索引的位置插入的值。</li>
 </ul>
 <p>例如：</p>
-<pre>var myArray = [ 0, 7, 8, 5 ];
-myArray.splice( 1, 2, 1, 2, 3, 4 );
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myArray = [ <span class="number">0</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">5</span> ];
+myArray.splice( <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> );
 
-console.log( myArray ); // [ 0, 1, 2, 3, 4, 5 ]</pre><h3 id="sort">.sort()</h3><p>数组排序。它需要一个参数，一个比较函数。如果没有提供这个函数，数组默认按照升序进行排序：</p>
-<pre>// Sorting without comparing function.
+console.log( myArray ); <span class="comment">// [ 0, 1, 2, 3, 4, 5 ]</span></code></pre></div><h3 id="sort">.sort()</h3><p>数组排序。它需要一个参数，一个比较函数。如果没有提供这个函数，数组默认按照升序进行排序：</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Sorting without comparing function.</span>
 
-var myArray = [ 3, 4, 6, 1 ];
+<span class="keyword">var</span> myArray = [ <span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">1</span> ];
 
-myArray.sort(); // 1, 3, 4, 6</pre><pre>// Sorting with comparing function.
+myArray.sort(); <span class="comment">// 1, 3, 4, 6</span></code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// Sorting with comparing function.</span>
 
-function descending( a, b ) {
-    return b - a;
+<span class="function"><span class="keyword">function</span> <span class="title">descending</span><span class="params">( a, b )</span> {</span>
+    <span class="keyword">return</span> b - a;
 }
 
-var myArray = [ 3, 4, 6, 1 ];
+<span class="keyword">var</span> myArray = [ <span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">1</span> ];
 
-myArray.sort( descending ); // [ 6, 4, 3, 1 ]</pre><p>例子中的 <code>descending</code> 函数返回的值很重要。如果返回的值小于0，<code>a</code> 的位置在 <code>b</code> 之前，如果值大于0则位置相反。如果值等于0，则元素的位置（与当前）相同。</p>
+myArray.sort( descending ); <span class="comment">// [ 6, 4, 3, 1 ]</span></code></pre></div><p>例子中的 <code>descending</code> 函数返回的值很重要。如果返回的值小于0，<code>a</code> 的位置在 <code>b</code> 之前，如果值大于0则位置相反。如果值等于0，则元素的位置（与当前）相同。</p>
 <h3 id="unshift">.unshift()</h3><p>在数组的第一个位置插入一个元素：</p>
-<pre>var myArray = [];
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myArray = [];
 
-myArray.unshift( 0 ); // [ 0 ]
-myArray.unshift( 2 ); // [ 2 , 0 ]
-myArray.unshift( 7 ); // [ 7 , 2 , 0 ]</pre><h3 id="foreach">.forEach()</h3><p>在现代浏览器中可以使用 <code>.forEach()</code> 方法遍历数组，您传递个这个方法的函数会被数组中的每个元素调用。</p>
+myArray.unshift( <span class="number">0</span> ); <span class="comment">// [ 0 ]</span>
+myArray.unshift( <span class="number">2</span> ); <span class="comment">// [ 2 , 0 ]</span>
+myArray.unshift( <span class="number">7</span> ); <span class="comment">// [ 7 , 2 , 0 ]</span></code></pre></div><h3 id="foreach">.forEach()</h3><p>在现代浏览器中可以使用 <code>.forEach()</code> 方法遍历数组，您传递个这个方法的函数会被数组中的每个元素调用。</p>
 <p>被传递的函数可以带三个参数：</p>
 <ul>
 <li><em>Element</em> – 元素本身。</li>
@@ -164,30 +164,30 @@ myArray.unshift( 7 ); // [ 7 , 2 , 0 ]</pre><h3 id="foreach">.forEach()</h3><p>�
 <li><em>Array</em> – 数组本身。</li>
 </ul>
 <p>所有的参数都是可选的，但你通常至少需要一个 <em>Element</em> 参数。</p>
-<pre>// Native .forEach()
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Native .forEach()</span>
 
-function printElement( elem ) {
+<span class="function"><span class="keyword">function</span> <span class="title">printElement</span><span class="params">( elem )</span> {</span>
     console.log( elem );
 }
 
-function printElementAndIndex( elem, index ) {
-    console.log( &quot;Index &quot; + index + &quot;: &quot; + elem );
+<span class="function"><span class="keyword">function</span> <span class="title">printElementAndIndex</span><span class="params">( elem, index )</span> {</span>
+    console.log( <span class="string">"Index "</span> + index + <span class="string">": "</span> + elem );
 }
 
-function negateElement( elem, index, array ) {
+<span class="function"><span class="keyword">function</span> <span class="title">negateElement</span><span class="params">( elem, index, array )</span> {</span>
     array[ index ] = -elem;
 }
 
-myArray = [ 1, 2, 3, 4, 5 ];
+myArray = [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> ];
 
-// Prints all elements to the console
+<span class="comment">// Prints all elements to the console</span>
 myArray.forEach( printElement );
 
-// Prints &quot;Index 0: 1&quot;, &quot;Index 1: 2&quot;, &quot;Index 2: 3&quot;, ...
+<span class="comment">// Prints "Index 0: 1", "Index 1: 2", "Index 2: 3", ...</span>
 myArray.forEach( printElementAndIndex );
 
-// myArray is now [ -1, -2, -3, -4, -5 ]
-myArray.forEach( negateElement );</pre></div>
+<span class="comment">// myArray is now [ -1, -2, -3, -4, -5 ]</span>
+myArray.forEach( negateElement );</code></pre></div></div>
 
   <div class="entry-meta">
     <time class="updated" datetime="2015-03-28T00:00:00.000Z" itemprop="dateModified">Saturday, Mar 28th, 2015</time>

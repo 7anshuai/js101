@@ -43,36 +43,36 @@
 <h2 id="css-是表现">CSS 是表现</h2><p>CSS 是一个为 HTML 文档应用样式的附加语言。CSS 的全部都是关于如何通过定义字体，颜色等其他视觉美感，让内容更好看。CSS 的强大之处在于样式不再和内容夹杂，这意味着你可以将不同的样式应用到同一块内容，当构建良好的跨设备响应式网站时，这是至关重要的。</p>
 <h2 id="javascript-是交互">JavaScript 是交互</h2><p>在浏览器中，JavaScript 为 HTML 内容添加交互性和行为能力。没有 JavaScript，网页将会是静态和无聊的。JavaScript 使网页富有生命力。</p>
 <p>看下面这个包含了 CSS 和 JavaScript 的简单 HTML 页面，了解这一切是如何组织在一起的：</p>
-<pre>&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot; /&gt;
-    &lt;title&gt;Hello World&lt;/title&gt;
+<div class="highlight"><pre><code class="xml"><span class="doctype">&lt;!doctype html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
 
-    &lt;!-- CSS for presentation. --&gt;
-    &lt;style&gt;
-    h1 { font-size: 14px; color: hotpink; }
-    button { color: red; }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;Hello World&lt;/h1&gt;
-    &lt;button&gt;Click Me!&lt;/button&gt;
+    <span class="comment">&lt;!-- CSS for presentation. --&gt;</span>
+    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+    <span class="tag">h1</span> <span class="rules">{ <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">14</span>px</span></span>; <span class="rule"><span class="attribute">color</span>:<span class="value"> hotpink</span></span>; <span class="rule">}</span></span>
+    <span class="tag">button</span> <span class="rules">{ <span class="rule"><span class="attribute">color</span>:<span class="value"> red</span></span>; <span class="rule">}</span></span>
+    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span>&gt;</span>Click Me!<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
 
-    &lt;!-- JavaScript for interactivity. --&gt;
-    &lt;script&gt;
+    <span class="comment">&lt;!-- JavaScript for interactivity. --&gt;</span>
+    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
 
-    // Get a handle on the first button element in the document.
-    var button = document.querySelector( &quot;button&quot; );
+    <span class="comment">// Get a handle on the first button element in the document.</span>
+    <span class="keyword">var</span> button = document.querySelector( <span class="string">"button"</span> );
 
-    // If a user clicks on it, say hello!
-    button.addEventListener( &quot;click&quot;, function( ev ) {
-        alert( &quot;Hello&quot; );
-    }, false);
+    <span class="comment">// If a user clicks on it, say hello!</span>
+    button.addEventListener( <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span><span class="params">( ev )</span> {</span>
+        alert( <span class="string">"Hello"</span> );
+    }, <span class="literal">false</span>);
 
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</pre><p>在上面的例子中，HTML 是用来描述内容，“Hello World” 文本被 <code>h1</code> 元素描述为一个标题，“Click Me!” 被 <code>button</code> 元素描述为一个按钮。<code>style</code> 代码块包含了改变标题颜色和字体大小的 CSS。<code>script</code> 代码块包含了给按钮添加交互的 JavaScript。当用户点击这个按钮，会弹出一个显示“Hello”的警告信息。</p>
+    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></code></pre></div><p>在上面的例子中，HTML 是用来描述内容，“Hello World” 文本被 <code>h1</code> 元素描述为一个标题，“Click Me!” 被 <code>button</code> 元素描述为一个按钮。<code>style</code> 代码块包含了改变标题颜色和字体大小的 CSS。<code>script</code> 代码块包含了给按钮添加交互的 JavaScript。当用户点击这个按钮，会弹出一个显示“Hello”的警告信息。</p>
 <h2 id="web-的脚本语言">Web 的脚本语言</h2><p>JavaScript 最初设计为网页添加交互性，而不是成为一个通用语言，所以它被设计为脚本语言。<a href="http://zh.wikipedia.org/wiki/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">脚本语言</a> 被认为是比通用语言更高效，因为它们是为特定的领域（如 JavaScript 为网络浏览器）而优化。然而，最近的技术发展让 JavaScript 在服务器端大热（通过 <a href="http://nodejs.org/">Node.js</a>），所以它现在也可以用于代替 PHP，Ruby 或者 ASP 等语言。本指南将专注于在浏览器中运行的 JavaScript。</p>
 <p>“JavaScript” 这个名字有点误导性。尽管有相似的名字，但是 JavaScript 与 <a href="https://zh.wikipedia.org/wiki/Java">Java</a>（一种通用语言）没有任何关系。JavaScript 是基于开放式网络标准 ECMAScript。基于标准的语言不是任何一个实体或公司控制的－相反的，开发商们共同制定语言，这就是为什么 JavaScript 运行在每一个 Web 浏览器中，而无关操作系统或设备。</p>
 <h2 id="你需要什么来开始学习-javascript-和-jquery">你需要什么来开始学习 JavaScript 和 jQuery</h2><ol>

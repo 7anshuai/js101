@@ -40,107 +40,107 @@
   <h1 class="entry-title" itemprop="name">Closures</h1>
   <div class="entry-content" itemprop="articleBody"><p>Closures are an extension of the concept of scope. With closures, functions have access to variables that were available in the scope where the function was created. If that seems confusing, don’t worry: closures are generally best understood by example.</p>
 <p>As shown in the <a href="/scope/">Scope</a> section, functions have access to changing variable values. The same sort of behavior exists with functions defined within loops – the function &quot;sees&quot; the change in the variable&#39;s value even after the function is defined, resulting in each function referencing the last value stored in the variable.</p>
-<pre>// Each function executed within the loop will reference
-// the last value stored in i (5).
-// This won&#39;t behave as we want it to - every 100 milliseconds, 5 will alert
-for ( var i = 0; i &lt; 5; i++ ) {
-    setTimeout(function() {
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Each function executed within the loop will reference</span>
+<span class="comment">// the last value stored in i (5).</span>
+<span class="comment">// This won't behave as we want it to - every 100 milliseconds, 5 will alert</span>
+<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ ) {
+    setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
         alert( i );
-    }, i * 100 );
-}</pre><p>Closures can be used to prevent this by creating a unique scope for each iteration – storing each unique value of the variable within its scope.</p>
-<pre>// Using a closure to create a new private scope
-// fix: “close” the value of i inside createFunction, so it won&#39;t change
-var createFunction = function( i ) {
-    return function() {
+    }, i * <span class="number">100</span> );
+}</code></pre></div><p>Closures can be used to prevent this by creating a unique scope for each iteration – storing each unique value of the variable within its scope.</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Using a closure to create a new private scope</span>
+<span class="comment">// fix: “close” the value of i inside createFunction, so it won't change</span>
+<span class="keyword">var</span> createFunction = <span class="function"><span class="keyword">function</span><span class="params">( i )</span> {</span>
+    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
         alert( i );
     };
 };
 
-for ( var i = 0; i &lt; 5; i++ ) {
-    setTimeout( createFunction( i ), i * 100 );
-}</pre><p>Closures can also be used to resolve issues with the <code>this</code> keyword, which is unique to each scope:</p>
-<pre>// Using a closure to access inner and outer object instances simultaneously.
-var outerObj = {
-    myName: &quot;outer&quot;,
-    outerFunction: function() {
+<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ ) {
+    setTimeout( createFunction( i ), i * <span class="number">100</span> );
+}</code></pre></div><p>Closures can also be used to resolve issues with the <code>this</code> keyword, which is unique to each scope:</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Using a closure to access inner and outer object instances simultaneously.</span>
+<span class="keyword">var</span> outerObj = {
+    myName: <span class="string">"outer"</span>,
+    outerFunction: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
 
-        // Provide a reference to outerObj through innerFunction&#39;s closure
-        var self = this;
-        var innerObj = {
-            myName: &quot;inner&quot;,
-            innerFunction: function() {
-                console.log( self.myName, this.myName ); // &quot;outer inner&quot;
+        <span class="comment">// Provide a reference to outerObj through innerFunction's closure</span>
+        <span class="keyword">var</span> self = <span class="keyword">this</span>;
+        <span class="keyword">var</span> innerObj = {
+            myName: <span class="string">"inner"</span>,
+            innerFunction: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+                console.log( self.myName, <span class="keyword">this</span>.myName ); <span class="comment">// "outer inner"</span>
             }
         };
 
         innerObj.innerFunction();
 
-        console.log( this.myName ); // &quot;outer&quot;
+        console.log( <span class="keyword">this</span>.myName ); <span class="comment">// "outer"</span>
     }
 };
 
-outerObj.outerFunction();</pre><h2 id="function-bind">Function.bind</h2><p>Closures can be particularly useful when dealing with callbacks. However, it is often better to use <code>Function.bind</code>, which will avoid any overhead associated with scope traversal.</p>
+outerObj.outerFunction();</code></pre></div><h2 id="function-bind">Function.bind</h2><p>Closures can be particularly useful when dealing with callbacks. However, it is often better to use <code>Function.bind</code>, which will avoid any overhead associated with scope traversal.</p>
 <p><code>Function.bind</code> is used to create a new function. When called, the new function then calls itself in the context of the supplied <code>this</code> value, using a given set of arguments that will precede any arguments provided when the new function was initially called.</p>
 <p>As <code>.bind()</code> is a recent addition to ECMAScript 5, it may not be present in all browsers, which is something to be wary of when deciding whether to use it. However, it&#39;s possible to work around support by using <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind">this shim</a> from MDN:</p>
-<pre>// Shim from MDN
-if (!Function.prototype.bind) {
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Shim from MDN</span>
+<span class="keyword">if</span> (!Function.prototype.bind) {
 
-    Function.prototype.bind = function( oThis ) {
+    Function.prototype.bind = <span class="function"><span class="keyword">function</span><span class="params">( oThis )</span> {</span>
 
-        if (typeof this !== &quot;function&quot;) {
-            // closest thing possible to the ECMAScript 5 internal
-            // IsCallable function
-            throw new TypeError( &quot;Function.prototype.bind - what is trying to be bound is not callable&quot; );
+        <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">"function"</span>) {
+            <span class="comment">// closest thing possible to the ECMAScript 5 internal</span>
+            <span class="comment">// IsCallable function</span>
+            <span class="keyword">throw</span> <span class="keyword">new</span> TypeError( <span class="string">"Function.prototype.bind - what is trying to be bound is not callable"</span> );
         }
 
-        var fSlice = Array.prototype.slice,
-            aArgs = fSlice.call( arguments, 1 ),
-            fToBind = this,
-            fNOP = function() {},
-            fBound = function() {
-                return fToBind.apply( this instanceof fNOP
-                    ? this
+        <span class="keyword">var</span> fSlice = Array.prototype.slice,
+            aArgs = fSlice.call( arguments, <span class="number">1</span> ),
+            fToBind = <span class="keyword">this</span>,
+            fNOP = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>},
+            fBound = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+                <span class="keyword">return</span> fToBind.apply( <span class="keyword">this</span> <span class="keyword">instanceof</span> fNOP
+                    ? <span class="keyword">this</span>
                     : oThis || window,
                     aArgs.concat( fSlice.call( arguments ) ) );
             };
 
-        fNOP.prototype = this.prototype;
+        fNOP.prototype = <span class="keyword">this</span>.prototype;
 
-        fBound.prototype = new fNOP();
+        fBound.prototype = <span class="keyword">new</span> fNOP();
 
-        return fBound;
+        <span class="keyword">return</span> fBound;
     };
-}</pre><p>One of the simplest uses of <code>.bind()</code> is making a function that is called with a particular value for <code>this</code>, regardless of how it&#39;s called. A common mistake developers make is attempting to extract a method from an object, then later calling that method and expecting it to the use the origin object as its <code>this</code>. However, this can be solved by creating a bound function using the original object as demonstrated below:</p>
-<pre>// Let&#39;s manipulate &quot;this&quot; with a basic example.
-var user = &quot;johnsmith&quot;;
-var module = {
-    getUser: function() {
-        return this.user;
+}</code></pre></div><p>One of the simplest uses of <code>.bind()</code> is making a function that is called with a particular value for <code>this</code>, regardless of how it&#39;s called. A common mistake developers make is attempting to extract a method from an object, then later calling that method and expecting it to the use the origin object as its <code>this</code>. However, this can be solved by creating a bound function using the original object as demonstrated below:</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Let's manipulate "this" with a basic example.</span>
+<span class="keyword">var</span> user = <span class="string">"johnsmith"</span>;
+<span class="keyword">var</span> module = {
+    getUser: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        <span class="keyword">return</span> <span class="keyword">this</span>.user;
     },
-    user: &quot;janedoe&quot;
+    user: <span class="string">"janedoe"</span>
 };
 
-// module.getUser() is called where &quot;module&quot; is &quot;this&quot;
-// and &quot;module.user&quot; is returned.
+<span class="comment">// module.getUser() is called where "module" is "this"</span>
+<span class="comment">// and "module.user" is returned.</span>
 
-// janedoe
+<span class="comment">// janedoe</span>
 module.getUser();
 
-// let&#39;s now store a reference in the global version of &quot;this&quot;
-var getUser = module.getUser;
+<span class="comment">// let's now store a reference in the global version of "this"</span>
+<span class="keyword">var</span> getUser = module.getUser;
 
-// getUser() called, &quot;this&quot; is global, &quot;user&quot; is returned
+<span class="comment">// getUser() called, "this" is global, "user" is returned</span>
 
-// johnsmith
+<span class="comment">// johnsmith</span>
 getUser();
 
-// store a ref with &quot;module&quot; bound as &quot;this&quot;
-var boundGetUser = getUser.bind( module );
+<span class="comment">// store a ref with "module" bound as "this"</span>
+<span class="keyword">var</span> boundGetUser = getUser.bind( module );
 
-// boundGetUser() called, &quot;module&quot; is &quot;this&quot; again, &quot;module.user&quot; returned.
+<span class="comment">// boundGetUser() called, "module" is "this" again, "module.user" returned.</span>
 
-// janedoe
-boundGetUser();</pre></div>
+<span class="comment">// janedoe</span>
+boundGetUser();</code></pre></div></div>
 </div>
 </div>
     <div class="footer">

@@ -39,23 +39,23 @@
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">语法基础</h1>
   <div class="entry-content" itemprop="articleBody"><h3 id="注释">注释</h3><p>JavaScript 支持单行和多行注释。注释会被 JavaScript 引擎忽略，所以它对程序的结果没有影响。使用注释为其他开发者记录代码，像 <a href="http://usejsdoc.org/" title="JSDoc">JSDoc</a> 这类工具库，可以帮助生成基于注释的项目文档页面。</p>
-<pre>// Single- and multi-line comments.
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Single- and multi-line comments.</span>
 
-// This is an example of a single-line comment.
+<span class="comment">// This is an example of a single-line comment.</span>
 
-/*
+<span class="comment">/*
  * this is an example
  * of a
  * multi-line
  * comment.
- */</pre><h3 id="空白">空白</h3><p>空白也被 JavaScript 引擎忽略。有许多工具可以用来去掉程序中的空白，降低了文件的整体大小和改进网络延迟。鉴于这类工具的可用性，空白应该加以利用，以使代码尽可能的易读。</p>
-<pre>// Whitespace is insignificant.
-var hello = &quot;Hello&quot;;
-var world     =      &quot;World!&quot;;</pre><pre>// Semantic whitespace promotes readability.
-// Readable code is good!
-var foo = function() {
+ */</span></code></pre></div><h3 id="空白">空白</h3><p>空白也被 JavaScript 引擎忽略。有许多工具可以用来去掉程序中的空白，降低了文件的整体大小和改进网络延迟。鉴于这类工具的可用性，空白应该加以利用，以使代码尽可能的易读。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Whitespace is insignificant.</span>
+<span class="keyword">var</span> hello = <span class="string">"Hello"</span>;
+<span class="keyword">var</span> world     =      <span class="string">"World!"</span>;</code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// Semantic whitespace promotes readability.</span>
+<span class="comment">// Readable code is good!</span>
+<span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
 
-    for ( var i = 0; i &lt; 10; i++ ) {
+    <span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ ) {
 
         alert( i );
 
@@ -65,8 +65,8 @@ var foo = function() {
 
 foo();
 
-// This is much harder to read!
-var foo=function() {for(var i=0;i&lt;10;i++){alert(i);}};foo();</pre><h3 id="保留字">保留字</h3><p>当声明用户定义的变量和函数时，有少量的保留字不能被使用。一些保留字已经被实现，一些被保留以供将来使用，还有一些事因为历史原因而保留。<a href="/javascript-101/reserved-words.html">这里</a>是保留字的列表，对保留字的深入解释可以在<a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Reserved_Words" title="MDN 保留字"> MDN 的 JavaScript 参考</a>当中找到。</p>
+<span class="comment">// This is much harder to read!</span>
+<span class="keyword">var</span> foo=<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++){alert(i);}};foo();</code></pre></div><h3 id="保留字">保留字</h3><p>当声明用户定义的变量和函数时，有少量的保留字不能被使用。一些保留字已经被实现，一些被保留以供将来使用，还有一些事因为历史原因而保留。<a href="/javascript-101/reserved-words.html">这里</a>是保留字的列表，对保留字的深入解释可以在<a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Reserved_Words" title="MDN 保留字"> MDN 的 JavaScript 参考</a>当中找到。</p>
 <h3 id="标识符">标识符</h3><p>标识符被用来给变量和函数的唯一名称，以便随后它们可以通过该名称被引用到。标识符名称必须遵循一些规则：</p>
 <ul>
 <li>不能是保留字。</li>
@@ -74,23 +74,23 @@ var foo=function() {for(var i=0;i&lt;10;i++){alert(i);}};foo();</pre><h3 id="保
 <li>第一个字符不能是数字。</li>
 </ul>
 <p>命名标识符的最佳实践是选取一个将来也能对你或者其他开发者有意义的名称。</p>
-<pre>// Valid identifier names.
-var myAwesomeVariable = &quot;a&quot;;
-var myAwesomeVariable2 = &quot;b&quot;;
-var my_awesome_variable = &quot;c&quot;;
-var $my_AwesomeVariable = &quot;d&quot;;
-var _my_awesome_variable_$ = &quot;e&quot;;</pre><h3 id="变量定义">变量定义</h3><p>变量可以使用多个 <code>var</code> 语句来定义，或者使用单个组合的 <code>var</code> 语句。</p>
-<pre>// This works:
-var test = 1;
-var test2 = function() { ... };
-var test3 = test2( test );
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Valid identifier names.</span>
+<span class="keyword">var</span> myAwesomeVariable = <span class="string">"a"</span>;
+<span class="keyword">var</span> myAwesomeVariable2 = <span class="string">"b"</span>;
+<span class="keyword">var</span> my_awesome_variable = <span class="string">"c"</span>;
+<span class="keyword">var</span> $my_AwesomeVariable = <span class="string">"d"</span>;
+<span class="keyword">var</span> _my_awesome_variable_$ = <span class="string">"e"</span>;</code></pre></div><h3 id="变量定义">变量定义</h3><p>变量可以使用多个 <code>var</code> 语句来定义，或者使用单个组合的 <code>var</code> 语句。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// This works:</span>
+<span class="keyword">var</span> test = <span class="number">1</span>;
+<span class="keyword">var</span> test2 = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span> ... };
+<span class="keyword">var</span> test3 = test2( test );
 
-// And so does this:
-var test4 = 1,
-    test5 = function() { ... },
-    test6 = test2( test );</pre><p>变量可以在声明时不分配一个值，程序会给它们一个默认的值 <code>undefined</code>。</p>
-<pre>var x;
-x === undefined; // true</pre></div>
+<span class="comment">// And so does this:</span>
+<span class="keyword">var</span> test4 = <span class="number">1</span>,
+    test5 = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span> ... },
+    test6 = test2( test );</code></pre></div><p>变量可以在声明时不分配一个值，程序会给它们一个默认的值 <code>undefined</code>。</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> x;
+x === <span class="literal">undefined</span>; <span class="comment">// true</span></code></pre></div></div>
 
   <div class="entry-meta">
     <time class="updated" datetime="2015-03-06T00:00:00.000Z" itemprop="dateModified">Friday, Mar 6th, 2015</time>

@@ -40,38 +40,38 @@
   <h1 class="entry-title" itemprop="name">类型测试</h1>
   <div class="entry-content" itemprop="articleBody"><p>JavaScript 提供了一种方法来测试变量的类型。然而，其结果可能会让人迷惑 － 例如，一个数组的类型是 <code>object</code>。</p>
 <p>当试图检测一个特定值的类型时，常见的做法是使用 <code>typeof</code> 运算符。</p>
-<pre>// Testing the type of various variables.
-var myFunction = function() {
-    console.log( &quot;hello&quot; );
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Testing the type of various variables.</span>
+<span class="keyword">var</span> myFunction = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    console.log( <span class="string">"hello"</span> );
 };
-var myObject = {
-    foo: &quot;bar&quot;
+<span class="keyword">var</span> myObject = {
+    foo: <span class="string">"bar"</span>
 };
-var myArray = [ &quot;a&quot;, &quot;b&quot;, &quot;c&quot; ];
-var myString = &quot;hello&quot;;
-var myNumber = 3;
-var myRegExp = /(\w+)\s(\w+)/;
+<span class="keyword">var</span> myArray = [ <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span> ];
+<span class="keyword">var</span> myString = <span class="string">"hello"</span>;
+<span class="keyword">var</span> myNumber = <span class="number">3</span>;
+<span class="keyword">var</span> myRegExp = <span class="regexp">/(\w+)\s(\w+)/</span>;
 
-typeof myFunction; // &quot;function&quot;
-typeof myObject;   // &quot;object&quot;
-typeof myArray;    // &quot;object&quot; -- Careful!
-typeof myString;   // &quot;string&quot;
-typeof myNumber;   // &quot;number&quot;
-typeof null;       // &quot;object&quot; -- Careful!
-typeof undefined;  // &quot;undefined&quot;
-typeof meh;        // &quot;undefined&quot; -- undefined variable.
-typeof myRegExp;   // &quot;function&quot; or &quot;object&quot; depending on environment.
+<span class="keyword">typeof</span> myFunction; <span class="comment">// "function"</span>
+<span class="keyword">typeof</span> myObject;   <span class="comment">// "object"</span>
+<span class="keyword">typeof</span> myArray;    <span class="comment">// "object" -- Careful!</span>
+<span class="keyword">typeof</span> myString;   <span class="comment">// "string"</span>
+<span class="keyword">typeof</span> myNumber;   <span class="comment">// "number"</span>
+<span class="keyword">typeof</span> <span class="literal">null</span>;       <span class="comment">// "object" -- Careful!</span>
+<span class="keyword">typeof</span> <span class="literal">undefined</span>;  <span class="comment">// "undefined"</span>
+<span class="keyword">typeof</span> meh;        <span class="comment">// "undefined" -- undefined variable.</span>
+<span class="keyword">typeof</span> myRegExp;   <span class="comment">// "function" or "object" depending on environment.</span>
 
 
-if ( myArray.push && myArray.slice && myArray.join ) {
-    // probably an array (this is called &quot;duck typing&quot;)
+<span class="keyword">if</span> ( myArray.push &amp;&amp; myArray.slice &amp;&amp; myArray.join ) {
+    <span class="comment">// probably an array (this is called "duck typing")</span>
 }
 
-if ( Object.prototype.toString.call( myArray ) === &quot;[object Array]&quot; ) {
-    // Definitely an array!
-    // This is widely considered as the most robust way
-    // to determine if a specific value is an Array.
-}</pre></div>
+<span class="keyword">if</span> ( Object.prototype.toString.call( myArray ) === <span class="string">"[object Array]"</span> ) {
+    <span class="comment">// Definitely an array!</span>
+    <span class="comment">// This is widely considered as the most robust way</span>
+    <span class="comment">// to determine if a specific value is an Array.</span>
+}</code></pre></div></div>
 
   <div class="entry-meta">
     <time class="updated" datetime="2015-03-09T00:00:00.000Z" itemprop="dateModified">Monday, Mar 9th, 2015</time>

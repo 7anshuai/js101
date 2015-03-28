@@ -40,69 +40,69 @@
   <h1 class="entry-title" itemprop="name">Functions</h1>
   <div class="entry-content" itemprop="articleBody"><p>Functions contain blocks of code that need to be executed repeatedly. Functions can take zero or more arguments, and can optionally return a value.</p>
 <p>Functions can be created in a variety of ways, two of which are shown below:</p>
-<pre>// Function declaration.
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Function declaration.</span>
 
-function foo() {
-    // Do something.
-}</pre><pre>// Function expression.
+<span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span> {</span>
+    <span class="comment">// Do something.</span>
+}</code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// Function expression.</span>
 
-var foo = function() {
-    // Do something.
-};</pre><h2 id="using-functions">Using Functions</h2><pre>// A simple function.
+<span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="comment">// Do something.</span>
+};</code></pre></div><h2 id="using-functions">Using Functions</h2><div class="highlight"><pre><code class="javascript"><span class="comment">// A simple function.</span>
 
-var greet = function( person, greeting ) {
-    var text = greeting + &quot;, &quot; + person;
+<span class="keyword">var</span> greet = <span class="function"><span class="keyword">function</span><span class="params">( person, greeting )</span> {</span>
+    <span class="keyword">var</span> text = greeting + <span class="string">", "</span> + person;
     console.log( text );
 };
 
-greet( &quot;Rebecca&quot;, &quot;Hello&quot; ); // &quot;Hello, Rebecca&quot;</pre><pre>// A function that returns a value.
+greet( <span class="string">"Rebecca"</span>, <span class="string">"Hello"</span> ); <span class="comment">// "Hello, Rebecca"</span></code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// A function that returns a value.</span>
 
-var greet = function( person, greeting ) {
-    var text = greeting + &quot;, &quot; + person;
-    return text;
+<span class="keyword">var</span> greet = <span class="function"><span class="keyword">function</span><span class="params">( person, greeting )</span> {</span>
+    <span class="keyword">var</span> text = greeting + <span class="string">", "</span> + person;
+    <span class="keyword">return</span> text;
 };
 
-console.log( greet( &quot;Rebecca&quot;, &quot;Hello&quot; ) ); // &quot;Hello, Rebecca&quot;</pre><pre>// A function that returns another function.
+console.log( greet( <span class="string">"Rebecca"</span>, <span class="string">"Hello"</span> ) ); <span class="comment">// "Hello, Rebecca"</span></code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// A function that returns another function.</span>
 
-var greet = function( person, greeting ) {
-    var text = greeting + &quot;, &quot; + person;
-    return function() {
+<span class="keyword">var</span> greet = <span class="function"><span class="keyword">function</span><span class="params">( person, greeting )</span> {</span>
+    <span class="keyword">var</span> text = greeting + <span class="string">", "</span> + person;
+    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
         console.log( text );
     };
 };
 
-var greeting = greet( &quot;Rebecca&quot;, &quot;Hello&quot; );
+<span class="keyword">var</span> greeting = greet( <span class="string">"Rebecca"</span>, <span class="string">"Hello"</span> );
 
-greeting(); // &quot;Hello, Rebecca&quot;</pre><h2 id="immediately-invoked-function-expression-iife">Immediately-Invoked Function Expression (IIFE)</h2><p>A common pattern in JavaScript is the immediately-invoked function expression. This pattern creates a function expression and then immediately executes the function. This pattern is extremely useful for cases where you want to avoid polluting the global namespace with code – no variables declared inside of the function are visible outside of it.</p>
-<pre>// An immediately-invoked function expression.
+greeting(); <span class="comment">// "Hello, Rebecca"</span></code></pre></div><h2 id="immediately-invoked-function-expression-iife">Immediately-Invoked Function Expression (IIFE)</h2><p>A common pattern in JavaScript is the immediately-invoked function expression. This pattern creates a function expression and then immediately executes the function. This pattern is extremely useful for cases where you want to avoid polluting the global namespace with code – no variables declared inside of the function are visible outside of it.</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// An immediately-invoked function expression.</span>
 
-(function() {
-    var foo = &quot;Hello world&quot;;
+(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">var</span> foo = <span class="string">"Hello world"</span>;
 })();
 
-console.log( foo ); // undefined!</pre><h2 id="functions-as-arguments">Functions as Arguments</h2><p>In JavaScript, functions are &quot;first-class citizens&quot; – they can be assigned to variables or passed to other functions as arguments. Passing functions as arguments is an extremely common idiom in jQuery.</p>
-<pre>// Passing an anonymous function as an argument.
+console.log( foo ); <span class="comment">// undefined!</span></code></pre></div><h2 id="functions-as-arguments">Functions as Arguments</h2><p>In JavaScript, functions are &quot;first-class citizens&quot; – they can be assigned to variables or passed to other functions as arguments. Passing functions as arguments is an extremely common idiom in jQuery.</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Passing an anonymous function as an argument.</span>
 
-var myFn = function( fn ) {
-    var result = fn();
+<span class="keyword">var</span> myFn = <span class="function"><span class="keyword">function</span><span class="params">( fn )</span> {</span>
+    <span class="keyword">var</span> result = fn();
     console.log( result );
 };
 
-// Logs &quot;hello world&quot;
-myFn( function() {
-    return &quot;hello world&quot;;
-});</pre><pre>// Passing a named function as an argument
+<span class="comment">// Logs "hello world"</span>
+myFn( <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> <span class="string">"hello world"</span>;
+});</code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// Passing a named function as an argument</span>
 
-var myFn = function( fn ) {
-    var result = fn();
+<span class="keyword">var</span> myFn = <span class="function"><span class="keyword">function</span><span class="params">( fn )</span> {</span>
+    <span class="keyword">var</span> result = fn();
     console.log( result );
 };
 
-var myOtherFn = function() {
-    return &quot;hello world&quot;;
+<span class="keyword">var</span> myOtherFn = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> <span class="string">"hello world"</span>;
 };
 
-myFn( myOtherFn ); // &quot;hello world&quot;</pre></div>
+myFn( myOtherFn ); <span class="comment">// "hello world"</span></code></pre></div></div>
 </div>
 </div>
     <div class="footer">
