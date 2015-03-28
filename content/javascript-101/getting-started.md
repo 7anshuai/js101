@@ -14,7 +14,7 @@ HTML 是用来定义和描述内容的标记语言。无论是博客文章，搜
 
 ## CSS 是表现
 
-CSS 是一个为 HTML 文档应用样式的附加语言。CSS 的全部都是关于如何通过定义字体，颜色等其他视觉美感，让内容更好看。CSS 的强大之处在于样式不再和内容夹杂，这意味着你可以将不同的样式应用到同一块内容，当构建良好跨设备响应式网站时，这是至关重要的。
+CSS 是一个为 HTML 文档应用样式的附加语言。CSS 的全部都是关于如何通过定义字体，颜色等其他视觉美感，让内容更好看。CSS 的强大之处在于样式不再和内容夹杂，这意味着你可以将不同的样式应用到同一块内容，当构建良好的跨设备响应式网站时，这是至关重要的。
 
 ## JavaScript 是交互
 
@@ -55,11 +55,11 @@ CSS 是一个为 HTML 文档应用样式的附加语言。CSS 的全部都是关
 </html>
 ```
 
-在上面的例子中，HTML 是用来描述内容，“Hello World” 文本被 `h1` 元素描述为一个标题，“Click Me!”被 `button` 元素描述为一个按钮。`style` 代码块包含了改变标题颜色和字体大小的 CSS。`script` 代码块包含了给按钮添加交互的 JavaScript。当用户点击这个按钮，会弹出一个显示“Hello”的警告信息。
+在上面的例子中，HTML 是用来描述内容，“Hello World” 文本被 `h1` 元素描述为一个标题，“Click Me!” 被 `button` 元素描述为一个按钮。`style` 代码块包含了改变标题颜色和字体大小的 CSS。`script` 代码块包含了给按钮添加交互的 JavaScript。当用户点击这个按钮，会弹出一个显示“Hello”的警告信息。
 
 ## Web 的脚本语言
 
-JavaScript 最初设计为网页添加交互性，而不是成为一个通用语言，所以它被设计为脚本语言。[脚本语言](http://zh.wikipedia.org/wiki/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80) 被认为是比通用语言更高效，因为它们是为它们特定的领域（如 JavaScript 为网络浏览器）而优化。然而，最近的技术发展让 JavaScript 在服务器端大热（通过 [Node.js](http://nodejs.org/)），所以它现在也可以用于代替 PHP,Ruby 或者 ASP等语言。本指南将专注于在浏览器中运行的 JavaScript。
+JavaScript 最初设计为网页添加交互性，而不是成为一个通用语言，所以它被设计为脚本语言。[脚本语言](http://zh.wikipedia.org/wiki/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80) 被认为是比通用语言更高效，因为它们是为特定的领域（如 JavaScript 为网络浏览器）而优化。然而，最近的技术发展让 JavaScript 在服务器端大热（通过 [Node.js](http://nodejs.org/)），所以它现在也可以用于代替 PHP，Ruby 或者 ASP 等语言。本指南将专注于在浏览器中运行的 JavaScript。
 
 “JavaScript” 这个名字有点误导性。尽管有相似的名字，但是 JavaScript 与 [Java](https://zh.wikipedia.org/wiki/Java)（一种通用语言）没有任何关系。JavaScript 是基于开放式网络标准 ECMAScript。基于标准的语言不是任何一个实体或公司控制的－相反的，开发商们共同制定语言，这就是为什么 JavaScript 运行在每一个 Web 浏览器中，而无关操作系统或设备。
 

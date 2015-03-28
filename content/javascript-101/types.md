@@ -66,7 +66,7 @@ var bar2;
 
 ## 对象
 
-其他一切都是对象。JavaScript 有众多的 [内置对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects "MDN - 内置对象")，但本章只包括：
+其他一切都是对象。JavaScript 有众多的 [内置对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects "MDN - 内置对象")，但本指南只包括：
 
 * 对象
 * 数组
@@ -117,7 +117,7 @@ alert( person.email ); // undefined
 
 ## 数组
 
-数组是一类由它所包含的每一个项的索引排序的对象。索引开始于零，并延伸到已添加的项的数目，（项的数目）也是被称为 `.length` 的数组属性。类似一个基本对象，数组可以使用 `Array` 构造函数或者被称为数组字面量的简写语法来创建。
+数组是一类由它所包含的每一个项的索引排序的对象。索引开始于零，并扩展到已添加的项的数目，（项的数目）也是被称为 `.length` 的数组属性。类似一个基本对象，数组可以使用 `Array` 构造函数或者被称为数组字面量的简写语法来创建。
 
 ```
 // Creating an array with the constructor:
