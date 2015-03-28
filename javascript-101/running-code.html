@@ -47,7 +47,7 @@ alert( &quot;Hello World!&quot; );
 &lt;/script&gt;</pre><h3 id="属性">属性</h3><p>最后一个选择是使用 HTML 元素的事件处理程序属性。这种方式是强烈不推荐的：</p>
 <pre>&lt;!-- Inline code directly on HTML elements being clicked. --&gt;
 &lt;a href=&quot;javascript:alert( &#39;Hello World&#39; );&quot;&gt;Click Me!&lt;/a&gt;
-&lt;button onclick=&quot;alert( &#39;Good Bye World&#39; );&quot;&gt;Click Me Too!&lt;/button&gt;</pre><h3 id="位置">位置</h3><p>在上面的前两个方式中，代码的位置是重要的，并且需要根据情况而改变。如果你添加不访问页面元素的 JavaScript，你可以放心的把脚本放在 HTML <code>&lt;/head&gt;</code> 之前。但是，如果代码将于页面上的元素交互，就必须确保在执行代码时这些元素已经存在了。可以在下面的例子中看到这个常见的陷阱，一段查找 ID 为 <code>hello-world</code> 的元素脚本将会在页面定义元素之前执行。</p>
+&lt;button onclick=&quot;alert( &#39;Good Bye World&#39; );&quot;&gt;Click Me Too!&lt;/button&gt;</pre><h3 id="位置">位置</h3><p>在上面的前两个方式中，代码的位置是重要的，并且需要根据情况而改变。如果你添加不访问页面元素的 JavaScript，你可以放心的把脚本放在 HTML <code>&lt;/head&gt;</code> 之前。但是，如果代码将与页面上的元素交互，就必须确保在执行代码时这些元素已经存在了。可以在下面的例子中看到这个常见的陷阱，一段查找 ID 为 <code>hello-world</code> 的元素脚本将会在页面定义元素之前执行。</p>
 <pre>&lt;!doctype html&gt;
 &lt;html&gt;
 &lt;head&gt;
