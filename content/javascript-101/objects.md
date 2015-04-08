@@ -1,10 +1,12 @@
-# Objects
+# 对象
+
+- pubdate: 2015-04-08
 
 -------
 
-Objects contain one or more key-value pairs. The key portion can be any string. The value portion can be any type of value: a number, a string, an array, a function, or even another object.  When one of these values is a function, it’s called a method of the object. Otherwise, they are called properties.
+对象包含一个或更多键值对。键的部分可以是任何字符串。值的部分可以是任何类型的值：数字、字符串、数组、函数，甚至是另一个对象。当这些值中的一个是函数，它被称为对象的方法。否则，它们被称为属性。
 
-As it turns out, nearly everything in JavaScript is an object – arrays, functions, numbers, even strings – and they all have properties and methods.
+事实上，JavaScript 中的所有东西几乎都是对象 － 数组，函数，数字，甚至字符串 － 它们都有属性和方法。
 
 ```javascript
 // Creating an object literal.
@@ -21,7 +23,7 @@ myObject.sayHello(); // "hello"
 console.log( myObject.myName ); // "Rebecca"
 ```
 
-When creating object literals, note that the key portion of each key-value pair can be written as any valid JavaScript identifier, a string (wrapped in quotes), or a number:
+创建对象字面量时，注意每一个键值对的键部分可以是任何有效的 JavaScript 标识符、字符串（被引号包含）或者数字：
 
 ```javascript
 var myObject = {
@@ -30,7 +32,8 @@ var myObject = {
 	99999: 789
 };
 ```
-## Iterating Over the Enumerable Properties of an Object:
+
+## 遍历对象的可枚举属性：
 
 ```javascript
 var myObject = {
