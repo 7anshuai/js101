@@ -5,6 +5,52 @@
     <link href="http://js101.co/" />
     <id>http://js101.co/feed.xml</id>
     <entry>
+        <title type="html"><![CDATA[对象]]></title>
+        <link href="http://js101.co/javascript-101/objects.html"/>
+        <published>2015-04-08T00:00:00.000Z</published>
+        <updated>2015-04-08T00:00:00.000Z</updated>
+        <id>http://js101.co/javascript-101/objects.html</id>
+        <content type="html" xml:base="http://js101.co/" xml:lang="en">
+            <![CDATA[ <p>对象包含一个或更多键值对。键的部分可以是任何字符串。值的部分可以是任何类型的值：数字、字符串、数组、函数，甚至是另一个对象。当这些值中的一个是函数，它被称为对象的方法。否则，它们被称为属性。</p>
+<p>事实上，JavaScript 中的所有东西几乎都是对象 － 数组，函数，数字，甚至字符串 － 它们都有属性和方法。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Creating an object literal.</span>
+
+<span class="keyword">var</span> myObject = {
+    sayHello: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log( <span class="string">"hello"</span> );
+    },
+    myName: <span class="string">"Rebecca"</span>
+};
+
+myObject.sayHello(); <span class="comment">// "hello"</span>
+
+console.log( myObject.myName ); <span class="comment">// "Rebecca"</span></code></pre></div><p>创建对象字面量时，注意每一个键值对的键部分可以是任何有效的 JavaScript 标识符、字符串（被引号包含）或者数字：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myObject = {
+    validIdentifier: <span class="number">123</span>,
+    <span class="string">"some string"</span>: <span class="number">456</span>,
+    <span class="number">99999</span>: <span class="number">789</span>
+};</code></pre></div><h2 id="遍历对象的可枚举属性：">遍历对象的可枚举属性：</h2><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myObject = {
+    validIdentifier: <span class="number">123</span>,
+    <span class="string">"some string"</span>: <span class="number">456</span>,
+    <span class="number">99999</span>: <span class="number">789</span>
+};
+
+<span class="keyword">for</span> ( <span class="keyword">var</span> prop <span class="keyword">in</span> myObject ) {
+    <span class="comment">// Determine if the property is on the object itself.</span>
+    <span class="comment">// (not on the prototype)</span>
+    <span class="keyword">if</span> ( myObject.hasOwnProperty( prop ) ) {
+        console.log( <span class="string">"Property : "</span> + prop + <span class="string">" ; value : "</span> + myObject[ prop ] );
+    }
+}
+
+<span class="comment">// Would log the following:</span>
+<span class="comment">// Please note that the order is not guaranteed and may differ.</span>
+
+<span class="comment">// Property : 99999 ; value : 789</span>
+<span class="comment">// Property : validIdentifier ; value : 123</span>
+<span class="comment">// Property : some string ; value : 456</span></code></pre></div>]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[数组]]></title>
         <link href="http://js101.co/javascript-101/arrays.html"/>
         <published>2015-03-28T00:00:00.000Z</published>

@@ -6,7 +6,7 @@
     <meta name="generator" content="nico 0.5.2">
     <meta name="theme" content="one 0.2">
     <meta name="baidu-site-verification" content="mQA8r0mibu">
-    <title>JS101:&nbsp;Objects</title>
+    <title>JS101:&nbsp;对象</title>
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
     <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
@@ -38,9 +38,9 @@
     </div>
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
-  <h1 class="entry-title" itemprop="name">Objects</h1>
-  <div class="entry-content" itemprop="articleBody"><p>Objects contain one or more key-value pairs. The key portion can be any string. The value portion can be any type of value: a number, a string, an array, a function, or even another object.  When one of these values is a function, it’s called a method of the object. Otherwise, they are called properties.</p>
-<p>As it turns out, nearly everything in JavaScript is an object – arrays, functions, numbers, even strings – and they all have properties and methods.</p>
+  <h1 class="entry-title" itemprop="name">对象</h1>
+  <div class="entry-content" itemprop="articleBody"><p>对象包含一个或更多键值对。键的部分可以是任何字符串。值的部分可以是任何类型的值：数字、字符串、数组、函数，甚至是另一个对象。当这些值中的一个是函数，它被称为对象的方法。否则，它们被称为属性。</p>
+<p>事实上，JavaScript 中的所有东西几乎都是对象 － 数组，函数，数字，甚至字符串 － 它们都有属性和方法。</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// Creating an object literal.</span>
 
 <span class="keyword">var</span> myObject = {
@@ -52,12 +52,12 @@
 
 myObject.sayHello(); <span class="comment">// "hello"</span>
 
-console.log( myObject.myName ); <span class="comment">// "Rebecca"</span></code></pre></div><p>When creating object literals, note that the key portion of each key-value pair can be written as any valid JavaScript identifier, a string (wrapped in quotes), or a number:</p>
+console.log( myObject.myName ); <span class="comment">// "Rebecca"</span></code></pre></div><p>创建对象字面量时，注意每一个键值对的键部分可以是任何有效的 JavaScript 标识符、字符串（被引号包含）或者数字：</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myObject = {
     validIdentifier: <span class="number">123</span>,
     <span class="string">"some string"</span>: <span class="number">456</span>,
     <span class="number">99999</span>: <span class="number">789</span>
-};</code></pre></div><h2 id="iterating-over-the-enumerable-properties-of-an-object">Iterating Over the Enumerable Properties of an Object:</h2><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myObject = {
+};</code></pre></div><h2 id="遍历对象的可枚举属性：">遍历对象的可枚举属性：</h2><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myObject = {
     validIdentifier: <span class="number">123</span>,
     <span class="string">"some string"</span>: <span class="number">456</span>,
     <span class="number">99999</span>: <span class="number">789</span>
@@ -77,6 +77,21 @@ console.log( myObject.myName ); <span class="comment">// "Rebecca"</span></code>
 <span class="comment">// Property : 99999 ; value : 789</span>
 <span class="comment">// Property : validIdentifier ; value : 123</span>
 <span class="comment">// Property : some string ; value : 456</span></code></pre></div></div>
+
+  <div class="entry-meta">
+    <time class="updated" datetime="2015-04-08T00:00:00.000Z" itemprop="dateModified">Wednesday, Apr 8th, 2015</time>
+  </div><div class="ds-thread" data-thread-key="53fc31db79a24d32e65fa5acb8f163c0" data-title="JS101: 对象"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"js101"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
 </div>
 </div>
     <div class="footer">
