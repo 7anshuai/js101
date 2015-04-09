@@ -1,10 +1,12 @@
-# Functions
+# 函数
+
+- pubdate: 2015-04-09
 
 -------
 
-Functions contain blocks of code that need to be executed repeatedly. Functions can take zero or more arguments, and can optionally return a value.
+函数包含需要反复执行的代码块。函数可以取零个或多个参数，并且可以可选的返回一个值。
 
-Functions can be created in a variety of ways, two of which are shown below:
+函数可以通过各种方式创建，其中两个方式如下：
 
 ```javascript
 // Function declaration.
@@ -22,7 +24,7 @@ var foo = function() {
 };
 ```
 
-## Using Functions
+## 使用函数
 
 ```javascript
 // A simple function.
@@ -61,9 +63,9 @@ var greeting = greet( "Rebecca", "Hello" );
 greeting(); // "Hello, Rebecca"
 ```
 
-## Immediately-Invoked Function Expression (IIFE)
+## 立即调用函数表达式（IIFE）
 
-A common pattern in JavaScript is the immediately-invoked function expression. This pattern creates a function expression and then immediately executes the function. This pattern is extremely useful for cases where you want to avoid polluting the global namespace with code – no variables declared inside of the function are visible outside of it.
+在 JavaScript 中一个常见的模式是立即调用函数表达式。这种模式创建一个函数表达式然后立即执行。IIFE 在要避免污染全局命名空间的情况下非常有用 － 函数内声明的变量，在外部是不可见的。
 
 ```javascript
 // An immediately-invoked function expression.
@@ -75,9 +77,9 @@ A common pattern in JavaScript is the immediately-invoked function expression. T
 console.log( foo ); // undefined!
 ```
 
-## Functions as Arguments
+## 作为参数的函数
 
-In JavaScript, functions are "first-class citizens" – they can be assigned to variables or passed to other functions as arguments. Passing functions as arguments is an extremely common idiom in jQuery.
+在 JavaScript 中，函数是“一等公民” － 它们可以被赋给变量或者作为参数传递给另一个函数。传递函数作为参数是 jQuery 中的惯用法。
 
 ```javascript
 // Passing an anonymous function as an argument.
