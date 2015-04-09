@@ -6,7 +6,7 @@
     <meta name="generator" content="nico 0.5.2">
     <meta name="theme" content="one 0.2">
     <meta name="baidu-site-verification" content="mQA8r0mibu">
-    <title>JS101:&nbsp;Functions</title>
+    <title>JS101:&nbsp;函数</title>
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
     <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
@@ -38,9 +38,9 @@
     </div>
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
-  <h1 class="entry-title" itemprop="name">Functions</h1>
-  <div class="entry-content" itemprop="articleBody"><p>Functions contain blocks of code that need to be executed repeatedly. Functions can take zero or more arguments, and can optionally return a value.</p>
-<p>Functions can be created in a variety of ways, two of which are shown below:</p>
+  <h1 class="entry-title" itemprop="name">函数</h1>
+  <div class="entry-content" itemprop="articleBody"><p>函数包含需要反复执行的代码块。函数可以取零个或多个参数，并且可以可选的返回一个值。</p>
+<p>函数可以通过各种方式创建，其中两个方式如下：</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// Function declaration.</span>
 
 <span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span> {</span>
@@ -49,7 +49,7 @@
 
 <span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
     <span class="comment">// Do something.</span>
-};</code></pre></div><h2 id="using-functions">Using Functions</h2><div class="highlight"><pre><code class="javascript"><span class="comment">// A simple function.</span>
+};</code></pre></div><h2 id="使用函数">使用函数</h2><div class="highlight"><pre><code class="javascript"><span class="comment">// A simple function.</span>
 
 <span class="keyword">var</span> greet = <span class="function"><span class="keyword">function</span><span class="params">( person, greeting )</span> {</span>
     <span class="keyword">var</span> text = greeting + <span class="string">", "</span> + person;
@@ -74,14 +74,14 @@ console.log( greet( <span class="string">"Rebecca"</span>, <span class="string">
 
 <span class="keyword">var</span> greeting = greet( <span class="string">"Rebecca"</span>, <span class="string">"Hello"</span> );
 
-greeting(); <span class="comment">// "Hello, Rebecca"</span></code></pre></div><h2 id="immediately-invoked-function-expression-iife">Immediately-Invoked Function Expression (IIFE)</h2><p>A common pattern in JavaScript is the immediately-invoked function expression. This pattern creates a function expression and then immediately executes the function. This pattern is extremely useful for cases where you want to avoid polluting the global namespace with code – no variables declared inside of the function are visible outside of it.</p>
+greeting(); <span class="comment">// "Hello, Rebecca"</span></code></pre></div><h2 id="立即调用函数表达式（iife）">立即调用函数表达式（IIFE）</h2><p>在 JavaScript 中一个常见的模式是立即调用函数表达式。这种模式创建一个函数表达式然后立即执行。IIFE 在要避免污染全局命名空间的情况下非常有用 － 函数内声明的变量，在外部是不可见的。</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// An immediately-invoked function expression.</span>
 
 (<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
     <span class="keyword">var</span> foo = <span class="string">"Hello world"</span>;
 })();
 
-console.log( foo ); <span class="comment">// undefined!</span></code></pre></div><h2 id="functions-as-arguments">Functions as Arguments</h2><p>In JavaScript, functions are &quot;first-class citizens&quot; – they can be assigned to variables or passed to other functions as arguments. Passing functions as arguments is an extremely common idiom in jQuery.</p>
+console.log( foo ); <span class="comment">// undefined!</span></code></pre></div><h2 id="作为参数的函数">作为参数的函数</h2><p>在 JavaScript 中，函数是“一等公民” － 它们可以被赋给变量或者作为参数传递给另一个函数。传递函数作为参数是 jQuery 中的惯用法。</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// Passing an anonymous function as an argument.</span>
 
 <span class="keyword">var</span> myFn = <span class="function"><span class="keyword">function</span><span class="params">( fn )</span> {</span>
@@ -104,6 +104,21 @@ myFn( <span class="function"><span class="keyword">function</span><span class="p
 };
 
 myFn( myOtherFn ); <span class="comment">// "hello world"</span></code></pre></div></div>
+
+  <div class="entry-meta">
+    <time class="updated" datetime="2015-04-09T00:00:00.000Z" itemprop="dateModified">Thursday, Apr 9th, 2015</time>
+  </div><div class="ds-thread" data-thread-key="0b0daf15ce79d7e850fab1f60f1bb93a" data-title="JS101: 函数"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"js101"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
 </div>
 </div>
     <div class="footer">

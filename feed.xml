@@ -5,6 +5,79 @@
     <link href="http://js101.co/" />
     <id>http://js101.co/feed.xml</id>
     <entry>
+        <title type="html"><![CDATA[函数]]></title>
+        <link href="http://js101.co/javascript-101/functions.html"/>
+        <published>2015-04-09T00:00:00.000Z</published>
+        <updated>2015-04-09T00:00:00.000Z</updated>
+        <id>http://js101.co/javascript-101/functions.html</id>
+        <content type="html" xml:base="http://js101.co/" xml:lang="en">
+            <![CDATA[ <p>函数包含需要反复执行的代码块。函数可以取零个或多个参数，并且可以可选的返回一个值。</p>
+<p>函数可以通过各种方式创建，其中两个方式如下：</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Function declaration.</span>
+
+<span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span> {</span>
+    <span class="comment">// Do something.</span>
+}</code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// Function expression.</span>
+
+<span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="comment">// Do something.</span>
+};</code></pre></div><h2 id="使用函数">使用函数</h2><div class="highlight"><pre><code class="javascript"><span class="comment">// A simple function.</span>
+
+<span class="keyword">var</span> greet = <span class="function"><span class="keyword">function</span><span class="params">( person, greeting )</span> {</span>
+    <span class="keyword">var</span> text = greeting + <span class="string">", "</span> + person;
+    console.log( text );
+};
+
+greet( <span class="string">"Rebecca"</span>, <span class="string">"Hello"</span> ); <span class="comment">// "Hello, Rebecca"</span></code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// A function that returns a value.</span>
+
+<span class="keyword">var</span> greet = <span class="function"><span class="keyword">function</span><span class="params">( person, greeting )</span> {</span>
+    <span class="keyword">var</span> text = greeting + <span class="string">", "</span> + person;
+    <span class="keyword">return</span> text;
+};
+
+console.log( greet( <span class="string">"Rebecca"</span>, <span class="string">"Hello"</span> ) ); <span class="comment">// "Hello, Rebecca"</span></code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// A function that returns another function.</span>
+
+<span class="keyword">var</span> greet = <span class="function"><span class="keyword">function</span><span class="params">( person, greeting )</span> {</span>
+    <span class="keyword">var</span> text = greeting + <span class="string">", "</span> + person;
+    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log( text );
+    };
+};
+
+<span class="keyword">var</span> greeting = greet( <span class="string">"Rebecca"</span>, <span class="string">"Hello"</span> );
+
+greeting(); <span class="comment">// "Hello, Rebecca"</span></code></pre></div><h2 id="立即调用函数表达式（iife）">立即调用函数表达式（IIFE）</h2><p>在 JavaScript 中一个常见的模式是立即调用函数表达式。这种模式创建一个函数表达式然后立即执行。IIFE 在要避免污染全局命名空间的情况下非常有用 － 函数内声明的变量，在外部是不可见的。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// An immediately-invoked function expression.</span>
+
+(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">var</span> foo = <span class="string">"Hello world"</span>;
+})();
+
+console.log( foo ); <span class="comment">// undefined!</span></code></pre></div><h2 id="作为参数的函数">作为参数的函数</h2><p>在 JavaScript 中，函数是“一等公民” － 它们可以被赋给变量或者作为参数传递给另一个函数。传递函数作为参数是 jQuery 中的惯用法。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Passing an anonymous function as an argument.</span>
+
+<span class="keyword">var</span> myFn = <span class="function"><span class="keyword">function</span><span class="params">( fn )</span> {</span>
+    <span class="keyword">var</span> result = fn();
+    console.log( result );
+};
+
+<span class="comment">// Logs "hello world"</span>
+myFn( <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> <span class="string">"hello world"</span>;
+});</code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// Passing a named function as an argument</span>
+
+<span class="keyword">var</span> myFn = <span class="function"><span class="keyword">function</span><span class="params">( fn )</span> {</span>
+    <span class="keyword">var</span> result = fn();
+    console.log( result );
+};
+
+<span class="keyword">var</span> myOtherFn = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> <span class="string">"hello world"</span>;
+};
+
+myFn( myOtherFn ); <span class="comment">// "hello world"</span></code></pre></div>]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[对象]]></title>
         <link href="http://js101.co/javascript-101/objects.html"/>
         <published>2015-04-08T00:00:00.000Z</published>
@@ -645,63 +718,6 @@ jQuery.isPlainObject( myValue ); <span class="comment">// false</span>
 jQuery.isArray( myValue ); <span class="comment">// true</span></code></pre></div>]]>
         </content>
     </entry><entry>
-        <title type="html"><![CDATA[保留字]]></title>
-        <link href="http://js101.co/javascript-101/reserved-words.html"/>
-        <published>2015-03-06T00:00:00.000Z</published>
-        <updated>2015-03-06T00:00:00.000Z</updated>
-        <id>http://js101.co/javascript-101/reserved-words.html</id>
-        <content type="html" xml:base="http://js101.co/" xml:lang="en">
-            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
-<ul>
-<li><code>break</code></li>
-<li><code>case</code></li>
-<li><code>catch</code></li>
-<li><code>class</code></li>
-<li><code>const</code></li>
-<li><code>continue</code></li>
-<li><code>debugger</code></li>
-<li><code>default</code></li>
-<li><code>delete</code></li>
-<li><code>do</code></li>
-<li><code>else</code></li>
-<li><code>enum</code></li>
-<li><code>export</code></li>
-<li><code>extends</code></li>
-<li><code>false</code></li>
-<li><code>finally</code></li>
-<li><code>for</code></li>
-<li><code>function</code></li>
-<li><code>if</code></li>
-<li><code>implements</code></li>
-<li><code>import</code></li>
-<li><code>in</code></li>
-<li><code>instanceof</code></li>
-<li><code>interface</code></li>
-<li><code>let</code></li>
-<li><code>new</code></li>
-<li><code>null</code></li>
-<li><code>package</code></li>
-<li><code>private</code></li>
-<li><code>protected</code></li>
-<li><code>public</code></li>
-<li><code>return</code></li>
-<li><code>static</code></li>
-<li><code>super</code></li>
-<li><code>switch</code></li>
-<li><code>this</code></li>
-<li><code>throw</code></li>
-<li><code>true</code></li>
-<li><code>try</code></li>
-<li><code>typeof</code></li>
-<li><code>var</code></li>
-<li><code>void</code></li>
-<li><code>while</code></li>
-<li><code>with</code></li>
-<li><code>yield</code></li>
-</ul>
-]]>
-        </content>
-    </entry><entry>
         <title type="html"><![CDATA[语法基础]]></title>
         <link href="http://js101.co/javascript-101/syntax-basics.html"/>
         <published>2015-03-06T00:00:00.000Z</published>
@@ -761,6 +777,63 @@ foo();
     test6 = test2( test );</code></pre></div><p>变量可以在声明时不分配一个值，程序会给它们一个默认的值 <code>undefined</code>。</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> x;
 x === <span class="literal">undefined</span>; <span class="comment">// true</span></code></pre></div>]]>
+        </content>
+    </entry><entry>
+        <title type="html"><![CDATA[保留字]]></title>
+        <link href="http://js101.co/javascript-101/reserved-words.html"/>
+        <published>2015-03-06T00:00:00.000Z</published>
+        <updated>2015-03-06T00:00:00.000Z</updated>
+        <id>http://js101.co/javascript-101/reserved-words.html</id>
+        <content type="html" xml:base="http://js101.co/" xml:lang="en">
+            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
+<ul>
+<li><code>break</code></li>
+<li><code>case</code></li>
+<li><code>catch</code></li>
+<li><code>class</code></li>
+<li><code>const</code></li>
+<li><code>continue</code></li>
+<li><code>debugger</code></li>
+<li><code>default</code></li>
+<li><code>delete</code></li>
+<li><code>do</code></li>
+<li><code>else</code></li>
+<li><code>enum</code></li>
+<li><code>export</code></li>
+<li><code>extends</code></li>
+<li><code>false</code></li>
+<li><code>finally</code></li>
+<li><code>for</code></li>
+<li><code>function</code></li>
+<li><code>if</code></li>
+<li><code>implements</code></li>
+<li><code>import</code></li>
+<li><code>in</code></li>
+<li><code>instanceof</code></li>
+<li><code>interface</code></li>
+<li><code>let</code></li>
+<li><code>new</code></li>
+<li><code>null</code></li>
+<li><code>package</code></li>
+<li><code>private</code></li>
+<li><code>protected</code></li>
+<li><code>public</code></li>
+<li><code>return</code></li>
+<li><code>static</code></li>
+<li><code>super</code></li>
+<li><code>switch</code></li>
+<li><code>this</code></li>
+<li><code>throw</code></li>
+<li><code>true</code></li>
+<li><code>try</code></li>
+<li><code>typeof</code></li>
+<li><code>var</code></li>
+<li><code>void</code></li>
+<li><code>while</code></li>
+<li><code>with</code></li>
+<li><code>yield</code></li>
+</ul>
+]]>
         </content>
     </entry><entry>
         <title type="html"><![CDATA[运行代码]]></title>
