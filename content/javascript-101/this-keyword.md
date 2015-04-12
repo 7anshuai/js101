@@ -1,13 +1,15 @@
-# this keyword
+# this 关键字
+
+- pubdate: 2014-04-12
 
 -------
 
-In JavaScript, as in most object-oriented programming languages, `this` is a special keyword that is used in methods to refer to the object on which a method is being invoked. The value of `this` is determined using a simple series of steps:
+在 JavaScript 中，如同在大部分面向对象编程语言中一样，`this` 是一个特殊的关键字，它常在被某个对象调用的方法中指向对象本身。`this` 的值可通过一系列简单的步骤来确定：
 
-- If the function is invoked using `Function.call()` or `Function.apply()`, `this` will be set to the first argument passed to `.call()`/`.apply()`. If the first argument passed to `.call()`/`.apply()` is `null` or `undefined`, `this` will refer to the global object (which is the `window` object in web browsers).
-- If the function being invoked was created using `Function.bind()`, `this` will be the first argument that was passed to `.bind()` at the time the function was created.
-- If the function is being invoked as a method of an object, `this` will refer to that object.
-- Otherwise, the function is being invoked as a standalone function not attached to any object, and `this` will refer to the global object.
+- 如果函数是通过 `Function.call()` 或者 `Function.apply()` 调用，`this` 的值将会被设置为传递给 `.call()` 或 `.apply()` 的第一个参数。如果传递给 `.call()` 或 `.apply()` 的第一个参数是 `null` 或 `undefined`，`this` 会指向全局对象（在 Web 浏览器中是 `window` 对象）。
+- 如果被调用的函数是由 `Function.bind()` 创建的，`this` 将会是该函数被创建时传递给 `.bind()` 的第一个参数。
+- 如果函数是作为一个对象的方法被调用，`this` 将会指向那个对象。
+- 否则，当函数作为一个不依附任何对象的独立函数被调用，`this` 会指向全局对象。
 
 ```javascript
 // A function invoked using Function.call()
@@ -65,7 +67,7 @@ myObject.sayHello();     // "Hi! My name is Rebecca"
 secondObject.sayHello(); // "Hi! My name is Colin"
 ```
 
-When invoking a function deep within a long namespace, it is often tempting to reduce the amount of code you need to type by storing a reference to the actual function as a single, shorter variable. It is important not to do this with instance methods as this will cause the value of `this` within the function to change, leading to incorrect code operation. For instance:
+当深度调用一个长命名空间的函数时，它通常会诱使你使用一个单一简短的变量来引用实际的函数，以减少你所需要键入的代码。重点是实例方法不能这么做，因为这会导致函数内的 `this` 值发生改变，从而导致不正确的结果。例如：
 
 ```javascript
 var myNamespace = {
@@ -82,7 +84,7 @@ var hello = myNamespace.myObject.sayHello;
 hello(); // "Hi! My name is undefined"
 ```
 
-You can, however, safely reduce everything up to the object on which the method is invoked:
+但是，你可以安全的减少所有代码，直到方法被调用的那个对象：
 
 ```javascript
 var myNamespace = {
