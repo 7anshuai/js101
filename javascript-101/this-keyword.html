@@ -6,7 +6,7 @@
     <meta name="generator" content="nico 0.5.2">
     <meta name="theme" content="one 0.2">
     <meta name="baidu-site-verification" content="mQA8r0mibu">
-    <title>JS101:&nbsp;this keyword</title>
+    <title>JS101:&nbsp;this 关键字</title>
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
     <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
@@ -38,13 +38,13 @@
     </div>
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
-  <h1 class="entry-title" itemprop="name">this keyword</h1>
-  <div class="entry-content" itemprop="articleBody"><p>In JavaScript, as in most object-oriented programming languages, <code>this</code> is a special keyword that is used in methods to refer to the object on which a method is being invoked. The value of <code>this</code> is determined using a simple series of steps:</p>
+  <h1 class="entry-title" itemprop="name">this 关键字</h1>
+  <div class="entry-content" itemprop="articleBody"><p>在 JavaScript 中，如同在大部分面向对象编程语言中一样，<code>this</code> 是一个特殊的关键字，它常在被某个对象调用的方法中指向对象本身。<code>this</code> 的值可通过一系列简单的步骤来确定：</p>
 <ul>
-<li>If the function is invoked using <code>Function.call()</code> or <code>Function.apply()</code>, <code>this</code> will be set to the first argument passed to <code>.call()</code>/<code>.apply()</code>. If the first argument passed to <code>.call()</code>/<code>.apply()</code> is <code>null</code> or <code>undefined</code>, <code>this</code> will refer to the global object (which is the <code>window</code> object in web browsers).</li>
-<li>If the function being invoked was created using <code>Function.bind()</code>, <code>this</code> will be the first argument that was passed to <code>.bind()</code> at the time the function was created.</li>
-<li>If the function is being invoked as a method of an object, <code>this</code> will refer to that object.</li>
-<li>Otherwise, the function is being invoked as a standalone function not attached to any object, and <code>this</code> will refer to the global object.</li>
+<li>如果函数是通过 <code>Function.call()</code> 或者 <code>Function.apply()</code> 调用，<code>this</code> 的值将会被设置为传递给 <code>.call()</code> 或 <code>.apply()</code> 的第一个参数。如果传递给 <code>.call()</code> 或 <code>.apply()</code> 的第一个参数是 <code>null</code> 或 <code>undefined</code>，<code>this</code> 会指向全局对象（在 Web 浏览器中是 <code>window</code> 对象）。</li>
+<li>如果被调用的函数是由 <code>Function.bind()</code> 创建的，<code>this</code> 将会是该函数被创建时传递给 <code>.bind()</code> 的第一个参数。</li>
+<li>如果函数是作为一个对象的方法被调用，<code>this</code> 将会指向那个对象。</li>
+<li>否则，当函数作为一个不依附任何对象的独立函数被调用，<code>this</code> 会指向全局对象。</li>
 </ul>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// A function invoked using Function.call()</span>
 
@@ -90,7 +90,7 @@ secondObject.sayHello = sayHello;
 
 sayHello();              <span class="comment">// "Hi! My name is the global object"</span>
 myObject.sayHello();     <span class="comment">// "Hi! My name is Rebecca"</span>
-secondObject.sayHello(); <span class="comment">// "Hi! My name is Colin"</span></code></pre></div><p>When invoking a function deep within a long namespace, it is often tempting to reduce the amount of code you need to type by storing a reference to the actual function as a single, shorter variable. It is important not to do this with instance methods as this will cause the value of <code>this</code> within the function to change, leading to incorrect code operation. For instance:</p>
+secondObject.sayHello(); <span class="comment">// "Hi! My name is Colin"</span></code></pre></div><p>当深度调用一个长命名空间的函数时，它通常会诱使你使用一个单一简短的变量来引用实际的函数，以减少你所需要键入的代码。重点是实例方法不能这么做，因为这会导致函数内的 <code>this</code> 值发生改变，从而导致不正确的结果。例如：</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myNamespace = {
     myObject: {
         sayHello: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
@@ -102,7 +102,7 @@ secondObject.sayHello(); <span class="comment">// "Hi! My name is Colin"</span><
 
 <span class="keyword">var</span> hello = myNamespace.myObject.sayHello;
 
-hello(); <span class="comment">// "Hi! My name is undefined"</span></code></pre></div><p>You can, however, safely reduce everything up to the object on which the method is invoked:</p>
+hello(); <span class="comment">// "Hi! My name is undefined"</span></code></pre></div><p>但是，你可以安全的减少所有代码，直到方法被调用的那个对象：</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myNamespace = {
     myObject: {
         sayHello: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
@@ -115,6 +115,21 @@ hello(); <span class="comment">// "Hi! My name is undefined"</span></code></pre>
 <span class="keyword">var</span> obj = myNamespace.myObject;
 
 obj.sayHello(); <span class="comment">// "Hi! My name is Rebecca"</span></code></pre></div></div>
+
+  <div class="entry-meta">
+    <time class="updated" datetime="2014-04-12T00:00:00.000Z" itemprop="dateModified">Saturday, Apr 12th, 2014</time>
+  </div><div class="ds-thread" data-thread-key="121103ebc900e80db88f7052f4546adf" data-title="JS101: this 关键字"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"js101"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
 </div>
 </div>
     <div class="footer">

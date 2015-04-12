@@ -718,6 +718,63 @@ jQuery.isPlainObject( myValue ); <span class="comment">// false</span>
 jQuery.isArray( myValue ); <span class="comment">// true</span></code></pre></div>]]>
         </content>
     </entry><entry>
+        <title type="html"><![CDATA[保留字]]></title>
+        <link href="http://js101.co/javascript-101/reserved-words.html"/>
+        <published>2015-03-06T00:00:00.000Z</published>
+        <updated>2015-03-06T00:00:00.000Z</updated>
+        <id>http://js101.co/javascript-101/reserved-words.html</id>
+        <content type="html" xml:base="http://js101.co/" xml:lang="en">
+            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
+<ul>
+<li><code>break</code></li>
+<li><code>case</code></li>
+<li><code>catch</code></li>
+<li><code>class</code></li>
+<li><code>const</code></li>
+<li><code>continue</code></li>
+<li><code>debugger</code></li>
+<li><code>default</code></li>
+<li><code>delete</code></li>
+<li><code>do</code></li>
+<li><code>else</code></li>
+<li><code>enum</code></li>
+<li><code>export</code></li>
+<li><code>extends</code></li>
+<li><code>false</code></li>
+<li><code>finally</code></li>
+<li><code>for</code></li>
+<li><code>function</code></li>
+<li><code>if</code></li>
+<li><code>implements</code></li>
+<li><code>import</code></li>
+<li><code>in</code></li>
+<li><code>instanceof</code></li>
+<li><code>interface</code></li>
+<li><code>let</code></li>
+<li><code>new</code></li>
+<li><code>null</code></li>
+<li><code>package</code></li>
+<li><code>private</code></li>
+<li><code>protected</code></li>
+<li><code>public</code></li>
+<li><code>return</code></li>
+<li><code>static</code></li>
+<li><code>super</code></li>
+<li><code>switch</code></li>
+<li><code>this</code></li>
+<li><code>throw</code></li>
+<li><code>true</code></li>
+<li><code>try</code></li>
+<li><code>typeof</code></li>
+<li><code>var</code></li>
+<li><code>void</code></li>
+<li><code>while</code></li>
+<li><code>with</code></li>
+<li><code>yield</code></li>
+</ul>
+]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[语法基础]]></title>
         <link href="http://js101.co/javascript-101/syntax-basics.html"/>
         <published>2015-03-06T00:00:00.000Z</published>
@@ -777,63 +834,6 @@ foo();
     test6 = test2( test );</code></pre></div><p>变量可以在声明时不分配一个值，程序会给它们一个默认的值 <code>undefined</code>。</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> x;
 x === <span class="literal">undefined</span>; <span class="comment">// true</span></code></pre></div>]]>
-        </content>
-    </entry><entry>
-        <title type="html"><![CDATA[保留字]]></title>
-        <link href="http://js101.co/javascript-101/reserved-words.html"/>
-        <published>2015-03-06T00:00:00.000Z</published>
-        <updated>2015-03-06T00:00:00.000Z</updated>
-        <id>http://js101.co/javascript-101/reserved-words.html</id>
-        <content type="html" xml:base="http://js101.co/" xml:lang="en">
-            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
-<ul>
-<li><code>break</code></li>
-<li><code>case</code></li>
-<li><code>catch</code></li>
-<li><code>class</code></li>
-<li><code>const</code></li>
-<li><code>continue</code></li>
-<li><code>debugger</code></li>
-<li><code>default</code></li>
-<li><code>delete</code></li>
-<li><code>do</code></li>
-<li><code>else</code></li>
-<li><code>enum</code></li>
-<li><code>export</code></li>
-<li><code>extends</code></li>
-<li><code>false</code></li>
-<li><code>finally</code></li>
-<li><code>for</code></li>
-<li><code>function</code></li>
-<li><code>if</code></li>
-<li><code>implements</code></li>
-<li><code>import</code></li>
-<li><code>in</code></li>
-<li><code>instanceof</code></li>
-<li><code>interface</code></li>
-<li><code>let</code></li>
-<li><code>new</code></li>
-<li><code>null</code></li>
-<li><code>package</code></li>
-<li><code>private</code></li>
-<li><code>protected</code></li>
-<li><code>public</code></li>
-<li><code>return</code></li>
-<li><code>static</code></li>
-<li><code>super</code></li>
-<li><code>switch</code></li>
-<li><code>this</code></li>
-<li><code>throw</code></li>
-<li><code>true</code></li>
-<li><code>try</code></li>
-<li><code>typeof</code></li>
-<li><code>var</code></li>
-<li><code>void</code></li>
-<li><code>while</code></li>
-<li><code>with</code></li>
-<li><code>yield</code></li>
-</ul>
-]]>
         </content>
     </entry><entry>
         <title type="html"><![CDATA[运行代码]]></title>
@@ -941,6 +941,90 @@ console.log( title );
 <li><a href="http://www.opera.com/dragonfly/">Opera Dragonfly</a></li>
 </ul>
 ]]>
+        </content>
+    </entry><entry>
+        <title type="html"><![CDATA[this 关键字]]></title>
+        <link href="http://js101.co/javascript-101/this-keyword.html"/>
+        <published>2014-04-12T00:00:00.000Z</published>
+        <updated>2014-04-12T00:00:00.000Z</updated>
+        <id>http://js101.co/javascript-101/this-keyword.html</id>
+        <content type="html" xml:base="http://js101.co/" xml:lang="en">
+            <![CDATA[ <p>在 JavaScript 中，如同在大部分面向对象编程语言中一样，<code>this</code> 是一个特殊的关键字，它常在被某个对象调用的方法中指向对象本身。<code>this</code> 的值可通过一系列简单的步骤来确定：</p>
+<ul>
+<li>如果函数是通过 <code>Function.call()</code> 或者 <code>Function.apply()</code> 调用，<code>this</code> 的值将会被设置为传递给 <code>.call()</code> 或 <code>.apply()</code> 的第一个参数。如果传递给 <code>.call()</code> 或 <code>.apply()</code> 的第一个参数是 <code>null</code> 或 <code>undefined</code>，<code>this</code> 会指向全局对象（在 Web 浏览器中是 <code>window</code> 对象）。</li>
+<li>如果被调用的函数是由 <code>Function.bind()</code> 创建的，<code>this</code> 将会是该函数被创建时传递给 <code>.bind()</code> 的第一个参数。</li>
+<li>如果函数是作为一个对象的方法被调用，<code>this</code> 将会指向那个对象。</li>
+<li>否则，当函数作为一个不依附任何对象的独立函数被调用，<code>this</code> 会指向全局对象。</li>
+</ul>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// A function invoked using Function.call()</span>
+
+<span class="keyword">var</span> myObject = {
+    sayHello: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log( <span class="string">"Hi! My name is "</span> + <span class="keyword">this</span>.myName );
+    },
+    myName: <span class="string">"Rebecca"</span>
+};
+
+<span class="keyword">var</span> secondObject = {
+    myName: <span class="string">"Colin"</span>
+};
+
+myObject.sayHello();                    <span class="comment">// "Hi! My name is Rebecca"</span>
+myObject.sayHello.call( secondObject ); <span class="comment">// "Hi! My name is Colin"</span></code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// A function created using Function.bind()</span>
+
+<span class="keyword">var</span> myName = <span class="string">"the global object"</span>;
+<span class="keyword">var</span> sayHello = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    console.log( <span class="string">"Hi! My name is "</span> + <span class="keyword">this</span>.myName );
+};
+<span class="keyword">var</span> myObject = {
+    myName: <span class="string">"Rebecca"</span>
+};
+<span class="keyword">var</span> myObjectHello = sayHello.bind( myObject );
+
+sayHello();      <span class="comment">// "Hi! My name is the global object"</span>
+myObjectHello(); <span class="comment">// "Hi! My name is Rebecca"</span></code></pre></div><div class="highlight"><pre><code class="javascript"><span class="comment">// A function being attached to an object at runtime.</span>
+
+<span class="keyword">var</span> myName = <span class="string">"the global object"</span>;
+<span class="keyword">var</span> sayHello = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    console.log( <span class="string">"Hi! My name is "</span> + <span class="keyword">this</span>.myName );
+};
+<span class="keyword">var</span> myObject = {
+    myName: <span class="string">"Rebecca"</span>
+};
+<span class="keyword">var</span> secondObject = {
+    myName: <span class="string">"Colin"</span>
+};
+
+myObject.sayHello = sayHello;
+secondObject.sayHello = sayHello;
+
+sayHello();              <span class="comment">// "Hi! My name is the global object"</span>
+myObject.sayHello();     <span class="comment">// "Hi! My name is Rebecca"</span>
+secondObject.sayHello(); <span class="comment">// "Hi! My name is Colin"</span></code></pre></div><p>当深度调用一个长命名空间的函数时，它通常会诱使你使用一个单一简短的变量来引用实际的函数，以减少你所需要键入的代码。重点是实例方法不能这么做，因为这会导致函数内的 <code>this</code> 值发生改变，从而导致不正确的结果。例如：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myNamespace = {
+    myObject: {
+        sayHello: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+            console.log( <span class="string">"Hi! My name is "</span> + <span class="keyword">this</span>.myName );
+        },
+        myName: <span class="string">"Rebecca"</span>
+    }
+};
+
+<span class="keyword">var</span> hello = myNamespace.myObject.sayHello;
+
+hello(); <span class="comment">// "Hi! My name is undefined"</span></code></pre></div><p>但是，你可以安全的减少所有代码，直到方法被调用的那个对象：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myNamespace = {
+    myObject: {
+        sayHello: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+            console.log( <span class="string">"Hi! My name is "</span> + <span class="keyword">this</span>.myName );
+        },
+        myName: <span class="string">"Rebecca"</span>
+    }
+};
+
+<span class="keyword">var</span> obj = myNamespace.myObject;
+
+obj.sayHello(); <span class="comment">// "Hi! My name is Rebecca"</span></code></pre></div>]]>
         </content>
     </entry>
 </feed>
