@@ -5,6 +5,112 @@
     <link href="http://js101.co/" />
     <id>http://js101.co/feed.xml</id>
     <entry>
+        <title type="html"><![CDATA[作用域]]></title>
+        <link href="http://js101.co/javascript-101/scope.html"/>
+        <published>2015-04-19T00:00:00.000Z</published>
+        <updated>2015-04-19T00:00:00.000Z</updated>
+        <id>http://js101.co/javascript-101/scope.html</id>
+        <content type="html" xml:base="http://js101.co/" xml:lang="en">
+            <![CDATA[ <p>作用域通常是指在指定的时间内，变量存在于一段代码中。缺乏对作用域的理解可能会导致令人沮丧的调试体验。作用域的概念是关于我们的代码中可以访问到哪些确定的函数或变量，代码的上下文和执行环境。</p>
+<p>在 JavaScript 中，有两种类型的作用域：全局和局部作用域。</p>
+<h2 id="全局作用域">全局作用域</h2><p>第一种作用域是<strong>全局作用域</strong>。它很容易定义。如果一个变量或函数是<em>全局的</em>，那么在程序中的任何地方都可以访问到它们。在浏览器中，全局作用域是 <code>window</code> 对象。如果在函数外面声明一个变量，那么这个变量就存在全局对象中。例如：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> x = <span class="number">9</span>;</code></pre></div><p>一旦该变量被定义，则可以被引用为 <code>window.x</code>，因为它存在于全局对象中，我们可以简单的引用它为 <code>x</code>。</p>
+<h2 id="局部作用域">局部作用域</h2><p>JavaScript 也可以在每个函数体中创建<strong>局部作用域</strong>。例如：</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">myFunc</span><span class="params">()</span> {</span>
+    <span class="keyword">var</span> x = <span class="number">5</span>;
+}
+
+myFunc();
+
+console.log( x ); <span class="comment">// ReferenceError: x is not defined</span></code></pre></div><p>由于 <code>x</code> 是在 <code>myFunc()</code> 中初始化，所以它只能在 <code>myFunc()</code> 中被访问，如果我们试图在 <code>myFunc()</code> 外面访问 <code>x</code>，则会得到一个引用错误。</p>
+<h2 id="注意">注意</h2><p>如果你忘记使用 <code>var</code> 关键字声明变量，那么这个变量会自动变成全局变量。所以这段代码可以运行：</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">myFunc</span><span class="params">()</span> {</span>
+    x = <span class="number">5</span>;
+}
+
+myFunc();
+
+console.log( x ); <span class="comment">// 5</span></code></pre></div><p>这是一个坏主意。全局变量的值可以被程序的任何部分或者其他脚本更改。这是不期望发生的，因为它会导致无法预料的副作用。</p>
+<p>立即调用表达式（IIFE）提供了一个避免全局变量的方式。你会看到许多如 jQuery 的 JavaScript 库经常使用这种方式：</p>
+<div class="highlight"><pre><code class="javascript">(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">var</span> jQuery = { <span class="comment">/* All my methods go here. */</span> };
+    window.jQuery = jQuery;
+})();</code></pre></div><p>将一切包含在一个函数中并立即调用这个函数，这意味着函数中的所有变量都被绑定在<em>局部作用域</em>中。在函数结尾部分，你可以通过将 <code>jQuery</code> 对象绑定在全局对象 <code>window</code> 上，将一些方法和属性公开出来。了解更多关于立即调用函数表达式，请查看 Ben Alman 的文章 <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">Immediately-Invoked Function Expression</a>。</p>
+<p>因为局部作用域通过函数而工作，任何在另一个函数中定义的函数都可以访问外部函数里的变量：</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">outer</span><span class="params">()</span> {</span>
+    <span class="keyword">var</span> x = <span class="number">5</span>;
+
+    <span class="function"><span class="keyword">function</span> <span class="title">inner</span><span class="params">()</span> {</span>
+        console.log( x );
+    }
+
+    inner(); <span class="comment">// 5</span>
+}</code></pre></div><p>但是 <code>.outer()</code> 函数不能访问 <code>.inner()</code> 函数中定义的任何变量。</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">outer</span><span class="params">()</span> {</span>
+    <span class="keyword">var</span> x = <span class="number">5</span>;
+
+    <span class="function"><span class="keyword">function</span> <span class="title">inner</span><span class="params">()</span> {</span>
+        console.log( x );
+        <span class="keyword">var</span> y = <span class="number">10</span>;
+    }
+
+    inner(); <span class="comment">// 5</span>
+
+    console.log( y ); <span class="comment">// ReferenceError: y is not defined</span>
+}</code></pre></div><p>另外，在一个函数中没有使用 <code>var</code> 关键字定义的变量不是这个函数的局部变量 － JavaScript 会向上遍历作用域链（最后会到 <code>window</code> 对象）寻找之前定义的这个变量。如果这个变量没有定义，则会在全局中定义该变量，这样会导致意外的结果。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Functions have access to variables defined in the same scope.</span>
+
+<span class="keyword">var</span> foo = <span class="string">"hello"</span>;
+
+<span class="keyword">var</span> sayHello = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    console.log( foo );
+};
+
+sayHello(); <span class="comment">// "hello"</span>
+
+console.log( foo ); <span class="comment">// "hello"</span></code></pre></div><p>相同名称的变量可以在不同作用域中保存不同的值：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> foo = <span class="string">"world"</span>;
+
+<span class="keyword">var</span> sayHello = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">var</span> foo = <span class="string">"hello"</span>;
+    console.log( foo );
+};
+
+sayHello(); <span class="comment">// "hello"</span>
+
+console.log( foo ); <span class="comment">// "world"</span></code></pre></div><p>当在一个函数中引用一个外部作用域定义的变量，函数可以访问在该函数定义之后发生改变的变量值。</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> myFunction = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">var</span> foo = <span class="string">"hello"</span>;
+    <span class="keyword">var</span> myFn = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log( foo );
+    };
+    foo = <span class="string">"world"</span>;
+    <span class="keyword">return</span> myFn;
+};
+
+<span class="keyword">var</span> f = myFunction();
+
+f(); <span class="comment">// "world"</span></code></pre></div><p>这是一个更复杂的作用域例子：</p>
+<div class="highlight"><pre><code class="javascript">(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+
+    <span class="keyword">var</span> baz = <span class="number">1</span>;
+
+    <span class="keyword">var</span> bim = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log( baz );
+    };
+
+    bar = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        console.log( baz );
+    };
+
+})();</code></pre></div><p>在这个实例中，运行：</p>
+<div class="highlight"><pre><code class="javascript">console.log( baz ); <span class="comment">// baz is not defined outside of the function</span></code></pre></div><p>将会得到一个 <code>ReferenceError</code>。<code>baz</code> 仅仅是在函数中定义，并且没有暴露在全局作用域中。</p>
+<div class="highlight"><pre><code class="javascript">bar(); <span class="comment">//  1</span></code></pre></div><p><code>.bar()</code> 是在匿名函数中定义的， 但是它没有使用 <code>var</code> 关键字定义，这意味着它没有绑定到局部作用域，而是在全局作用域创建。另外，它可以访问 <code>baz</code>
+变量，因为 <code>.bar()</code> 是在与 <code>baz</code> 相同的作用域定义的，所以它可以访问变量 <code>baz</code>，即使函数外部的其他代码不可以。</p>
+<div class="highlight"><pre><code class="javascript">bim(); <span class="comment">// ReferenceError: bim is not defined</span></code></pre></div><p><code>.bim()</code> 只在函数中定义的，所以它作为局部变量而不存在于全局对象中。</p>
+]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[函数]]></title>
         <link href="http://js101.co/javascript-101/functions.html"/>
         <published>2015-04-09T00:00:00.000Z</published>
@@ -718,63 +824,6 @@ jQuery.isPlainObject( myValue ); <span class="comment">// false</span>
 jQuery.isArray( myValue ); <span class="comment">// true</span></code></pre></div>]]>
         </content>
     </entry><entry>
-        <title type="html"><![CDATA[保留字]]></title>
-        <link href="http://js101.co/javascript-101/reserved-words.html"/>
-        <published>2015-03-06T00:00:00.000Z</published>
-        <updated>2015-03-06T00:00:00.000Z</updated>
-        <id>http://js101.co/javascript-101/reserved-words.html</id>
-        <content type="html" xml:base="http://js101.co/" xml:lang="en">
-            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
-<ul>
-<li><code>break</code></li>
-<li><code>case</code></li>
-<li><code>catch</code></li>
-<li><code>class</code></li>
-<li><code>const</code></li>
-<li><code>continue</code></li>
-<li><code>debugger</code></li>
-<li><code>default</code></li>
-<li><code>delete</code></li>
-<li><code>do</code></li>
-<li><code>else</code></li>
-<li><code>enum</code></li>
-<li><code>export</code></li>
-<li><code>extends</code></li>
-<li><code>false</code></li>
-<li><code>finally</code></li>
-<li><code>for</code></li>
-<li><code>function</code></li>
-<li><code>if</code></li>
-<li><code>implements</code></li>
-<li><code>import</code></li>
-<li><code>in</code></li>
-<li><code>instanceof</code></li>
-<li><code>interface</code></li>
-<li><code>let</code></li>
-<li><code>new</code></li>
-<li><code>null</code></li>
-<li><code>package</code></li>
-<li><code>private</code></li>
-<li><code>protected</code></li>
-<li><code>public</code></li>
-<li><code>return</code></li>
-<li><code>static</code></li>
-<li><code>super</code></li>
-<li><code>switch</code></li>
-<li><code>this</code></li>
-<li><code>throw</code></li>
-<li><code>true</code></li>
-<li><code>try</code></li>
-<li><code>typeof</code></li>
-<li><code>var</code></li>
-<li><code>void</code></li>
-<li><code>while</code></li>
-<li><code>with</code></li>
-<li><code>yield</code></li>
-</ul>
-]]>
-        </content>
-    </entry><entry>
         <title type="html"><![CDATA[语法基础]]></title>
         <link href="http://js101.co/javascript-101/syntax-basics.html"/>
         <published>2015-03-06T00:00:00.000Z</published>
@@ -834,6 +883,63 @@ foo();
     test6 = test2( test );</code></pre></div><p>变量可以在声明时不分配一个值，程序会给它们一个默认的值 <code>undefined</code>。</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> x;
 x === <span class="literal">undefined</span>; <span class="comment">// true</span></code></pre></div>]]>
+        </content>
+    </entry><entry>
+        <title type="html"><![CDATA[保留字]]></title>
+        <link href="http://js101.co/javascript-101/reserved-words.html"/>
+        <published>2015-03-06T00:00:00.000Z</published>
+        <updated>2015-03-06T00:00:00.000Z</updated>
+        <id>http://js101.co/javascript-101/reserved-words.html</id>
+        <content type="html" xml:base="http://js101.co/" xml:lang="en">
+            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
+<ul>
+<li><code>break</code></li>
+<li><code>case</code></li>
+<li><code>catch</code></li>
+<li><code>class</code></li>
+<li><code>const</code></li>
+<li><code>continue</code></li>
+<li><code>debugger</code></li>
+<li><code>default</code></li>
+<li><code>delete</code></li>
+<li><code>do</code></li>
+<li><code>else</code></li>
+<li><code>enum</code></li>
+<li><code>export</code></li>
+<li><code>extends</code></li>
+<li><code>false</code></li>
+<li><code>finally</code></li>
+<li><code>for</code></li>
+<li><code>function</code></li>
+<li><code>if</code></li>
+<li><code>implements</code></li>
+<li><code>import</code></li>
+<li><code>in</code></li>
+<li><code>instanceof</code></li>
+<li><code>interface</code></li>
+<li><code>let</code></li>
+<li><code>new</code></li>
+<li><code>null</code></li>
+<li><code>package</code></li>
+<li><code>private</code></li>
+<li><code>protected</code></li>
+<li><code>public</code></li>
+<li><code>return</code></li>
+<li><code>static</code></li>
+<li><code>super</code></li>
+<li><code>switch</code></li>
+<li><code>this</code></li>
+<li><code>throw</code></li>
+<li><code>true</code></li>
+<li><code>try</code></li>
+<li><code>typeof</code></li>
+<li><code>var</code></li>
+<li><code>void</code></li>
+<li><code>while</code></li>
+<li><code>with</code></li>
+<li><code>yield</code></li>
+</ul>
+]]>
         </content>
     </entry><entry>
         <title type="html"><![CDATA[运行代码]]></title>
