@@ -1,24 +1,26 @@
-# Scope
+# 作用域
+
+- pubdate: 2015-04-19
 
 -------
 
-"Scope" refers to the variables that are available to a piece of code at a given time. A lack of understanding of scope can lead to frustrating debugging experiences. The idea of scope is that it's where certain functions or variables are accessible from in our code, and the context in which they exist and are executed in.
+作用域通常是指在指定的时间内，变量存在于一段代码中。缺乏对作用域的理解可能会导致令人沮丧的调试体验。作用域的概念是关于我们的代码中可以访问到哪些确定的函数或变量，代码的上下文和执行环境。
 
-There are two types of scopes in JavaScript: global and local. Let's talk about each of them in turn.
+在 JavaScript 中，有两种类型的作用域：全局和局部作用域。
 
-## Global Scope
+## 全局作用域
 
-The first scope is __Global Scope__. This is very easy to define. If a variable or function is _global_, it can be accessed from anywhere within a program. In a browser, the global scope is the `window` object. If a variable declaration occurs outside of a function, then that variable exists on the global object. For example:
+第一种作用域是__全局作用域__。它很容易定义。如果一个变量或函数是_全局的_，那么在程序中的任何地方都可以访问到它们。在浏览器中，全局作用域是 `window` 对象。如果在函数外面声明一个变量，那么这个变量就存在全局对象中。例如：
 
 ```javascript
 var x = 9;
 ```
 
-Once that variable had been defined, it could be referenced as `window.x`, but because it exists on the global object we can simply refer to it as `x`.
+一旦该变量被定义，则可以被引用为 `window.x`，因为它存在于全局对象中，我们可以简单的引用它为 `x`。
 
-## Local Scope
+## 局部作用域
 
-JavaScript also creates a __Local Scope__ inside each function body. For example:
+JavaScript 也可以在每个函数体中创建__局部作用域__。例如：
 
 ```javascript
 function myFunc() {
@@ -30,11 +32,11 @@ myFunc();
 console.log( x ); // ReferenceError: x is not defined
 ```
 
-Since `x` was initialized within `.myFunc()`, it is only accessible within `.myFunc()`, and we get a reference error if we try to access it outside of `.myFunc()`.
+由于 `x` 是在 `myFunc()` 中初始化，所以它只能在 `myFunc()` 中被访问，如果我们试图在 `myFunc()` 外面访问 `x`，则会得到一个引用错误。
 
-## A Word of Caution
+## 注意
 
-If you declare a variable and forget to use the `var` keyword, that variable is automatically made global. So this code would work:
+如果你忘记使用 `var` 关键字声明变量，那么这个变量会自动变成全局变量。所以这段代码可以运行：
 
 ```javascript
 function myFunc() {
@@ -46,9 +48,9 @@ myFunc();
 console.log( x ); // 5
 ```
 
-This is a bad idea. Any variable that is global can have its value changed by any other parts of a program or any other script. This is undesirable, as it could lead to unforeseen side effects.
+这是一个坏主意。全局变量的值可以被程序的任何部分或者其他脚本更改。这是不期望发生的，因为它会导致无法预料的副作用。
 
-Secondly, Immediately-Invoked Function Expressions provide a way to avoid global variables. You'll see many libraries such as  jQuery often use these:
+立即调用表达式（IIFE）提供了一个避免全局变量的方式。你会看到许多如 jQuery 的 JavaScript 库经常使用这种方式：
 
 ```javascript
 (function() {
@@ -57,9 +59,9 @@ Secondly, Immediately-Invoked Function Expressions provide a way to avoid global
 })();
 ```
 
-Wrapping everything in a function which is then immediately invoked means all the variables within that function are bound to the _local scope_. At the very end you can then expose all your methods by binding the `jQuery` object to the `window`, the _global object_. To read more about Immediately-Invoked Functions, check out Ben Alman's [Immediately-Invoked Function Expression](http://benalman.com/news/2010/11/immediately-invoked-function-expression/) article.
+将一切包含在一个函数中并立即调用这个函数，这意味着函数中的所有变量都被绑定在_局部作用域_中。在函数结尾部分，你可以通过将 `jQuery` 对象绑定在全局对象 `window` 上，将一些方法和属性公开出来。了解更多关于立即调用函数表达式，请查看 Ben Alman 的文章 [Immediately-Invoked Function Expression](http://benalman.com/news/2010/11/immediately-invoked-function-expression/)。
 
-Because local scope works through functions, any functions defined within another have access to variables defined in the outer function:
+因为局部作用域通过函数而工作，任何在另一个函数中定义的函数都可以访问外部函数里的变量：
 
 ```javascript
 function outer() {
@@ -73,7 +75,7 @@ function outer() {
 }
 ```
 
-But the `.outer()` function doesn't have access to any variables declared within `.inner()`:
+但是 `.outer()` 函数不能访问 `.inner()` 函数中定义的任何变量。
 
 ```javascript
 function outer() {
@@ -90,7 +92,7 @@ function outer() {
 }
 ```
 
-Furthermore, variables that are declared inside a function without the `var` keyword are not local to the function – JavaScript will traverse the scope chain all the way up to the window scope to find where the variable was previously defined. If the variable wasn't previously defined, it will be defined in the global scope, which can have unexpected consequences.
+另外，在一个函数中没有使用 `var` 关键字定义的变量不是这个函数的局部变量 － JavaScript 会向上遍历作用域链（最后会到 `window` 对象）寻找之前定义的这个变量。如果这个变量没有定义，则会在全局中定义该变量，这样会导致意外的结果。
 
 ```javascript
 // Functions have access to variables defined in the same scope.
@@ -106,7 +108,7 @@ sayHello(); // "hello"
 console.log( foo ); // "hello"
 ```
 
-Variables with the same name can exist in different scopes with different values:
+相同名称的变量可以在不同作用域中保存不同的值：
 
 ```javascript
 var foo = "world";
@@ -121,7 +123,7 @@ sayHello(); // "hello"
 console.log( foo ); // "world"
 ```
 
-When, within a function, you reference a variable defined in an outer scope, that function can see changes to the variable's value after the function is defined.
+当在一个函数中引用一个外部作用域定义的变量，函数可以访问在该函数定义之后发生改变的变量值。
 
 ```javascript
 var myFunction = function() {
@@ -138,7 +140,7 @@ var f = myFunction();
 f(); // "world"
 ```
 
-Here's a more complex example of scopes at play:
+这是一个更复杂的作用域例子：
 
 ```javascript
 (function() {
@@ -155,23 +157,24 @@ Here's a more complex example of scopes at play:
 
 })();
 ```
-In this instance, running:
+在这个实例中，运行：
 
 ```javascript
 console.log( baz ); // baz is not defined outside of the function
 ```
 
-Gives us a `ReferenceError`. `baz` was only defined within the function, and was never exposed to the global scope.
+将会得到一个 `ReferenceError`。`baz` 仅仅是在函数中定义，并且没有暴露在全局作用域中。
 
 ```javascript
 bar(); //  1
 ```
 
-`.bar()` may have been defined within the anonymous function, but it was defined without the `var` keyword, which means it wasn't bound to the local scope and was instead created globally. Furthermore, it has access to the `baz` variable because `.bar()` was defined within the same scope as `baz`. This means it has access to it, even though other code outside of the function does not.
+`.bar()` 是在匿名函数中定义的， 但是它没有使用 `var` 关键字定义，这意味着它没有绑定到局部作用域，而是在全局作用域创建。另外，它可以访问 `baz`
+变量，因为 `.bar()` 是在与 `baz` 相同的作用域定义的，所以它可以访问变量 `baz`，即使函数外部的其他代码不可以。
 
 
 ```javascript
 bim(); // ReferenceError: bim is not defined
 ```
 
-`.bim()` was only defined within the function, so does not exist on the global object as it was defined locally.
+`.bim()` 只在函数中定义的，所以它作为局部变量而不存在于全局对象中。
