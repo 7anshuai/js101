@@ -1,10 +1,12 @@
-# Closures
+# 闭包
+
+- pubdate: 2015-04-21
 
 --------
 
-Closures are an extension of the concept of scope. With closures, functions have access to variables that were available in the scope where the function was created. If that seems confusing, don’t worry: closures are generally best understood by example.
+闭包是作用域概念的扩展。通过闭包，函数可以访问存在函数被创建的作用域中的变量。如果这显得令人困惑，别担心：闭包一般最适合通过例子来理解。
 
-As shown in the [Scope](/scope/) section, functions have access to changing variable values. The same sort of behavior exists with functions defined within loops – the function "sees" the change in the variable's value even after the function is defined, resulting in each function referencing the last value stored in the variable.
+如同[作用域](scope.html)部分所示，函数可以访问变化的变量值。定义在循环中的函数也存在同样的行为 － 即使在函数定义之后，它依然能观察到变量的值发生了改变，导致每一个函数都引用了保存在变量中的最后值。
 
 ```javascript
 // Each function executed within the loop will reference
@@ -17,7 +19,7 @@ for ( var i = 0; i < 5; i++ ) {
 }
 ```
 
-Closures can be used to prevent this by creating a unique scope for each iteration – storing each unique value of the variable within its scope.
+闭包可以用来防止这种情况，通过给每一次迭代创建一个独特的作用域 － 在其作用域内保存变量的每一个独特值。
 
 ```javascript
 // Using a closure to create a new private scope
@@ -33,7 +35,7 @@ for ( var i = 0; i < 5; i++ ) {
 }
 ```
 
-Closures can also be used to resolve issues with the `this` keyword, which is unique to each scope:
+闭包也可以用来解决 `this` 关键字的问题，它是每个作用域的唯一值：
 
 ```javascript
 // Using a closure to access inner and outer object instances simultaneously.
@@ -61,11 +63,11 @@ outerObj.outerFunction();
 
 ## Function.bind
 
-Closures can be particularly useful when dealing with callbacks. However, it is often better to use `Function.bind`, which will avoid any overhead associated with scope traversal.
+当处理回调函数时，闭包也是特别有用的。但是，通常更好的做法是使用 `Function.bind`，它可以避免任何作用域遍历相关的过度开销。
 
-`Function.bind` is used to create a new function. When called, the new function then calls itself in the context of the supplied `this` value, using a given set of arguments that will precede any arguments provided when the new function was initially called.
+`Function.bind` 被用来创建一个新函数。当新函数被调用时，函数会在 `.bind()` 方法中提供的 `this` 上下文中执行，并使用一系列 `.bind()` 方法中提供的参数与函数调用时提供的任何参数。
 
-As `.bind()` is a recent addition to ECMAScript 5, it may not be present in all browsers, which is something to be wary of when deciding whether to use it. However, it's possible to work around support by using [this shim](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind) from MDN:
+由于 `.bind()` 是在 ECMAScript 5 中添加的，它可能不会得到所有浏览器的支持，当决定是否使用它时，这是值得注意的一点。不过，我们可以使用 MDN 提供的[兼容代码](https://developer.mozilla.org/zh-CN/JavaScript/Reference/Global_Objects/Function/bind)来使 `.bind()` 正常工作。
 
 ```javascript
 // Shim from MDN
@@ -99,7 +101,7 @@ if (!Function.prototype.bind) {
 }
 ```
 
-One of the simplest uses of `.bind()` is making a function that is called with a particular value for `this`, regardless of how it's called. A common mistake developers make is attempting to extract a method from an object, then later calling that method and expecting it to the use the origin object as its `this`. However, this can be solved by creating a bound function using the original object as demonstrated below:
+`.bind()` 最简单的用途之一是创建一个使用特定 `this` 值的函数，而无关该函数是如何调用的。一个开发者常常出现的错误是试图从对象中提取一个方法，在随后调用该方法时期望使用原始对象作为 `this` 值。这时可以通过创建一个函数绑定原始对象来解决类似问题，如下所示：
 
 ```javascript
 // Let's manipulate "this" with a basic example.
