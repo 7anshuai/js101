@@ -5,6 +5,117 @@
     <link href="http://js101.co/" />
     <id>http://js101.co/feed.xml</id>
     <entry>
+        <title type="html"><![CDATA[闭包]]></title>
+        <link href="http://js101.co/javascript-101/closures.html"/>
+        <published>2015-04-21T00:00:00.000Z</published>
+        <updated>2015-04-21T00:00:00.000Z</updated>
+        <id>http://js101.co/javascript-101/closures.html</id>
+        <content type="html" xml:base="http://js101.co/" xml:lang="en">
+            <![CDATA[ <p>闭包是作用域概念的扩展。通过闭包，函数可以访问存在函数被创建的作用域中的变量。如果这显得令人困惑，别担心：闭包一般最适合通过例子来理解。</p>
+<p>如同<a href="scope.html">作用域</a>部分所示，函数可以访问变化的变量值。定义在循环中的函数也存在同样的行为 － 即使在函数定义之后，它依然能观察到变量的值发生了改变，导致每一个函数都引用了保存在变量中的最后值。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Each function executed within the loop will reference</span>
+<span class="comment">// the last value stored in i (5).</span>
+<span class="comment">// This won't behave as we want it to - every 100 milliseconds, 5 will alert</span>
+<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ ) {
+    setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        alert( i );
+    }, i * <span class="number">100</span> );
+}</code></pre></div><p>闭包可以用来防止这种情况，通过给每一次迭代创建一个独特的作用域 － 在其作用域内保存变量的每一个独特值。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Using a closure to create a new private scope</span>
+<span class="comment">// fix: “close” the value of i inside createFunction, so it won't change</span>
+<span class="keyword">var</span> createFunction = <span class="function"><span class="keyword">function</span><span class="params">( i )</span> {</span>
+    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        alert( i );
+    };
+};
+
+<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ ) {
+    setTimeout( createFunction( i ), i * <span class="number">100</span> );
+}</code></pre></div><p>闭包也可以用来解决 <code>this</code> 关键字的问题，它是每个作用域的唯一值：</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Using a closure to access inner and outer object instances simultaneously.</span>
+<span class="keyword">var</span> outerObj = {
+    myName: <span class="string">"outer"</span>,
+    outerFunction: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+
+        <span class="comment">// Provide a reference to outerObj through innerFunction's closure</span>
+        <span class="keyword">var</span> self = <span class="keyword">this</span>;
+        <span class="keyword">var</span> innerObj = {
+            myName: <span class="string">"inner"</span>,
+            innerFunction: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+                console.log( self.myName, <span class="keyword">this</span>.myName ); <span class="comment">// "outer inner"</span>
+            }
+        };
+
+        innerObj.innerFunction();
+
+        console.log( <span class="keyword">this</span>.myName ); <span class="comment">// "outer"</span>
+    }
+};
+
+outerObj.outerFunction();</code></pre></div><h2 id="function-bind">Function.bind</h2><p>当处理回调函数时，闭包也是特别有用的。但是，通常更好的做法是使用 <code>Function.bind</code>，它可以避免任何作用域遍历相关的过度开销。</p>
+<p><code>Function.bind</code> 被用来创建一个新函数。当新函数被调用时，函数会在 <code>.bind()</code> 方法中提供的 <code>this</code> 上下文中执行，并使用一系列 <code>.bind()</code> 方法中提供的参数与函数调用时提供的任何参数。</p>
+<p>由于 <code>.bind()</code> 是在 ECMAScript 5 中添加的，它可能不会得到所有浏览器的支持，当决定是否使用它时，这是值得注意的一点。不过，我们可以使用 MDN 提供的<a href="https://developer.mozilla.org/zh-CN/JavaScript/Reference/Global_Objects/Function/bind">兼容代码</a>来使 <code>.bind()</code> 正常工作。</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Shim from MDN</span>
+<span class="keyword">if</span> (!Function.prototype.bind) {
+
+    Function.prototype.bind = <span class="function"><span class="keyword">function</span><span class="params">( oThis )</span> {</span>
+
+        <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">"function"</span>) {
+            <span class="comment">// closest thing possible to the ECMAScript 5 internal</span>
+            <span class="comment">// IsCallable function</span>
+            <span class="keyword">throw</span> <span class="keyword">new</span> TypeError( <span class="string">"Function.prototype.bind - what is trying to be bound is not callable"</span> );
+        }
+
+        <span class="keyword">var</span> fSlice = Array.prototype.slice,
+            aArgs = fSlice.call( arguments, <span class="number">1</span> ),
+            fToBind = <span class="keyword">this</span>,
+            fNOP = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>},
+            fBound = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+                <span class="keyword">return</span> fToBind.apply( <span class="keyword">this</span> <span class="keyword">instanceof</span> fNOP
+                    ? <span class="keyword">this</span>
+                    : oThis || window,
+                    aArgs.concat( fSlice.call( arguments ) ) );
+            };
+
+        fNOP.prototype = <span class="keyword">this</span>.prototype;
+
+        fBound.prototype = <span class="keyword">new</span> fNOP();
+
+        <span class="keyword">return</span> fBound;
+    };
+}</code></pre></div><p><code>.bind()</code> 最简单的用途之一是创建一个使用特定 <code>this</code> 值的函数，而无关该函数是如何调用的。一个开发者常常出现的错误是试图从对象中提取一个方法，在随后调用该方法时期望使用原始对象作为 <code>this</code> 值。这时可以通过创建一个函数绑定原始对象来解决类似问题，如下所示：</p>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// Let's manipulate "this" with a basic example.</span>
+<span class="keyword">var</span> user = <span class="string">"johnsmith"</span>;
+<span class="keyword">var</span> module = {
+    getUser: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        <span class="keyword">return</span> <span class="keyword">this</span>.user;
+    },
+    user: <span class="string">"janedoe"</span>
+};
+
+<span class="comment">// module.getUser() is called where "module" is "this"</span>
+<span class="comment">// and "module.user" is returned.</span>
+
+<span class="comment">// janedoe</span>
+module.getUser();
+
+<span class="comment">// let's now store a reference in the global version of "this"</span>
+<span class="keyword">var</span> getUser = module.getUser;
+
+<span class="comment">// getUser() called, "this" is global, "user" is returned</span>
+
+<span class="comment">// johnsmith</span>
+getUser();
+
+<span class="comment">// store a ref with "module" bound as "this"</span>
+<span class="keyword">var</span> boundGetUser = getUser.bind( module );
+
+<span class="comment">// boundGetUser() called, "module" is "this" again, "module.user" returned.</span>
+
+<span class="comment">// janedoe</span>
+boundGetUser();</code></pre></div>]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[作用域]]></title>
         <link href="http://js101.co/javascript-101/scope.html"/>
         <published>2015-04-19T00:00:00.000Z</published>
@@ -824,6 +935,63 @@ jQuery.isPlainObject( myValue ); <span class="comment">// false</span>
 jQuery.isArray( myValue ); <span class="comment">// true</span></code></pre></div>]]>
         </content>
     </entry><entry>
+        <title type="html"><![CDATA[保留字]]></title>
+        <link href="http://js101.co/javascript-101/reserved-words.html"/>
+        <published>2015-03-06T00:00:00.000Z</published>
+        <updated>2015-03-06T00:00:00.000Z</updated>
+        <id>http://js101.co/javascript-101/reserved-words.html</id>
+        <content type="html" xml:base="http://js101.co/" xml:lang="en">
+            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
+<ul>
+<li><code>break</code></li>
+<li><code>case</code></li>
+<li><code>catch</code></li>
+<li><code>class</code></li>
+<li><code>const</code></li>
+<li><code>continue</code></li>
+<li><code>debugger</code></li>
+<li><code>default</code></li>
+<li><code>delete</code></li>
+<li><code>do</code></li>
+<li><code>else</code></li>
+<li><code>enum</code></li>
+<li><code>export</code></li>
+<li><code>extends</code></li>
+<li><code>false</code></li>
+<li><code>finally</code></li>
+<li><code>for</code></li>
+<li><code>function</code></li>
+<li><code>if</code></li>
+<li><code>implements</code></li>
+<li><code>import</code></li>
+<li><code>in</code></li>
+<li><code>instanceof</code></li>
+<li><code>interface</code></li>
+<li><code>let</code></li>
+<li><code>new</code></li>
+<li><code>null</code></li>
+<li><code>package</code></li>
+<li><code>private</code></li>
+<li><code>protected</code></li>
+<li><code>public</code></li>
+<li><code>return</code></li>
+<li><code>static</code></li>
+<li><code>super</code></li>
+<li><code>switch</code></li>
+<li><code>this</code></li>
+<li><code>throw</code></li>
+<li><code>true</code></li>
+<li><code>try</code></li>
+<li><code>typeof</code></li>
+<li><code>var</code></li>
+<li><code>void</code></li>
+<li><code>while</code></li>
+<li><code>with</code></li>
+<li><code>yield</code></li>
+</ul>
+]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[语法基础]]></title>
         <link href="http://js101.co/javascript-101/syntax-basics.html"/>
         <published>2015-03-06T00:00:00.000Z</published>
@@ -883,63 +1051,6 @@ foo();
     test6 = test2( test );</code></pre></div><p>变量可以在声明时不分配一个值，程序会给它们一个默认的值 <code>undefined</code>。</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> x;
 x === <span class="literal">undefined</span>; <span class="comment">// true</span></code></pre></div>]]>
-        </content>
-    </entry><entry>
-        <title type="html"><![CDATA[保留字]]></title>
-        <link href="http://js101.co/javascript-101/reserved-words.html"/>
-        <published>2015-03-06T00:00:00.000Z</published>
-        <updated>2015-03-06T00:00:00.000Z</updated>
-        <id>http://js101.co/javascript-101/reserved-words.html</id>
-        <content type="html" xml:base="http://js101.co/" xml:lang="en">
-            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
-<ul>
-<li><code>break</code></li>
-<li><code>case</code></li>
-<li><code>catch</code></li>
-<li><code>class</code></li>
-<li><code>const</code></li>
-<li><code>continue</code></li>
-<li><code>debugger</code></li>
-<li><code>default</code></li>
-<li><code>delete</code></li>
-<li><code>do</code></li>
-<li><code>else</code></li>
-<li><code>enum</code></li>
-<li><code>export</code></li>
-<li><code>extends</code></li>
-<li><code>false</code></li>
-<li><code>finally</code></li>
-<li><code>for</code></li>
-<li><code>function</code></li>
-<li><code>if</code></li>
-<li><code>implements</code></li>
-<li><code>import</code></li>
-<li><code>in</code></li>
-<li><code>instanceof</code></li>
-<li><code>interface</code></li>
-<li><code>let</code></li>
-<li><code>new</code></li>
-<li><code>null</code></li>
-<li><code>package</code></li>
-<li><code>private</code></li>
-<li><code>protected</code></li>
-<li><code>public</code></li>
-<li><code>return</code></li>
-<li><code>static</code></li>
-<li><code>super</code></li>
-<li><code>switch</code></li>
-<li><code>this</code></li>
-<li><code>throw</code></li>
-<li><code>true</code></li>
-<li><code>try</code></li>
-<li><code>typeof</code></li>
-<li><code>var</code></li>
-<li><code>void</code></li>
-<li><code>while</code></li>
-<li><code>with</code></li>
-<li><code>yield</code></li>
-</ul>
-]]>
         </content>
     </entry><entry>
         <title type="html"><![CDATA[运行代码]]></title>
