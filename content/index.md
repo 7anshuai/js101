@@ -1,4 +1,4 @@
-# JavaScript 101
+# JavaScript 新手教程
 
 ------
 
