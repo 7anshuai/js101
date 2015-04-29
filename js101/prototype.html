@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;Prototype</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Prototype</h1>
+  <div class="entry-content" itemprop="articleBody"><p>After spending years studying object oriented programming, adapting to JavaScript can be frustrating. In particular, the lack of a <code>class</code> keyword is a source of confusion. However, JavaScript&#39;s design needn&#39;t be a hindrance -- mastering its prototype-based inheritance will improve your understanding of the language.</p>
+<p>The first thing to realise is there should be a distinction between <em>object</em>-oriented programming and <em>class</em>-oriented. JavaScript gives us the tools we need to do most of the things languages with classes can do -- we just need to learn how to use it properly.</p>
+<p>Let&#39;s take a brief look at the prototype property to see how it can deepen our knowledge of JavaScript.</p>
+<h2 id="the-prototype-property">The <code>prototype</code> Property</h2><p>The prototype property is an internal property, and it&#39;s designed to be used to implement inheritance. What we mean by &quot;inheritance&quot; here is a specific form of inheritance. Because both state and methods are carried by objects, then we can say that structure, behaviour, and state are all inherited (<a href="http://es5.github.com/#x4.2.1">ES5: Objects</a>). This is in contrast to class-based languages, where state is carried by instances and methods are carried by classes.</p>
+<p>A constructor is a function that has a property named <code>prototype</code>:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span><span class="params">()</span> {</span>
+}
+
+console.log(Animal.prototype);</code></pre></div><p>This displays <code>{}</code> -- the <code>Animal</code> object has a <code>prototype</code> property, but there&#39;s nothing user-defined in it yet. We&#39;re free to add values and methods as we please:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span><span class="params">()</span> {</span>
+}
+
+Animal.prototype.type = <span class="string">'Unknown'</span>;
+Animal.prototype.weight = <span class="number">0</span>;
+Animal.prototype.weightUnits = <span class="string">'kg'</span>;
+
+Animal.prototype.toString = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+  <span class="keyword">return</span> <span class="keyword">this</span>.type + <span class="string">', '</span> + <span class="keyword">this</span>.weight + <span class="keyword">this</span>.weightUnits;
+};
+
+<span class="keyword">var</span> molly = <span class="keyword">new</span> Animal();
+molly.type = <span class="string">'Dog'</span>;
+molly.weight = <span class="number">28</span>;
+
+console.log(molly.toString());</code></pre></div><p>This would display &quot;Dog, 28kg&quot;. We can group these assignments together by using an object literal:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span><span class="params">()</span> {</span>
+}
+
+Animal.prototype = {
+  type: <span class="string">'Unknown'</span>,
+  weight: <span class="number">0</span>,
+  weightUnits: <span class="string">'kg'</span>,
+
+  toString: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> <span class="keyword">this</span>.type + <span class="string">', '</span> + <span class="keyword">this</span>.weight + <span class="keyword">this</span>.weightUnits;
+  }
+};</code></pre></div><p>This shouldn&#39;t look too different from the classes you might be more familiar with.</p>
+<h2 id="dynamic-prototypes">Dynamic Prototypes</h2><p>Properties can be added to objects dynamically, simply by assigning values:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> molly = <span class="keyword">new</span> Animal()
+  , harley = <span class="keyword">new</span> Animal();
+
+molly.type = <span class="string">'Dog'</span>;
+molly.weight = <span class="number">28</span>;
+
+harley.type = <span class="string">'Dog'</span>;
+harley.weight = <span class="number">38</span>;
+harley.name = <span class="string">'Harley'</span>;
+
+console.log(molly);
+console.log(harley);
+
+<span class="comment">// { type: 'Dog', weight: 28 }</span>
+<span class="comment">// { type: 'Dog', weight: 38, name: 'Harley' }</span></code></pre></div><p>Adding the <code>name</code> property here only affects that instance. However, the constructor&#39;s prototype can be changed, and this will affect objects made with that prototype:</p>
+<div class="highlight"><pre><code class="javascript">Animal.prototype.weightUnits = <span class="string">'oz'</span>;
+
+console.log(molly.toString())
+<span class="comment">// Now displays 'Dog, 28oz'</span></code></pre></div><p>This is why people boast that their libraries don&#39;t touch native prototypes, or only do so safely -- it&#39;s entirely possible to change the expected built-in functionality of objects like <code>String</code> to do unsafe things:</p>
+<div class="highlight"><pre><code class="javascript">String.prototype.match = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+  <span class="keyword">return</span> <span class="literal">true</span>;
+};
+
+console.log(<span class="string">'alex'</span>.match(<span class="regexp">/1234/</span>));</code></pre></div><p>This returns <code>true</code>, so I&#39;ve now succeeded in breaking a fundamental method that many JavaScript programs rely on.</p>
+<p>Modifying native prototypes isn&#39;t always bad; people use it for useful things like patching support for more modern versions of ECMAScript in older browsers.</p>
+<p>What happens if we replace the <code>prototype</code> property?</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> molly = <span class="keyword">new</span> Animal()
+  , harley;
+
+molly.type = <span class="string">'Dog'</span>;
+molly.weight = <span class="number">28</span>;
+
+Animal.prototype = {
+  toString: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> <span class="string">'...'</span>;
+  }
+};
+
+harley = <span class="keyword">new</span> Animal;
+harley.type = <span class="string">'Dog'</span>;
+harley.weight = <span class="number">38</span>;
+
+console.log(molly.toString());
+console.log(harley.toString());
+
+<span class="comment">// Dog, 28kg</span>
+<span class="comment">// ...</span></code></pre></div><p>Despite the fact changing a prototype affects all of the instances, replacing a constructor&#39;s prototype entirely does not affect older instances. Why? Well, instances have a <em>reference</em> to the prototype rather than a discrete copy. Think of it like this: each instance created by the <code>new</code> keyword is <em>connected</em> to the original prototype.</p>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>

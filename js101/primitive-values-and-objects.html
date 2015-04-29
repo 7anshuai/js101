@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;Primitive values and objects</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Primitive values and objects</h1>
+  <div class="entry-content" itemprop="articleBody"><h2 id="back-to-basics">Back to Basics</h2><p>When people talk to me about DailyJS they often ask for more beginner&#39;s articles. Therefore, we&#39;re starting the <strong>JS101</strong> series on DailyJS. These are intended to be short guides on fundamental topics that shouldn&#39;t take more than about 10 minutes to read.</p>
+<p>I really believe learning JavaScript comes down to understanding <code>Object</code>, so what better place to start?</p>
+<h2 id="types-of-values">Types of Values</h2><p>In JavaScript, the humble <code>Object</code> underlies many of the language&#39;s strengths. To understand JavaScript objects, let&#39;s consider what types of values we have at our disposal. Take a look at the following example:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> one = <span class="number">1</span>
+  , oneObject = <span class="keyword">new</span> Number(<span class="number">1</span>);
+
+log(one === oneObject);
+log(<span class="keyword">typeof</span>(one), <span class="keyword">typeof</span>(oneObject));</code></pre></div><p>I&#39;ve made an interactive version of this example that you can experiment with here: <a href="http://jsfiddle.net/uWup3/">http://jsfiddle.net/uWup3/</a>.</p>
+<p>This uses the <em>strict equals operator</em> to compare the value <code>1</code> with the object <code>new Number(1)</code>, and <code>false</code> is returned. The reason for this is <code>1</code> is a <a href="http://es5.github.com/#x4.3.2">primitive value</a>, and is not an object. The number created with <code>new Number</code> is an object, as shown by the value returned by <code>typeof</code>.</p>
+<p>There are other primitive values: Undefined, Null, Boolean, Number, and String. Another interesting point relates to <code>Undefined</code> and how it&#39;s a type whose sole value is <code>undefined</code>.</p>
+<h2 id="creating-objects">Creating Objects</h2><p>When working in JavaScript, we mostly concern ourselves with objects. There&#39;s a reason why JSON is so popular and powerful, and it comes down to the flexibility of objects. The main difference between objects and primitive values is objects are clearly comprised of multiple items:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> javascript = {  
+  influences: [<span class="string">'C'</span>, <span class="string">'Java'</span>, <span class="string">'Scheme'</span>]
+, designer: <span class="string">'Brendan Eich'</span>
+, created: <span class="keyword">new</span> Date(<span class="number">1995</span>, <span class="number">0</span>, <span class="number">1</span>)
+};</code></pre></div><p>The &#39;items&#39; in this object -- <code>influences</code>, <code>designer</code>, and <code>created</code> -- are known as <em>properties</em>. While it&#39;s difficult to imagine breaking down <code>10</code> or <code>true</code> into their constituent parts, this object can easily be broken down. Notice how each value can be a different type -- both primitive values and objects can be combined together in an object.</p>
+<p>Now consider this:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> javascript = <span class="keyword">new</span> Object({  
+  influences: [<span class="string">'C'</span>, <span class="string">'Java'</span>, <span class="string">'Scheme'</span>]
+, designer: <span class="string">'Brendan Eich'</span>
+, created: <span class="keyword">new</span> Date(<span class="number">1995</span>, <span class="number">0</span>, <span class="number">1</span>)
+});</code></pre></div><p>I&#39;ve used new Object to create a new instance. According to the language specification, under <code>Object Initialiser</code>(<a href="http://es5.github.com/#x11.1.5">http://es5.github.com/#x11.1.5</a>), these forms are equivalent -- creating objects with an object literal will return a new object as if <code>new Object()</code> was used. Similarly, the array literal <code>[&#39;C&#39;, &#39;Java&#39;, &#39;Scheme&#39;]</code> will create a new object as if <code>new Array()</code> had been called.</p>
+<p>The important thing to notice is the use of a constructor. In this case the constructor is <code>new Object</code>, but there are other built-in constructors. I also sneaked in <code>new Date</code> which creates a <code>Date</code> object.</p>
+<h2 id="constructors">Constructors</h2><p>The previous example looks more like a data record than a reusable piece of code. We can make it more reusable by creating a <em>constructor</em> -- a function that knows how to initialise a certain flavour of object.</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Language</span><span class="params">(designer, created, influences)</span> {</span>  
+  <span class="keyword">this</span>.designer = designer;
+  <span class="keyword">this</span>.created = created;
+  <span class="keyword">this</span>.influences = influences;
+}
+
+<span class="keyword">var</span> javascript = <span class="keyword">new</span> Language(  
+  <span class="string">'Brendan Eich'</span>
+, <span class="keyword">new</span> Date(<span class="number">1995</span>, <span class="number">0</span>, <span class="number">1</span>)
+, [<span class="string">'C'</span>, <span class="string">'Java'</span>, <span class="string">'Scheme'</span>]
+);</code></pre></div><p>Now I can make other programming languages:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> c = <span class="keyword">new</span> Language(  
+  <span class="string">'Dennis Ritchie'</span>
+, <span class="keyword">new</span> Date(<span class="number">1972</span>, <span class="number">0</span>, <span class="number">1</span>)
+, [<span class="string">'B'</span>, <span class="string">'ALGOL'</span>]
+);</code></pre></div><p>The constructor can be accessed using the <code>constructor</code> property, like this: <code>c.constructor</code>. In this case it&#39;ll return <code>Language</code>. Play around with it here: <a href="http://jsfiddle.net/zYzER/6/">http://jsfiddle.net/zYzER/6/</a>.</p>
+<p>In the ES5 specification under <a href="http://es5.github.com/#x15.2.4">Properties of the Object Prototype Object</a>, other properties of objects are mentioned. For example, we also get <code>toString</code>, and some stranger sounding methods like <code>hasOwnProperty</code>.</p>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>
