@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;Inheritance</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Inheritance</h1>
+  <div class="entry-content" itemprop="articleBody"><h2 id="inheritance-chains-and-constructors">Inheritance Chains and Constructors</h2><p>As we saw last week, JavaScript objects have a <code>prototype</code> property, which is designed to facilitate inheritance. An object&#39;s <code>prototype</code> property can be set to an instance of another object to create an inheritance chain:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span><span class="params">(name)</span> {</span>
+  <span class="keyword">this</span>.x = <span class="number">0</span>;
+  <span class="keyword">this</span>.y = <span class="number">0</span>;
+  <span class="keyword">this</span>.name = name;
+  console.log(<span class="string">'Shape constructor called'</span>);
+}
+
+Shape.prototype = {
+  move: <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span> {</span>
+    <span class="keyword">this</span>.x += x;
+    <span class="keyword">this</span>.y += y;
+  },
+
+  toString: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> <span class="string">'name: '</span> + <span class="keyword">this</span>.name + <span class="string">', at x: '</span> + <span class="keyword">this</span>.x + <span class="string">', y:'</span> + <span class="keyword">this</span>.y;
+  }
+};
+
+<span class="comment">// Rectangle</span>
+<span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span><span class="params">(name)</span> {</span>
+  <span class="keyword">this</span>.name = name;
+  console.log(<span class="string">'Rectangle constructor called'</span>);
+}
+
+Rectangle.prototype = <span class="keyword">new</span> Shape();
+
+<span class="keyword">var</span> rect = <span class="keyword">new</span> Rectangle(<span class="string">'Player 1'</span>);
+rect.move(<span class="number">1</span>, <span class="number">1</span>);
+console.log(rect.toString());
+console.log(rect <span class="keyword">instanceof</span> Rectangle);</code></pre></div><p>Running this will display the following output:</p>
+<div class="highlight"><pre><code class="javascript">Shape constructor called
+Rectangle constructor called
+name: Player <span class="number">1</span>, at x: <span class="number">1</span>, y:<span class="number">1</span>
+<span class="literal">true</span></code></pre></div><p>Notice that both the <code>Shape</code> and <code>Rectangle</code> constructors are called. This is because of the line <code>Rectangle.prototype = new Shape();</code> -- the parent object&#39;s constructor isn&#39;t actually automatically called as a result of <code>new Rectangle()</code>. This is why I&#39;ve duplicated the <code>this.name = name</code> line in both constructors.</p>
+<p>Also notice that <code>rect.move</code> and <code>rect.toString</code> call the methods from <code>Shape.prototype</code>. When the interpreter checks for a property, it will examine the current object for it. If no such property is found, the prototype for the object is checked, and so on. This is the prototype chain:</p>
+<blockquote>
+<p>First the object mentioned directly is examined for such a property; if that object contains the named property, that is the property to which the reference refers; if that object does not contain the named property, the prototype for that object is examined next; and so on.</p>
+</blockquote>
+<p>-- <a href="http://es5.github.io/#x4.2.1">Annotated ECMAScript 5.1</a></p>
+<h2 id="calling-parent-methods">Calling Parent Methods</h2><p>If we wanted <code>Rectangle</code> to have a different <code>move</code> method, but reuse the original in <code>Shape</code>, then it&#39;s entirely possible to do so using <code>Function.prototype.apply</code>:</p>
+<div class="highlight"><pre><code class="javascript">Rectangle.prototype.move = <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span> {</span>
+  console.log(<span class="string">'Super method called'</span>);
+  Shape.prototype.move.apply(<span class="keyword">this</span>, arguments);
+};</code></pre></div><p>Even though <code>Shape.prototype.move.apply</code> looks complicated, it&#39;s actually very simple if we break it down:</p>
+<ol>
+<li>We want to call the <code>move</code> method from <code>Shape</code></li>
+<li>This method is stored in <code>Shape.prototype.move</code></li>
+<li>Since this is a <code>Function</code>, there are several methods available to us (functions are objects!)</li>
+<li>The <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/apply">apply</a> method in particular allows us to call the function without creating a new instance</li>
+<li>It also allows us to provide our own value for <code>this</code>, and an array of arguments</li>
+</ol>
+<p>The <a href="http://es5.github.io/#x10.6">arguments</a> object is created by the interpreter when a function is executed. The <code>this</code> object is a whole other story -- so far I&#39;ve been assuming you have intuitively understood what it is, but we&#39;ll look at it in more detail in the next part.</p>
+<p>References</p>
+<ul>
+<li><a href="es5.github.io">Annotated ECMAScript 5.1</a></li>
+<li><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/apply">MDN documentation for apply</a></li>
+</ul>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>

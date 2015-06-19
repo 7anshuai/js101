@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;Function</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Function</h1>
+  <div class="entry-content" itemprop="articleBody"><p>We&#39;ve already been using functions and methods (remember the difference?) as part of this series, but it&#39;s time to take a deeper look at one of my favourite parts of the language. Prepare to have your mind blown by two incredible facts about the humble function.</p>
+<h2 id="functions-are-objects">Functions are Objects</h2><p>The <a href="http://ecma-international.org/ecma-262/5.1/">ECMAScript Language Specification</a> defines three ways to create functions. The first is a function declaration:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(a, b)</span> {</span>
+  <span class="keyword">return</span> a + b;
+}</code></pre></div><p>A <code>Function</code> object will be instantiated behind the scenes, and returned as the result of this expression. With that in mind, the following should make complete sense:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span><span class="params">(a, b)</span> {</span>
+  <span class="keyword">return</span> a + b;
+};</code></pre></div><p>The function expression results in a value being returned, and it can be assigned as required. That&#39;s because the function&#39;s <em>identifier</em> is optional, and also because a <code>Function</code> object is returned.</p>
+<p>The <code>Function</code> constructor isn&#39;t hidden away by the interpreter, however. It can be used like this:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> sum = <span class="keyword">new</span> Function(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'return a + b'</span>);</code></pre></div><p>That brings us to an important point: <em>functions are objects</em>. They&#39;re not a pre-OO construct that&#39;s used to somehow build JavaScript&#39;s object-oriented features -- they&#39;re actually objects themselves and can be manipulated as such.</p>
+<p>When functions are passed as arguments or set to variables, they&#39;re colloquially known as <em>anonymous functions</em>. This term isn&#39;t used within the ECMAScript specification, but you&#39;ll see it referred to when people discuss popular APIs like jQuery:</p>
+<div class="highlight"><pre><code class="javascript">$(<span class="string">'selector'</span>).each(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+  <span class="comment">// Inside the anonymous function passed to jQuery's `each` method</span>
+});</code></pre></div><h2 id="closures">Closures</h2><p>Functions can be created anywhere an expression can appear, which means they can appear inside other functions:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(a, b)</span> {</span>
+  <span class="function"><span class="keyword">function</span> <span class="title">max</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> a &gt; <span class="number">100</span> || b &gt; <span class="number">100</span>;
+  }
+
+  <span class="keyword">if</span> (max()) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> ArgumentError(<span class="string">'Value too large'</span>);
+  }
+  <span class="keyword">return</span> a + b;
+}</code></pre></div><p>We&#39;ve already used this when creating &quot;private&quot; functions inside prototype methods and constructors. However, notice how the arguments to <code>sum</code> are visible inside the <code>max</code> function. Internally, the function is passed the <a href="http://ecma-international.org/ecma-262/5.1/#sec-10.3">VariableEnvironment</a> of the current context, which is otherwise known as the <em>scope</em>.</p>
+<p>The fact these inner functions receive access to the variables in their containing function&#39;s scope is useful, and known as a <a href="http://ecma-international.org/ecma-262/5.1/#sec-13">closure</a>:</p>
+<blockquote>
+<p>Let closure be the result of creating a new <code>Function</code> object as specified in 13.2 with parameters specified by FormalParameterListopt and body specified by FunctionBody. Pass in funcEnv as the Scope.</p>
+</blockquote>
+<p>References</p>
+<ul>
+<li><a href="http://ecma-international.org/ecma-262/5.1/">Standard ECMA-262 5.1 Edition</a></li>
+</ul>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>
