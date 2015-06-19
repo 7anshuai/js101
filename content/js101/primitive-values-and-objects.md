@@ -22,7 +22,7 @@ log(typeof(one), typeof(oneObject));
 
 I've made an interactive version of this example that you can experiment with here: http://jsfiddle.net/uWup3/.
 
-This uses the _strict equals operator_ to compare the value `1` with the object `new Number(1)`, and `false` is returned. The reason for this is `1` is a [primitive value](http://es5.github.com/#x4.3.2), and is not an object. The number created with `new Number` is an object, as shown by the value returned by `typeof`.
+This uses the _strict equals operator_ to compare the value `1` with the object `new Number(1)`, and `false` is returned. The reason for this is `1` is a [primitive value](http://es5.github.io/#x4.3.2), and is not an object. The number created with `new Number` is an object, as shown by the value returned by `typeof`.
 
 There are other primitive values: Undefined, Null, Boolean, Number, and String. Another interesting point relates to `Undefined` and how it's a type whose sole value is `undefined`.
 
@@ -50,7 +50,7 @@ var javascript = new Object({
 });
 ```
 
-I've used new Object to create a new instance. According to the language specification, under `Object Initialiser`(http://es5.github.com/#x11.1.5), these forms are equivalent -- creating objects with an object literal will return a new object as if `new Object()` was used. Similarly, the array literal `['C', 'Java', 'Scheme']` will create a new object as if `new Array()` had been called.
+I've used new Object to create a new instance. According to the language specification, under [Object Initialiser](http://es5.github.io/#x11.1.5), these forms are equivalent -- creating objects with an object literal will return a new object as if `new Object()` was used. Similarly, the array literal `['C', 'Java', 'Scheme']` will create a new object as if `new Array()` had been called.
 
 The important thing to notice is the use of a constructor. In this case the constructor is `new Object`, but there are other built-in constructors. I also sneaked in `new Date` which creates a `Date` object.
 
