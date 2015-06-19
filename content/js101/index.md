@@ -12,4 +12,4 @@ This is an introduction to JavaScript that covers some of the deeper aspects of 
 - [Object.create](object.create.html)
 - [Constructor Functions](constructor-functions.html)
 - [this](this.html)
-- [Call,Apply and Bind](this-binding.html)
+- [Call, Apply and Bind](this-binding.html)
