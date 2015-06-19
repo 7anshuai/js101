@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;this</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">this</h1>
+  <div class="entry-content" itemprop="articleBody"><p>So far in JS101, our examples have mentioned <code>this</code> and functions that take advantage of its behaviour, like <code>Function.prototype.apply</code> and <code>Function.prototype.call</code>. However, before approaching other aspects of the language, we should first address this and execution contexts.</p>
+<h2 id="methods-and-functions">Methods and Functions</h2><p>In this article I refer to both methods and functions. <a href="http://es5.github.com/#x4.3.27">Method</a> is defined in the ECMAScript specification as follows:</p>
+<blockquote>
+<p>... function that is the value of a property.
+NOTE When a function is called as a method of an object, the object is passed to the function as its this value.</p>
+</blockquote>
+<p>We typically think of functions as a standalone subroutine, while methods are properties of an object that happen to be functions. This nomenclature is used widely within the community.</p>
+<h2 id="execution-context">Execution Context</h2><p>According to the ECMAScript 5.1 specification, an executing program is formed of &quot;execution contexts&quot;. These execution contexts support the language constructs we need to manage scope -- the visibility of variables and function declarations from other parts of a program.</p>
+<p>The execution context contains references to various elements that enable state within a program to be managed according to the current logical scope -- for the exact details, see <a href="http://es5.github.com/#x10.3">Execution Contexts</a> in the specification. What we&#39;re interested in is how the current value of <code>this</code> is determined.</p>
+<h2 id="global-context-and-constructors">Global Context and Constructors</h2><p>Try running the following code in Node or a browser:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(x, y)</span> {</span>
+  console.log(<span class="keyword">this</span>);
+  <span class="keyword">return</span> x + y;
+}
+
+add(<span class="number">1</span>, <span class="number">1</span>);</code></pre></div><p>The second line will cause the global context to be displayed: <code>global</code> in Node, or <code>window</code> in a browser. If I inserted <code>&#39;use strict&#39;</code> after the line that reads function add..., then <code>this</code> would be <code>undefined</code> instead.</p>
+<p>Now consider what happens when a constructor is executed:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span><span class="params">()</span> {</span>
+  <span class="keyword">this</span>.x = <span class="number">0</span>;
+  <span class="keyword">this</span>.y = <span class="number">0</span>;
+}
+
+<span class="keyword">var</span> shape = <span class="keyword">new</span> Shape();</code></pre></div><p>When control enters the <code>Shape</code> constructor as a result of <code>new Shape()</code>, the this value will refer to the current object. Keep this in mind when writing object-oriented code: if a function is called as a method on an object, or by using <code>new</code>, then the value of <code>this</code> will be the current instance of the object, otherwise it will be the global context (or <code>undefined</code> in strict mode). The lesson here is the value of <code>this</code> is dependent on how a function is called.</p>
+<p>Common Mistakes
+Be careful when nesting functions inside methods. Read the following example and try to figure out the value of <code>this</code> inside <code>checkBounds</code>:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span><span class="params">()</span> {</span>
+  <span class="keyword">this</span>.x = <span class="number">0</span>;
+  <span class="keyword">this</span>.y = <span class="number">0</span>;
+}
+
+Shape.prototype = {
+  move: <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span> {</span>
+    <span class="keyword">this</span>.x += x;
+    <span class="keyword">this</span>.y += y;
+
+    <span class="function"><span class="keyword">function</span> <span class="title">checkBounds</span><span class="params">()</span> {</span>
+      <span class="keyword">if</span> (<span class="keyword">this</span>.x &gt; <span class="number">100</span>) {
+        console.error(<span class="string">'Warning: Shape out of bounds'</span>);
+      }
+    }
+
+    checkBounds();
+  }
+};
+
+<span class="keyword">var</span> shape = <span class="keyword">new</span> Shape();
+shape.move(<span class="number">101</span>, <span class="number">1</span>);</code></pre></div><p>The <code>checkBounds</code> function is defined inside the <code>move</code> method, but the <code>console.error</code> line will never be reached. This is because the value of <code>this</code> will be set to the global context, which is correct according to the specification but understandably confusing and represents a common source of bugs.</p>
+<p>Fortunately, <code>this</code> is a value so we can reference it by using another variable:</p>
+<div class="highlight"><pre><code class="javascript">Shape.prototype = {
+  move: <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span> {</span>
+    <span class="keyword">var</span> self = <span class="keyword">this</span>;
+
+    <span class="keyword">this</span>.x += x;
+    <span class="keyword">this</span>.y += y;
+
+    <span class="function"><span class="keyword">function</span> <span class="title">checkBounds</span><span class="params">()</span> {</span>
+      <span class="keyword">if</span> (self.x &gt; <span class="number">100</span>) {
+        console.error(<span class="string">'Warning: Shape out of bounds'</span>);
+      }
+    }
+
+    checkBounds();
+  }
+};</code></pre></div><p>Here <code>self</code> now points to the ThisBinding assigned when <code>move</code> executes, so <code>checkBounds</code> will work the way we intend it to. The name self can be anything, but it&#39;s a popular convention. It&#39;s not a <a href="https://developer.mozilla.org/en/JavaScript/Reference/Reserved_Words">reserved word</a>, but your editor may highlight it.</p>
+<h2 id="summary">Summary</h2><p>When working with <code>this</code>, remember the following rules:</p>
+<p>It&#39;s set based on how a function is called: <code>new MyConstructor</code> or <code>myObject.method()</code> will refer to an instance, while <code>this</code> inside a function refers to the global context
+Strict mode causes <code>this</code> to evaluate to <code>undefined</code> instead of the global context inside functions
+<code>this</code> can be referenced by a variable, and <code>self</code> is the conventionally used name
+If you want to read lower-level details on this topic, start by looking at how the ECMAScript 5.1 specification defines the algorithms that are used to determine <code>this</code> for various situations: <a href="http://es5.github.io/#x10.4.1">entering global code</a>, <a href="http://es5.github.io/#x10.4.2">executing <code>eval</code> code</a>, and <a href="http://es5.github.io/#x10.4.3">entering functions</a>.</p>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>

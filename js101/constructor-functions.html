@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;Constructor Functions</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Constructor Functions</h1>
+  <div class="entry-content" itemprop="articleBody"><p>The <a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMAScript 5.1</a> specification defines the behaviour of calling &quot;built-in&quot; constructors as if they were functions. That means not only can <code>new Array(1, 2)</code> be used, but also <code>Array(1, 2)</code>:</p>
+<blockquote>
+<p>When <code>Array</code> is called as a function rather than as a constructor, it creates and initialises a new Array object. Thus the function call <code>Array(...)</code> is equivalent to the object creation expression new <code>Array(...)</code> with the same arguments.</p>
+</blockquote>
+<p>-- <a href="http://es5.github.io/#x15.4.1">15.4.1 The Array Constructor Called as a Function</a></p>
+<p><code>Object()</code> is documented as performing a <em>type conversion</em>, and <code>String()</code> also does this:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> a = <span class="keyword">new</span> String(<span class="number">1</span>);
+<span class="comment">// { '0': '1' }</span>
+<span class="keyword">var</span> b = String(<span class="number">1</span>);
+<span class="comment">// '1'</span></code></pre></div><p>The <code>Date</code> constructor technically performs a type conversion, but this is sometimes a source of confusion for beginners who just want a readable string representation of a date:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> a = <span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">0</span>, <span class="number">1</span>);
+<span class="comment">// Sun, 01 Jan 2012 00:00:00 GMT</span>
+Date(<span class="number">2012</span>, <span class="number">0</span>, <span class="number">1</span>)
+<span class="comment">// 'Sun Jun 10 2012 11:28:03 GMT+0100 (BST)'</span></code></pre></div><p>In the first case, a <code>Date</code> object is returned, in the second a primitive string value is returned instead.</p>
+<h2 id="returning-objects-from-constructors">Returning Objects from Constructors</h2><p>In section <a href="http://es5.github.io/#x13.2.2">13.2.2</a>, the behaviour of returning objects from constructors is defined:</p>
+<blockquote>
+<p>If Type(result) is Object then return result.</p>
+</blockquote>
+<p>This prevents the constructor from returning an instance, so another object can be returned instead.</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span><span class="params">()</span> {</span>
+  <span class="keyword">return</span> {
+    x: <span class="number">1</span>, y: <span class="number">1</span>
+  };
+}
+
+Shape.prototype = {
+  move: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>}
+};
+
+<span class="keyword">var</span> shape = <span class="keyword">new</span> Shape();
+shape.move();
+<span class="comment">// TypeError: Object #&lt;Object&gt; has no method 'move'</span></code></pre></div><p>It&#39;s possible to use <code>instanceof</code> to determine if the constructor has been called as a function:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span><span class="params">()</span> {</span>
+  <span class="keyword">if</span> (<span class="keyword">this</span> <span class="keyword">instanceof</span> Shape) {
+    <span class="comment">// An object is being instantiated</span>
+  } <span class="keyword">else</span> {
+    <span class="keyword">return</span> {
+      a: <span class="string">'b'</span>
+    };
+  }
+}
+
+Shape.prototype = {
+  move: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>}
+};
+
+<span class="keyword">var</span> shape = <span class="keyword">new</span> Shape();
+shape.move();
+
+Shape(); <span class="comment">// Returns { a: 'b' }</span></code></pre></div><p>jQuery uses a similar approach to instantiate <code>jQuery.Event</code> objects without requiring the <code>new</code> keyword:</p>
+<div class="highlight"><pre><code class="javascript">jQuery.Event = <span class="function"><span class="keyword">function</span><span class="params">( src, props )</span> {</span>
+  <span class="comment">// Allow instantiation without the 'new' keyword</span>
+  <span class="keyword">if</span> ( !(<span class="keyword">this</span> <span class="keyword">instanceof</span> jQuery.Event) ) {
+    <span class="keyword">return</span> <span class="keyword">new</span> jQuery.Event( src, props );
+  }</code></pre></div><p>This factory-style behaviour may suit certain APIs -- Dojo also uses it in <code>NodeList</code>.</p>
+<h2 id="conclusion">Conclusion</h2><p>Calling built-in constructors as functions is used for type conversion, but some constructors behave as if the <code>new</code> keyword had been used. To avoid bugs caused by missing <code>new</code> keywords, try to remember that these forms are not equivalent.</p>
+<p>When writing constructors, this behaviour can be exploited to create factory-like APIs. That&#39;s because it&#39;s possible to detect when a constructor has been called as a function.</p>
+<p>To read more about this topic, searching the ECMAScript specification for &quot;called as a function&quot; is a good starting point.</p>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>

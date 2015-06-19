@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;Call, Apply and Bind</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Call, Apply and Bind</h1>
+  <div class="entry-content" itemprop="articleBody"><p>Last week we looked at <code>this</code>, and how it can be assigned and manipulated. The example I gave showed that a function inside another function (or method) will resolve <code>this</code> to the global object, and I used <code>var self = this</code> to reference the intended object.</p>
+<p>Reader n1k0 pointed out another solution: <code>Function.prototype.call</code>:</p>
+<div class="highlight"><pre><code class="javascript">Shape.prototype = {
+  move: <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span> {</span>
+    <span class="keyword">this</span>.x += x;
+    <span class="keyword">this</span>.y += y;
+
+    <span class="function"><span class="keyword">function</span> <span class="title">checkBounds</span><span class="params">()</span> {</span>
+      <span class="keyword">if</span> (<span class="keyword">this</span>.x &gt; <span class="number">100</span>) {
+        console.error(<span class="string">'Warning: Shape out of bounds'</span>);
+      }
+    }
+
+    checkBounds.call(<span class="keyword">this</span>);
+  }
+};</code></pre></div><h2 id="the-call-and-apply-methods">The call and apply Methods</h2><p>In <a href="object.create.html">JS101: Object.create</a>, I mentioned how <code>Function.prototype.call</code> can be used to chain constructors. Let&#39;s take a deeper look at these methods of <code>Function</code>.</p>
+<p>The difference between the two is we generally use <code>call</code> when we know what a function&#39;s arguments are, because they&#39;re supplied as arguments. Conversely, <code>apply</code> expects an array of parameters:</p>
+<div class="highlight"><pre><code class="javascript">Shape.prototype = {
+  move: <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span> {</span>
+    <span class="keyword">this</span>.x += x;
+    <span class="keyword">this</span>.y += y;
+
+    <span class="function"><span class="keyword">function</span> <span class="title">checkBounds</span><span class="params">(min, max)</span> {</span>
+      <span class="keyword">if</span> (<span class="keyword">this</span>.x &lt; min || <span class="keyword">this</span>.x &gt; max) {
+        console.error(<span class="string">'Warning: Shape out of bounds'</span>);
+      }
+    }
+
+    checkBounds.call(<span class="keyword">this</span>, <span class="number">0</span>, <span class="number">100</span>);
+    checkBounds.apply(<span class="keyword">this</span>, [<span class="number">0</span>, <span class="number">100</span>]);
+  }
+};</code></pre></div><p>These methods have been around since ECMAScript 3rd Edition, and you&#39;ll see them used a lot. Take a look at the source for any popular JavaScript project and you&#39;ll find one of these methods being used:</p>
+<ul>
+<li><a href="https://github.com/jquery/jquery/blob/master/src/core.js">jQuery: core.js</a></li>
+<li><a href="https://github.com/visionmedia/express/blob/master/lib/application.js">Express: application.js</a></li>
+<li><a href="https://github.com/documentcloud/backbone/blob/master/backbone.js">Backbone.js</a></li>
+</ul>
+<p>Why are these methods so popular? Basically it comes down to functions being a first class citizen in JavaScript. I&#39;ve been talking about the importance of objects for weeks, but learning how to manipulate functions is the key to mastering JavaScript.</p>
+<p>JavaScript allows us to pass functions around, then execute them in different contexts by taking advantage of <code>call</code> and <code>apply</code>.</p>
+<p>This is an example from the beginning of <a href="http://api.jquery.com/jQuery/">jQuery&#39;s documentation</a>:</p>
+<div class="highlight"><pre><code class="javascript">$(<span class="string">'div.foo'</span>).click(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+  $(<span class="keyword">this</span>).slideUp();
+});</code></pre></div><p>Here, <code>this</code> refers to the relevant DOM object. We&#39;ve supplied our own callback, but <code>this</code> points to something that makes sense within the context of jQuery&#39;s API.</p>
+<h2 id="binding">Binding</h2><p>In the comments for the previous post, Andres Descalzo pointed out that <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind">Function.prototype.bind</a> can also be used to change <code>this</code>. The <code>bind</code> method of <code>Function</code> was introduced in ECMAScript 5th Edition, and it returns a new function that&#39;s <em>bound</em> to a different <code>this</code>:</p>
+<div class="highlight"><pre><code class="javascript">Shape.prototype = {
+  move: <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span> {</span>
+    <span class="keyword">this</span>.x += x;
+    <span class="keyword">this</span>.y += y;
+
+    <span class="function"><span class="keyword">function</span> <span class="title">checkBounds</span><span class="params">(min, max)</span> {</span>
+      <span class="keyword">if</span> (<span class="keyword">this</span>.x &lt; min || <span class="keyword">this</span>.x &gt; max) {
+        console.error(<span class="string">'Warning: Shape out of bounds'</span>);
+      }
+    }
+
+    <span class="keyword">var</span> checkBoundsThis = checkBounds.bind(<span class="keyword">this</span>);
+    checkBoundsThis(<span class="number">0</span>, <span class="number">100</span>);
+  }
+};</code></pre></div><p>Notice that a new variable has to be created for the newly bound function. The comment Andres posted uses an anonymous function to remove the extra variable:</p>
+<div class="highlight"><pre><code class="javascript">Shape.prototype = {
+  move: <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span> {</span>
+    <span class="keyword">this</span>.x += x;
+    <span class="keyword">this</span>.y += y;
+
+    <span class="keyword">var</span> checkBounds = <span class="function"><span class="keyword">function</span><span class="params">(min, max)</span> {</span>
+      <span class="keyword">if</span> (<span class="keyword">this</span>.x &lt; min || <span class="keyword">this</span>.x &gt; max) {
+        console.error(<span class="string">'Warning: Shape out of bounds'</span>);
+      }
+    }.bind(<span class="keyword">this</span>);
+
+    checkBounds(<span class="number">0</span>, <span class="number">100</span>);
+  }
+};</code></pre></div><p>I like <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind">Mozilla&#39;s bind documentation</a>, because it shows how some built-in methods like <code>setTimeout</code> require less syntax when used with methods. The lesson here isn&#39;t really due to the design of <code>setTimeout</code> but more general: using <code>bind</code> is a convenient way to pass a <em>method</em> to another function.</p>
+<h2 id="summary">Summary</h2><p>When working with methods, the value of <code>this</code> is important. By using the <code>apply</code>, <code>call</code> and <code>bind</code> methods of <code>Function</code>, we can:</p>
+<ul>
+<li>Change <code>this</code> inside a function, enabling flexible APIs to be created as demonstrated by popular projects like jQuery, Backbone.js, and Express</li>
+<li>Reduce syntactical overhead when using functions inside methods, and passing methods to other functions
+-Chain calls to constructors (see <a href="object.create.html">JS101: Object.create</a>)</li>
+</ul>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>
