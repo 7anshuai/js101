@@ -10,4 +10,6 @@ This is an introduction to JavaScript that covers some of the deeper aspects of 
 - [Primitive values and objects](primitive-values-and-objects.html)
 - [Prototype](prototype.html)
 - [Object.create](object.create.html)
+- [Constructor Functions](constructor-functions.html)
 - [this](this.html)
+- [Call,Apply and Bind](this-binding.html)
