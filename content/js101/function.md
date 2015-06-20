@@ -61,5 +61,5 @@ The fact these inner functions receive access to the variables in their containi
 
 > Let closure be the result of creating a new `Function` object as specified in 13.2 with parameters specified by FormalParameterListopt and body specified by FunctionBody. Pass in funcEnv as the Scope.
 
-References
+## References
 - [Standard ECMA-262 5.1 Edition](http://ecma-international.org/ecma-262/5.1/)
