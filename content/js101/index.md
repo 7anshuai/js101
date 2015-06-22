@@ -18,3 +18,5 @@ This is an introduction to JavaScript that covers some of the deeper aspects of 
 - [The Function Constructor](function-constructor.html)
 - [A Brief Lesson on Scope](scope.html)
 - [Enumeration](enumeration.html)
+- [Equality](equality.html)
+- [Deep Equal](deep-equal.html)
