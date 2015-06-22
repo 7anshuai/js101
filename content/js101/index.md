@@ -15,3 +15,5 @@ This is an introduction to JavaScript that covers some of the deeper aspects of 
 - [this](this.html)
 - [Call, Apply and Bind](this-binding.html)
 - [Function](function.html)
+- [The Function Constructor](function-constructor.html)
+- [A Brief Lesson on Scope](scope.html)
