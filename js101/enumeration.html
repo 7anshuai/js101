@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;Enumeration</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Enumeration</h1>
+  <div class="entry-content" itemprop="articleBody"><p>In this article we&#39;ll look at JavaScript&#39;s enumeration capabilities. This is partly related to scope, so take a look at <a href="scope.html">JS101: A Brief Lesson on Scope</a> if you haven&#39;t read it yet.</p>
+<h2 id="correctly-using-for-in">Correctly Using <code>for-in</code></h2><p>The <a href="http://es5.github.io/#x12.6.4">for-in statement</a> is intended to be used to enumerate over the properties of an object. Inherited properties are included, and to avoid iterating over them <code>hasOwnProperty</code> should be used.</p>
+<p>This example demonstrates using for-in, and shows what happens when someone adds a property to a native prototype:</p>
+<div class="highlight"><pre><code class="javascript">Object.prototype.bad = <span class="literal">undefined</span>;
+
+<span class="keyword">var</span> name, names;
+
+names = {
+  bill: { age: <span class="number">44</span> }
+, bob: { age: <span class="number">22</span> }
+, john: { age: <span class="number">29</span> }
+};
+
+<span class="keyword">for</span> (<span class="keyword">var</span> name <span class="keyword">in</span> names) {
+  <span class="keyword">if</span> (names.hasOwnProperty(name)) {
+    console.log(name, names[name].age);
+  } <span class="keyword">else</span> {
+    console.log(<span class="string">'Inherited:'</span>, name);
+  }
+}</code></pre></div><p>The output will show the inherited property that we don&#39;t want. Even though the property has been set to <code>undefined</code>, it still exists and will be present when enumerated over. Some libraries may add properties this way (even though it&#39;s generally considered bad practice), so it&#39;s wise to use the following pattern:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> exampleObject) {
+  <span class="keyword">if</span> (exampleObject.hasOwnProperty(prop)) {
+    <span class="comment">// Do stuff</span>
+  }
+}</code></pre></div><p>The Underscore.js library uses the same pattern in its <a href="https://github.com/documentcloud/underscore/blob/2eb8d2de5cfd636e46e0a4fb4640f3ff8ff6d7d9/underscore.js#L83-88">implementation of _.each</a>:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) {
+  <span class="keyword">if</span> (_.has(obj, key)) {
+    <span class="keyword">if</span> (iterator.call(context, obj[key], key, obj) === breaker) <span class="keyword">return</span>;
+  }
+}</code></pre></div><h2 id="correctly-extending-objects">Correctly Extending Objects</h2><p>In ECMAScript 5, properties have an <code>enumerable</code> attribute. If this is set to fault, then the property won&#39;t be included in a loop with for-in. There&#39;s also a method called <code>Object.prototype.propertyIsEnumerable</code>, and methods like <code>Object.keys</code> will respect it.</p>
+<p>If I really wanted to add a property to <code>Object</code>, then I could take advantage of this to correctly extend the built-in object:</p>
+<div class="highlight"><pre><code class="javascript">Object.defineProperty(Object.prototype, <span class="string">'bad'</span>, {
+   value: <span class="literal">undefined</span>
+ , enumerable: <span class="literal">false</span> <span class="comment">// This property is not enumerable</span>
+});
+
+<span class="keyword">var</span> name, names;
+
+names = {
+  bill: { age: <span class="number">44</span> }
+, bob: { age: <span class="number">22</span> }
+, john: { age: <span class="number">29</span> }
+};
+
+<span class="keyword">for</span> (<span class="keyword">var</span> name <span class="keyword">in</span> names) {
+  <span class="keyword">if</span> (names.hasOwnProperty(name)) {
+    console.log(name, names[name].age);
+  } <span class="keyword">else</span> {
+    console.log(<span class="string">'Inherited:'</span>, name);
+  }
+}</code></pre></div><p>Running this example will leave out the <code>bad</code> property.</p>
+<p>Notice that this doesn&#39;t just apply to adding properties to native objects -- you should also take <code>enumerable</code> into account when adding properties to your own objects.</p>
+<h2 id="ecmascript-5-array-prototype-methods">ECMAScript 5 Array.prototype Methods</h2><p>ECMAScript 5 introduces some handy methods to <code>Array.prototype</code>:</p>
+<ul>
+<li><code>forEach(callback)</code>: Run <code>callback</code> over each element</li>
+<li><code>filter(callback)</code>: Returns a new array for each item where <code>callback</code> returns true</li>
+<li><code>map(callback)</code>: Run <code>callback</code> over each element, store the result, then return a new array containing the results</li>
+<li><code>some(callback)</code>: If <code>callback</code> returns true, then stop iterating and return true</li>
+</ul>
+<p>There are more methods, including <code>indexOf</code>, <code>lastIndexOf</code>, <code>reduce</code>, and <code>reduceRight</code>. These methods also take a <code>thisArg</code> parameter, which changes the value of <code>this</code> in the callback.</p>
+<p>Remember that these are all methods on <code>Array</code>. To use them with an object, one approach is to call <code>Object.keys</code>. The previous example could be rewritten like this:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> name, names;
+
+names = {
+  bill: { age: <span class="number">44</span> }
+, bob: { age: <span class="number">22</span> }
+, john: { age: <span class="number">29</span> }
+};
+
+Object.keys(names).forEach(<span class="function"><span class="keyword">function</span><span class="params">(name)</span> {</span>
+  console.log(name);
+});</code></pre></div><h2 id="scope">Scope</h2><p>In <a href="scope.html">JS101: A Brief Lesson on Scope</a>, I provided an example that showed how creating methods inside loops can cause confusing scope issues. Since <code>forEach</code> uses a callback, we now have a new scope for each iteration:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span> {</span>
+  <span class="keyword">var</span> o = {};
+
+  [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].forEach(<span class="function"><span class="keyword">function</span><span class="params">(i)</span> {</span>
+    o[i] = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span> console.log(i); };
+  });
+
+  o[<span class="number">0</span>]();
+  o[<span class="number">1</span>]();
+  o[<span class="number">2</span>]();
+}
+
+example();</code></pre></div><p>This will correctly output <code>0 1 2</code> rather than the <code>3 3 3</code> that was printed with the for example.</p>
+<h2 id="performance">Performance</h2><p>If you&#39;re working with an array of items, a simple <code>for</code> loop will still perform better than <code>forEach</code>:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> length = values.length, i;
+<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i++) {
+  <span class="comment">// Do something</span>
+}</code></pre></div><p>There are dozens of benchmarks for this on <a href="http://jsperf.com/">jsPerf</a>, but in general the good old fashioned <code>for</code> loop will beat <code>forEach</code>.</p>
+<h2 id="relationship-to-underscore-js">Relationship to Underscore.js</h2><p><a href="http://underscorejs.org/">Underscore.js</a> and jQuery both include methods that work like <code>forEach</code>. This makes it easier to write code that&#39;ll work with older browsers.</p>
+<p>Underscore works slightly different to <code>forEach</code> because it doesn&#39;t extend <code>Array.prototype</code>, or any other built-in object. Instead, the array has to be passed as an argument:</p>
+<div class="highlight"><pre><code class="javascript">_.forEach([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>], <span class="function"><span class="keyword">function</span><span class="params">(i)</span> {</span>
+  console.log(i);
+});</code></pre></div><p>The ECMAScript 5 <code>forEach</code> method will be used if it&#39;s available, otherwise a <code>for</code> loop will be used instead.</p>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>
