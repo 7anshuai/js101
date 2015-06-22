@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;Deep Equal</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Deep Equal</h1>
+  <div class="entry-content" itemprop="articleBody"><p>Back in <a href="equality.html">JS101: Equality</a> I wrote about the difference between <code>==</code> and <code>===</code>. This is one area of the language that quite clearly causes issues for beginners. In addition, there is another equality concept that can come in handy when writing tests: deep equal. It also illustrates some of the underlying mechanics of the language. As an intermediate JavaScript developer, you should have at least a passing familiarity with <strong>deepEqual</strong> and how it works.</p>
+<h2 id="unit-testing-1-0">Unit Testing/1.0</h2><p>Deep equality is defined in <a href="http://wiki.commonjs.org/wiki/Unit_Testing/1.0">CommonJS Unit Testing/1.0</a>, under subsection 7. The algorithm assumes two arguments: <code>expected</code> and <code>actual</code>. The purpose of the algorithm is to determine if the values are equivalent. It supports both primitive values and objects.</p>
+<ol>
+<li>Strict equals (<code>===</code>) means the values are equivalent</li>
+<li>Compare dates using the <code>getTime</code> method</li>
+<li>If values are not objects, compare with <code>==</code></li>
+<li>Otherwise, compare each object&#39;s size, keys, and values</li>
+</ol>
+<p>The fourth point is probably what you would assume deep equality actually means. The other stages reveal things about the way JavaScript works -- the third stage means values that are not objects can easily be compared with <code>==</code> because they&#39;re primitive values (Undefined, Null, Boolean, Number, or String).</p>
+<p>The second step works because <code>getTime</code> is the most convenient way of comparing dates:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> assert = require(<span class="string">'assert'</span>)
+  , a = <span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>)
+  , b = <span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>)
+  ;
+
+assert.ok(a !== b);
+assert.ok(a != b);
+assert.ok(a.getTime() == b.getTime());
+assert.deepEqual(a, b);</code></pre></div><p>This script can be run in Node, or with a suitable CommonJS assertion library. It illustrates the point that dates are not considered equal using the equality or strict equality operators -- the easiest way to compare them is with <code>getTime</code>.</p>
+<p>Object comparison implies <a href="http://en.wikipedia.org/wiki/Recursion_(computer_science">recursion</a>), as some values may also be objects. Also, key comparison isn&#39;t as simple as it might seem: <a href="https://github.com/joyent/node/blob/e4cef1a0833e6d677298600e205a142d15639bf2/lib/assert.js#L221-L233">real implementations sort keys, compare length, then compare each value</a>.</p>
+<h2 id="bugs">Bugs</h2><p>Bugs have been found in the Unit Testing/1.0 specification since it originally appeared. Two have been flagged up on the <a href="http://wiki.commonjs.org/wiki/Unit_Testing">main Unit Testing page</a>. The Node <code>assert</code> module addresses these points. For example, <a href="https://github.com/joyent/node/blob/e4cef1a0833e6d677298600e205a142d15639bf2/lib/assert.js#L174-L179">regular expressions are a special case in the <strong>deepEqual</strong> implementation</a>:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">return</span> actual.source === expected.source &amp;&amp;
+       actual.global === expected.global &amp;&amp;
+       actual.multiline === expected.multiline &amp;&amp;
+       actual.lastIndex === expected.lastIndex &amp;&amp;
+       actual.ignoreCase === expected.ignoreCase;</code></pre></div><p>The <code>source</code> property has a string that represents the original regular expression, and then each flag has to be compared.</p>
+<h2 id="object-comparison">Object Comparison</h2><p>The next time you&#39;re writing a test, or even just comparing objects, remember that <code>==</code> will only work for &quot;shallow&quot; comparisons. Testing other values like arrays, dates, regular expressions, and objects requires a little bit more effort.</p>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;Equality</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Equality</h1>
+  <div class="entry-content" itemprop="articleBody"><p>There are four equality operators in JavaScript:</p>
+<ul>
+<li>Equals: <code>==</code></li>
+<li>Not equal: <code>!=</code></li>
+<li>Strict equal: <code>===</code></li>
+<li>Strict not equal: <code>!==</code></li>
+</ul>
+<p>In JavaScript: <a href="http://www.amazon.co.uk/gp/product/0596517742/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;tag=da0b-21&amp;linkCode=as2&amp;camp=1634&amp;creative=6738&amp;creativeASIN=0596517742">The Good Parts</a>, Douglas Crockford advises against using <code>==</code> and <code>!=</code>:</p>
+<blockquote>
+<p>My advice is to never use the evil twins. Instead, always use <code>===</code> and <code>!==</code>.</p>
+</blockquote>
+<p>The result of the equals operator is calculated based on <a href="http://es5.github.io/#x11.9.3">The Abstract Equality Comparison Algorithm</a>. This can lead to confusing results, and these examples are often cited:</p>
+<div class="highlight"><pre><code class="javascript"><span class="string">''</span> == <span class="string">'0'</span>           <span class="comment">// false</span>
+<span class="number">0</span> == <span class="string">''</span>             <span class="comment">// true</span>
+<span class="number">0</span> == <span class="string">'0'</span>            <span class="comment">// true</span>
+
+<span class="literal">false</span> == <span class="literal">undefined</span>  <span class="comment">// false</span>
+<span class="literal">false</span> == <span class="literal">null</span>       <span class="comment">// false</span>
+<span class="literal">null</span> == <span class="literal">undefined</span>   <span class="comment">// true</span></code></pre></div><p>Fortunately, we can look at the algorithm to better understand these results. The first example is <code>false</code> due to this rule:</p>
+<blockquote>
+<p>If Type(x) is String, then return <code>true</code> if x and y are exactly the same sequence of characters (same length and same characters in corresponding positions). Otherwise, return <code>false</code>.</p>
+</blockquote>
+<p>Basically, the sequence of strings is not the same. In the second example, the types are different, so this rule is used:</p>
+<blockquote>
+<p>If Type(x) is <code>Number</code> and Type(y) is <code>String</code>, return the result of the comparison x == ToNumber(y).</p>
+</blockquote>
+<p>This is where the behaviour of the <code>==</code> starts to get seriously gnarly: behind the scenes, values and objects are changed to different types. The equality operator always tries to compare <a href="primitives-value-and-objects.html">primitive values</a>, whereas the strict equality operator will return <code>false</code> if the two values are not the same type. For reference, the underlying mechanism used by the strict equality operator is documented in the <a href="http://es5.github.io/#x11.9.6">The Strict Equality Comparison Algorithm</a> section in the ECMAScript Specification.</p>
+<h2 id="strict-equality-examples">Strict Equality Examples</h2><p>Using the same example with the strict equality operator shows an arguably more intuitive result:</p>
+<div class="highlight"><pre><code class="javascript"><span class="string">''</span> === <span class="string">'0'</span>           <span class="comment">// false</span>
+<span class="number">0</span> === <span class="string">''</span>             <span class="comment">// false</span>
+<span class="number">0</span> === <span class="string">'0'</span>            <span class="comment">// false</span>
+
+<span class="literal">false</span> === <span class="literal">undefined</span>  <span class="comment">// false</span>
+<span class="literal">false</span> === <span class="literal">null</span>       <span class="comment">// false</span>
+<span class="literal">null</span> === <span class="literal">undefined</span>   <span class="comment">// false</span></code></pre></div><p>Is this really how professional JavaScript developers write code? And if so, does <code>===</code> get used that often? Take a look at <a href="https://github.com/jquery/jquery/blob/05337e78fa68aac3a3d703d7cc59f145f13ea779/src/ajax.js">ajax.js</a> from jQuery&#39;s source:</p>
+<div class="highlight"><pre><code class="javascript">executeOnly = ( structure === prefilters );
+<span class="keyword">if</span> ( <span class="keyword">typeof</span> selection === <span class="string">"string"</span> ) {
+} <span class="keyword">else</span> <span class="keyword">if</span> ( params &amp;&amp; <span class="keyword">typeof</span> params === <span class="string">"object"</span> ) {</code></pre></div><p>The strict equality operator is used almost everywhere, apart from here:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">if</span> ( s.crossDomain == <span class="literal">null</span> ) {</code></pre></div><p>In this case, both <code>undefined</code> and <code>null</code> will be equal, which is a case where <code>==</code> is often used in preference to the strict equivalent:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">if</span> ( s.crossDomain === <span class="literal">null</span> || s.crossDomain === <span class="literal">undefined</span> ) {</code></pre></div><h2 id="assertions">Assertions</h2><p>One place where the difference between equality and strict equality becomes apparent is in JavaScript unit tests. Most assertion libraries include a way to check &#39;shallow&#39; equality and &#39;deep equality&#39;. In <a href="http://wiki.commonjs.org/wiki/Unit_Testing/1.0">CommonJS Unit Testing</a>, these are known as <code>assert.equal</code> and <code>assert.deepEqual</code>.</p>
+<p>In the case of <code>deepEqual</code>, there&#39;s specific handling for dates and arrays:</p>
+<blockquote>
+<p>equivalence is determined by having the same number of owned properties (as verified with <code>Object.prototype.hasOwnProperty.call</code>), the same set of keys (although not necessarily the same order), equivalent values for every corresponding key, and an identical &quot;prototype&quot; property</p>
+</blockquote>
+<h2 id="conclusion">Conclusion</h2><p>To understand how equality and strict equality work in JavaScript, <a href="http://es5.github.io/#x4.3.2">primitive values</a> and JavaScript&#39;s implicit type conversion behaviour must be understood. In general, experienced developers advocate using <code>===</code>, and this is good practice for beginners.</p>
+<p>In recognising the confusion surrounding these operators, there is a significant amount of documentation on the topic. For example, <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Operators/Comparison_Operators">Comparison Operators</a> in Mozilla&#39;s JavaScript Reference.</p>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>
