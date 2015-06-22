@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;A Brief Lesson on Scope</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">A Brief Lesson on Scope</h1>
+  <div class="entry-content" itemprop="articleBody"><p>JavaScript is a language that demands a rigorous understanding of its scoping rules. One reason for this is JavaScript looks deceptively like other languages, but subtle differences in the rules that govern identifier visibility make it unexpectedly difficult to master.</p>
+<p>Here&#39;s some computer science so you can impress your friends and wayward wizards: <em>scope</em> refers to the visibility of a given identifier within a program. Sometimes we talk about <em>function scope</em> and <em>block scope</em>. I&#39;ve already covered function scope in this series, but JavaScript doesn&#39;t have <em>block scope</em>. In this context, <a href="http://es5.github.io/#x12.1">block</a> refers to control structures like <code>if</code> statements and <code>for</code> loops -- a block of statements grouped by curly braces.</p>
+<h2 id="declaring-variables-and-functions">Declaring Variables and Functions</h2><p>Variables can be defined with the <code>var</code> statement, and are initialised to <code>undefined</code>:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> a; <span class="comment">// undefined</span>
+<span class="keyword">var</span> b = <span class="string">'hello'</span>;</code></pre></div><p>The scoping of these statements is dependent on where they&#39;re declared. If <code>var</code> statements don&#39;t appear inside a function, they&#39;re globally accessible:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> a = <span class="number">1</span>;
+
+<span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(b)</span> {</span>
+  <span class="keyword">return</span> a + b;
+}</code></pre></div><h2 id="missing-var">Missing <code>var</code></h2><p>Problems start to occur when a <code>var</code> statement is forgotten:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span> {</span>
+  a = <span class="number">1</span>;
+  b = <span class="number">1</span>;
+  <span class="keyword">return</span> a + b;
+}</code></pre></div><p>These variables are not local to the <code>example</code> function, they&#39;re actually global. If <code>a</code> or <code>b</code> already existed, then their values will be overwritten.</p>
+<p>Accidentally leaving out a <code>var</code> statement is surprisingly easy, and could potentially cause irritating bugs. Tools like <a href="http://www.jslint.com/">JSLint</a> will attempt to use <em>static analysis</em> to find such errors.</p>
+<h2 id="variable-declaration-styles">Variable Declaration Styles</h2><p>Some people like to group <code>var</code> statements together:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> a = <span class="number">1</span>,
+    b = <span class="number">2</span>,
+    c = <span class="number">3</span>;</code></pre></div><p>What would happen if a comma was missed by mistake?</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span> {</span>
+  <span class="keyword">var</span> a = <span class="number">1</span>
+      b = <span class="number">2</span>,
+      c = <span class="number">3</span>;
+}
+
+example();
+
+console.log(<span class="keyword">typeof</span> a);
+console.log(<span class="keyword">typeof</span> b);
+console.log(<span class="keyword">typeof</span> c);</code></pre></div><p>Running this will show that while <code>a</code> is <code>undefined</code> and therefore local to <code>example</code>, the other variables are global.</p>
+<p>The reason some developers place commas before lists of variable declarations is to make it easier to see if a comma has been forgotten:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> a = <span class="number">1</span>
+  , b = <span class="number">2</span>
+  , c = <span class="number">3</span>
+  ;</code></pre></div><p>However, the <a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml">Google JavaScript Style Guide</a> recommends using a <code>var</code> statement on every line, to avoid the problem altogether.</p>
+<h2 id="no-block-scope">No Block Scope</h2><p>Variables and functions are visible within the current function, regardless of blocks. This is amazingly confusing because it prevents us from using control structures to declare functions and variables in a dynamic way.</p>
+<p>Defining variables in blocks may confuse programmers who work with other languages:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span> {</span>
+  <span class="comment">// Do not do this</span>
+  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) {
+    <span class="keyword">var</span> a = <span class="number">1</span>;
+    <span class="comment">// Do stuff with `a`</span>
+  }
+}</code></pre></div><p>Since there is no block scope, the previous example should be written like this:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span> {</span>
+  <span class="keyword">var</span> i, a;
+  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) {
+    a = <span class="number">1</span>;
+    <span class="comment">// Do stuff with `a`</span>
+  }
+}</code></pre></div><h2 id="hoisting">Hoisting</h2><p>Have you ever noticed how some things appear to be in scope even though their definition appears later in the file? The colloquial term for this is <em>hoisting</em>:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span> {</span>
+  console.log(a);
+  <span class="keyword">var</span> a = <span class="number">1</span>;
+}
+
+example();</code></pre></div><p>Running this will log <code>undefined</code> rather than <code>1</code>. The term <em>hoisting</em> isn&#39;t in the ECMAScript 3 or 5 standards, but the behaviour is documented in <a href="http://es5.github.io/#x10.5">10.5 Declaration Binding Instantiation</a>, in the line that starts <em>For each _VariableDeclaration</em> and <em>VariableDeclarationNoIn d</em> in code, in source text order do_. The reason the value is <code>undefined</code> rather than <code>1</code> is also explained by the specification:</p>
+<blockquote>
+<p>A variable with an Initialiser is assigned the value of its AssignmentExpression when the VariableStatement is executed, not when the variable is created.</p>
+</blockquote>
+<h2 id="confusing-closures">Confusing Closures</h2><p>The following example defines three functions and assigns them as methods to an object. Each method is then called after the loop has finished.</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span> {</span>
+  <span class="keyword">var</span> o = {}, i = <span class="number">0</span>;
+  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) {
+    o[i] = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span> console.log(i); };
+  }
+  o[<span class="number">0</span>]();
+  o[<span class="number">1</span>]();
+  o[<span class="number">2</span>]();
+}
+
+example();</code></pre></div><p>The output will be <code>3</code> each time, because the closure is bound to the function scope, not the (non-existent) block scope. Intermediate JavaScript programmers often make this mistake.</p>
+<h2 id="conclusion">Conclusion</h2><p>If understanding JavaScript&#39;s scoping rules was a video game, then the levels would be as follows:</p>
+<ul>
+<li>Title Screen: Press [Start] to begin (I always press the other buttons to see if it starts anyway)</li>
+<li>Level 1: Function scope</li>
+<li>Level 2: No block scope</li>
+<li>Level 3: Missing var</li>
+<li>Level 4: Hoisting</li>
+<li>Level 5: Closures</li>
+</ul>
+<p>The scoping story isn&#39;t complete, and worth noting is the fact that <a href="http://kangax.github.com/es5-compat-table/non-standard/">ECMAScript extensions</a> can subtly alter scoping behaviour for certain things. If you&#39;re interested in going beyond this 101 introduction level article, then try reading Angus Croll&#39;s <a href="http://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/">Function Declarations vs. Function Expressions</a> to see how some of these scoping rules play out, and Dmitry Soshnikov&#39;s <a href="http://dmitrysoshnikov.com/ecmascript/es5-chapter-3-2-lexical-environments-ecmascript-implementation/#this-binding">post on ECMAScript&#39;s lexical environments</a>.</p>
+<h2 id="references">References</h2><ul>
+<li><a href="http://javascript.crockford.com/code.html">Code Conventions for the JavaScript Programming Language</a> by Douglas Crockford</li>
+<li>ECMAScript 5: <a href="http://es5.github.io/#x10.5">10.5 Declaration Binding Instantiation</a></li>
+<li><a href="http://www.jslint.com/">JSLint</a></li>
+</ul>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>

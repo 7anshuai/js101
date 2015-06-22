@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;The Function Constructor</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">The Function Constructor</h1>
+  <div class="entry-content" itemprop="articleBody"><p>Last week we took a cursory glance at functions, and this week we&#39;ll look at the <code>Function</code> object itself.</p>
+<h2 id="creating-functions-with-the-function-constructor">Creating Functions with the <code>Function</code> Constructor</h2><p>Functions can be instantiated with zero or more arguments. The last argument is always the function body:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> sum = <span class="keyword">new</span> Function(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'return a + b'</span>);
+sum(<span class="number">1</span>, <span class="number">1</span>);
+<span class="comment">// 2</span></code></pre></div><p>The <code>length</code> property will return the number of arguments:</p>
+<div class="highlight"><pre><code class="javascript">sum.length
+<span class="comment">// 2</span></code></pre></div><p>This property is not writeable. The function body will have access to <code>arguments</code>, so supporting <a href="http://es5.github.io/#x15.3.5.1">variable arguments is still possible</a>:</p>
+<blockquote>
+<p>The behaviour of a function when invoked on a number of arguments other than the number specified by its length property depends on the function.</p>
+</blockquote>
+<p>Other properties include <a href="this-binding.html">call, apply, and bind</a>. There&#39;s also a <code>toString</code> method, which will return a string containing the function&#39;s body. It won&#39;t be exactly the same as the source supplied to the <code>Function</code> constructor.</p>
+<h2 id="scope">Scope</h2><p>To all intents and purposes, functions created this way are indistinguishable from any other function. There is a difference, however, and that lies in the scope binding. The <a href="http://es5.github.io/#x10.2.3">Global Environment</a> is passed as the scope for the new function, which isn&#39;t necessarily intuitive. This isn&#39;t a bug and is covered by the specification, but it&#39;s worth being aware of the behaviour.</p>
+<p>For example, this will fail because <code>a</code> isn&#39;t in scope for the <code>Function</code> instances:</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">container</span><span class="params">()</span> {</span>
+  <span class="keyword">var</span> a = <span class="number">1</span>
+    , b = <span class="number">1</span>
+    , sum = <span class="keyword">new</span> Function(<span class="string">'return a + b'</span>)
+    , sum2 = <span class="keyword">new</span> Function(<span class="string">'sum()'</span>);
+  sum();
+  sum2();
+}
+
+container();</code></pre></div><p>The amazing thing is, an <code>eval</code> would have access to <code>a</code> and <code>b</code> because <a href="http://es5.github.io/#x10.4.2">entering eval code</a> sets up the lexical and variable environments the usual way.</p>
+<p>This difference is useful, because <code>new Function</code> offers a way to execute arbitrary code without providing access to local (perhaps considered &quot;internal&quot;) variables. jQuery&#39;s JSON parser uses this distinction to <a href="https://github.com/jquery/jquery/blob/f5fd41252e3ae48a655c5da4a0b2910bb897b6ed/src/core.js#L501">parse JSON</a>:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">if</span> (rvalidchars.test( data.replace( rvalidescape, <span class="string">""</span> )
+    .replace( rvalidtokens, <span class="string">"]"</span> )
+    .replace( rvalidbraces, <span class="string">""</span>)) ) {
+
+  <span class="keyword">return</span> ( <span class="keyword">new</span> Function( <span class="string">"return "</span> + data ) )();
+}</code></pre></div><p>In this way we can see <code>eval</code> and <code>new Function</code> are related, but not entirely the same. However, some well-known JavaScript professionals <a href="http://javascript.crockford.com/code.html">strongly warn against using both</a>:</p>
+<blockquote>
+<p><code>eval</code> has aliases. Do not use the <code>Function</code> constructor. Do not pass strings to <code>setTimeout</code> or <code>setInterval</code>.</p>
+</blockquote>
+<h2 id="metaprogramming">Metaprogramming</h2><p>The <code>Function</code> constructor is occasionally used for <a href="http://en.wikipedia.org/wiki/Metaprogramming">metaprogramming</a>. It&#39;s used to generate new methods in the <a href="https://github.com/LearnBoost/mongoose/blob/35d8eea943ef8f3ca8706ad39ab6ea2e74a166d0/lib/types/buffer.js#L147-151">Mongoose MongoDB module for Node</a>:</p>
+<div class="highlight"><pre><code class="javascript">MongooseBuffer.prototype[method] = <span class="keyword">new</span> Function(
+  <span class="string">'var ret = Buffer.prototype.'</span>+method+<span class="string">'.apply(this, arguments);'</span> +
+  <span class="string">'this._markModified();'</span> +
+  <span class="string">'return ret;'</span>
+)</code></pre></div><p>In this case, it would be trivial to refactor out the <code>Function</code> constructor.</p>
+<p>There are more specific cases where the <code>Function</code> constructor is used for more devious metaprogramming. The Jade template language <a href="https://github.com/visionmedia/jade/blob/e805f6a2d5eb80c680e7bbddd3ea4390b2808c2e/lib/jade.js#L143-160">compiles templates into functions</a>. Dojo also has a few places relating to templates where it&#39;s used as well.</p>
+<h2 id="conclusion">Conclusion</h2><p>The <code>Function</code> constructor has some scope behaviour that takes a bit of getting used to, but it&#39;s exploited by a very specific class of libraries. In general, most code doesn&#39;t really need to use <code>new Function</code>.</p>
+<h2 id="references">References</h2><ul>
+<li><a href="http://es5.github.io/">Annotated ES5</a></li>
+<li><a href="https://github.com/jquery/jquery/">jQuery&#39;s source</a></li>
+<li><a href="https://github.com/LearnBoost/mongoose">Mongoose&#39;s source</a></li>
+<li><a href="https://github.com/visionmedia/jade">Jade&#39;s source</a></li>
+</ul>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>
