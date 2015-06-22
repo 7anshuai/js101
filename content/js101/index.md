@@ -17,3 +17,4 @@ This is an introduction to JavaScript that covers some of the deeper aspects of 
 - [Function](function.html)
 - [The Function Constructor](function-constructor.html)
 - [A Brief Lesson on Scope](scope.html)
+- [Enumeration](enumeration.html)
