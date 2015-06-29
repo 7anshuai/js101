@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;Terminology: Modules</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">Terminology: Modules</h1>
+  <div class="entry-content" itemprop="articleBody"><p>Learning modern modular frameworks like <a href="http://backbonejs.org/">Backbone.js</a> and <a href="http://angularjs.org/">AngularJS</a> involves mastering a large amount of terminology, even just to understand a Hello, World application. With that in mind, I wanted to take a break from higher-level libraries to answer the question: what is a module?</p>
+<h2 id="the-background-story">The Background Story</h2><p>Client-side development has always been rife with techniques for patching missing behaviour in browsers. Even the humble <code>&lt;script&gt;</code> tag has been cajoled and beaten into submission to give us alternative ways to load scripts.</p>
+<p>It all started with concatenation. Rather than loading many scripts on a page, they are instead joined together to form a single file, and perhaps minimised. One school of thought was that this is more efficient, because a long HTTP request will ultimately perform better than many smaller requests.</p>
+<p>That makes a lot of sense when loading libraries -- things that you want to be globally available. However, when writing your own code it somehow feels wrong to place objects and functions at the top level (the global scope).</p>
+<p>If you&#39;re working with jQuery, you might organise your own code like this:</p>
+<div class="highlight"><pre><code class="javascript">$(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+  <span class="function"><span class="keyword">function</span> <span class="title">MyConstructor</span><span class="params">()</span> {</span>
+  }
+
+  MyConstructor.prototype = {
+    myMethod: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    }
+  };
+
+  <span class="keyword">var</span> instance = <span class="keyword">new</span> MyConstructor();
+});</code></pre></div><p>That neatly tucks everything away while also only running the code when the DOM is ready. That&#39;s great for a few weeks, until the file is bustling with dozens of objects and functions. That&#39;s when it seems like this monolithic file would benefit from being split up into multiple files.</p>
+<p>To avoid the pitfalls caused by large files, we can split them up, then load them with <code>&lt;script&gt;</code> tags. The scripts can be placed at the end of the document, causing them to be loaded after the majority of the document has been parsed.</p>
+<p>At this point we&#39;re back to the original problem: we&#39;re loading perhaps dozens of <code>&lt;script&gt;</code> tags inefficiently. Also, scripts are unable to express dependencies between each other. If dependencies between scripts can be expressed, then they can be shared between projects and loaded on demand more intelligently.</p>
+<h2 id="loading-optimising-and-dependencies">Loading, Optimising, and Dependencies</h2><p>The <code>&lt;script&gt;</code> tag itself has an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-async">async attribute</a>. This helps indicate which scripts can be loaded asynchronously, potentially decreasing the time the browser blocks when loading resources. If we&#39;re going to use an API to somehow express dependencies between scripts and load them quickly, then it should load scripts asynchronously when possible.</p>
+<p>Five years ago this was surprisingly complicated, mainly due to legacy browsers. Then solutions like <a href="http://requirejs.org/">RequireJS</a> appeared. Not only did RequireJS allow scripts to be loaded programmatically, but it also had an optimiser that could concatenate and minimise files. The lines between loading scripts, managing dependencies, and file optmisation are inherently blurred.</p>
+<h2 id="amd">AMD</h2><p>The problem with loading scripts is it&#39;s asynchronous: there&#39;s no way to say <code>load(&#39;/script.js&#39;)</code> and have code that uses <code>script.js</code> directly afterwards. The <a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition">CommonJS Modules/AsynchronousDefinition</a>, which became <a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a> (Asynchronous Module Definition), was designed to get around this. Rather than trying to create the illusion that scripts can be loaded synchronously, all scripts are wrapped in a function called <code>define</code>. This is a global function inserted by a suitable AMD implementation, like RequireJS.</p>
+<p>The <code>define</code> function can be used to safely namespace code, express dependencies, and give the module a name (id) so it can be registered and loaded. Module names are &quot;resolved&quot; to script names using a well-defined format.</p>
+<p>Although this means every module you write must be wrapped in a call to <code>define</code>, the authors of RequireJS realised it meant that build tools could easily interpret dependencies and generate optimised builds. So your development code can use RequireJS&#39;s client-side library to load the necessary scripts, then your production version can preload all scripts in one go, without having to change your HTML templates (<code>r.js</code> is used to do this in practice).</p>
+<h2 id="commonjs">CommonJS</h2><p>Meanwhile, Node was becoming popular. Node&#39;s module system is characterised by using the <code>require</code> statement to return a value that contains the module:</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> User = require(<span class="string">'models/user'</span>);
+User.find(<span class="number">1</span>);</code></pre></div><p>Can you imagine if every Node module had to be wrapped in a call to <code>define</code>? It might seem like an acceptable trade-off in client-side code, but it would feel like too much boilerplate in server-side scripting when compared to languages like Python.</p>
+<p>There have been many projects to make this work in browsers. Most use a build tool to load all of the modules referenced by <code>require</code> up front -- they&#39;re stored in memory so <code>require</code> can simply return them, creating the illusion that scripts are being loaded synchronously.</p>
+<p>Whenever you see <code>require</code> and <code>exports</code> you&#39;re looking at <a href="http://wiki.commonjs.org/wiki/Modules/1.1">CommonJS Modules/1.1</a>. You&#39;ll see this referred to as &quot;CommonJS&quot;.</p>
+<p>Now you&#39;ve seen CommonJS modules, AMD, and where they came from, how are they being used by modern frameworks?</p>
+<h2 id="modules-in-the-wild">Modules in the Wild</h2><p><a href="http://dojotoolkit.org/documentation/tutorials/1.7/modules/">Dojo uses AMD internally</a> and for creating your own modules. It didn&#39;t originally -- it used to have its own module system. Dojo adopted AMD early on.</p>
+<p><a href="http://docs.angularjs.org/guide/module">AngularJS</a> uses its own module system that looks a lot like AMD, but with adaptations to support <a href="http://docs.angularjs.org/guide/di">dependency injection</a>.</p>
+<p>RequireJS supports AMD, but it can load scripts and other resources without wrapping them in <code>define</code>. For example, a dependency between your own well-defined modules and a jQuery plugin that doesn&#39;t use AMD can be defined by using suitable configuration options when setting up RequireJS.</p>
+<p>There&#39;s still a disparity between development and production builds. Even though RequireJS can be used to create serverless single page applications, most people still use a lightweight development server that serves raw JavaScript files, before deploying concatenated and minimised production builds.</p>
+<p>The need for script loading and building, and tailoring for various environments (typically development, test, and production) has resulted in a new class of projects. <a href="http://yeoman.io/">Yeoman</a> is a good example of this: it uses Grunt for managing builds and running a development server, Bower for defining the source of dependencies so they can be fetched, and then RequireJS for loading and managing dependencies in the browser. Yeoman generates skeleton projects that set up development and build environments so you can focus on writing code.</p>
+<p>Hopefully now you know all about client-side modules, so the next time you hear <em>RequireJS</em>, <em>AMD</em>, or <em>CommonJS</em>, you know what people are talking about!</p>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>

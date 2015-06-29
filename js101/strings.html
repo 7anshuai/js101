@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="nico 0.5.2">
+    <meta name="theme" content="one 0.2">
+    <meta name="baidu-site-verification" content="mQA8r0mibu">
+    <title>JS101:&nbsp;A Primer on Strings and String Encodings</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="JS101" />
+    <link rel="stylesheet" href="../static/one.css" />
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-50612052-1']);
+      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageLoadTime']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="brand">
+          <a class="home" href="../">JS101</a>
+        </div>
+        <div class="menu" role="navigation">
+          <a href="../../../../../feed.xml">订阅</a>
+        </div>
+      </div>
+    </div>
+    <div class="document yue">
+<div class="hentry" itemscope itemtype="http://schema.org/Article">
+  <h1 class="entry-title" itemprop="name">A Primer on Strings and String Encodings</h1>
+  <div class="entry-content" itemprop="articleBody"><p>What is a JavaScript string? It depends on the context. For instance, a string is a primitive value -- a value represented at the &quot;lowest level&quot; of the language&#39;s implementation.</p>
+<p>Strings are also members of the type <code>String</code>. Strings can be created with the <code>String</code> constructor. Running <code>new String(&#39;hello&#39;)</code> creates an instance of String.</p>
+<p>Finally, String literals are found in the program&#39;s source: <code>var name = &#39;alex&#39;</code>.</p>
+<p>Given that there are many ways to represent strings, what is the underlying encoding in JavaScript? Both the third and fifth editions of ECMAScript state that strings are represented as <a href="http://es5.github.io/#x4.3.16">16-bit unsigned integers</a>:</p>
+<blockquote>
+<p>Each integer value in the sequence usually represents a single 16-bit unit of UTF-16 text. However, ECMAScript does not place any restrictions or requirements on the values except that they must be 16-bit unsigned integers.</p>
+</blockquote>
+<h2 id="string-encoding">String Encoding</h2><p>Ultimately a string is just a sequence of characters. In other words, an array of units of information that correspond to digits, letters, and so on. Characters are represented as byte sequences.</p>
+<p>When working on client-side JavaScript and HTML, we&#39;re used to seeing <code>charset=UTF-8</code>. UTF-8 is a system for encoding characters, and is actually &quot;variable width&quot;, which means the bytes used to represent an individual character can vary in length.</p>
+<p>I said earlier that JavaScript strings are 16-bit, so how does this relate to UTF-8? In extremely simplified terms for the purposes of a beginner&#39;s article, you can think about it like this: JavaScript engines use a fixed 16-bit representation of characters that makes it easier to manage strings internally.</p>
+<p>So, even though a browser&#39;s JavaScript engine internally represents characters as 16-bit numbers, we don&#39;t usually need to know about this. Writing the strings to form controls with the DOM or using <code>XMLHTTPRequest</code> should convert the string to the right encoding. Ideally the server should have sent the <code>Content-Type</code> header set to UTF-8, so the browser will know what to do.</p>
+<h2 id="more-about-encodings">More About Encodings</h2><p>Even if you&#39;re a client-side developer that doesn&#39;t care about string encodings, Joel Spolsky&#39;s <a href="http://www.joelonsoftware.com/articles/Unicode.html">The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets</a> is worth reading because it explains the history behind string encodings. Understanding the history behind what can be a frustrating topic makes it easier to understand.</p>
+<p>If you need to work on string encodings in JavaScript, Johan Sundström&#39;s post <a href="http://ecmanaut.blogspot.co.uk/2006/07/encoding-decoding-utf8-in-javascript.html">Encoding / decoding UTF8</a> in javascript from back in 2006 explains how to encode and decode UTF-8.</p>
+<p>Monsur Hossain went on to write <a href="http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html">UTF-8 in JavaScript</a> which goes into <code>unescape</code> and <code>encodeURIComponent</code> in more detail.</p>
+</div>
+</div>
+</div>
+    <div class="footer">
+      <p class="copyright">powered by <a href="http://lab.lepture.com/nico/">nico</a> 0.5.2</p>
+    </div>
+    <div class="github"><a class="github-link" href="https://github.com/7anshuai/js101">Fork me on GitHub</a></div>
+    <script src="../static/one.js"></script>
+  </body>
+</html>
