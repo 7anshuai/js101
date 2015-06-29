@@ -20,3 +20,5 @@ This is an introduction to JavaScript that covers some of the deeper aspects of 
 - [Enumeration](enumeration.html)
 - [Equality](equality.html)
 - [Deep Equal](deep-equal.html)
+- [A Primer on Strings and String Encodings](strings.html)
+- [Terminology: Modules](modules.html)
