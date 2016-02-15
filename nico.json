@@ -4,7 +4,7 @@
     "theme": "themes/one",
     "permalink": "{{directory}}/{{filename}}.html",
     "sitename": "JS101",
-    "siteurl": "http://js101.co/",
+    "siteurl": "http://101.js.org/",
     "navigation": [
         {"link": "/feed.xml", "title": "订阅"}
     ],

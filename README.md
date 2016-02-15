@@ -8,7 +8,7 @@ JavaScript 101 - JavaScript 新手教程。
 
 它通常是指“某事情的入门介绍”。这种说法的典故来源于美国教学系统中，大学初级课程代码101。课程代码101通常表示这是入门课程，没有其他的前提要求。
 
-[JS101.co](http://js101.co) 是 JavaScript 的新手课堂，收集并翻译了 jQuery 学习中心与 DailyJS 的 JavaScript 101 教程。
+[JS101](http://101.js.org) 是 JavaScript 的新手课堂，收集并翻译了 jQuery 学习中心与 DailyJS 的 JavaScript 101 教程。
 
 目前已翻译完 jQuery 的 JavaScript 101系列文章，接下来会继续翻译 DailyJS 的进阶教程，欢迎 Fork and PR。
 
