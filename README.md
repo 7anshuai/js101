@@ -1,3 +1,3 @@
 # JS101
 
-[js101.co](http://js101.co/) - JavaScript for beginners.
+[JS101](http://101.js.org/) - JavaScript for beginners.
