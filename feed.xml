@@ -5,6 +5,29 @@
     <link href="http://101.js.org/" />
     <id>http://101.js.org/feed.xml</id>
     <entry>
+        <title type="html"><![CDATA[JavaScript 的过去和现在]]></title>
+        <link href="http://101.js.org/js101/the-language-past-and-present.html"/>
+        <published>2016-03-19T00:00:00.000Z</published>
+        <updated>2016-03-19T00:00:00.000Z</updated>
+        <id>http://101.js.org/js101/the-language-past-and-present.html</id>
+        <content type="html" xml:base="http://101.js.org/" xml:lang="en">
+            <![CDATA[ <p>一个重要的问题：JavaScript 是什么，它由谁掌控？</p>
+<p>在 <a href="http://dailyjs.com/history-of-javascript-index/">History of JavaScript</a> 系列中，我已经详细回答了这个问题。这篇文章是一个简单的介绍，读完之后你应该知道了JavaScript 的基础知识以及它和 ECMAScript 的关系。</p>
+<h2 id="谁创造了-javascript？">谁创造了 JavaScript？</h2><p>在1995年，Brendan Eich 为网景创造了 JavaScript。网景将 JavaScript 提交到了 <a href="http://www.ecma-international.org/">Ecma International</a>，一个在日内瓦的标准组织。标准化的 版本就是 ECMAScript。</p>
+<h2 id="ecmascript-是什么？">ECMAScript 是什么？</h2><p>多数网站（比如 DailyJS）上的文章会引用 ECMA-262， ECMAScript 3 和 ECMAScript 5。 通常会简称为 ES3 和 ES5。</p>
+<ul>
+<li><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a> 是规范的名称，它有五个版本</li>
+<li>ECMAScript 3 (或 ECMA-262, 版本 3) 发布于1999年12月，Netscape 6 和 IE 5.5 支持该标准</li>
+<li>ECMAScript 5 (或 ECMA-262, 版本 5) 发布于2009年12月，它被 Firefox 4+ 和 Safari 6 支持: <a href="http://kangax.github.com/es5-compat-table/">ES5 兼容性表格</a></li>
+</ul>
+<p>ECMAScript 5 添加了许多新的特性：包括新的数组方法像 <code>forEach</code>，新的 <code>Object</code> 方法比如 <code>Object.create</code>，新的属性，函数绑定，等等。</p>
+<h2 id="未来">未来</h2><p>ECMAScript 仍在积极发展。被称为 ES.next（ECMA-262 版本 6），ES.next 工作草案可以从 <a href="http://wiki.ecmascript.org/">ECMAScript 维基</a> 下载。</p>
+<p>语言的建议被收集在稻草人维基，并通过在 wiki 和邮件列表的几个贡献者详细讨论。为了跟上语言的发展，我经常检查维基最近的变化和 es-discuss 邮件列表。</p>
+<p><a href="https://brendaneich.com/">Brendan Eich 的博客</a> 包含了大量的主要开发详情。例如，他 <a href="https://brendaneich.com/2012/06/recent-talks-fluent-txjs-2012/">最近的文章</a> 提到了 ES6 以及标准制定者和热情的 JavaScript 开发者社区之间的关系。
+语言会有所改变，随着新标准的制定，你需要知道你给定的平台或浏览器支持。</p>
+]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[闭包]]></title>
         <link href="http://101.js.org/javascript-101/closures.html"/>
         <published>2015-04-21T00:00:00.000Z</published>
@@ -935,63 +958,6 @@ jQuery.isPlainObject( myValue ); <span class="comment">// false</span>
 jQuery.isArray( myValue ); <span class="comment">// true</span></code></pre></div>]]>
         </content>
     </entry><entry>
-        <title type="html"><![CDATA[保留字]]></title>
-        <link href="http://101.js.org/javascript-101/reserved-words.html"/>
-        <published>2015-03-06T00:00:00.000Z</published>
-        <updated>2015-03-06T00:00:00.000Z</updated>
-        <id>http://101.js.org/javascript-101/reserved-words.html</id>
-        <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
-<ul>
-<li><code>break</code></li>
-<li><code>case</code></li>
-<li><code>catch</code></li>
-<li><code>class</code></li>
-<li><code>const</code></li>
-<li><code>continue</code></li>
-<li><code>debugger</code></li>
-<li><code>default</code></li>
-<li><code>delete</code></li>
-<li><code>do</code></li>
-<li><code>else</code></li>
-<li><code>enum</code></li>
-<li><code>export</code></li>
-<li><code>extends</code></li>
-<li><code>false</code></li>
-<li><code>finally</code></li>
-<li><code>for</code></li>
-<li><code>function</code></li>
-<li><code>if</code></li>
-<li><code>implements</code></li>
-<li><code>import</code></li>
-<li><code>in</code></li>
-<li><code>instanceof</code></li>
-<li><code>interface</code></li>
-<li><code>let</code></li>
-<li><code>new</code></li>
-<li><code>null</code></li>
-<li><code>package</code></li>
-<li><code>private</code></li>
-<li><code>protected</code></li>
-<li><code>public</code></li>
-<li><code>return</code></li>
-<li><code>static</code></li>
-<li><code>super</code></li>
-<li><code>switch</code></li>
-<li><code>this</code></li>
-<li><code>throw</code></li>
-<li><code>true</code></li>
-<li><code>try</code></li>
-<li><code>typeof</code></li>
-<li><code>var</code></li>
-<li><code>void</code></li>
-<li><code>while</code></li>
-<li><code>with</code></li>
-<li><code>yield</code></li>
-</ul>
-]]>
-        </content>
-    </entry><entry>
         <title type="html"><![CDATA[语法基础]]></title>
         <link href="http://101.js.org/javascript-101/syntax-basics.html"/>
         <published>2015-03-06T00:00:00.000Z</published>
@@ -1051,6 +1017,63 @@ foo();
     test6 = test2( test );</code></pre></div><p>变量可以在声明时不分配一个值，程序会给它们一个默认的值 <code>undefined</code>。</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> x;
 x === <span class="literal">undefined</span>; <span class="comment">// true</span></code></pre></div>]]>
+        </content>
+    </entry><entry>
+        <title type="html"><![CDATA[保留字]]></title>
+        <link href="http://101.js.org/javascript-101/reserved-words.html"/>
+        <published>2015-03-06T00:00:00.000Z</published>
+        <updated>2015-03-06T00:00:00.000Z</updated>
+        <id>http://101.js.org/javascript-101/reserved-words.html</id>
+        <content type="html" xml:base="http://101.js.org/" xml:lang="en">
+            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
+<ul>
+<li><code>break</code></li>
+<li><code>case</code></li>
+<li><code>catch</code></li>
+<li><code>class</code></li>
+<li><code>const</code></li>
+<li><code>continue</code></li>
+<li><code>debugger</code></li>
+<li><code>default</code></li>
+<li><code>delete</code></li>
+<li><code>do</code></li>
+<li><code>else</code></li>
+<li><code>enum</code></li>
+<li><code>export</code></li>
+<li><code>extends</code></li>
+<li><code>false</code></li>
+<li><code>finally</code></li>
+<li><code>for</code></li>
+<li><code>function</code></li>
+<li><code>if</code></li>
+<li><code>implements</code></li>
+<li><code>import</code></li>
+<li><code>in</code></li>
+<li><code>instanceof</code></li>
+<li><code>interface</code></li>
+<li><code>let</code></li>
+<li><code>new</code></li>
+<li><code>null</code></li>
+<li><code>package</code></li>
+<li><code>private</code></li>
+<li><code>protected</code></li>
+<li><code>public</code></li>
+<li><code>return</code></li>
+<li><code>static</code></li>
+<li><code>super</code></li>
+<li><code>switch</code></li>
+<li><code>this</code></li>
+<li><code>throw</code></li>
+<li><code>true</code></li>
+<li><code>try</code></li>
+<li><code>typeof</code></li>
+<li><code>var</code></li>
+<li><code>void</code></li>
+<li><code>while</code></li>
+<li><code>with</code></li>
+<li><code>yield</code></li>
+</ul>
+]]>
         </content>
     </entry><entry>
         <title type="html"><![CDATA[运行代码]]></title>

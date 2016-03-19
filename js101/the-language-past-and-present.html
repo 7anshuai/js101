@@ -6,7 +6,7 @@
     <meta name="generator" content="nico 0.5.2">
     <meta name="theme" content="one 0.2">
     <meta name="baidu-site-verification" content="mQA8r0mibu">
-    <title>JS101:&nbsp;The Language Past and Present</title>
+    <title>JS101:&nbsp;JavaScript 的过去和现在</title>
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
     <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
@@ -38,22 +38,37 @@
     </div>
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
-  <h1 class="entry-title" itemprop="name">The Language Past and Present</h1>
-  <div class="entry-content" itemprop="articleBody"><p>We&#39;ve covered a lot of ground since the first JS101, but the truth is I&#39;ve missed out an important question: what is JavaScript, and who controls it?</p>
-<p>I&#39;ve answered this question and covered a lot more in the History of JavaScript series. This post is a brief introduction, and after reading this post you should know the basics of JavaScript and its relationship to ECMAScript.</p>
-<h2 id="who-made-javascript">Who Made JavaScript?</h2><p>JavaScript was created by Brendan Eich in 1995 for Netscape. Netscape submitted JavaScript to <a href="http://www.ecma-international.org/">Ecma International</a>, which is a standards organization based in Geneva. The standardised version is known as ECMAScript.</p>
-<h2 id="what-is-ecmascript">What is ECMAScript?</h2><p>Most articles on sites like DailyJS will refer to ECMA-262, ECMAScript 3, and ECMAScript 5. We usually abbreviate these terms to ES3 and ES5.</p>
+  <h1 class="entry-title" itemprop="name">JavaScript 的过去和现在</h1>
+  <div class="entry-content" itemprop="articleBody"><p>一个重要的问题：JavaScript 是什么，它由谁掌控？</p>
+<p>在 <a href="http://dailyjs.com/history-of-javascript-index/">History of JavaScript</a> 系列中，我已经详细回答了这个问题。这篇文章是一个简单的介绍，读完之后你应该知道了JavaScript 的基础知识以及它和 ECMAScript 的关系。</p>
+<h2 id="谁创造了-javascript？">谁创造了 JavaScript？</h2><p>在1995年，Brendan Eich 为网景创造了 JavaScript。网景将 JavaScript 提交到了 <a href="http://www.ecma-international.org/">Ecma International</a>，一个在日内瓦的标准组织。标准化的 版本就是 ECMAScript。</p>
+<h2 id="ecmascript-是什么？">ECMAScript 是什么？</h2><p>多数网站（比如 DailyJS）上的文章会引用 ECMA-262， ECMAScript 3 和 ECMAScript 5。 通常会简称为 ES3 和 ES5。</p>
 <ul>
-<li><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a> is the name of the specification, of which there are five editions</li>
-<li>ECMAScript 3 (or ECMA-262, edition 3) was published in December 1999, and was supported by Netscape 6 and IE 5.5</li>
-<li>ECMAScript 5 (or ECMA-262, edition 5) was published in December 2009 and is supported by Firefox 4+, Safari 6: <a href="http://kangax.github.com/es5-compat-table/">ES5 compatibility table</a></li>
+<li><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a> 是规范的名称，它有五个版本</li>
+<li>ECMAScript 3 (或 ECMA-262, 版本 3) 发布于1999年12月，Netscape 6 和 IE 5.5 支持该标准</li>
+<li>ECMAScript 5 (或 ECMA-262, 版本 5) 发布于2009年12月，它被 Firefox 4+ 和 Safari 6 支持: <a href="http://kangax.github.com/es5-compat-table/">ES5 兼容性表格</a></li>
 </ul>
-<p>ECMAScript 5 adds a lot of features that we&#39;ve already started to take for granted: including new array methods like <code>forEach</code>, new <code>Object</code> methods like <code>Object.create</code>, property attributes, function binding, and more.</p>
-<h2 id="the-future">The Future</h2><p>ECMAScript is still being actively developed. It&#39;s tentatively known as ES.next (ECMA-262 Edition 6), and ES.next working drafts can be downloaded from the <a href="http://wiki.ecmascript.org/">ECMAScript wiki</a>.</p>
-<p>Proposals for the language are collected on the strawman wiki, and discussed in detail by several contributors on the wiki and mailing lists. To keep up with this, I often check the wiki&#39;s recent changes and the es-discuss mailing list.</p>
-<p><a href="https://brendaneich.com/">Brendan Eich&#39;s blog</a> covers a lot of the major developments as well. For example, his <a href="https://brendaneich.com/2012/06/recent-talks-fluent-txjs-2012/">latest post</a> mentions ES6 and the relationship between the standards makers and the enthusiastic JavaScript developer community.</p>
-<p>The language will change, and as new standards are made available you&#39;ll need to know what your given platform or browser supports.</p>
+<p>ECMAScript 5 添加了许多新的特性：包括新的数组方法像 <code>forEach</code>，新的 <code>Object</code> 方法比如 <code>Object.create</code>，新的属性，函数绑定，等等。</p>
+<h2 id="未来">未来</h2><p>ECMAScript 仍在积极发展。被称为 ES.next（ECMA-262 版本 6），ES.next 工作草案可以从 <a href="http://wiki.ecmascript.org/">ECMAScript 维基</a> 下载。</p>
+<p>语言的建议被收集在稻草人维基，并通过在 wiki 和邮件列表的几个贡献者详细讨论。为了跟上语言的发展，我经常检查维基最近的变化和 es-discuss 邮件列表。</p>
+<p><a href="https://brendaneich.com/">Brendan Eich 的博客</a> 包含了大量的主要开发详情。例如，他 <a href="https://brendaneich.com/2012/06/recent-talks-fluent-txjs-2012/">最近的文章</a> 提到了 ES6 以及标准制定者和热情的 JavaScript 开发者社区之间的关系。
+语言会有所改变，随着新标准的制定，你需要知道你给定的平台或浏览器支持。</p>
 </div>
+
+  <div class="entry-meta">
+    <time class="updated" datetime="2016-03-19T00:00:00.000Z" itemprop="dateModified">Saturday, Mar 19th, 2016</time>
+  </div><div class="ds-thread" data-thread-key="5f2be782453d1bf40c20284ca4e99d97" data-title="JS101: JavaScript 的过去和现在"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"js101"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
 </div>
 </div>
     <div class="footer">
