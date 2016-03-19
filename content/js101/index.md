@@ -2,11 +2,12 @@
 
 -------
 
+基于 ECMAScript 5 标准介绍了 JavaScript， 涵盖了一些更深层次的内容。
 This is an introduction to JavaScript that covers some of the deeper aspects of the language based on the ECMAScript 5 standard.
 
-## Table of contents
+## 目录
 
-- [The language Past and Present](the-language-past-and-present.html)
+- [JavaScript 的过去和现在](the-language-past-and-present.html)
 - [Primitive values and objects](primitive-values-and-objects.html)
 - [Prototype](prototype.html)
 - [Inheritance](inheritance.html)
