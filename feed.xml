@@ -5,6 +5,56 @@
     <link href="http://101.js.org/" />
     <id>http://101.js.org/feed.xml</id>
     <entry>
+        <title type="html"><![CDATA[原始值和对象]]></title>
+        <link href="http://101.js.org/js101/primitive-values-and-objects.html"/>
+        <published>2016-05-18T00:00:00.000Z</published>
+        <updated>2016-05-18T00:00:00.000Z</updated>
+        <id>http://101.js.org/js101/primitive-values-and-objects.html</id>
+        <content type="html" xml:base="http://101.js.org/" xml:lang="en">
+            <![CDATA[ <h2 id="回到基础">回到基础</h2><p>当人们与我谈起 DailyJS 时，常会要求更多的初学者文章。因此，我们在 DailyJS 开始 <strong>JS101</strong> 系列文章。这些文章主要是关于语言基本主题的简短介绍，通常是大概10分钟的篇幅。</p>
+<p>我深信学习 JavaScript 归结于理解 <code>Object</code>，所以从哪部分开始最好？</p>
+<h2 id="值的类型">值的类型</h2><p>在 JavaScript 中，谦逊的 <code>Object</code> 是许多语言特性的基础。要理解 JavaScript 对象，让我们考虑下我们所拥有的值有什么类型。看看下面的例子：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> one = <span class="number">1</span>
+  , oneObject = <span class="keyword">new</span> Number(<span class="number">1</span>);
+
+log(one === oneObject);
+log(<span class="keyword">typeof</span>(one), <span class="keyword">typeof</span>(oneObject));</code></pre></div><p>我制作了这个例子的交互版，你可以在这里实验：<a href="http://jsfiddle.net/uWup3/">http://jsfiddle.net/uWup3/</a> 。</p>
+<p>这里使用了 <em>严格比较操作符</em> 来比较值 <code>1</code> 与对象 <code>new Number(1)</code>，返回值是 <code>false</code>。原因是 <code>1</code> 是一个 <a href="http://es5.github.io/#x4.3.2">原始值</a>，而不是一个对象。由 <code>new Number</code> 创建的数字是一个对象，如同 <code>typeof</code> 返回的值。</p>
+<p>原始值的类型有：未定义，空，布尔，数字和字符串。关于未定义与空类型有趣的一点是它们是有且只有唯一的值，分别为 <code>undefined</code> 和 <code>null</code>。</p>
+<h2 id="创建对象">创建对象</h2><p>当我们使用 JavaScript 时，主要会关注对象。这也是为什么 JSON 会如此流行和强大的原因之一，源自于对象的灵活性。对象和原始值的主要差别是对象明确的由多个项组成：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> javascript = {  
+  influences: [<span class="string">'C'</span>, <span class="string">'Java'</span>, <span class="string">'Scheme'</span>]
+, designer: <span class="string">'Brendan Eich'</span>
+, created: <span class="keyword">new</span> Date(<span class="number">1995</span>, <span class="number">0</span>, <span class="number">1</span>)
+};</code></pre></div><p>在这个对象中的项 -- <code>influences</code>，<code>designer</code> 和 <code>created</code> -- 被称为 <em>属性</em>。很难想象如何将 <code>10</code> 或者 <code>true</code> 分解为它们的组成部分，但是这个对象可以轻松做到。注意每个值都可以是不同的类型 -- 无论原始值还是对象都可以组合到一个对象中。</p>
+<p>研究一下这个：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> javascript = <span class="keyword">new</span> Object({  
+  influences: [<span class="string">'C'</span>, <span class="string">'Java'</span>, <span class="string">'Scheme'</span>]
+, designer: <span class="string">'Brendan Eich'</span>
+, created: <span class="keyword">new</span> Date(<span class="number">1995</span>, <span class="number">0</span>, <span class="number">1</span>)
+});</code></pre></div><p>我使用 <code>new Object</code> 创建了一个新实例。根据语言规范，[对象初始化器]章节中，两种形式是等价的 － 使用对象字面量创建对象如同 <code>new Object()</code> 一样返回一个新对象。同样，数组字面量 <code>[&#39;C&#39;, &#39;Java&#39;, &#39;Scheme&#39;]</code> 会如同 <code>new Array()</code> 一样创建一个数组对象。</p>
+<p>需要注意的一个重要事情是构造函数的用法。上面的例子中是 <code>new Object</code>，但还有其他内置构造函数。我也会使用 <code>new Date</code> 创建一个 <code>Date</code> 对象。</p>
+<h2 id="构造函数">构造函数</h2><p>前面的例子看起来更像是一个数据记录。我们可以增加可重用性，通过创建一个<em>构造函数</em> -- 一个知道如何初始化特定对象的函数。</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Language</span><span class="params">(designer, created, influences)</span> {</span>  
+  <span class="keyword">this</span>.designer = designer;
+  <span class="keyword">this</span>.created = created;
+  <span class="keyword">this</span>.influences = influences;
+}
+
+<span class="keyword">var</span> javascript = <span class="keyword">new</span> Language(  
+  <span class="string">'Brendan Eich'</span>
+, <span class="keyword">new</span> Date(<span class="number">1995</span>, <span class="number">0</span>, <span class="number">1</span>)
+, [<span class="string">'C'</span>, <span class="string">'Java'</span>, <span class="string">'Scheme'</span>]
+);</code></pre></div><p>现在我可以创建其他的编程语言：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> c = <span class="keyword">new</span> Language(  
+  <span class="string">'Dennis Ritchie'</span>
+, <span class="keyword">new</span> Date(<span class="number">1972</span>, <span class="number">0</span>, <span class="number">1</span>)
+, [<span class="string">'B'</span>, <span class="string">'ALGOL'</span>]
+);</code></pre></div><p>对象的构造函数可以通过访问 <code>constructor</code> 属性获得，像这样：<code>c.constructor</code>。在上面的例子中会返回 <code>Language</code>。在这里实验它：<a href="http://jsfiddle.net/zYzER/6/">http://jsfiddle.net/zYzER/6/</a> 。</p>
+<p>在 ES5 规范<a href="http://es5.github.com/#x15.2.4">Object 原型对象的属性</a>章节中，提到了其他的对象属性。例如，我们也有 <code>toString</code>，还有一些像 <code>hasOwnProperty</code> 这样听起来陌生的方法。</p>
+]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[JavaScript 的过去和现在]]></title>
         <link href="http://101.js.org/js101/the-language-past-and-present.html"/>
         <published>2016-03-19T00:00:00.000Z</published>
