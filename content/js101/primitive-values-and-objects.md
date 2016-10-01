@@ -1,5 +1,7 @@
 # 原始值和对象
 
+- pubdate: 2016-05-18
+
 ------
 
 ## 回到基础
@@ -20,7 +22,7 @@ log(one === oneObject);
 log(typeof(one), typeof(oneObject));
 ```
 
-我制作了这个例子的交互版，你可以在这里实验：http://jsfiddle.net/uWup3/。
+我制作了这个例子的交互版，你可以在这里实验：http://jsfiddle.net/uWup3/ 。
 
 这里使用了 _严格比较操作符_ 来比较值 `1` 与对象 `new Number(1)`，返回值是 `false`。原因是 `1` 是一个 [原始值](http://es5.github.io/#x4.3.2)，而不是一个对象。由 `new Number` 创建的数字是一个对象，如同 `typeof` 返回的值。
 
@@ -50,7 +52,7 @@ var javascript = new Object({
 });
 ```
 
-我使用 `new Object` 创建了一个新实例。根据语言规范，[对象初始化器]章节中，两种形式是等价的 － 使用对象字面量创建对象如同 `new Object()` 一样返回一个新对象。同样，数组字面量 `['C', 'Java', 'Scheme']` 会如同 `new Array()`一样创建一个数组对象。
+我使用 `new Object` 创建了一个新实例。根据语言规范，[对象初始化器]章节中，两种形式是等价的 － 使用对象字面量创建对象如同 `new Object()` 一样返回一个新对象。同样，数组字面量 `['C', 'Java', 'Scheme']` 会如同 `new Array()` 一样创建一个数组对象。
 
 需要注意的一个重要事情是构造函数的用法。上面的例子中是 `new Object`，但还有其他内置构造函数。我也会使用 `new Date` 创建一个 `Date` 对象。
 
@@ -82,6 +84,6 @@ var c = new Language(
 );
 ```
 
-对象的构造函数可以通过访问 `constructor` 属性获得，像这样：`c.constructor`。在上面的例子中会返回 `Language`。在这里实验它：http://jsfiddle.net/zYzER/6/。
+对象的构造函数可以通过访问 `constructor` 属性获得，像这样：`c.constructor`。在上面的例子中会返回 `Language`。在这里实验它：http://jsfiddle.net/zYzER/6/ 。
 
 在 ES5 规范[Object 原型对象的属性](http://es5.github.com/#x15.2.4)章节中，提到了其他的对象属性。例如，我们也有 `toString`，还有一些像 `hasOwnProperty` 这样听起来陌生的方法。
