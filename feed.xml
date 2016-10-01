@@ -5,6 +5,100 @@
     <link href="http://101.js.org/" />
     <id>http://101.js.org/feed.xml</id>
     <entry>
+        <title type="html"><![CDATA[原型]]></title>
+        <link href="http://101.js.org/js101/prototype.html"/>
+        <published>2016-10-01T00:00:00.000Z</published>
+        <updated>2016-10-01T00:00:00.000Z</updated>
+        <id>http://101.js.org/js101/prototype.html</id>
+        <content type="html" xml:base="http://101.js.org/" xml:lang="en">
+            <![CDATA[ <p>当经过多年的学习面向对象编程之后，适应 JavaScript 可能会令人沮丧。特别是缺乏一个 <code>class</code> 关键词，引起混乱的一个原因。然而，JavaScript 的设计不一定是一个障碍 - 掌握其基于原型的继承会提高你对这门语言的理解。</p>
+<p>首先需要明白的一件事情是面向<em>对象</em>与面向<em>类</em>编程之间的区别。JavaScript 给了我们需要做的大部分基于类的语言可以做到的事情的工具 － 我们只需要学习如何正确使用它。</p>
+<p>让我们来简单的介绍一下原型属性，来看看它是如何可以加深我们的 JavaScript 的知识。</p>
+<h2 id="原型属性">原型属性</h2><p>原型属性是一个内部属性，它被设计用来实现继承。这里所说的“继承”的意思是继承的一种具体形式。因为状态和方法都由对象保存，那么我们可以说结构，行为和状态都被继承（<a href="http://es5.github.com/#x4.2.1">ES5: Objects</a>）。而基于类的语言，状态是由实例保存，方法是由类保存。</p>
+<p>构造函数是拥有名为 <code>prototype</code> 属性的函数：</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span><span class="params">()</span> {</span>
+}
+
+console.log(Animal.prototype);</code></pre></div><p>这将显示 <code>{}</code> -- <code>Animal</code> 对象拥有一个 <code>prototype</code> 属性，但它还没有任何用户定义的东西在里面。我们可以随意添加想要的值和方法：</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span><span class="params">()</span> {</span>
+}
+
+Animal.prototype.type = <span class="string">'Unknown'</span>;
+Animal.prototype.weight = <span class="number">0</span>;
+Animal.prototype.weightUnits = <span class="string">'kg'</span>;
+
+Animal.prototype.toString = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+  <span class="keyword">return</span> <span class="keyword">this</span>.type + <span class="string">', '</span> + <span class="keyword">this</span>.weight + <span class="keyword">this</span>.weightUnits;
+};
+
+<span class="keyword">var</span> molly = <span class="keyword">new</span> Animal();
+molly.type = <span class="string">'Dog'</span>;
+molly.weight = <span class="number">28</span>;
+
+console.log(molly.toString());</code></pre></div><p>这将显示“Dog, 28kg”。我们可以将这些赋值语句通过对象字面量组合在一起：</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span><span class="params">()</span> {</span>
+}
+
+Animal.prototype = {
+  type: <span class="string">'Unknown'</span>,
+  weight: <span class="number">0</span>,
+  weightUnits: <span class="string">'kg'</span>,
+
+  toString: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> <span class="keyword">this</span>.type + <span class="string">', '</span> + <span class="keyword">this</span>.weight + <span class="keyword">this</span>.weightUnits;
+  }
+};</code></pre></div><p>相比于你可能熟悉的类，这看起来也不会太不一样。</p>
+<h2 id="动态原型">动态原型</h2><p>属性可以动态的添加到对象中，简单的赋值即可：</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> molly = <span class="keyword">new</span> Animal()
+  , harley = <span class="keyword">new</span> Animal();
+
+molly.type = <span class="string">'Dog'</span>;
+molly.weight = <span class="number">28</span>;
+
+harley.type = <span class="string">'Dog'</span>;
+harley.weight = <span class="number">38</span>;
+harley.name = <span class="string">'Harley'</span>;
+
+console.log(molly);
+console.log(harley);
+
+<span class="comment">// { type: 'Dog', weight: 28 }</span>
+<span class="comment">// { type: 'Dog', weight: 38, name: 'Harley' }</span></code></pre></div><p>在这里添加 <code>name</code> 属性只会影响该实例。然而，构造函数的原型可以改变，它会影响到所有通过原型制造的对象：</p>
+<div class="highlight"><pre><code class="javascript">Animal.prototype.weightUnits = <span class="string">'oz'</span>;
+
+console.log(molly.toString())
+<span class="comment">// Now displays 'Dog, 28oz'</span></code></pre></div><p>这就是为什么人们会夸耀自己的库没有修改原生原型，或仅做安全的改动 －－ 因为完全有可能改变像 <code>String</code> 这样的对象预期的内置功能而产生问题：</p>
+<div class="highlight"><pre><code class="javascript">String.prototype.match = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+  <span class="keyword">return</span> <span class="literal">true</span>;
+};
+
+console.log(<span class="string">'alex'</span>.match(<span class="regexp">/1234/</span>));</code></pre></div><p>这将返回 <code>true</code>，所以现在我已经成功的破坏了一个很多 JavaScript 程序依赖的基础方法。</p>
+<p>修改原生的原型并不总是坏事；可以利用它做有用的事情，例如给旧的浏览器打补丁以支持更现代版本的 ECMAScript。</p>
+<p>如果我们更换 <code>prototype</code> 属性会发生什么？</p>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> molly = <span class="keyword">new</span> Animal()
+  , harley;
+
+molly.type = <span class="string">'Dog'</span>;
+molly.weight = <span class="number">28</span>;
+
+Animal.prototype = {
+  toString: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> <span class="string">'...'</span>;
+  }
+};
+
+harley = <span class="keyword">new</span> Animal;
+harley.type = <span class="string">'Dog'</span>;
+harley.weight = <span class="number">38</span>;
+
+console.log(molly.toString());
+console.log(harley.toString());
+
+<span class="comment">// Dog, 28kg</span>
+<span class="comment">// ...</span></code></pre></div><p>尽管改变原型会影响所有实例，但替换一个构造函数的原型完全不影响旧的实例。为什么？好吧，实例拥有一个原型的<em>引用</em>，而不是一个个分散的拷贝。想象它是这样的，每一个由 <code>new</code> 关键词创建的实例都<em>连接</em>到构造函数的原型。</p>
+]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[原始值和对象]]></title>
         <link href="http://101.js.org/js101/primitive-values-and-objects.html"/>
         <published>2016-05-18T00:00:00.000Z</published>
@@ -1008,6 +1102,63 @@ jQuery.isPlainObject( myValue ); <span class="comment">// false</span>
 jQuery.isArray( myValue ); <span class="comment">// true</span></code></pre></div>]]>
         </content>
     </entry><entry>
+        <title type="html"><![CDATA[保留字]]></title>
+        <link href="http://101.js.org/javascript-101/reserved-words.html"/>
+        <published>2015-03-06T00:00:00.000Z</published>
+        <updated>2015-03-06T00:00:00.000Z</updated>
+        <id>http://101.js.org/javascript-101/reserved-words.html</id>
+        <content type="html" xml:base="http://101.js.org/" xml:lang="en">
+            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
+<ul>
+<li><code>break</code></li>
+<li><code>case</code></li>
+<li><code>catch</code></li>
+<li><code>class</code></li>
+<li><code>const</code></li>
+<li><code>continue</code></li>
+<li><code>debugger</code></li>
+<li><code>default</code></li>
+<li><code>delete</code></li>
+<li><code>do</code></li>
+<li><code>else</code></li>
+<li><code>enum</code></li>
+<li><code>export</code></li>
+<li><code>extends</code></li>
+<li><code>false</code></li>
+<li><code>finally</code></li>
+<li><code>for</code></li>
+<li><code>function</code></li>
+<li><code>if</code></li>
+<li><code>implements</code></li>
+<li><code>import</code></li>
+<li><code>in</code></li>
+<li><code>instanceof</code></li>
+<li><code>interface</code></li>
+<li><code>let</code></li>
+<li><code>new</code></li>
+<li><code>null</code></li>
+<li><code>package</code></li>
+<li><code>private</code></li>
+<li><code>protected</code></li>
+<li><code>public</code></li>
+<li><code>return</code></li>
+<li><code>static</code></li>
+<li><code>super</code></li>
+<li><code>switch</code></li>
+<li><code>this</code></li>
+<li><code>throw</code></li>
+<li><code>true</code></li>
+<li><code>try</code></li>
+<li><code>typeof</code></li>
+<li><code>var</code></li>
+<li><code>void</code></li>
+<li><code>while</code></li>
+<li><code>with</code></li>
+<li><code>yield</code></li>
+</ul>
+]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[语法基础]]></title>
         <link href="http://101.js.org/javascript-101/syntax-basics.html"/>
         <published>2015-03-06T00:00:00.000Z</published>
@@ -1067,63 +1218,6 @@ foo();
     test6 = test2( test );</code></pre></div><p>变量可以在声明时不分配一个值，程序会给它们一个默认的值 <code>undefined</code>。</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> x;
 x === <span class="literal">undefined</span>; <span class="comment">// true</span></code></pre></div>]]>
-        </content>
-    </entry><entry>
-        <title type="html"><![CDATA[保留字]]></title>
-        <link href="http://101.js.org/javascript-101/reserved-words.html"/>
-        <published>2015-03-06T00:00:00.000Z</published>
-        <updated>2015-03-06T00:00:00.000Z</updated>
-        <id>http://101.js.org/javascript-101/reserved-words.html</id>
-        <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
-<ul>
-<li><code>break</code></li>
-<li><code>case</code></li>
-<li><code>catch</code></li>
-<li><code>class</code></li>
-<li><code>const</code></li>
-<li><code>continue</code></li>
-<li><code>debugger</code></li>
-<li><code>default</code></li>
-<li><code>delete</code></li>
-<li><code>do</code></li>
-<li><code>else</code></li>
-<li><code>enum</code></li>
-<li><code>export</code></li>
-<li><code>extends</code></li>
-<li><code>false</code></li>
-<li><code>finally</code></li>
-<li><code>for</code></li>
-<li><code>function</code></li>
-<li><code>if</code></li>
-<li><code>implements</code></li>
-<li><code>import</code></li>
-<li><code>in</code></li>
-<li><code>instanceof</code></li>
-<li><code>interface</code></li>
-<li><code>let</code></li>
-<li><code>new</code></li>
-<li><code>null</code></li>
-<li><code>package</code></li>
-<li><code>private</code></li>
-<li><code>protected</code></li>
-<li><code>public</code></li>
-<li><code>return</code></li>
-<li><code>static</code></li>
-<li><code>super</code></li>
-<li><code>switch</code></li>
-<li><code>this</code></li>
-<li><code>throw</code></li>
-<li><code>true</code></li>
-<li><code>try</code></li>
-<li><code>typeof</code></li>
-<li><code>var</code></li>
-<li><code>void</code></li>
-<li><code>while</code></li>
-<li><code>with</code></li>
-<li><code>yield</code></li>
-</ul>
-]]>
         </content>
     </entry><entry>
         <title type="html"><![CDATA[运行代码]]></title>
