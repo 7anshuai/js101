@@ -5,6 +5,73 @@
     <link href="http://101.js.org/" />
     <id>http://101.js.org/feed.xml</id>
     <entry>
+        <title type="html"><![CDATA[继承]]></title>
+        <link href="http://101.js.org/js101/inheritance.html"/>
+        <published>2016-10-05T00:00:00.000Z</published>
+        <updated>2016-10-05T00:00:00.000Z</updated>
+        <id>http://101.js.org/js101/inheritance.html</id>
+        <content type="html" xml:base="http://101.js.org/" xml:lang="en">
+            <![CDATA[ <h2 id="继承链和构造函数">继承链和构造函数</h2><p>如之前所见，JavaScript 对象拥有一个 <code>prototype</code> 属性，它被设计用来实现继承。一个对象的 <code>prototype</code> 属性可以被设置为另一个对象的实例，以此创建一个继承链：</p>
+<div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span><span class="params">(name)</span> {</span>
+  <span class="keyword">this</span>.x = <span class="number">0</span>;
+  <span class="keyword">this</span>.y = <span class="number">0</span>;
+  <span class="keyword">this</span>.name = name;
+  console.log(<span class="string">'Shape constructor called'</span>);
+}
+
+Shape.prototype = {
+  move: <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span> {</span>
+    <span class="keyword">this</span>.x += x;
+    <span class="keyword">this</span>.y += y;
+  },
+
+  toString: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> <span class="string">'name: '</span> + <span class="keyword">this</span>.name + <span class="string">', at x: '</span> + <span class="keyword">this</span>.x + <span class="string">', y:'</span> + <span class="keyword">this</span>.y;
+  }
+};
+
+<span class="comment">// Rectangle</span>
+<span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span><span class="params">(name)</span> {</span>
+  <span class="keyword">this</span>.name = name;
+  console.log(<span class="string">'Rectangle constructor called'</span>);
+}
+
+Rectangle.prototype = <span class="keyword">new</span> Shape();
+
+<span class="keyword">var</span> rect = <span class="keyword">new</span> Rectangle(<span class="string">'Player 1'</span>);
+rect.move(<span class="number">1</span>, <span class="number">1</span>);
+console.log(rect.toString());
+console.log(rect <span class="keyword">instanceof</span> Rectangle);</code></pre></div><p>运行会显示下面的输出：</p>
+<div class="highlight"><pre><code class="javascript">Shape constructor called
+Rectangle constructor called
+name: Player <span class="number">1</span>, at x: <span class="number">1</span>, y:<span class="number">1</span>
+<span class="literal">true</span></code></pre></div><p>注意无论 <code>Shape</code> 还是 <code>Rectangle</code> 构造函数都被调用了。这是因为这一行 <code>Rectangle.prototype = new Shape();</code>。</p>
+<p>另外需要注意到 <code>rect.move</code> 和 <code>rect.toString</code> 会从 <code>Shape.prototype</code> 中调用方法。当解释器检查一个属性，首先会在当前对象中查找。如果没有找到属性，则会在对象的原型中查找，并以此类推。这就是原型链：</p>
+<blockquote>
+<p>首先在被涉及的对象中直接查找属性，如果对象包含该命名属性，则引用此命名属性；如果对象不包含该命名属性，对象的原型会被检查；以此类推。</p>
+</blockquote>
+<p>-- <a href="http://es5.github.io/#x4.2.1">Annotated ECMAScript 5.1</a></p>
+<h2 id="调用父级方法">调用父级方法</h2><p>如果 <code>Rectangle</code> 想要一个不同的 <code>move</code> 方法，但想重用 <code>Shape</code> 中初始的方法，那么完全可以使用 <code>Function.prototype.apply</code> 来实现：</p>
+<div class="highlight"><pre><code class="javascript">Rectangle.prototype.move = <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span> {</span>
+  console.log(<span class="string">'Super method called'</span>);
+  Shape.prototype.move.apply(<span class="keyword">this</span>, arguments);
+};</code></pre></div><p>尽管 <code>Shape.prototype.move.apply</code> 看起来很复杂，但如果我们把它分解，实际上很简单：</p>
+<ol>
+<li>我们想要调用来自 <code>Shape</code> 的 <code>move</code> 方法</li>
+<li>此方法保存在 <code>Shape.prototype.move</code></li>
+<li>因为它是一个 <code>Function</code>，所以有一些我们可用的方法（函数是对象！）</li>
+<li><a href="https://developer.mozilla.org/zh-CN/JavaScript/Reference/Global_Objects/Function/apply">apply</a> 特别的允许我们调用函数，而无需创建一个新实例</li>
+<li>它还允许我们提供一个 <code>this</code> 值，以及一个参数数组</li>
+</ol>
+<p>当一个函数执行时，<a href="http://es5.github.io/#x10.6">参数</a>对象由解释器创建。<code>this</code> 对象是另外一个故事了 －－ 到目前为止我假设你已经直观的理解它是什么了，但我们会在接下来的部分更详细的看看它。</p>
+<p>引用</p>
+<ul>
+<li><a href="http://es5.github.io">Annotated ECMAScript 5.1</a></li>
+<li><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/apply">MDN documentation for apply</a></li>
+</ul>
+]]>
+        </content>
+    </entry><entry>
         <title type="html"><![CDATA[原型]]></title>
         <link href="http://101.js.org/js101/prototype.html"/>
         <published>2016-10-01T00:00:00.000Z</published>
