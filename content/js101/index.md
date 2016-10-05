@@ -9,7 +9,7 @@
 - [JavaScript 的过去和现在](the-language-past-and-present.html)
 - [原始值和对象](primitive-values-and-objects.html)
 - [原型](prototype.html)
-- [Inheritance](inheritance.html)
+- [继承](inheritance.html)
 - [Object.create](object.create.html)
 - [Constructor Functions](constructor-functions.html)
 - [this](this.html)
