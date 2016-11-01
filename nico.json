@@ -18,7 +18,7 @@
     "duoshuo": "js101",
     "github": "https://github.com/7anshuai/js101",
     "google": "UA-50612052-1",
-    "footer": "",
+    "footer": "<p class=\"copyright\">Maintained by <a href=\"http://7anshuai.js.org/\">@7anshuai</a></p>",
     "writers": [
         "nico.PageWriter",
         "nico.PostWriter",
