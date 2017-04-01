@@ -52,23 +52,23 @@ define(['jquery', 'require'], function ($, require) {
 
 	window.setName = function (name) {
 		if (data.name) {
-			return 'You have already set your name! ' +
-				'Type reset() to start again, if you want.';
+			return '你已经设定了你的名字！' +
+				'如果需要，输入 reset() 重新开始。';
 		}
 
 		var firstName = name.split(' ')[0];
 
 		if (firstName === 'code') {
-			return 'Your name isn\'t code! Stop it.';
+			return '你的名字不是代码！停下来。';
 		}
 
-		window.bio = 'A developer called ' + firstName + ' is learning regex';
+		window.bio = '一个名为' + firstName + '的开发者正在学习正则表达式';
 
 		data.name = name;
 		data.firstName = firstName;
 		data.firstEscaped = firstName.replace(/([$()*+.?\[^|\]])/g, '\\$1');
 
-		return 'Hello, ' + name + '!';
+		return '你好，' + name + '！';
 	};
 
 	window.showAnswer = function () {
