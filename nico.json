@@ -6,6 +6,7 @@
     "sitename": "JS101",
     "siteurl": "http://101.js.org/",
     "navigation": [
+        {"link": "https://jsernews.com", "title": "新闻"},
         {"link": "/feed.xml", "title": "订阅"}
     ],
     "touchIcon": "/apple-touch-icon.png",
