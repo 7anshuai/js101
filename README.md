@@ -34,6 +34,6 @@ git clone https://github.com/7anshuai/js101.git && cd js101
 nico server
 ```
 
-就可以在当前目录下生成 `site` 静态文件文件夹，并在 `http:127.0.0.1:8000` 运行了一个静态服务器。
+就可以在当前目录下生成 `site` 静态文件文件夹，并在 `http://127.0.0.1:8000` 运行了一个静态服务器。
 
 更多关于 nico 的信息，请参考 [nico 文档](http://lab.lepture.com/nico/zh/)。
