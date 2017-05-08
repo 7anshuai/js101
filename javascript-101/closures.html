@@ -1,12 +1,11 @@
 <!DOCTYPE HTML>
-<html lang="zh-cn">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="generator" content="nico 0.5.2">
     <meta name="theme" content="one 0.2">
-    <meta name="baidu-site-verification" content="mQA8r0mibu">
-    <title>JS101:&nbsp;闭包</title>
+    <title>JS101 - &nbsp;闭包</title>
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="favicon" type="image/png" sizes="16x16" href="/favicon.ico" />
     <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png" />
@@ -146,16 +145,70 @@ boundGetUser();</code></pre></div></div>
 
   <div class="entry-meta">
     <time class="updated" datetime="2015-04-21T00:00:00.000Z" itemprop="dateModified">Tuesday, Apr 21st, 2015</time>
-  </div><div class="ds-thread" data-thread-key="55106947ef60eaa3c68b92f8f581f71c" data-title="JS101: 闭包"></div>
+  </div><div class="github-comments"></div>
 <script type="text/javascript">
-  var duoshuoQuery = {short_name:"js101"};
   (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = 'http://static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
+    var a = document.createElement('a'),
+      comments = document.getElementsByClassName('github-comments')[0],
+      api = 'https://api.github.com/repos',
+      issue = '1',
+      issueUrl;
+
+    a.href = 'https://github.com/7anshuai/js101/issues';
+
+    if (!issue) return false;
+    var matchs = issue.match(/(https?:\/\/github.com\/[^\s<>"]+)/);
+    if (matchs && matchs.length) {
+      // it may be a github issue url
+      api += matchs[0].replace(/^https?:\/\/github.com/, '') + '/comments';
+      issueUrl = matchs[0];
+    } else if (!isNaN(+ issue)) {
+      api += a.pathname + '/' + issue + '/comments';
+      issueUrl = a.href + '/' + issue;
+    } else {
+      throw Error('Invalid GitHub issue id or url');
+    }
+
+    if (window.fetch) {
+      // use fetch first
+      fetch(api, {
+        headers: new Headers({
+          'Accept': 'application/vnd.github.v3.html+json',
+          'Content-Type': 'application/json'
+        }),
+        method: 'GET'
+      }).then((res) => {
+        if (res.status == 200) return res.json();
+        var error = new Error('HTTP Exception[GET]');
+        error.status = res.status;
+        error.statusText = res.statusText;
+        error.url = res.url;
+        throw error;
+      }).then((json) => {
+          comments.insertAdjacentHTML('afterbegin',
+            '<h3>GitHub Comments</h3><p>Visit the <a href="' +
+            issueUrl +
+            '">GitHub Issue</a> to comment on this post.</p>'
+          );
+          json.forEach(function(comment){
+            var date = new Date(comment.created_at);
+            var c = '<div class="github-comment">' +
+                '<img src="' + comment.user.avatar_url + '" width="36"> ' +
+                '<a href="' + comment.user.html_url + '">' + comment.user.login + '</a>' +
+                ' posted at ' +
+                '<time>' + date.toUTCString() + '</time>' +
+                '<br>' +
+                comment.body_html +
+                '</div>';
+            comments.insertAdjacentHTML('beforeend', c);
+          });
+      }).catch((err) => {
+        comments.insertAdjacentHTML('afterbegin', '<h3>GitHub Comments</h3>' +
+          '<p>Comments are not open for this post yet.</p>');
+      });
+    } else {
+      // back down to XHR
+    }
   })();
 </script>
 </div>
