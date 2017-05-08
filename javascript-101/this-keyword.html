@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">this 关键字</h1>
-  <div class="entry-content" itemprop="articleBody"><p>在 JavaScript 中，如同在大部分面向对象编程语言中一样，<code>this</code> 是一个特殊的关键字，它常在被某个对象调用的方法中指向对象本身。<code>this</code> 的值可通过一系列简单的步骤来确定：</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/this-keyword.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/this-keyword.md</a></p>
+</blockquote>
+<p>在 JavaScript 中，如同在大部分面向对象编程语言中一样，<code>this</code> 是一个特殊的关键字，它常在被某个对象调用的方法中指向对象本身。<code>this</code> 的值可通过一系列简单的步骤来确定：</p>
 <ul>
 <li>如果函数是通过 <code>Function.call()</code> 或者 <code>Function.apply()</code> 调用，<code>this</code> 的值将会被设置为传递给 <code>.call()</code> 或 <code>.apply()</code> 的第一个参数。如果传递给 <code>.call()</code> 或 <code>.apply()</code> 的第一个参数是 <code>null</code> 或 <code>undefined</code>，<code>this</code> 会指向全局对象（在 Web 浏览器中是 <code>window</code> 对象）。</li>
 <li>如果被调用的函数是由 <code>Function.bind()</code> 创建的，<code>this</code> 将会是该函数被创建时传递给 <code>.bind()</code> 的第一个参数。</li>

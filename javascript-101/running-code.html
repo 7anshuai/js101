@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">运行代码</h1>
-  <div class="entry-content" itemprop="articleBody"><h3 id="外部">外部</h3><p>第一种也是推荐的方式是在一个外部文件（带有 <code>.js</code> 扩展名）编写代码，然后可以使用 HTML <code>script</code> 元素并通过 <code>src</code> 属性指定文件的位置来引入到网页中。当你需要将代码重复使用在其他页面时，保持 JavaScript 在一个单独的文件中可以减少代码的重复。另外它也可以让浏览器将文件缓存到客户端的计算机上，减少网页加载时间。</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/running-code.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/running-code.md</a></p>
+</blockquote>
+<h3 id="外部">外部</h3><p>第一种也是推荐的方式是在一个外部文件（带有 <code>.js</code> 扩展名）编写代码，然后可以使用 HTML <code>script</code> 元素并通过 <code>src</code> 属性指定文件的位置来引入到网页中。当你需要将代码重复使用在其他页面时，保持 JavaScript 在一个单独的文件中可以减少代码的重复。另外它也可以让浏览器将文件缓存到客户端的计算机上，减少网页加载时间。</p>
 <div class="highlight"><pre><code class="xml"><span class="comment">&lt;!-- Code is written in a .js file, included via the script tag src attribute. --&gt;</span>
 <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"/path/to/example.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code></pre></div><h3 id="内嵌">内嵌</h3><p>第二种方式是直接将代码内嵌在网页中。它也是通过 HTML <code>script</code> 元素实现，但不是通过 <code>src</code> 属性指定一个文件，而是将代码放置在元素中间。虽然有些情况下可以使用这种方式，但大部分时间，最好是如上所述将我们的代码放置在外部文件中。</p>
 <div class="highlight"><pre><code class="xml"><span class="comment">&lt;!-- Embed code directly on a web page using script tags. --&gt;</span>

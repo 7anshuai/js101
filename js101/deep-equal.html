@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">Deep Equal</h1>
-  <div class="entry-content" itemprop="articleBody"><p>Back in <a href="equality.html">JS101: Equality</a> I wrote about the difference between <code>==</code> and <code>===</code>. This is one area of the language that quite clearly causes issues for beginners. In addition, there is another equality concept that can come in handy when writing tests: deep equal. It also illustrates some of the underlying mechanics of the language. As an intermediate JavaScript developer, you should have at least a passing familiarity with <strong>deepEqual</strong> and how it works.</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/js101-deep-equal">http://dailyjs.com/post/js101-deep-equal</a></p>
+</blockquote>
+<p>Back in <a href="equality.html">JS101: Equality</a> I wrote about the difference between <code>==</code> and <code>===</code>. This is one area of the language that quite clearly causes issues for beginners. In addition, there is another equality concept that can come in handy when writing tests: deep equal. It also illustrates some of the underlying mechanics of the language. As an intermediate JavaScript developer, you should have at least a passing familiarity with <strong>deepEqual</strong> and how it works.</p>
 <h2 id="unit-testing-1-0">Unit Testing/1.0</h2><p>Deep equality is defined in <a href="http://wiki.commonjs.org/wiki/Unit_Testing/1.0">CommonJS Unit Testing/1.0</a>, under subsection 7. The algorithm assumes two arguments: <code>expected</code> and <code>actual</code>. The purpose of the algorithm is to determine if the values are equivalent. It supports both primitive values and objects.</p>
 <ol>
 <li>Strict equals (<code>===</code>) means the values are equivalent</li>

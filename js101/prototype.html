@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">原型</h1>
-  <div class="entry-content" itemprop="articleBody"><p>当经过多年的学习面向对象编程之后，适应 JavaScript 可能会令人沮丧。特别是缺乏一个 <code>class</code> 关键词，引起混乱的一个原因。然而，JavaScript 的设计不一定是一个障碍 - 掌握其基于原型的继承会提高你对这门语言的理解。</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/js101-prototype">http://dailyjs.com/post/js101-prototype</a></p>
+</blockquote>
+<p>当经过多年的学习面向对象编程之后，适应 JavaScript 可能会令人沮丧。特别是缺乏一个 <code>class</code> 关键词，引起混乱的一个原因。然而，JavaScript 的设计不一定是一个障碍 - 掌握其基于原型的继承会提高你对这门语言的理解。</p>
 <p>首先需要明白的一件事情是面向<em>对象</em>与面向<em>类</em>编程之间的区别。JavaScript 给了我们需要做的大部分基于类的语言可以做到的事情的工具 － 我们只需要学习如何正确使用它。</p>
 <p>让我们来简单的介绍一下原型属性，来看看它是如何可以加深我们的 JavaScript 的知识。</p>
 <h2 id="原型属性">原型属性</h2><p>原型属性是一个内部属性，它被设计用来实现继承。这里所说的“继承”的意思是继承的一种具体形式。因为状态和方法都由对象保存，那么我们可以说结构，行为和状态都被继承（<a href="http://es5.github.com/#x4.2.1">ES5: Objects</a>）。而基于类的语言，状态是由实例保存，方法是由类保存。</p>

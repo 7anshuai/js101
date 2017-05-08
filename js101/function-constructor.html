@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">The Function Constructor</h1>
-  <div class="entry-content" itemprop="articleBody"><p>Last week we took a cursory glance at functions, and this week we&#39;ll look at the <code>Function</code> object itself.</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/function-2">http://dailyjs.com/post/function-2</a></p>
+</blockquote>
+<p>Last week we took a cursory glance at functions, and this week we&#39;ll look at the <code>Function</code> object itself.</p>
 <h2 id="creating-functions-with-the-function-constructor">Creating Functions with the <code>Function</code> Constructor</h2><p>Functions can be instantiated with zero or more arguments. The last argument is always the function body:</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> sum = <span class="keyword">new</span> Function(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'return a + b'</span>);
 sum(<span class="number">1</span>, <span class="number">1</span>);

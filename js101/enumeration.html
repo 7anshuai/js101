@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">Enumeration</h1>
-  <div class="entry-content" itemprop="articleBody"><p>In this article we&#39;ll look at JavaScript&#39;s enumeration capabilities. This is partly related to scope, so take a look at <a href="scope.html">JS101: A Brief Lesson on Scope</a> if you haven&#39;t read it yet.</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/js101-loops">http://dailyjs.com/post/js101-loops</a></p>
+</blockquote>
+<p>In this article we&#39;ll look at JavaScript&#39;s enumeration capabilities. This is partly related to scope, so take a look at <a href="scope.html">JS101: A Brief Lesson on Scope</a> if you haven&#39;t read it yet.</p>
 <h2 id="correctly-using-for-in">Correctly Using <code>for-in</code></h2><p>The <a href="http://es5.github.io/#x12.6.4">for-in statement</a> is intended to be used to enumerate over the properties of an object. Inherited properties are included, and to avoid iterating over them <code>hasOwnProperty</code> should be used.</p>
 <p>This example demonstrates using for-in, and shows what happens when someone adds a property to a native prototype:</p>
 <div class="highlight"><pre><code class="javascript">Object.prototype.bad = <span class="literal">undefined</span>;

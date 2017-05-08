@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">闭包</h1>
-  <div class="entry-content" itemprop="articleBody"><p>闭包是作用域概念的扩展。通过闭包，函数可以访问存在函数被创建的作用域中的变量。如果这显得令人困惑，别担心：闭包一般最适合通过例子来理解。</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/closures.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/closures.md</a></p>
+</blockquote>
+<p>闭包是作用域概念的扩展。通过闭包，函数可以访问存在函数被创建的作用域中的变量。如果这显得令人困惑，别担心：闭包一般最适合通过例子来理解。</p>
 <p>如同<a href="scope.html">作用域</a>部分所示，函数可以访问变化的变量值。定义在循环中的函数也存在同样的行为 － 即使在函数定义之后，它依然能观察到变量的值发生了改变，导致每一个函数都引用了保存在变量中的最后值。</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// Each function executed within the loop will reference</span>
 <span class="comment">// the last value stored in i (5).</span>

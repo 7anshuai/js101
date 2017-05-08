@@ -11,7 +11,10 @@
         <updated>2016-10-05T00:00:00.000Z</updated>
         <id>http://101.js.org/js101/inheritance.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <h2 id="继承链和构造函数">继承链和构造函数</h2><p>如之前所见，JavaScript 对象拥有一个 <code>prototype</code> 属性，它被设计用来实现继承。一个对象的 <code>prototype</code> 属性可以被设置为另一个对象的实例，以此创建一个继承链：</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/js101-prototype-chains">http://dailyjs.com/post/js101-prototype-chains</a></p>
+</blockquote>
+<h2 id="继承链和构造函数">继承链和构造函数</h2><p>如之前所见，JavaScript 对象拥有一个 <code>prototype</code> 属性，它被设计用来实现继承。一个对象的 <code>prototype</code> 属性可以被设置为另一个对象的实例，以此创建一个继承链：</p>
 <div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span><span class="params">(name)</span> {</span>
   <span class="keyword">this</span>.x = <span class="number">0</span>;
   <span class="keyword">this</span>.y = <span class="number">0</span>;
@@ -78,7 +81,10 @@ name: Player <span class="number">1</span>, at x: <span class="number">1</span>,
         <updated>2016-10-01T00:00:00.000Z</updated>
         <id>http://101.js.org/js101/prototype.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>当经过多年的学习面向对象编程之后，适应 JavaScript 可能会令人沮丧。特别是缺乏一个 <code>class</code> 关键词，引起混乱的一个原因。然而，JavaScript 的设计不一定是一个障碍 - 掌握其基于原型的继承会提高你对这门语言的理解。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/js101-prototype">http://dailyjs.com/post/js101-prototype</a></p>
+</blockquote>
+<p>当经过多年的学习面向对象编程之后，适应 JavaScript 可能会令人沮丧。特别是缺乏一个 <code>class</code> 关键词，引起混乱的一个原因。然而，JavaScript 的设计不一定是一个障碍 - 掌握其基于原型的继承会提高你对这门语言的理解。</p>
 <p>首先需要明白的一件事情是面向<em>对象</em>与面向<em>类</em>编程之间的区别。JavaScript 给了我们需要做的大部分基于类的语言可以做到的事情的工具 － 我们只需要学习如何正确使用它。</p>
 <p>让我们来简单的介绍一下原型属性，来看看它是如何可以加深我们的 JavaScript 的知识。</p>
 <h2 id="原型属性">原型属性</h2><p>原型属性是一个内部属性，它被设计用来实现继承。这里所说的“继承”的意思是继承的一种具体形式。因为状态和方法都由对象保存，那么我们可以说结构，行为和状态都被继承（<a href="http://es5.github.com/#x4.2.1">ES5: Objects</a>）。而基于类的语言，状态是由实例保存，方法是由类保存。</p>
@@ -172,7 +178,10 @@ console.log(harley.toString());
         <updated>2016-05-18T00:00:00.000Z</updated>
         <id>http://101.js.org/js101/primitive-values-and-objects.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <h2 id="回到基础">回到基础</h2><p>当人们与我谈起 DailyJS 时，常会要求更多的初学者文章。因此，我们在 DailyJS 开始 <strong>JS101</strong> 系列文章。这些文章主要是关于语言基本主题的简短介绍，通常是大概10分钟的篇幅。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/js101-object">http://dailyjs.com/post/js101-object</a></p>
+</blockquote>
+<h2 id="回到基础">回到基础</h2><p>当人们与我谈起 DailyJS 时，常会要求更多的初学者文章。因此，我们在 DailyJS 开始 <strong>JS101</strong> 系列文章。这些文章主要是关于语言基本主题的简短介绍，通常是大概10分钟的篇幅。</p>
 <p>我深信学习 JavaScript 归结于理解 <code>Object</code>，所以从哪部分开始最好？</p>
 <h2 id="值的类型">值的类型</h2><p>在 JavaScript 中，谦逊的 <code>Object</code> 是许多语言特性的基础。要理解 JavaScript 对象，让我们考虑下我们所拥有的值有什么类型。看看下面的例子：</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> one = <span class="number">1</span>
@@ -222,7 +231,10 @@ log(<span class="keyword">typeof</span>(one), <span class="keyword">typeof</span
         <updated>2016-03-19T00:00:00.000Z</updated>
         <id>http://101.js.org/js101/the-language-past-and-present.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>一个重要的问题：JavaScript 是什么，它由谁掌控？</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/js101-the-language">http://dailyjs.com/post/js101-the-language</a></p>
+</blockquote>
+<p>一个重要的问题：JavaScript 是什么，它由谁掌控？</p>
 <p>在 <a href="http://dailyjs.com/history-of-javascript-index/">History of JavaScript</a> 系列中，我已经详细回答了这个问题。这篇文章是一个简单的介绍，读完之后你应该知道了JavaScript 的基础知识以及它和 ECMAScript 的关系。</p>
 <h2 id="谁创造了-javascript？">谁创造了 JavaScript？</h2><p>在1995年，Brendan Eich 为网景创造了 JavaScript。网景将 JavaScript 提交到了 <a href="http://www.ecma-international.org/">Ecma International</a>，一个在日内瓦的标准组织。标准化的 版本就是 ECMAScript。</p>
 <h2 id="ecmascript-是什么？">ECMAScript 是什么？</h2><p>多数网站（比如 DailyJS）上的文章会引用 ECMA-262， ECMAScript 3 和 ECMAScript 5。 通常会简称为 ES3 和 ES5。</p>
@@ -245,7 +257,10 @@ log(<span class="keyword">typeof</span>(one), <span class="keyword">typeof</span
         <updated>2015-04-21T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/closures.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>闭包是作用域概念的扩展。通过闭包，函数可以访问存在函数被创建的作用域中的变量。如果这显得令人困惑，别担心：闭包一般最适合通过例子来理解。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/closures.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/closures.md</a></p>
+</blockquote>
+<p>闭包是作用域概念的扩展。通过闭包，函数可以访问存在函数被创建的作用域中的变量。如果这显得令人困惑，别担心：闭包一般最适合通过例子来理解。</p>
 <p>如同<a href="scope.html">作用域</a>部分所示，函数可以访问变化的变量值。定义在循环中的函数也存在同样的行为 － 即使在函数定义之后，它依然能观察到变量的值发生了改变，导致每一个函数都引用了保存在变量中的最后值。</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// Each function executed within the loop will reference</span>
 <span class="comment">// the last value stored in i (5).</span>
@@ -356,7 +371,10 @@ boundGetUser();</code></pre></div>]]>
         <updated>2015-04-19T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/scope.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>作用域通常是指在指定的时间内，变量存在于一段代码中。缺乏对作用域的理解可能会导致令人沮丧的调试体验。作用域的概念是关于我们的代码中可以访问到哪些确定的函数或变量，代码的上下文和执行环境。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/scope.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/scope.md</a></p>
+</blockquote>
+<p>作用域通常是指在指定的时间内，变量存在于一段代码中。缺乏对作用域的理解可能会导致令人沮丧的调试体验。作用域的概念是关于我们的代码中可以访问到哪些确定的函数或变量，代码的上下文和执行环境。</p>
 <p>在 JavaScript 中，有两种类型的作用域：全局和局部作用域。</p>
 <h2 id="全局作用域">全局作用域</h2><p>第一种作用域是<strong>全局作用域</strong>。它很容易定义。如果一个变量或函数是<em>全局的</em>，那么在程序中的任何地方都可以访问到它们。在浏览器中，全局作用域是 <code>window</code> 对象。如果在函数外面声明一个变量，那么这个变量就存在全局对象中。例如：</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> x = <span class="number">9</span>;</code></pre></div><p>一旦该变量被定义，则可以被引用为 <code>window.x</code>，因为它存在于全局对象中，我们可以简单的引用它为 <code>x</code>。</p>
@@ -462,7 +480,10 @@ f(); <span class="comment">// "world"</span></code></pre></div><p>这是一个�
         <updated>2015-04-09T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/functions.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>函数包含需要反复执行的代码块。函数可以取零个或多个参数，并且可以可选的返回一个值。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/functions.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/functions.md</a></p>
+</blockquote>
+<p>函数包含需要反复执行的代码块。函数可以取零个或多个参数，并且可以可选的返回一个值。</p>
 <p>函数可以通过各种方式创建，其中两个方式如下：</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// Function declaration.</span>
 
@@ -535,7 +556,10 @@ myFn( myOtherFn ); <span class="comment">// "hello world"</span></code></pre></d
         <updated>2015-04-08T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/objects.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>对象包含一个或更多键值对。键的部分可以是任何字符串。值的部分可以是任何类型的值：数字、字符串、数组、函数，甚至是另一个对象。当这些值中的一个是函数，它被称为对象的方法。否则，它们被称为属性。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/objects.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/objects.md</a></p>
+</blockquote>
+<p>对象包含一个或更多键值对。键的部分可以是任何字符串。值的部分可以是任何类型的值：数字、字符串、数组、函数，甚至是另一个对象。当这些值中的一个是函数，它被称为对象的方法。否则，它们被称为属性。</p>
 <p>事实上，JavaScript 中的所有东西几乎都是对象 － 数组，函数，数字，甚至字符串 － 它们都有属性和方法。</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// Creating an object literal.</span>
 
@@ -581,7 +605,10 @@ console.log( myObject.myName ); <span class="comment">// "Rebecca"</span></code>
         <updated>2015-03-28T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/arrays.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>数组是从零索引，值的有序列表。数组是一个简便的方式来存储一组相同类型的有关项（例如字符串），但实际上，一个数组可以包含多个类型的项，甚至是其他数组。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/arrays.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/arrays.md</a></p>
+</blockquote>
+<p>数组是从零索引，值的有序列表。数组是一个简便的方式来存储一组相同类型的有关项（例如字符串），但实际上，一个数组可以包含多个类型的项，甚至是其他数组。</p>
 <p>创建一个数组，可以使用数组构造函数或者字面量声明式，在声明后，可以赋给变量一系列的值。</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// A simple array with constructor.</span>
 <span class="keyword">var</span> myArray1 = <span class="keyword">new</span> Array( <span class="string">"hello"</span>, <span class="string">"world"</span> );
@@ -739,7 +766,10 @@ myArray.forEach( negateElement );</code></pre></div>]]>
         <updated>2015-03-17T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/loops.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>循环让一块代码运行一定的次数：</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/loops.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/loops.md</a></p>
+</blockquote>
+<p>循环让一块代码运行一定的次数：</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ ) {
     <span class="comment">// Logs "try 0", "try 1", ..., "try 4".</span>
     console.log( <span class="string">"try "</span> + i );
@@ -817,7 +847,10 @@ myArray.forEach( negateElement );</code></pre></div>]]>
         <updated>2015-03-13T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/operators.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>基本的运算符让你可以操作值。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/operators.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/operators.md</a></p>
+</blockquote>
+<p>基本的运算符让你可以操作值。</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// Concatenation</span>
 <span class="keyword">var</span> foo = <span class="string">"hello"</span>;
 <span class="keyword">var</span> bar = <span class="string">"world"</span>;
@@ -900,7 +933,10 @@ foo &lt;= baz; <span class="comment">// true</span></code></pre></div><p>有关�
         <updated>2015-03-11T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/conditional-code.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>有时候一个代码块应该只在一定条件下运行。流程控制 － 通过 <code>if</code> 和 <code>else</code> 代码块，让你的代码只在满足一定的条件下运行。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/conditional-code.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/conditional-code.md</a></p>
+</blockquote>
+<p>有时候一个代码块应该只在一定条件下运行。流程控制 － 通过 <code>if</code> 和 <code>else</code> 代码块，让你的代码只在满足一定的条件下运行。</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// Flow control</span>
 
 <span class="keyword">var</span> foo = <span class="literal">true</span>;
@@ -993,7 +1029,10 @@ foo &lt;= baz; <span class="comment">// true</span></code></pre></div><p>有关�
         <updated>2015-03-09T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/testing-type.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>JavaScript 提供了一种方法来测试变量的类型。然而，其结果可能会让人迷惑 － 例如，一个数组的类型是 <code>object</code>。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/testing-type.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/testing-type.md</a></p>
+</blockquote>
+<p>JavaScript 提供了一种方法来测试变量的类型。然而，其结果可能会让人迷惑 － 例如，一个数组的类型是 <code>object</code>。</p>
 <p>当试图检测一个特定值的类型时，常见的做法是使用 <code>typeof</code> 运算符。</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// Testing the type of various variables.</span>
 <span class="keyword">var</span> myFunction = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
@@ -1035,7 +1074,10 @@ foo &lt;= baz; <span class="comment">// true</span></code></pre></div><p>有关�
         <updated>2015-03-09T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/types.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>JavaScript 中的数据类型有两类：原始类型和对象。原始类型包括：</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/types.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/types.md</a></p>
+</blockquote>
+<p>JavaScript 中的数据类型有两类：原始类型和对象。原始类型包括：</p>
 <ul>
 <li>字符串</li>
 <li>数字</li>
@@ -1175,7 +1217,10 @@ jQuery.isArray( myValue ); <span class="comment">// true</span></code></pre></di
         <updated>2015-03-06T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/reserved-words.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/reserved-words.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/reserved-words.md</a></p>
+</blockquote>
+<p>JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。</p>
 <ul>
 <li><code>break</code></li>
 <li><code>case</code></li>
@@ -1232,7 +1277,10 @@ jQuery.isArray( myValue ); <span class="comment">// true</span></code></pre></di
         <updated>2015-03-06T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/syntax-basics.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <h3 id="注释">注释</h3><p>JavaScript 支持单行和多行注释。注释会被 JavaScript 引擎忽略，所以它对程序的结果没有影响。使用注释为其他开发者记录代码，像 <a href="http://usejsdoc.org/" title="JSDoc">JSDoc</a> 这类工具库，可以帮助生成基于注释的项目文档页面。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/syntax-basics.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/syntax-basics.md</a></p>
+</blockquote>
+<h3 id="注释">注释</h3><p>JavaScript 支持单行和多行注释。注释会被 JavaScript 引擎忽略，所以它对程序的结果没有影响。使用注释为其他开发者记录代码，像 <a href="http://usejsdoc.org/" title="JSDoc">JSDoc</a> 这类工具库，可以帮助生成基于注释的项目文档页面。</p>
 <div class="highlight"><pre><code class="javascript"><span class="comment">// Single- and multi-line comments.</span>
 
 <span class="comment">// This is an example of a single-line comment.</span>
@@ -1293,7 +1341,10 @@ x === <span class="literal">undefined</span>; <span class="comment">// true</spa
         <updated>2015-03-03T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/running-code.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <h3 id="外部">外部</h3><p>第一种也是推荐的方式是在一个外部文件（带有 <code>.js</code> 扩展名）编写代码，然后可以使用 HTML <code>script</code> 元素并通过 <code>src</code> 属性指定文件的位置来引入到网页中。当你需要将代码重复使用在其他页面时，保持 JavaScript 在一个单独的文件中可以减少代码的重复。另外它也可以让浏览器将文件缓存到客户端的计算机上，减少网页加载时间。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/running-code.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/running-code.md</a></p>
+</blockquote>
+<h3 id="外部">外部</h3><p>第一种也是推荐的方式是在一个外部文件（带有 <code>.js</code> 扩展名）编写代码，然后可以使用 HTML <code>script</code> 元素并通过 <code>src</code> 属性指定文件的位置来引入到网页中。当你需要将代码重复使用在其他页面时，保持 JavaScript 在一个单独的文件中可以减少代码的重复。另外它也可以让浏览器将文件缓存到客户端的计算机上，减少网页加载时间。</p>
 <div class="highlight"><pre><code class="xml"><span class="comment">&lt;!-- Code is written in a .js file, included via the script tag src attribute. --&gt;</span>
 <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"/path/to/example.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code></pre></div><h3 id="内嵌">内嵌</h3><p>第二种方式是直接将代码内嵌在网页中。它也是通过 HTML <code>script</code> 元素实现，但不是通过 <code>src</code> 属性指定一个文件，而是将代码放置在元素中间。虽然有些情况下可以使用这种方式，但大部分时间，最好是如上所述将我们的代码放置在外部文件中。</p>
 <div class="highlight"><pre><code class="xml"><span class="comment">&lt;!-- Embed code directly on a web page using script tags. --&gt;</span>
@@ -1340,7 +1391,10 @@ console.log( title );
         <updated>2015-02-28T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/getting-started.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <h2 id="网页的解剖学">网页的解剖学</h2><p>在深入 JavaScript 之前，对网页的解剖有助于理解 JavaScript 是如何与其他网络技术密切合作的。</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/getting-started.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/getting-started.md</a></p>
+</blockquote>
+<h2 id="网页的解剖学">网页的解剖学</h2><p>在深入 JavaScript 之前，对网页的解剖有助于理解 JavaScript 是如何与其他网络技术密切合作的。</p>
 <h2 id="html-是内容">HTML 是内容</h2><p>HTML 是用来定义和描述内容的标记语言。无论是博客文章，搜索引擎结果，或者电商网站，网页的核心内容都是用 HTML 编写的。语义标记是指 HTML 中用来描述内容的通用术语（头部，段落，图片等）。</p>
 <h2 id="css-是表现">CSS 是表现</h2><p>CSS 是一个为 HTML 文档应用样式的附加语言。CSS 的全部都是关于如何通过定义字体，颜色等其他视觉美感，让内容更好看。CSS 的强大之处在于样式不再和内容夹杂，这意味着你可以将不同的样式应用到同一块内容，当构建良好的跨设备响应式网站时，这是至关重要的。</p>
 <h2 id="javascript-是交互">JavaScript 是交互</h2><p>在浏览器中，JavaScript 为 HTML 内容添加交互性和行为能力。没有 JavaScript，网页将会是静态和无聊的。JavaScript 使网页富有生命力。</p>
@@ -1400,7 +1454,10 @@ console.log( title );
         <updated>2014-04-12T00:00:00.000Z</updated>
         <id>http://101.js.org/javascript-101/this-keyword.html</id>
         <content type="html" xml:base="http://101.js.org/" xml:lang="en">
-            <![CDATA[ <p>在 JavaScript 中，如同在大部分面向对象编程语言中一样，<code>this</code> 是一个特殊的关键字，它常在被某个对象调用的方法中指向对象本身。<code>this</code> 的值可通过一系列简单的步骤来确定：</p>
+            <![CDATA[ <blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/this-keyword.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/this-keyword.md</a></p>
+</blockquote>
+<p>在 JavaScript 中，如同在大部分面向对象编程语言中一样，<code>this</code> 是一个特殊的关键字，它常在被某个对象调用的方法中指向对象本身。<code>this</code> 的值可通过一系列简单的步骤来确定：</p>
 <ul>
 <li>如果函数是通过 <code>Function.call()</code> 或者 <code>Function.apply()</code> 调用，<code>this</code> 的值将会被设置为传递给 <code>.call()</code> 或 <code>.apply()</code> 的第一个参数。如果传递给 <code>.call()</code> 或 <code>.apply()</code> 的第一个参数是 <code>null</code> 或 <code>undefined</code>，<code>this</code> 会指向全局对象（在 Web 浏览器中是 <code>window</code> 对象）。</li>
 <li>如果被调用的函数是由 <code>Function.bind()</code> 创建的，<code>this</code> 将会是该函数被创建时传递给 <code>.bind()</code> 的第一个参数。</li>

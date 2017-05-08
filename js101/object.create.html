@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">Object.create</h1>
-  <div class="entry-content" itemprop="articleBody"><p>The inheritance examples we looked at last week used the form <code>Rectangle.prototype = new Shape()</code>. The reason I like this example is it shows how powerful prototypes are, despite their simplicity. The downside is the constructor for the parent object is executed, which isn&#39;t always what&#39;s desired.</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/js101-object-create">http://dailyjs.com/post/js101-object-create</a></p>
+</blockquote>
+<p>The inheritance examples we looked at last week used the form <code>Rectangle.prototype = new Shape()</code>. The reason I like this example is it shows how powerful prototypes are, despite their simplicity. The downside is the constructor for the parent object is executed, which isn&#39;t always what&#39;s desired.</p>
 <p>ECMAScript 5 introduced <code>Object.create</code>, which creates new objects based on a prototype object and an additional set of properties.</p>
 <p>The main differences between <code>B.prototype = new A()</code>; and <code>B.prototype = Object.create(A.prototype)</code> are as follows:</p>
 <p>The constructor, <code>A</code> isn&#39;t called, so <code>B</code> remains uninitialised until instantiated

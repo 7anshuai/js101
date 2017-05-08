@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">Call, Apply and Bind</h1>
-  <div class="entry-content" itemprop="articleBody"><p>Last week we looked at <code>this</code>, and how it can be assigned and manipulated. The example I gave showed that a function inside another function (or method) will resolve <code>this</code> to the global object, and I used <code>var self = this</code> to reference the intended object.</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/js101-this-binding">http://dailyjs.com/post/js101-this-binding</a></p>
+</blockquote>
+<p>Last week we looked at <code>this</code>, and how it can be assigned and manipulated. The example I gave showed that a function inside another function (or method) will resolve <code>this</code> to the global object, and I used <code>var self = this</code> to reference the intended object.</p>
 <p>Reader n1k0 pointed out another solution: <code>Function.prototype.call</code>:</p>
 <div class="highlight"><pre><code class="javascript">Shape.prototype = {
   move: <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span> {</span>

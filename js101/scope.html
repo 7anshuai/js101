@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">A Brief Lesson on Scope</h1>
-  <div class="entry-content" itemprop="articleBody"><p>JavaScript is a language that demands a rigorous understanding of its scoping rules. One reason for this is JavaScript looks deceptively like other languages, but subtle differences in the rules that govern identifier visibility make it unexpectedly difficult to master.</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/js101-scope">http://dailyjs.com/post/js101-scope</a></p>
+</blockquote>
+<p>JavaScript is a language that demands a rigorous understanding of its scoping rules. One reason for this is JavaScript looks deceptively like other languages, but subtle differences in the rules that govern identifier visibility make it unexpectedly difficult to master.</p>
 <p>Here&#39;s some computer science so you can impress your friends and wayward wizards: <em>scope</em> refers to the visibility of a given identifier within a program. Sometimes we talk about <em>function scope</em> and <em>block scope</em>. I&#39;ve already covered function scope in this series, but JavaScript doesn&#39;t have <em>block scope</em>. In this context, <a href="http://es5.github.io/#x12.1">block</a> refers to control structures like <code>if</code> statements and <code>for</code> loops -- a block of statements grouped by curly braces.</p>
 <h2 id="declaring-variables-and-functions">Declaring Variables and Functions</h2><p>Variables can be defined with the <code>var</code> statement, and are initialised to <code>undefined</code>:</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> a; <span class="comment">// undefined</span>

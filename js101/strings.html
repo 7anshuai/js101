@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">A Primer on Strings and String Encodings</h1>
-  <div class="entry-content" itemprop="articleBody"><p>What is a JavaScript string? It depends on the context. For instance, a string is a primitive value -- a value represented at the &quot;lowest level&quot; of the language&#39;s implementation.</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/js101-strings">http://dailyjs.com/post/js101-strings</a></p>
+</blockquote>
+<p>What is a JavaScript string? It depends on the context. For instance, a string is a primitive value -- a value represented at the &quot;lowest level&quot; of the language&#39;s implementation.</p>
 <p>Strings are also members of the type <code>String</code>. Strings can be created with the <code>String</code> constructor. Running <code>new String(&#39;hello&#39;)</code> creates an instance of String.</p>
 <p>Finally, String literals are found in the program&#39;s source: <code>var name = &#39;alex&#39;</code>.</p>
 <p>Given that there are many ways to represent strings, what is the underlying encoding in JavaScript? Both the third and fifth editions of ECMAScript state that strings are represented as <a href="http://es5.github.io/#x4.3.16">16-bit unsigned integers</a>:</p>

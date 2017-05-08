@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">作用域</h1>
-  <div class="entry-content" itemprop="articleBody"><p>作用域通常是指在指定的时间内，变量存在于一段代码中。缺乏对作用域的理解可能会导致令人沮丧的调试体验。作用域的概念是关于我们的代码中可以访问到哪些确定的函数或变量，代码的上下文和执行环境。</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/scope.md">https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/scope.md</a></p>
+</blockquote>
+<p>作用域通常是指在指定的时间内，变量存在于一段代码中。缺乏对作用域的理解可能会导致令人沮丧的调试体验。作用域的概念是关于我们的代码中可以访问到哪些确定的函数或变量，代码的上下文和执行环境。</p>
 <p>在 JavaScript 中，有两种类型的作用域：全局和局部作用域。</p>
 <h2 id="全局作用域">全局作用域</h2><p>第一种作用域是<strong>全局作用域</strong>。它很容易定义。如果一个变量或函数是<em>全局的</em>，那么在程序中的任何地方都可以访问到它们。在浏览器中，全局作用域是 <code>window</code> 对象。如果在函数外面声明一个变量，那么这个变量就存在全局对象中。例如：</p>
 <div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> x = <span class="number">9</span>;</code></pre></div><p>一旦该变量被定义，则可以被引用为 <code>window.x</code>，因为它存在于全局对象中，我们可以简单的引用它为 <code>x</code>。</p>

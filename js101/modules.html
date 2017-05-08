@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">Terminology: Modules</h1>
-  <div class="entry-content" itemprop="articleBody"><p>Learning modern modular frameworks like <a href="http://backbonejs.org/">Backbone.js</a> and <a href="http://angularjs.org/">AngularJS</a> involves mastering a large amount of terminology, even just to understand a Hello, World application. With that in mind, I wanted to take a break from higher-level libraries to answer the question: what is a module?</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/modules">http://dailyjs.com/post/modules</a></p>
+</blockquote>
+<p>Learning modern modular frameworks like <a href="http://backbonejs.org/">Backbone.js</a> and <a href="http://angularjs.org/">AngularJS</a> involves mastering a large amount of terminology, even just to understand a Hello, World application. With that in mind, I wanted to take a break from higher-level libraries to answer the question: what is a module?</p>
 <h2 id="the-background-story">The Background Story</h2><p>Client-side development has always been rife with techniques for patching missing behaviour in browsers. Even the humble <code>&lt;script&gt;</code> tag has been cajoled and beaten into submission to give us alternative ways to load scripts.</p>
 <p>It all started with concatenation. Rather than loading many scripts on a page, they are instead joined together to form a single file, and perhaps minimised. One school of thought was that this is more efficient, because a long HTTP request will ultimately perform better than many smaller requests.</p>
 <p>That makes a lot of sense when loading libraries -- things that you want to be globally available. However, when writing your own code it somehow feels wrong to place objects and functions at the top level (the global scope).</p>

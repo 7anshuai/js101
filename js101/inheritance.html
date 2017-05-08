@@ -39,7 +39,10 @@
     <div class="document yue">
 <div class="hentry" itemscope itemtype="http://schema.org/Article">
   <h1 class="entry-title" itemprop="name">继承</h1>
-  <div class="entry-content" itemprop="articleBody"><h2 id="继承链和构造函数">继承链和构造函数</h2><p>如之前所见，JavaScript 对象拥有一个 <code>prototype</code> 属性，它被设计用来实现继承。一个对象的 <code>prototype</code> 属性可以被设置为另一个对象的实例，以此创建一个继承链：</p>
+  <div class="entry-content" itemprop="articleBody"><blockquote>
+<p>原文链接：<a href="http://dailyjs.com/post/js101-prototype-chains">http://dailyjs.com/post/js101-prototype-chains</a></p>
+</blockquote>
+<h2 id="继承链和构造函数">继承链和构造函数</h2><p>如之前所见，JavaScript 对象拥有一个 <code>prototype</code> 属性，它被设计用来实现继承。一个对象的 <code>prototype</code> 属性可以被设置为另一个对象的实例，以此创建一个继承链：</p>
 <div class="highlight"><pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span><span class="params">(name)</span> {</span>
   <span class="keyword">this</span>.x = <span class="number">0</span>;
   <span class="keyword">this</span>.y = <span class="number">0</span>;
