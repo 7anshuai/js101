@@ -16,8 +16,8 @@
         "/favicon-32x32.png"
     ],
     "feedurl": "/feed.xml",
-    "duoshuo": "js101",
     "github": "https://github.com/7anshuai/js101",
+    "githubIssues": "https://github.com/7anshuai/js101/issues",
     "google": "UA-50612052-1",
     "footer": "<p class=\"copyright\">Maintained by <a href=\"http://7anshuai.js.org/\">@7anshuai</a></p>",
     "writers": [

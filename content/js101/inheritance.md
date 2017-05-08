@@ -2,6 +2,7 @@
 [//]: <> (# Inheritance)
 
 - pubdate: 2016-10-05
+- issue: 2
 
 ------
 

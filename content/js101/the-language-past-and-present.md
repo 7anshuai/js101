@@ -1,6 +1,7 @@
 # JavaScript 的过去和现在
 
 - pubdate: 2016-03-19
+- issue: 2
 
 -------
 
