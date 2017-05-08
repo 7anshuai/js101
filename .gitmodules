@@ -1,0 +1,3 @@
+[submodule "themes/one"]
+	path = themes/one
+	url = https://github.com/lepture/nico-one.git
