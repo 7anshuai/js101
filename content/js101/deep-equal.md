@@ -2,6 +2,8 @@
 
 ------
 
+> 原文链接：http://dailyjs.com/post/js101-deep-equal
+
 Back in [JS101: Equality](equality.html) I wrote about the difference between `==` and `===`. This is one area of the language that quite clearly causes issues for beginners. In addition, there is another equality concept that can come in handy when writing tests: deep equal. It also illustrates some of the underlying mechanics of the language. As an intermediate JavaScript developer, you should have at least a passing familiarity with __deepEqual__ and how it works.
 
 ## Unit Testing/1.0

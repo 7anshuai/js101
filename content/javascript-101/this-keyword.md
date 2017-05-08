@@ -5,6 +5,8 @@
 
 -------
 
+> 原文链接：https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/this-keyword.md
+
 在 JavaScript 中，如同在大部分面向对象编程语言中一样，`this` 是一个特殊的关键字，它常在被某个对象调用的方法中指向对象本身。`this` 的值可通过一系列简单的步骤来确定：
 
 - 如果函数是通过 `Function.call()` 或者 `Function.apply()` 调用，`this` 的值将会被设置为传递给 `.call()` 或 `.apply()` 的第一个参数。如果传递给 `.call()` 或 `.apply()` 的第一个参数是 `null` 或 `undefined`，`this` 会指向全局对象（在 Web 浏览器中是 `window` 对象）。

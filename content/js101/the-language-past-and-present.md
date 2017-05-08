@@ -5,6 +5,8 @@
 
 -------
 
+> 原文链接：http://dailyjs.com/post/js101-the-language
+
 一个重要的问题：JavaScript 是什么，它由谁掌控？
 
 在 [History of JavaScript](http://dailyjs.com/history-of-javascript-index/) 系列中，我已经详细回答了这个问题。这篇文章是一个简单的介绍，读完之后你应该知道了JavaScript 的基础知识以及它和 ECMAScript 的关系。

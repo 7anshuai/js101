@@ -2,6 +2,8 @@
 
 ------
 
+> 原文链接：http://dailyjs.com/post/js101-this
+
 So far in JS101, our examples have mentioned `this` and functions that take advantage of its behaviour, like `Function.prototype.apply` and `Function.prototype.call`. However, before approaching other aspects of the language, we should first address this and execution contexts.
 
 ## Methods and Functions

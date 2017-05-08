@@ -5,6 +5,8 @@
 
 ------
 
+> 原文链接：https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/running-code.md
+
 ### 外部
 
 第一种也是推荐的方式是在一个外部文件（带有 `.js` 扩展名）编写代码，然后可以使用 HTML `script` 元素并通过 `src` 属性指定文件的位置来引入到网页中。当你需要将代码重复使用在其他页面时，保持 JavaScript 在一个单独的文件中可以减少代码的重复。另外它也可以让浏览器将文件缓存到客户端的计算机上，减少网页加载时间。

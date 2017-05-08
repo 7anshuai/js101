@@ -6,6 +6,8 @@
 
 ------
 
+> 原文链接：http://dailyjs.com/post/js101-prototype-chains
+
 ## 继承链和构造函数
 [//]: <> (## Inheritance Chains and Constructors)
 

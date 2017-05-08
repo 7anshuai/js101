@@ -5,6 +5,8 @@
 
 -------
 
+> 原文链接：https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/operators.md
+
 基本的运算符让你可以操作值。
 
 ```javascript

@@ -5,6 +5,8 @@
 
 -------
 
+> 原文链接：https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/syntax-basics.md
+
 ### 注释
 
 JavaScript 支持单行和多行注释。注释会被 JavaScript 引擎忽略，所以它对程序的结果没有影响。使用注释为其他开发者记录代码，像 [JSDoc](http://usejsdoc.org/ "JSDoc") 这类工具库，可以帮助生成基于注释的项目文档页面。

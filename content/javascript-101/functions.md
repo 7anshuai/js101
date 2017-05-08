@@ -5,6 +5,8 @@
 
 -------
 
+> 原文链接：https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/functions.md
+
 函数包含需要反复执行的代码块。函数可以取零个或多个参数，并且可以可选的返回一个值。
 
 函数可以通过各种方式创建，其中两个方式如下：

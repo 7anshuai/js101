@@ -5,6 +5,8 @@
 
 ------
 
+> 原文链接：https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/getting-started.md
+
 ## 网页的解剖学
 
 在深入 JavaScript 之前，对网页的解剖有助于理解 JavaScript 是如何与其他网络技术密切合作的。

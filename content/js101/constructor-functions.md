@@ -2,6 +2,8 @@
 
 ------
 
+> 原文链接：http://dailyjs.com/post/js101-constructor-functions
+
 The [ECMAScript 5.1](http://www.ecma-international.org/publications/standards/Ecma-262.htm) specification defines the behaviour of calling "built-in" constructors as if they were functions. That means not only can `new Array(1, 2)` be used, but also `Array(1, 2)`:
 
 > When `Array` is called as a function rather than as a constructor, it creates and initialises a new Array object. Thus the function call `Array(...)` is equivalent to the object creation expression new `Array(...)` with the same arguments.

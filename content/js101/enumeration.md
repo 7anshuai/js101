@@ -2,6 +2,8 @@
 
 ------
 
+> 原文链接：http://dailyjs.com/post/js101-loops
+
 In this article we'll look at JavaScript's enumeration capabilities. This is partly related to scope, so take a look at [JS101: A Brief Lesson on Scope](scope.html) if you haven't read it yet.
 
 ## Correctly Using `for-in`

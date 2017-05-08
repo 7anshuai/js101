@@ -2,6 +2,8 @@
 
 -------
 
+> 原文链接：http://dailyjs.com/post/modules
+
 Learning modern modular frameworks like [Backbone.js](http://backbonejs.org/) and [AngularJS](http://angularjs.org/) involves mastering a large amount of terminology, even just to understand a Hello, World application. With that in mind, I wanted to take a break from higher-level libraries to answer the question: what is a module?
 
 ## The Background Story

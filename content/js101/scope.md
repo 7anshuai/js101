@@ -2,6 +2,8 @@
 
 ------
 
+> 原文链接：http://dailyjs.com/post/js101-scope
+
 JavaScript is a language that demands a rigorous understanding of its scoping rules. One reason for this is JavaScript looks deceptively like other languages, but subtle differences in the rules that govern identifier visibility make it unexpectedly difficult to master.
 
 Here's some computer science so you can impress your friends and wayward wizards: *scope* refers to the visibility of a given identifier within a program. Sometimes we talk about *function scope* and *block scope*. I've already covered function scope in this series, but JavaScript doesn't have *block scope*. In this context, [block](http://es5.github.io/#x12.1) refers to control structures like `if` statements and `for` loops -- a block of statements grouped by curly braces.

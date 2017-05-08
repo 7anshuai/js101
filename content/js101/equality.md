@@ -2,6 +2,8 @@
 
 --------
 
+> 原文链接：http://dailyjs.com/post/equality
+
 There are four equality operators in JavaScript:
 
 - Equals: `==`

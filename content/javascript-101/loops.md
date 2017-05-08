@@ -5,6 +5,8 @@
 
 ------
 
+> 原文链接：https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/loops.md
+
 循环让一块代码运行一定的次数：
 
 ```javascript

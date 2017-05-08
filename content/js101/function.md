@@ -2,6 +2,8 @@
 
 ------
 
+> 原文链接：http://dailyjs.com/post/function
+
 We've already been using functions and methods (remember the difference?) as part of this series, but it's time to take a deeper look at one of my favourite parts of the language. Prepare to have your mind blown by two incredible facts about the humble function.
 
 ## Functions are Objects

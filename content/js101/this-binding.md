@@ -2,6 +2,8 @@
 
 ------
 
+> 原文链接：http://dailyjs.com/post/js101-this-binding
+
 Last week we looked at `this`, and how it can be assigned and manipulated. The example I gave showed that a function inside another function (or method) will resolve `this` to the global object, and I used `var self = this` to reference the intended object.
 
 Reader n1k0 pointed out another solution: `Function.prototype.call`:

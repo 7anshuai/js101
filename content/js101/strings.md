@@ -2,6 +2,8 @@
 
 ------
 
+> 原文链接：http://dailyjs.com/post/js101-strings
+
 What is a JavaScript string? It depends on the context. For instance, a string is a primitive value -- a value represented at the "lowest level" of the language's implementation.
 
 Strings are also members of the type `String`. Strings can be created with the `String` constructor. Running `new String('hello')` creates an instance of String.

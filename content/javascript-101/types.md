@@ -5,6 +5,8 @@
 
 ------
 
+> 原文链接：https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/types.md
+
 JavaScript 中的数据类型有两类：原始类型和对象。原始类型包括：
 
 * 字符串

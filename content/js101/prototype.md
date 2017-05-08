@@ -5,6 +5,8 @@
 
 ------
 
+> 原文链接：http://dailyjs.com/post/js101-prototype
+
 当经过多年的学习面向对象编程之后，适应 JavaScript 可能会令人沮丧。特别是缺乏一个 `class` 关键词，引起混乱的一个原因。然而，JavaScript 的设计不一定是一个障碍 - 掌握其基于原型的继承会提高你对这门语言的理解。
 [//]: <> (After spending years studying object oriented programming, adapting to JavaScript can be frustrating. In particular, the lack of a `class` keyword is a source of confusion. However, JavaScript's design needn't be a hindrance -- mastering its prototype-based inheritance will improve your understanding of the language.)
 

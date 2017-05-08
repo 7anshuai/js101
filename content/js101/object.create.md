@@ -2,6 +2,8 @@
 
 ------
 
+> 原文链接：http://dailyjs.com/post/js101-object-create
+
 The inheritance examples we looked at last week used the form `Rectangle.prototype = new Shape()`. The reason I like this example is it shows how powerful prototypes are, despite their simplicity. The downside is the constructor for the parent object is executed, which isn't always what's desired.
 
 ECMAScript 5 introduced `Object.create`, which creates new objects based on a prototype object and an additional set of properties.

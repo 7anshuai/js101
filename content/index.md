@@ -16,7 +16,7 @@
 
 ## JS101
 
-来自 [DailyJS](http://dailyjs.com) 的系列文章，基于 [ECMAScript 5](http://zh.wikipedia.org/wiki/ECMAScript) 标准介绍了 JavaScript，涵盖了一些更深层次的内容。
+来自 [DailyJS](http://dailyjs.com/post/js101-index) 的系列文章，基于 [ECMAScript 5](http://zh.wikipedia.org/wiki/ECMAScript) 标准介绍了 JavaScript，涵盖了一些更深层次的内容。
 
 [开始学习 JS101](/js101/)
 

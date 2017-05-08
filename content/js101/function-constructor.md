@@ -2,6 +2,8 @@
 
 ------
 
+> 原文链接：http://dailyjs.com/post/function-2
+
 Last week we took a cursory glance at functions, and this week we'll look at the `Function` object itself.
 
 ## Creating Functions with the `Function` Constructor

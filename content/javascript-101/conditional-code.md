@@ -5,6 +5,8 @@
 
 ------
 
+> 原文链接：https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/conditional-code.md
+
 有时候一个代码块应该只在一定条件下运行。流程控制 － 通过 `if` 和 `else` 代码块，让你的代码只在满足一定的条件下运行。
 
 ```javascript

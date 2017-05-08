@@ -5,6 +5,8 @@
 
 -------
 
+> 原文链接：https://github.com/jquery/learn.jquery.com/tree/v0.6.1/page/javascript-101/reserved-words.md
+
 JavaScript 有一些“保留字”，或有特殊意义的单词。除非你按照它们的本意来使用，否则你应该避免在代码中使用这些字词。
 
 - `break`
