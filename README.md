@@ -1,6 +1,6 @@
 # JS101
 
-JavaScript 101 - JavaScript 新手教程。
+JavaScript 101 - JavaScript 初级教程。
 
 ----------
 
@@ -16,22 +16,22 @@ JavaScript 101 - JavaScript 新手教程。
 
 JS101 使用基于 Node.js 的静态站点生成工具 [nico](https://github.com/lepture/nico)，可以通过 npm 来安装 nico：
 
-```shell
-npm install nico -g
+```bash
+$ npm install nico -g
 ```
 
 全局安装 nico 后，使用 Git 克隆项目：
 
-```shell
+```bash
 
-git clone https://github.com/7anshuai/js101.git && cd js101
+$ git clone https://github.com/7anshuai/js101.git && cd js101
 ```
 ## 运行
 
 在终端运行：
 
-```shell
-nico server
+```bash
+$ nico server
 ```
 
 就可以在当前目录下生成 `site` 静态文件文件夹，并在 `http://127.0.0.1:8000` 运行了一个静态服务器。
